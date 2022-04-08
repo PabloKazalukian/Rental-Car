@@ -1,0 +1,53 @@
+<!-- <p>cars works!</p> -->
+<input type="text" id="#textoDeInput" [(ngModel)]='textoDeInput'  class="form-control" ng-model="selectedGcode" placeholder="Search" ng-change="search(textoDeInput.value)"(keyup)="search(textoDeInput.value)" />
+<button  *ngIf='textoDeInput' class="btn btn-outline-secondary" (click)="search(textoDeInput.value)" type="button">Aqui toy</button>
+
+<!-- <button (click)="search()">Buscar Por Marca<i>import Statement</i></button> -->
+<!-- <p>{{car$}}</p> -->
+<div class="d-flex flex-row gap-4 flex-wrap contenedor_cars">
+    <div *ngFor=" let autos of cars" class="d-inline">
+        <div class="card" style="width: 18rem;">
+            <img src='{{autos.Photo}}' class="card-img-top" alt="..." style="height: 11rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{autos.Brand.toUpperCase()}}</h5>
+              <p class="card-text">Modelo: {{autos.Model}}</p>
+              <p class="card-text">Año: {{autos.Year}}</p>
+              <p class="card-text">Precio: {{autos.Price}}  us$</p>
+              <!-- <p class="card-text">{{autos.id}}</p> -->
+    
+              <!-- <a href="#" class="btn btn-primary">Ver Más</a> -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+autos.id">
+                Ver Más
+              </button>
+              
+              
+            </div>
+
+          </div>
+          <div class="modal fade " id="staticBackdrop{{autos.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!-- <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5> -->
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <img src='{{autos.Photo}}' class="card-img-top" alt="..." >
+                  <h5 class="card-title">{{autos.Brand.toUpperCase()}}</h5>
+                  <p class="card-text">Modelo: {{autos.Model}}</p>
+                  <p class="card-text">Año: {{autos.Year}}</p>
+                  <p class="card-text">Precio: {{autos.Price}}  us$</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- Scrollable modal -->
+    
+    
+</div>
+<!-- <div>Car: {{ car$ | async}}</div> -->

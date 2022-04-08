@@ -1,0 +1,11 @@
+.carrousel_home{
+    /* width: 100%; */
+    box-sizing: border-box;
+    height: auto;
+    overflow: hidden;
+}
+
+.imagen_carrousel{
+    /* width: 100%; */
+    height: 600px;
+}

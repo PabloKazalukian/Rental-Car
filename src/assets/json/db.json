@@ -1,0 +1,51 @@
+[
+   {
+       "id": 0,
+       "Photo" : "https://1.bp.blogspot.com/-hqyKGZmAPMg/XTJezPLGh0I/AAAAAAAAeoY/C7cvpHXCBscsejS6ftOeUvOF7HkMOoZhgCLcBGAs/s1600/Ficha-Tecnica-Lamborghini-Aventador-SVJ.jpg",
+       "Model" : "AVENTADOR SVJ",
+       "Year" : 2015,
+       "Brand" : "lamborghini ",
+       "Price" : 10000
+   },
+   {
+        "id": 1,
+       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Lamborghini_Aventador_SVJ_Monaco_IMG_1001.jpg/800px-Lamborghini_Aventador_SVJ_Monaco_IMG_1001.jpg",
+       "Model" : "Aventador Monaco",
+       "Year" : 2014,
+       "Brand" : "lamborghini ",
+       "Price" : 8000
+   },
+   {
+        "id": 2,    
+       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/2015_Lamborghini_Huracan_LP610-4_%2819884965832%29.jpg/800px-2015_Lamborghini_Huracan_LP610-4_%2819884965832%29.jpg?20150928165637",
+       "Model" : "Huracán",
+       "Year" : 2022,
+       "Brand" : "lamborghini",
+       "Price" : 22000
+   },
+   {
+        "id": 3,
+       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Ferrari_F40.JPG/800px-Ferrari_F40.JPG?20140531121451",
+       "Model" : "F40",
+       "Year" : 1990,
+       "Brand" : "Ferrari",
+       "Price" : 15000
+   },
+   {
+        "id": 4,
+       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Ferrari_488_GTB.jpg/799px-Ferrari_488_GTB.jpg?20151111100742",
+       "Model" : "488",
+       "Year" : 2019,
+       "Brand" : "Ferrari",
+       "Price" : 16000
+   },
+   {
+        "id": 5,
+       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Lamborghini_Gallardo_silver.jpg/800px-Lamborghini_Gallardo_silver.jpg?20050805071939",
+       "Model" : "Gallardo",
+       "Year" : 2011,
+       "Brand" : "lamborghini",
+       "Price" : 6000
+   }
+] 
+ 
