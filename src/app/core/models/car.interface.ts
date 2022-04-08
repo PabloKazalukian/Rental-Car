@@ -5,8 +5,17 @@ export interface Car {
     Year: number,
     Brand : string,
     Price : number,
-    // Specifications: string,
+    Specifications:{
+        Motor:	string,
+        Potencia:	string,
+        ParMotor:	string,
+        Peso:	string,
+        VelocidadMax:	string,
+        Aceleracion: 	string,
+        Consumo:	string
+    }
 }
+
 
 // {
 //     "Photo" : "",

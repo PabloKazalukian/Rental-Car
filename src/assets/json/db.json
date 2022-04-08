@@ -5,7 +5,16 @@
        "Model" : "AVENTADOR SVJ",
        "Year" : 2015,
        "Brand" : "lamborghini ",
-       "Price" : 10000
+       "Price" : 10000,
+       "Specifications":{
+            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "VelocidadMax":	"325 km/h (202 mph)",
+            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+        }
    },
    {
         "id": 1,
@@ -13,7 +22,16 @@
        "Model" : "Aventador Monaco",
        "Year" : 2014,
        "Brand" : "lamborghini ",
-       "Price" : 8000
+       "Price" : 8000,
+       "Specifications":{
+            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "VelocidadMax":	"325 km/h (202 mph)",
+            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+        }
    },
    {
         "id": 2,    
@@ -21,7 +39,16 @@
        "Model" : "Huracán",
        "Year" : 2022,
        "Brand" : "lamborghini",
-       "Price" : 22000
+       "Price" : 22000,
+       "Specifications":{
+            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "VelocidadMax":	"325 km/h (202 mph)",
+            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+        }
    },
    {
         "id": 3,
@@ -29,7 +56,16 @@
        "Model" : "F40",
        "Year" : 1990,
        "Brand" : "Ferrari",
-       "Price" : 15000
+       "Price" : 15000,
+       "Specifications":{
+            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "VelocidadMax":	"325 km/h (202 mph)",
+            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+        }
    },
    {
         "id": 4,
@@ -37,7 +73,16 @@
        "Model" : "488",
        "Year" : 2019,
        "Brand" : "Ferrari",
-       "Price" : 16000
+       "Price" : 16000,
+       "Specifications":{
+            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "VelocidadMax":	"325 km/h (202 mph)",
+            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+        }
    },
    {
         "id": 5,
@@ -45,7 +90,16 @@
        "Model" : "Gallardo",
        "Year" : 2011,
        "Brand" : "lamborghini",
-       "Price" : 6000
+       "Price" : 6000,
+       "Specifications":{
+            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "VelocidadMax":	"325 km/h (202 mph)",
+            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+        }
    }
 ] 
  

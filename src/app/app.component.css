@@ -1,3 +1,6 @@
+.contenedor_home{
+    min-height: 100vh;
+}
 .carrousel_home{
     /* width: 100%; */
     box-sizing: border-box;
@@ -10,10 +13,47 @@
     height: 600px;
 }
 .footer_home{
+    margin-top: 22px;
     top: 100%;
     height: 250px;
     background:rgb(24, 28, 35);
     color: #f1f1f1;
     width: 100%;
-
 }
+.contenedor_carrousel{
+    position: relative;
+}
+.texto_bienvenida{
+    position: absolute;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.6rem;
+    background: #11111188;
+    width: 600px;
+
+    color:#f1f1f1;
+    z-index: 1000;
+    top: 68%;
+    left: 28%;
+}
+
+@media (max-width: 575px) {
+    .imagen_carrousel {
+        height: auto;
+    }
+    .texto_bienvenida{
+        display: none;
+
+    }
+  }
+  
+  @media (max-width: 1100px) {
+    .texto_bienvenida{
+        width: 320px;
+        left: 25%;
+    }
+  }
