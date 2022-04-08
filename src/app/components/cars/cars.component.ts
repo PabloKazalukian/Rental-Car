@@ -2,9 +2,9 @@ import { Car } from 'src/app/core/models/car.interface';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store,select } from '@ngrx/store';
-import listaCars from 'src/assets/json/db.json';
-import {loadCar,searchCar} from './car.actions';
-import * as selector from './car.selector'
+// import listaCars from 'src/assets/json/db.json';
+import {loadCar,searchCar,orderPriceCar,orderBrandCar,orderYearCar} from './car.actions';
+// import * as selector from './car.selector'
 
 interface appState{
   loading:boolean,
@@ -20,9 +20,14 @@ interface appState{
 export class CarsComponent implements OnInit {
   cars!: any;
   estado!: object;
-  car$!:Observable<appState>
-  loading$!:Observable<any> | false
-  textoDeInput:any =null
+  car$!:Observable<appState>;
+  loading$!:Observable<any> | false;
+  textoDeBrand:any ='';
+  textoDeModel:any ='';
+  ascPrice:boolean=false;
+  ascBrand:boolean=false;
+  ascYear:boolean=false;
+
 
   constructor(private store:Store<{autos: appState}>) {
    }
@@ -30,25 +35,52 @@ export class CarsComponent implements OnInit {
   ngOnInit(): void {
     // this.firstWay()
     this.store.dispatch(loadCar())
+    this.store.dispatch(orderBrandCar({asc:true}));
     this.store.select('autos').subscribe((e)=> this.cars= e)
-    this.store.select('autos').subscribe((e)=> console.log(e))
-    console.log(this.cars)
+    // this.store.select('autos').subscribe((e)=> console.log(e))
+    // console.log(this.cars)
     this.loading$ = this.cars.loading;
     this.car$ = this.cars.car;
-    console.log(this.loading$)
-    console.log(this.car$)
+    // console.log(this.loading$)
+    // console.log(this.car$)
     this.cars = this.cars.car
   }
-  public search (e:string): void{
-    console.log(this.textoDeInput)
-    this.store.dispatch(searchCar({brand:this.textoDeInput}))
+  public search (e:string,model:string): void{
+    this.store.dispatch(searchCar({brand:this.textoDeBrand,model:this.textoDeModel}))
     this.store.select('autos').subscribe((e)=> this.cars= e)
     this.cars = this.cars.car
   }
-  public firstWay():void{
-    const Car:any = listaCars;
-    this.cars = Car
-    console.log(Car);    
+
+  public orderPrice (asc:boolean): void{
+    this.ascPrice=!this.ascPrice;
+    // this.store.dispatch(searchCar({brand:this.textoDeBrand,model:this.textoDeModel}))
+    this.store.dispatch(orderPriceCar({asc:this.ascPrice}));
+    this.store.select('autos').subscribe((e)=> this.cars= e)
+    this.ascBrand=!this.ascBrand;
+
+    this.cars = this.cars.car
   }
+  public orderBrand (asc:boolean): void{
+    this.ascBrand=!this.ascBrand;
+    this.ascPrice=!this.ascPrice;
+
+    // this.store.dispatch(searchCar({brand:this.textoDeBrand,model:this.textoDeModel}))
+    this.store.dispatch(orderBrandCar({asc:this.ascBrand}));
+    this.store.select('autos').subscribe((e)=> this.cars= e)
+    this.cars = this.cars.car
+  }
+  public orderYear (asc:boolean): void{
+    this.ascYear=!this.ascYear;
+    this.ascPrice=!this.ascPrice;
+
+    // this.store.dispatch(searchCar({brand:this.textoDeBrand,model:this.textoDeModel}))
+    this.store.dispatch(orderYearCar({asc:this.ascYear}));
+    this.store.select('autos').subscribe((e)=> this.cars= e)
+    this.cars = this.cars.car
+  }
+  // public firstWay():void{
+  //   const Car:any = listaCars;
+  //   this.cars = Car
+  // }
 
 }

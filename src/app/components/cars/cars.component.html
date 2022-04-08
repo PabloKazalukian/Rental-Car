@@ -1,10 +1,43 @@
 <!-- <p>cars works!</p> -->
-<input type="text" id="#textoDeInput" [(ngModel)]='textoDeInput'  class="form-control" ng-model="selectedGcode" placeholder="Search" ng-change="search(textoDeInput.value)"(keyup)="search(textoDeInput.value)" />
-<button  *ngIf='textoDeInput' class="btn btn-outline-secondary" (click)="search(textoDeInput.value)" type="button">Aqui toy</button>
+<div class="row mt-1 border p-2 rounded-2 contenedor_filtro">
+
+  <h2>Encuentra tu Vehiculo!</h2>
+  <div class="row mb-1 pe-0 " >
+    <div class="col-6">
+      <label>Marca:</label>
+      <input type="text" id="#textoDeBrand" 
+        [(ngModel)]='textoDeBrand'  class="form-control col-6" ng-model="selectedGcode" 
+        placeholder="Ingrese Marca buscada" 
+        (keyup)="search(textoDeBrand.value,textoDeModel.value)" />
+    </div>
+    <div class="col-6">
+        <label>Modelo:</label>
+        <input type="text" id="#textoDeModel" 
+        [(ngModel)]='textoDeModel'  class="form-control col-6" 
+        ng-model="selectedGcodes" placeholder="Ingrese Modelo buscado" 
+        (keyup)="search(textoDeBrand.value,textoDeModel.value)" />
+    </div>
+
+  </div>
+  <div class="p-0 mt-2 d-flex flex-wrap justify-content-end align-items-center gap-2 pe-4">
+    <p class="p-0 m-0">Ordernamientos:</p>
+    <button class="btn btn-outline-secondary" (click)="orderPrice(false)">Ordenar por Precio</button>
+    <button class="btn btn-outline-secondary" (click)="orderBrand(false)">Ordenar por Marca</button>
+    <button class="btn btn-outline-secondary" (click)="orderYear(false)">Ordenar por Año</button>
+  </div>
+</div>
+
+<!-- <input type="text" id="#textoDeInput" [(ngModel)]='textoDeInput'  class="form-control" ng-model="selectedGcode" placeholder="Ingrese Marca buscada" ng-change="search(textoDeInput.value)"(keyup)="search(textoDeInput.value)" /> -->
+
+<!-- <button  *ngIf='textoDeInput' class="btn btn-outline-secondary" (click)="search(textoDeInput.value)" type="button">Aqui toy</button> -->
 
 <!-- <button (click)="search()">Buscar Por Marca<i>import Statement</i></button> -->
 <!-- <p>{{car$}}</p> -->
-<div class="d-flex flex-row gap-4 flex-wrap contenedor_cars">
+<div class="row mt-4">
+  <h2 class="d-flex justify-content-center">Nuestros Vehiculos:</h2>
+</div>
+<div class="d-flex flex-row gap-4 flex-wrap justify-content-center  border rounded-3 mt-3 py-5 contenedor_cars">
+    <p *ngIf="cars<1">No se Han encontrado Vehiculos </p>
     <div *ngFor=" let autos of cars" class="d-inline">
         <div class="card" style="width: 18rem;">
             <img src='{{autos.Photo}}' class="card-img-top" alt="..." style="height: 11rem;">
@@ -24,6 +57,7 @@
             </div>
 
           </div>
+          
           <div class="modal fade " id="staticBackdrop{{autos.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-xl">
               <div class="modal-content">
@@ -32,9 +66,8 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <img src='{{autos.Photo}}' class="card-img-top" alt="..." >
-                  <h5 class="card-title">{{autos.Brand.toUpperCase()}}</h5>
-                  <p class="card-text">Modelo: {{autos.Model}}</p>
+                  <img src='{{autos.Photo}}' class="card-img-top" alt="..." style="height: 30rem;">
+                  <h5 class="card-title">{{autos.Brand.toUpperCase()}} {{autos.Model}}</h5>
                   <p class="card-text">Año: {{autos.Year}}</p>
                   <p class="card-text">Precio: {{autos.Price}}  us$</p>
                 </div>
