@@ -1,86 +1,9 @@
 <!-- <p>cars works!</p> -->
-<div class="row mt-1 border p-2 rounded-2 contenedor_filtro">
+<app-filter-cars (newSearchEvent)="search($event)" (newOrderEvent)='order($event)' ></app-filter-cars>
 
-  <h2>Encuentra tu Vehiculo!</h2>
-  <div class="row mb-1 pe-0 " >
-    <div class="col-6">
-      <label>Marca:</label>
-      <input type="text" id="#textoDeBrand" 
-        [(ngModel)]='textoDeBrand'  class="form-control col-6" ng-model="selectedGcode" 
-        placeholder="Ingrese Marca buscada" 
-        (keyup)="search(textoDeBrand.value,textoDeModel.value)" />
-    </div>
-    <div class="col-6">
-        <label>Modelo:</label>
-        <input type="text" id="#textoDeModel" 
-        [(ngModel)]='textoDeModel'  class="form-control col-6" 
-        ng-model="selectedGcodes" placeholder="Ingrese Modelo buscado" 
-        (keyup)="search(textoDeBrand.value,textoDeModel.value)" />
-    </div>
-
-  </div>
-  <div class="p-0 mt-2 d-flex flex-wrap justify-content-end align-items-center gap-2 pe-4">
-    <p class="p-0 m-0">Ordernamientos:</p>
-    <button class="btn btn-outline-secondary" (click)="orderPrice(false)">Ordenar por Precio</button>
-    <button class="btn btn-outline-secondary" (click)="orderBrand(false)">Ordenar por Marca</button>
-    <button class="btn btn-outline-secondary" (click)="orderYear(false)">Ordenar por Año</button>
-  </div>
-</div>
 
 <div class="row mt-4">
-  <h2 class="d-flex justify-content-center">Nuestros Vehiculos:</h2>
+  <h2 class="d-flex justify-content-center">Nuestros vehiculos:</h2>
 </div>
 
-<div class="d-flex flex-row gap-4 flex-wrap justify-content-center  border rounded-3 mt-3 py-5 contenedor_cars">
-    <h2 *ngIf="cars<1">No se Han encontrado Vehiculos </h2>
-    <div *ngFor=" let autos of cars" class="d-inline">
-        <div class="card" style="width: 18rem;">
-            <img src='{{autos.Photo}}' class="card-img-top" alt="..." style="height: 11rem;">
-            <div class="card-body">
-              <h5 class="card-title">{{autos.Brand.toUpperCase()}}</h5>
-              <p class="card-text">Modelo: {{autos.Model}}</p>
-              <p class="card-text">Año: {{autos.Year}}</p>
-              <p class="card-text">Precio: {{autos.Price}}  us$</p>
-    
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+autos.id">
-                Ver Más
-              </button>
-              
-              
-            </div>
-
-          </div>
-          
-          <div class="modal fade " id="staticBackdrop{{autos.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <!-- <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5> -->
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <img src='{{autos.Photo}}' class="card-img-top" alt="..." style="height: 30rem;">
-                  <h5 class="card-title">{{autos.Brand.toUpperCase()}} {{autos.Model}} {{autos.Year}}</h5>
-                  <p class="card-text"><strong>Precio:</strong> {{autos.Price}}  us$</p>
-                  <div>
-                    <h2>Especificaciones: </h2>
-                    <p> <strong>Motor:</strong>{{autos.Specifications.Motor}}</p>
-                    <p><strong>Potencia: </strong> {{autos.Specifications.Potencia}}</p>
-                    <p><strong>Par Motor: </strong> {{autos.Specifications.ParMotor}}</p>
-                    <p><strong>Velocidad Máxima: </strong>{{autos.Specifications.VelocidadMax}}</p>
-                    <p><strong>Aceleración: </strong> {{autos.Specifications.Aceleracion}}</p>
-                    <p><strong>Consumo: </strong>{{autos.Specifications.Consumo}}</p>
-
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-              </div>
-            </div>
-        </div>
-    </div>
-    <!-- Scrollable modal -->
-    
-    
-</div>
+<app-show-car [cars]="cars" ></app-show-car>

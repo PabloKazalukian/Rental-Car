@@ -8,11 +8,15 @@ import { CarsComponent } from './components/cars/cars.component';
 import { StoreModule } from '@ngrx/store';
 import { carReducer} from './components/cars/cars.reducers'
 import { FormsModule } from '@angular/forms';
+import { ShowCarComponent } from './components/cars/show-car/show-car.component';
+import { FilterCarsComponent } from './components/cars/filter-cars/filter-cars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarsComponent,
+    ShowCarComponent,
+    FilterCarsComponent,
   ],
   imports: [
     BrowserModule,

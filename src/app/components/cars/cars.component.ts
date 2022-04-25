@@ -9,6 +9,12 @@ interface appState{
   cars:Array<Car>
   car:Array<Car>
 }
+
+interface text{
+  model:string | '',
+  brand:string |''
+}
+
 @Component({
   selector: 'app-cars',
   templateUrl: './cars.component.html',
@@ -16,16 +22,16 @@ interface appState{
 })
 
 export class CarsComponent implements OnInit {
-  cars!: any;
+  carsTotal!:  appState ;
+  cars!: Array<Car>;
   estado!: object;
   car$!:Observable<appState>;
-  loading$!:Observable<any> | false;
-  textoDeBrand:any ='';
-  textoDeModel:any ='';
+  loading$!:boolean | false;
   ascPrice:boolean=false;
   ascBrand:boolean=false;
   ascYear:boolean=false;
-
+  brand!:string ;
+  model!:string;
 
   constructor(private store:Store<{autos: appState}>) {
    }
@@ -33,39 +39,53 @@ export class CarsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadCar())
     this.store.dispatch(orderBrandCar({asc:true}));
-    this.store.select('autos').subscribe((e)=> this.cars= e)
-    this.loading$ = this.cars.loading;
-    this.car$ = this.cars.car;
-    this.cars = this.cars.car
+    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.loading$ = this.carsTotal.loading;
+    this.cars = this.carsTotal.car;
   }
-  public search (e:string,model:string): void{
-    this.store.dispatch(searchCar({brand:this.textoDeBrand,model:this.textoDeModel}))
-    this.store.select('autos').subscribe((e)=> this.cars= e)
-    this.cars = this.cars.car
+  public search (text?:text): void{
+
+    this.store.dispatch(searchCar({brand:text?.brand ||'',model:text?.model || ''}))
+    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.cars = this.carsTotal.car;
   }
 
-  public orderPrice (asc:boolean): void{
+  public order (order:string):void{
+    switch(order){
+      case 'price':
+        this.orderPrice();
+      break;
+      case 'brand':
+        this.orderBrand();
+      break;
+      case'year':
+        this.orderYear();
+      break;
+      default:
+    }
+  }
+  public orderPrice (): void{
     this.ascPrice=!this.ascPrice;
     this.store.dispatch(orderPriceCar({asc:this.ascPrice}));
-    this.store.select('autos').subscribe((e)=> this.cars= e)
+    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
     this.ascBrand=!this.ascBrand;
 
-    this.cars = this.cars.car
+    this.cars = this.carsTotal.car
   }
-  public orderBrand (asc:boolean): void{
+  public orderBrand (): void{
     this.ascBrand=!this.ascBrand;
     this.ascPrice=!this.ascPrice;
 
     this.store.dispatch(orderBrandCar({asc:this.ascBrand}));
-    this.store.select('autos').subscribe((e)=> this.cars= e)
-    this.cars = this.cars.car
+    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.cars = this.carsTotal.car
   }
-  public orderYear (asc:boolean): void{
+  public orderYear (): void{
     this.ascYear=!this.ascYear;
     this.ascPrice=!this.ascPrice;
 
     this.store.dispatch(orderYearCar({asc:this.ascYear}));
-    this.store.select('autos').subscribe((e)=> this.cars= e)
-    this.cars = this.cars.car
+    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.cars = this.carsTotal.car
   }
 }
