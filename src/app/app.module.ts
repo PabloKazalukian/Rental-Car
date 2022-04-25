@@ -10,6 +10,8 @@ import { carReducer} from './components/cars/cars.reducers'
 import { FormsModule } from '@angular/forms';
 import { ShowCarComponent } from './components/cars/show-car/show-car.component';
 import { FilterCarsComponent } from './components/cars/filter-cars/filter-cars.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {NavBarComponent} from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { FilterCarsComponent } from './components/cars/filter-cars/filter-cars.c
     CarsComponent,
     ShowCarComponent,
     FilterCarsComponent,
+    FooterComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,

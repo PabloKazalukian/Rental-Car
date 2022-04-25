@@ -18,6 +18,7 @@ interface text{
 @Component({
   selector: 'app-filter-cars',
   templateUrl: './filter-cars.component.html',
+  styleUrls:['./filter-cars.component.css']
 })
 export class FilterCarsComponent implements OnInit {
   @Input() orderPrice:any;
@@ -33,13 +34,12 @@ export class FilterCarsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.search('model','brand')
-
   }
+  
   public searchFilter():void{
       this.newSearchEvent.emit({model:this.textModel? this.textModel : '',brand:this.textBrand?this.textBrand : ''})
-    // this.search(this.textModel,this.textBrand)
   }
+
   public order(order:string):void{
     this.newOrderEvent.emit(order);
   }

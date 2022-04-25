@@ -15,12 +15,3 @@ export interface Car {
         Consumo:	string
     }
 }
-
-
-// {
-//     "Photo" : "",
-//     "Model" : "",
-//     "Year" : "",
-//     "Brand" : "",
-//     "Price" : ""
-// },
