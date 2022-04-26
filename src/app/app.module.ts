@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { CarsComponent } from './components/cars/cars.component';
 import { StoreModule } from '@ngrx/store';
 import { carReducer} from './components/cars/cars.reducers'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowCarComponent } from './components/cars/show-car/show-car.component';
 import { FilterCarsComponent } from './components/cars/filter-cars/filter-cars.component';
 import { FooterComponent } from './components/footer/footer.component';
-import {NavBarComponent} from './components/navbar/navbar.component';
+import { NavBarComponent} from './components/navbar/navbar.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { FormularioComponent } from './components/contact/formulario/formulario.component';
+import { AlquilerComponent } from './components/alquiler/alquiler.component';
+import { FormReactivoComponent } from './components/alquiler/form-reactivo/form-reactivo.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +25,16 @@ import {NavBarComponent} from './components/navbar/navbar.component';
     FilterCarsComponent,
     FooterComponent,
     NavBarComponent,
+    ContactComponent,
+    FormularioComponent,
+    AlquilerComponent,
+    FormReactivoComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({autos: carReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
