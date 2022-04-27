@@ -8,8 +8,10 @@
               <p class="card-text">Modelo: {{autos.Model}}</p>
               <p class="card-text">Año: {{autos.Year}}</p>
               <p class="card-text">Precio: {{autos.Price}}  us$</p>
-    
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+autos.id">
+              <button type="button" class="btn btn-primary " (click)="goWithCar(autos.id)">
+                Solicitar alquiler
+              </button>
+              <button type="button" class="btn btn-info mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+autos.id">
                 Ver Más
               </button>
               

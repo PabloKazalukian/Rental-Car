@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./form-reactivo.component.css']
 })
 export class FormReactivoComponent implements OnInit {
+  @Input() id?:number;
 
   contactForm!:FormGroup;
   myField = new FormControl();//observable, para onChanges
@@ -16,6 +17,7 @@ export class FormReactivoComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactForm = this.initForm();
+    console.log(this.id)
   }
   
   onSubmit():void{

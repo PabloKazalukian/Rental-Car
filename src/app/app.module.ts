@@ -16,6 +16,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FormularioComponent } from './components/contact/formulario/formulario.component';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { FormReactivoComponent } from './components/alquiler/form-reactivo/form-reactivo.component';
+import { HomeComponent } from './components/home/home.component';
+import { Error404Component } from './components/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FormReactivoComponent } from './components/alquiler/form-reactivo/form-
     FormularioComponent,
     AlquilerComponent,
     FormReactivoComponent,
+    HomeComponent,
+    Error404Component,
     
   ],
   imports: [
