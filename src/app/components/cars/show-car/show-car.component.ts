@@ -1,6 +1,17 @@
 import { Router } from '@angular/router';
 import { Car } from './../../../core/models/car.interface';
 import { Component, Input, OnInit } from '@angular/core';
+import { Store,select } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import * as carSelector from '../car.selector'
+import {loadCar,searchCar,orderPriceCar,orderBrandCar,orderYearCar} from '../car.actions';
+
+
+interface appState{
+  loading:boolean,
+  cars:Array<Car>
+  car:Array<Car>
+}
 
 @Component({
   selector: 'app-show-car',
@@ -8,11 +19,28 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls:['./show-car.component.css']
 
 })
-export class ShowCarComponent  {
-  @Input() cars!: Array<Car>;
-  constructor(private readonly router: Router){}
+export class ShowCarComponent implements OnInit  {
+  carsTotal!:  appState ;
+  cars!: Array<Car>;
+  car$!:Observable<Car>;
 
+  constructor(private store:Store<{autos: appState}>,private readonly router: Router){}
+
+  ngOnInit(): void {
+    this.car$ = this.store.pipe(select(carSelector.getCars))    
+    this.car$.subscribe(e=> console.log( e))
+    this.chargeData();
+    console.log(this.cars)
+
+  }
   goWithCar(id:number):void{
     this.router.navigate(['alquiler'],{queryParams:{id}})
+    
+  }
+  chargeData ():void{
+    this.store.dispatch(loadCar())
+    // this.store.dispatch(orderBrandCar({asc:true}));
+    this.store.select('autos').subscribe((e)=> this.cars= e.car)
+    console.log(this.cars)
   }
 }

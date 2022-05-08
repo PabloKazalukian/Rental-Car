@@ -4,6 +4,11 @@ import * as CarActions from './car.actions';
 import {Car} from '../../core/models/car.interface';
 import listaCars from 'src/assets/json/db.json';
 
+export interface State{
+  loading:boolean,
+    cars:Array<Car>
+    car:Array<Car>
+}
 export const initialState: {
     loading:boolean,
     cars:Array<Car>
@@ -14,26 +19,26 @@ export const initialState: {
       car:[]
   }
 
-  export const carReducer = createReducer(
+  const _carReducer = createReducer(
     initialState,
-    on(CarActions.loadCar, (state) => {
+    on(CarActions.loadCarEffect, (state,{carState}) => {
       return {...state,
         loading:true,
-        cars:listaCars,
-        car:listaCars,
+        cars:carState,
+        car:carState,
       }}),
     on(CarActions.searchCar, (state,{brand,model})=>{
       if(brand==='' && model === '' ){
         return{...state,car:state.cars }
       }else{
         let arr = state.cars.filter((e):any=>{
-          if(e.Brand.toLocaleLowerCase().includes(brand.toLocaleLowerCase())){
+          if(e.brand.toLocaleLowerCase().includes(brand.toLocaleLowerCase())){
             return e
           }
         });
         if(model!==''){
           arr = arr.filter((e):any=>{
-            if(e.Model.toLocaleLowerCase().includes(model.toLocaleLowerCase())){
+            if(e.model.toLocaleLowerCase().includes(model.toLocaleLowerCase())){
               return e
             }
           })
@@ -46,10 +51,10 @@ export const initialState: {
     on(CarActions.orderPriceCar, (state,{asc})=>{
       let nuevo= [...state.car];
       nuevo = nuevo.sort(function(a, b) {
-        if (a.Price > b.Price) {
+        if (a.price > b.price) {
           return asc?1:-1;
         }
-        if (a.Price < b.Price) {
+        if (a.price < b.price) {
           return asc? -1:1;
         }
         return 0;
@@ -60,10 +65,10 @@ export const initialState: {
       on(CarActions.orderBrandCar, (state,{asc})=>{
         let nuevoOrden= [...state.car];
         nuevoOrden = nuevoOrden.sort(function(a, b) {
-          if (a.Brand > b.Brand) {
+          if (a.brand > b.brand) {
             return asc?1:-1;
           }
-          if (a.Brand < b.Brand) {
+          if (a.brand < b.brand) {
             return asc? -1:1;
           }
           return 0;
@@ -74,10 +79,10 @@ export const initialState: {
         on(CarActions.orderYearCar, (state,{asc})=>{
           let nuevoOrden= [...state.car];
           nuevoOrden = nuevoOrden.sort(function(a, b) {
-            if (a.Year > b.Year) {
+            if (a.year > b.year) {
               return asc?1:-1;
             }
-            if (a.Year < b.Year) {
+            if (a.year < b.year) {
               return asc? -1:1;
             }
             return 0;
@@ -86,5 +91,9 @@ export const initialState: {
             car: nuevoOrden
           }}), 
   );
+
+  export function carReducer(state: State | undefined, action: Action) {
+    return _carReducer(state, action);
+  }
 
   export const reducerKey = 'autos';

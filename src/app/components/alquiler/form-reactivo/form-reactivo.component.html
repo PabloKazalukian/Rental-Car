@@ -26,9 +26,7 @@
         <label for="select" class="form-label">Que vehiculo estas buscando?</label>
         <select class="form-select form-select-sm" id="select"  formControlName="select"  required>
             <option value="" selected disabled>Seleccione una opción</option>
-            <option value="marketing">marketing</option>
-            <option value="sales">ventas</option>
-            <option value="otros">otros</option>
+            <option *ngFor=" let car of cars" [value]="car">{{car}}</option>
 
         </select>
         <!-- <div [hidden]="select.valid || select.pristine" class="alert alert-danger">Este Campo es requerido</div> -->

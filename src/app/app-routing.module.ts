@@ -6,12 +6,18 @@ import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { ContactComponent } from './components/contact/contact.component';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import {HomeComponent} from './components/home/home.component';
+import { DataResolverService } from './resolvers/data.resolver.service';
 
 const routes: Routes = [
   {path:'', redirectTo:'/home',pathMatch:'full'},
   {path:'home',component:HomeComponent},
   {path:'contacto', component:ContactComponent},
-  {path:'alquiler' , component:AlquilerComponent,canActivate:[PermissionsGuard],canDeactivate:[WithoutSaveGuard]},
+  {
+    path:'alquiler' , component:AlquilerComponent,
+    canActivate:[PermissionsGuard],
+    canDeactivate:[WithoutSaveGuard],
+    resolve:{cars:DataResolverService}
+  },
   {path:'**' , component:Error404Component},
 ];
 

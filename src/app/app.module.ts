@@ -18,6 +18,10 @@ import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import { FormReactivoComponent } from './components/alquiler/form-reactivo/form-reactivo.component';
 import { HomeComponent } from './components/home/home.component';
 import { Error404Component } from './components/error404/error404.component';
+import {HttpClientModule} from '@angular/common/http'
+import {EffectsModule} from '@ngrx/effects';
+import * as carSelector from './components/cars/car.selector';
+import {carEffects} from './components/cars/car.effects';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,9 @@ import { Error404Component } from './components/error404/error404.component';
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-    FormsModule
+    EffectsModule.forRoot([carEffects]), //agregar Effects
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

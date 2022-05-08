@@ -1,17 +1,18 @@
 export interface Car {
-    id:number,
-    Photo: string,
-    Model : string,
-    Year: number,
-    Brand : string,
-    Price : number,
-    Specifications:{
-        Motor:	string,
-        Potencia:	string,
-        ParMotor:	string,
-        Peso:	string,
-        VelocidadMax:	string,
-        Aceleracion: 	string,
-        Consumo:	string
+    id_car:number,
+    image: string,
+    brand : string,
+    model : string,
+    year: number,
+    price : number,
+    specifications:{
+        engine:	string,
+        power:	string,
+        torque:	string,
+        weight:	string,
+        max_speed:	string,
+        acceleration: string,
+        consumption: string,
+        created_at: string
     }
 }

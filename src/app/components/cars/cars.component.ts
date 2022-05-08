@@ -1,8 +1,11 @@
 import { Car } from 'src/app/core/models/car.interface';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Store,select } from '@ngrx/store';
 import {loadCar,searchCar,orderPriceCar,orderBrandCar,orderYearCar} from './car.actions';
+import { CarService } from './../../services/car.service';
+import * as carSelector from './car.selector'
+
 
 interface appState{
   loading:boolean,
@@ -25,20 +28,32 @@ export class CarsComponent implements OnInit {
   carsTotal!:  appState ;
   cars!: Array<Car>;
   estado!: object;
-  car$!:Observable<appState>;
+  car$!:Observable<Car>;
   loading$!:boolean | false;
   ascPrice:boolean=false;
   ascBrand:boolean=false;
   ascYear:boolean=false;
   brand!:string ;
   model!:string;
+  autos?: any=[];
+  carObservable: Subject<any> = new Subject();
 
-  constructor(private store:Store<{autos: appState}>) {
+  constructor(private store:Store<{autos: appState}>,private readonly carSvc:CarService) {
    }
 
   ngOnInit(): void {
+    this.carSvc.getAllCars().subscribe(
+      car=>{
+        this.autos = car
+      }
+    )
+    this.chargeData();
+
+  }
+
+  private chargeData ():void{
     this.store.dispatch(loadCar())
-    this.store.dispatch(orderBrandCar({asc:true}));
+    // this.store.dispatch(orderBrandCar({asc:true}));
     this.store.select('autos').subscribe((e)=> this.carsTotal= e)
     this.loading$ = this.carsTotal.loading;
     this.cars = this.carsTotal.car;
@@ -63,6 +78,7 @@ export class CarsComponent implements OnInit {
       break;
       default:
     }
+
   }
   public orderPrice (): void{
     this.ascPrice=!this.ascPrice;

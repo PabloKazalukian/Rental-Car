@@ -7,6 +7,7 @@ interface text{
   }
   
 export const loadCar = createAction('[Car List] load car');
+export const loadCarEffect = createAction('[CAR LIST] Load all Cars',props<{carState:Car[]; }>());
 export const searchCar = createAction('[Car List] search car',props<{ brand: string,model:string; }>());
 export const orderPriceCar = createAction('[Car List] order Pricecar',props<{ asc:boolean; }>())
 export const orderBrandCar = createAction('[Car List] order Brandcar',props<{ asc:boolean; }>())

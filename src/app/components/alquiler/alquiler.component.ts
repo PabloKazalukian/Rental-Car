@@ -10,9 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class AlquilerComponent implements OnInit {
 
   id!:number;
+  cars:string[]=[]
   constructor(private readonly route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.cars=this.route.snapshot.data['cars'];
+    console.log(this.cars)
     this.route.queryParams.subscribe(
       (params)=>{
         this.id = params['id']

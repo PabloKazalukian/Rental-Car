@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class FormReactivoComponent implements OnInit {
   @Input() id?:number;
+  @Input() cars?:string[];
 
   contactForm!:FormGroup;
   myField = new FormControl();//observable, para onChanges
