@@ -8,7 +8,7 @@ import { Car } from '../core/models/car.interface';
   providedIn: 'root'
 })
 export class CarService {
-  private readonly API= environment.api;
+  private readonly API= `${environment.api}/car`;
 
   constructor(private readonly http:HttpClient) { }
 

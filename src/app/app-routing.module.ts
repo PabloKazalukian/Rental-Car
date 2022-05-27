@@ -7,6 +7,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import {HomeComponent} from './components/home/home.component';
 import { DataResolverService } from './resolvers/data.resolver.service';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/home',pathMatch:'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
     canDeactivate:[WithoutSaveGuard],
     resolve:{cars:DataResolverService}
   },
+  {path:'login', component:LoginComponent},
   {path:'**' , component:Error404Component},
 ];
 

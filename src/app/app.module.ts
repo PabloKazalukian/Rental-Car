@@ -22,6 +22,7 @@ import {HttpClientModule} from '@angular/common/http'
 import {EffectsModule} from '@ngrx/effects';
 import * as carSelector from './components/cars/car.selector';
 import {carEffects} from './components/cars/car.effects';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {carEffects} from './components/cars/car.effects';
     FormReactivoComponent,
     HomeComponent,
     Error404Component,
+    LoginComponent,
     
   ],
   imports: [

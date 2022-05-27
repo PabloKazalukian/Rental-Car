@@ -1,105 +1,104 @@
 [
    {
        "id": 0,
-       "Photo" : "https://1.bp.blogspot.com/-hqyKGZmAPMg/XTJezPLGh0I/AAAAAAAAeoY/C7cvpHXCBscsejS6ftOeUvOF7HkMOoZhgCLcBGAs/s1600/Ficha-Tecnica-Lamborghini-Aventador-SVJ.jpg",
-       "Model" : "AVENTADOR SVJ",
-       "Year" : 2015,
-       "Brand" : "lamborghini ",
-       "Price" : 10000,
-       "Specifications":{
-            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
-            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
-            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
-            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
-            "VelocidadMax":	"325 km/h (202 mph)",
-            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
-            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+       "image" : "https://1.bp.blogspot.com/-hqyKGZmAPMg/XTJezPLGh0I/AAAAAAAAeoY/C7cvpHXCBscsejS6ftOeUvOF7HkMOoZhgCLcBGAs/s1600/Ficha-Tecnica-Lamborghini-Aventador-SVJ.jpg",
+       "model" : "AVENTADOR SVJ",
+       "year" : 2015,
+       "brand" : "lamborghini ",
+       "price" : 10000,
+       "specifications":{
+            "engine":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "power":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "torque":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "weight":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "max_speed":	"325 km/h (202 mph)",
+            "acceleration": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "consumption":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
         }
    },
    {
         "id": 1,
-       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Lamborghini_Aventador_SVJ_Monaco_IMG_1001.jpg/800px-Lamborghini_Aventador_SVJ_Monaco_IMG_1001.jpg",
-       "Model" : "Aventador Monaco",
-       "Year" : 2014,
-       "Brand" : "lamborghini ",
-       "Price" : 8000,
-       "Specifications":{
-            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
-            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
-            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
-            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
-            "VelocidadMax":	"325 km/h (202 mph)",
-            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
-            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+       "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Lamborghini_Aventador_SVJ_Monaco_IMG_1001.jpg/800px-Lamborghini_Aventador_SVJ_Monaco_IMG_1001.jpg",
+       "model" : "Aventador Monaco",
+       "year" : 2014,
+       "brand" : "lamborghini ",
+       "price" : 8000,
+       "specifications":{
+            "engine":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "power":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "torque":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "weight":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "max_speed":	"325 km/h (202 mph)",
+            "acceleration": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "consumption":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
         }
    },
    {
-        "id": 2,    
-       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/2015_Lamborghini_Huracan_LP610-4_%2819884965832%29.jpg/800px-2015_Lamborghini_Huracan_LP610-4_%2819884965832%29.jpg?20150928165637",
-       "Model" : "Huracán",
-       "Year" : 2022,
-       "Brand" : "lamborghini",
-       "Price" : 22000,
-       "Specifications":{
-            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
-            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
-            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
-            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
-            "VelocidadMax":	"325 km/h (202 mph)",
-            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
-            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+        "id": 2,
+       "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/2015_Lamborghini_Huracan_LP610-4_%2819884965832%29.jpg/800px-2015_Lamborghini_Huracan_LP610-4_%2819884965832%29.jpg?20150928165637",
+       "model" : "Huracán",
+       "year" : 2022,
+       "brand" : "lamborghini",
+       "price" : 22000,
+       "specifications":{
+            "engine":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "power":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "torque":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "weight":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "max_speed":	"325 km/h (202 mph)",
+            "acceleration": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "consumption":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
         }
    },
    {
         "id": 3,
-       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Ferrari_F40.JPG/800px-Ferrari_F40.JPG?20140531121451",
-       "Model" : "F40",
-       "Year" : 1990,
-       "Brand" : "Ferrari",
-       "Price" : 15000,
-       "Specifications":{
-            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
-            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
-            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
-            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
-            "VelocidadMax":	"325 km/h (202 mph)",
-            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
-            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+       "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Ferrari_F40.JPG/800px-Ferrari_F40.JPG?20140531121451",
+       "model" : "F40",
+       "year" : 1990,
+       "brand" : "Ferrari",
+       "price" : 15000,
+       "specifications":{
+            "engine":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "power":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "torque":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "weight":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "max_speed":	"325 km/h (202 mph)",
+            "acceleration": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "consumption":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
         }
    },
    {
         "id": 4,
-       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Ferrari_488_GTB.jpg/799px-Ferrari_488_GTB.jpg?20151111100742",
-       "Model" : "488",
-       "Year" : 2019,
-       "Brand" : "Ferrari",
-       "Price" : 16000,
-       "Specifications":{
-            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
-            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
-            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
-            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
-            "VelocidadMax":	"325 km/h (202 mph)",
-            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
-            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+       "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Ferrari_488_GTB.jpg/799px-Ferrari_488_GTB.jpg?20151111100742",
+       "model" : "488",
+       "year" : 2019,
+       "brand" : "Ferrari",
+       "price" : 16000,
+       "specifications":{
+            "engine":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "power":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "torque":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "weight":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "max_speed":	"325 km/h (202 mph)",
+            "acceleration": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "consumption":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
         }
    },
    {
         "id": 5,
-       "Photo" : "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Lamborghini_Gallardo_silver.jpg/800px-Lamborghini_Gallardo_silver.jpg?20050805071939",
-       "Model" : "Gallardo",
-       "Year" : 2011,
-       "Brand" : "lamborghini",
-       "Price" : 6000,
-       "Specifications":{
-            "Motor":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
-            "Potencia":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
-            "ParMotor":	"540 a 600 N·m (398 a 443 lb·pie)",
-            "Peso":	"1339 a 1509 kg (2952 a 3327 lb)",
-            "VelocidadMax":	"325 km/h (202 mph)",
-            "Aceleracion": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
-            "Consumo":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
+       "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Lamborghini_Gallardo_silver.jpg/800px-Lamborghini_Gallardo_silver.jpg?20050805071939",
+       "model" : "Gallardo",
+       "year" : 2011,
+       "brand" : "lamborghini",
+       "price" : 6000,
+       "specifications":{
+            "engine":	"V10 a 90º atmosférico de 5204 cm³ (5,2 L; 317,6 plg³)",
+            "power":	"580 a 640 CV (572 a 631 HP) (427 a 471 kW)",
+            "torque":	"540 a 600 N·m (398 a 443 lb·pie)",
+            "weight":	"1339 a 1509 kg (2952 a 3327 lb)",
+            "max_speed":	"325 km/h (202 mph)",
+            "acceleration": 	"De 0 a 100 km/h (62 mph) en 2,9 segundos (Performante)",
+            "consumption":	"12,5 L/100 km (8 km/L; 18,8 mpgAm) (medio)5"
         }
    }
-] 
- 
+]
