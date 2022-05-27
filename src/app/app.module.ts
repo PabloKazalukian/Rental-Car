@@ -23,6 +23,7 @@ import {EffectsModule} from '@ngrx/effects';
 import * as carSelector from './components/cars/car.selector';
 import {carEffects} from './components/cars/car.effects';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     Error404Component,
     LoginComponent,
+    RegisterComponent,
     
   ],
   imports: [

@@ -1,26 +1,25 @@
-import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { userRegister } from '../core/models/user.interface';
 import {  map, Observable, throwError } from 'rxjs';
-import { Car } from '../core/models/car.interface';
-import { Login,LoginResponde } from '../core/models/login.interface';
+import { environment } from './../../environments/environment';
 import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class RegisterService {
 
-  private readonly API= `${environment.api}/auth/login`;
-  token?:string;
+  private readonly API= `${environment.api}/user`;
 
   constructor(private readonly http:HttpClient) { }
 
-  checkLogin(form:Login):Observable<boolean | void>{
-    return this.http.post<LoginResponde>(this.API,form)
+  registerUser(form:userRegister):Observable<boolean | void>{
+    return this.http.post<userRegister>(this.API,form)
     .pipe(
-      map( (res:LoginResponde)=>{
-        this.saveToken(res.token)
+      map( (res:userRegister)=>{
+        // this.saveToken(res.token)
         if(res) return true
         else return false
         }
@@ -29,20 +28,11 @@ export class LoginService {
     );
   }
 
-  isLoggin():void{
-
-  }
-
-
   private handleError(err:any):Observable<never>{
     let errorMessage='ocurrio un error'
     if(err){
       errorMessage = `error code : ${err.message}`
     }
     return err
-  }
-
-  private saveToken (token:string):void{
-    localStorage.setItem('auth',token)
   }
 }

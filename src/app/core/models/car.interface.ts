@@ -5,7 +5,6 @@ export interface Car {
     model : string,
     year: number,
     price : number,
-    specifications:{
         engine:	string,
         power:	string,
         torque:	string,
@@ -14,5 +13,4 @@ export interface Car {
         acceleration: string,
         consumption: string,
         created_at: string
-    }
 }

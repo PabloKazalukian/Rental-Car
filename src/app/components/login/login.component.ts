@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { catchError, Subscription } from 'rxjs';
 import { LoginService } from './../../services/login.service';
 
 
@@ -8,21 +10,31 @@ import { LoginService } from './../../services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
 
   contactForm!:FormGroup;
+  login!:boolean
+  private suscription = Subscription;
 
-  constructor(private readonly fb: FormBuilder,private authSvc:LoginService) { }
+  constructor(private readonly fb: FormBuilder,private authSvc:LoginService,private router:Router) { }
 
 
   ngOnInit(): void {
-    this.contactForm = this.initForm();
 
+
+    this.contactForm = this.initForm();
   }
 
   onSubmit():void{
-    console.log('form ==>',this.contactForm.value)
-    this.authSvc.checkLogin(this.contactForm.value).subscribe((res)=>console.log('resistire',res))
+    this.authSvc.checkLogin(this.contactForm.value).subscribe({
+      next: (res)=>{
+        this.login=true
+        setTimeout( ()=> this.router.navigate(['/']),2000)
+      },
+      error: (res)=>{
+        this.login=false
+    },
+    })
 
   }
   initForm():FormGroup{
@@ -30,8 +42,10 @@ export class LoginComponent implements OnInit {
     return this.fb.group({
       email:['',[Validators.required,Validators.minLength(3)]],
       password:['',[Validators.required,Validators.minLength(3)]],
-
     })
+  }
+
+  ngOnDestroy():void{
   }
 
 }

@@ -1,0 +1,36 @@
+<div class="container mt-5 d-flex justify-content flex-column align-items-center">
+  <h2 class="mt-3">Inicie sesión</h2>
+
+
+  <form  class="formulario " (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+    <div class="mb-4">
+      <label for="username" class="form-label" >Ingrese un nombre de usuario</label>
+      <input type="text" class="form-control" id="username" name="username"  required formControlName="username">
+      <div *ngIf="contactForm.get('username')?.touched && contactForm.get('username')?.errors?.['minlength']"
+      class="alert alert-danger">Este Campo es requerido</div>
+    </div>
+    <div class="mb-4">
+        <label for="email" class="form-label" >Ingrese un email</label>
+        <input type="email" class="form-control" id="email" name="email"  required formControlName="email">
+        <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['minlength']"
+        class="alert alert-danger">Este Campo es requerido</div>
+    </div>
+    <div class="mb-4">
+      <label for="password" class="form-label" >Ingrese una contraseña</label>
+      <input type="password" class="form-control" id="password" name="password"  required formControlName="password">
+      <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['minlength']"
+      class="alert alert-danger">Este Campo es requerido</div>
+    </div>
+    <div class="mb-4">
+      <label for="confirmPassword" class="form-label" >Confirme la contraseña</label>
+      <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  required formControlName="confirmPassword">
+      <div *ngIf="contactForm.get('confirmPassword')?.touched && contactForm.get('confirmPassword')?.errors?.['minlength']"
+      class="alert alert-danger">Este Campo es requerido</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary float-end"
+          [disabled]="contactForm.invalid">Enviar</button>
+
+  </form>
+</div>
+

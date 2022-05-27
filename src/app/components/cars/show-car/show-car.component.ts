@@ -27,20 +27,16 @@ export class ShowCarComponent implements OnInit  {
   constructor(private store:Store<{autos: appState}>,private readonly router: Router){}
 
   ngOnInit(): void {
-    this.car$ = this.store.pipe(select(carSelector.getCars))    
-    this.car$.subscribe(e=> console.log( e))
+    this.car$ = this.store.pipe(select(carSelector.getCars))
     this.chargeData();
-    console.log(this.cars)
 
   }
   goWithCar(id:number):void{
     this.router.navigate(['alquiler'],{queryParams:{id}})
-    
   }
   chargeData ():void{
     this.store.dispatch(loadCar())
-    // this.store.dispatch(orderBrandCar({asc:true}));
+    this.store.dispatch(orderBrandCar({asc:true}));
     this.store.select('autos').subscribe((e)=> this.cars= e.car)
-    console.log(this.cars)
   }
 }

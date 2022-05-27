@@ -1,5 +1,5 @@
 <div class="d-flex flex-row gap-4 flex-wrap justify-content-center  border rounded-3 mt-3 py-5 contenedor_cars">
-    <h2 *ngIf="cars.length <1">No se han encontrado vehiculos </h2>
+    <h2 *ngIf="cars.length <1 || cars === undefined">No se han encontrado vehiculos </h2>
     <div *ngFor=" let autos of cars" class="d-inline">
         <div class="card" style="width: 18rem;">
             <img src='{{autos.image}}' class="card-img-top" alt="..." style="height: 11rem;">
@@ -14,11 +14,11 @@
               <button type="button" class="btn btn-info mx-3" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+autos.id_car">
                 Ver Más
               </button>
-              
+
             </div>
 
           </div>
-          
+
           <div class="modal fade " id="staticBackdrop{{autos.id_car}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-xl">
               <div class="modal-content">
@@ -32,12 +32,12 @@
                   <p class="card-text"><strong>Precio:</strong> {{autos.price}}  us$</p>
                   <div>
                     <h2>Especificaciones: </h2>
-                    <p> <strong>Motor:</strong>{{autos.specifications?.engine}}</p>
-                    <p><strong>Potencia: </strong> {{autos.specifications?.power}}</p>
-                    <p><strong>Par Motor: </strong> {{autos.specifications?.torque}}</p>
-                    <p><strong>Velocidad Máxima: </strong>{{autos.specifications?.max_speed}}</p>
-                    <p><strong>Aceleración: </strong> {{autos.specifications?.acceleration}}</p>
-                    <p><strong>Consumo: </strong>{{autos.specifications?.consumption}}</p>
+                    <p> <strong>Motor:</strong>{{autos.engine}}</p>
+                    <p><strong>Potencia: </strong> {{autos.power}}</p>
+                    <p><strong>Par Motor: </strong> {{autos.torque}}</p>
+                    <p><strong>Velocidad Máxima: </strong>{{autos.max_speed}}</p>
+                    <p><strong>Aceleración: </strong> {{autos.acceleration}}</p>
+                    <p><strong>Consumo: </strong>{{autos.consumption}}</p>
 
                   </div>
                 </div>
@@ -49,6 +49,6 @@
         </div>
     </div>
     <!-- Scrollable modal -->
-    
-    
+
+
 </div>

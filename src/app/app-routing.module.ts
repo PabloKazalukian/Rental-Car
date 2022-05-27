@@ -8,6 +8,7 @@ import { AlquilerComponent } from './components/alquiler/alquiler.component';
 import {HomeComponent} from './components/home/home.component';
 import { DataResolverService } from './resolvers/data.resolver.service';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/home',pathMatch:'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
     resolve:{cars:DataResolverService}
   },
   {path:'login', component:LoginComponent},
+  {path:'registro', component:RegisterComponent},
   {path:'**' , component:Error404Component},
 ];
 

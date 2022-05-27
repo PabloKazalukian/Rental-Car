@@ -1,22 +1,32 @@
 
-<h2>Login</h2>
+
+<div class="container mt-5 d-flex justify-content flex-column align-items-center">
+  <h2 class="mt-3">Inicie sesión</h2>
 
 
-<form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
-  <div class="mb-4">
-      <label for="email" class="form-label" >Ingrese su email</label>
-      <input type="text" class="form-control" id="email" name="email"  required formControlName="email">
-      <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['minlength']"
-       class="alert alert-danger">Este Campo es requerido</div>
+  <form *ngIf="this.login !==true"  class="formulario " (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+    <div class="mb-4">
+        <label for="email" class="form-label" >Ingrese su email</label>
+        <input type="email" class="form-control" id="email" name="email"  required formControlName="email">
+        <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['minlength']"
+        class="alert alert-danger">Este Campo es requerido</div>
+    </div>
+    <div class="mb-4">
+      <label for="password" class="form-label" >Ingrese su contraseña</label>
+      <input type="password" class="form-control" id="password" name="password"  required formControlName="password">
+      <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['minlength']"
+      class="alert alert-danger">Este Campo es requerido</div>
   </div>
-  <div class="mb-4">
-    <label for="password" class="form-label" >Ingrese su contraseña</label>
-    <input type="text" class="form-control" id="password" name="password"  required formControlName="password">
-    <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['minlength']"
-     class="alert alert-danger">Este Campo es requerido</div>
+
+    <button type="submit" class="btn btn-primary float-end"
+          [disabled]="contactForm.invalid">Enviar</button>
+
+  </form>
+  <div *ngIf="this.login ===true"  class="mb-4 formulario">
+    <h2 class="alert alert-primary">Sesión iniciada con exito!</h2>
+  </div>
+  <div *ngIf="this.login ===false" class="mb-4">
+    <h2 class="alert alert-danger">Hubo un problema con su inicio de sesión.</h2>
+  </div>
 </div>
 
-  <button type="submit" class="btn btn-primary float-end"
-        [disabled]="contactForm.invalid">Enviar</button>
-
-</form>
