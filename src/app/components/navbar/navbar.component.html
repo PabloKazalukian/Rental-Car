@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top p-0">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top p-0">
     <div class="container-fluid container">
       <a class="navbar-brand fs-3 fw-bold  text-danger" routerLink="/home">Rental-Car</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,4 +25,28 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
+  <mat-sidenav-container >
+    <mat-sidenav #sidenav mode="side">
+      <mat-toolbar color="primary">Menu</mat-toolbar>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <!-- <ng-container > -->
+          <!-- <button mat-icon-button> -->
+            <!-- <mat-icon>menu</mat-icon> -->
+          <!-- </button> -->
+        <!-- </ng-container> -->
+        <!-- <mat-nav-list> -->
+
+          <a routerLink="login">
+            <span>Rental-Car</span>
+          </a>
+          <span class="spacer"></span>
+          <a mat-button routerLink="registro">Registrarse</a>
+          <a mat-button routerLink="login">Login</a>
+          <a mat-button routerLink="/">Inicio</a>
+        <!-- </mat-nav-list> -->
+      </mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

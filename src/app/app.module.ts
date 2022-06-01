@@ -24,6 +24,11 @@ import * as carSelector from './components/cars/car.selector';
 import {carEffects} from './components/cars/car.effects';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,7 @@ import { RegisterComponent } from './components/register/register.component';
     Error404Component,
     LoginComponent,
     RegisterComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,11 @@ import { RegisterComponent } from './components/register/register.component';
     EffectsModule.forRoot([carEffects]), //agregar Effects
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
