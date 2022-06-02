@@ -28,10 +28,10 @@
   </nav> -->
   <mat-sidenav-container >
     <mat-sidenav #sidenav mode="side">
-      <mat-toolbar color="primary">Menu</mat-toolbar>
+      <mat-toolbar color="">Menu</mat-toolbar>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar color="primary">
+      <mat-toolbar color="">
         <!-- <ng-container > -->
           <!-- <button mat-icon-button> -->
             <!-- <mat-icon>menu</mat-icon> -->
@@ -39,14 +39,18 @@
         <!-- </ng-container> -->
         <!-- <mat-nav-list> -->
 
-          <a routerLink="login">
+          <a routerLink="">
             <span>Rental-Car</span>
           </a>
           <span class="spacer"></span>
-          <a mat-button routerLink="registro">Registrarse</a>
-          <a mat-button routerLink="login">Login</a>
+          <a  *ngIf="!islogged" mat-button routerLink="registro">Registrarse</a>
+          <a  *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario?.username}}</a>
+          <a *ngIf="!islogged;else viewLogout" mat-button routerLink="login">iniciar sesión</a>
           <a mat-button routerLink="/">Inicio</a>
         <!-- </mat-nav-list> -->
       </mat-toolbar>
+      <ng-template #viewLogout>
+        <a mat-button routerLink="" (click)="this.logout()">Cerrar sesión</a>
+      </ng-template>
     </mat-sidenav-content>
   </mat-sidenav-container>

@@ -15,4 +15,7 @@ export class CarService {
   getAllCars():Observable<Car[]>{
     return this.http.get<Car[]>(this.API)
   }
+  getCarById(id:string):Observable<Car[]>{
+    return this.http.get<Car[]>(`${this.API}/id/${id}`)
+  }
 }

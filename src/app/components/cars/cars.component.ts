@@ -38,8 +38,7 @@ export class CarsComponent implements OnInit {
   autos?: any=[];
   carObservable: Subject<any> = new Subject();
 
-  constructor(private store:Store<{autos: appState}>,private readonly carSvc:CarService) {
-   }
+  constructor(private store:Store<{autos: appState}>,private readonly carSvc:CarService) {}
 
   ngOnInit(): void {
     this.carSvc.getAllCars().subscribe(

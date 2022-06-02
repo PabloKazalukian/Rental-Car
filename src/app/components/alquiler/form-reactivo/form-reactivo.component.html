@@ -16,17 +16,17 @@
         <label for="dateInitial" class="form-label">Fecha de Inicio</label>
         <input type="date" class="" id="dateInitial" formControlName="dateInitial"   >
         <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Este Campo es requerido</div> -->
-    
+
         <label for="dateEnd" class="form-label">Fecha de Entrega</label>
         <input type="date" class="" id="dateEnd" formControlName="dateEnd"   >
         <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Este Campo es requerido</div> -->
     </div>
-    
+
     <div class="mb-4 ">
         <label for="select" class="form-label">Que vehiculo estas buscando?</label>
         <select class="form-select form-select-sm" id="select"  formControlName="select"  required>
             <option value="" selected disabled>Seleccione una opción</option>
-            <option *ngFor=" let car of cars" [value]="car">{{car}}</option>
+            <!-- <option *ngFor=" let car of cars" [value]="car">{{car}}</option> -->
 
         </select>
         <!-- <div [hidden]="select.valid || select.pristine" class="alert alert-danger">Este Campo es requerido</div> -->
@@ -38,5 +38,5 @@
     </div>
     <button type="submit" class="btn btn-primary float-end"
         [disabled]="contactForm.invalid">Enviar</button>
-    
+
 </form>

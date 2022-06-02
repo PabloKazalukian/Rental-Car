@@ -5,9 +5,12 @@
             <app-form-reactivo [id]="id" [cars]="cars"></app-form-reactivo>
         </div>
         <div class="col-3">
-            <h2>{{cars}}</h2>
+            <h2>{{cars?.brand}}</h2>
+            <h2>{{cars?.model}}</h2>
+            <h2>{{cars?.year}}</h2>
+            <h2>{{cars?.price}}</h2>
         </div>
-    </div>    
-    
+    </div>
+
 </div>
 

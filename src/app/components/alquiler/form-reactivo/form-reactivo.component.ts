@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Car } from 'src/app/core/models/car.interface';
 
 @Component({
   selector: 'app-form-reactivo',
@@ -7,8 +9,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./form-reactivo.component.css']
 })
 export class FormReactivoComponent implements OnInit {
-  @Input() id?:number;
-  @Input() cars?:string[];
+  @Input() id?:string;
+  @Input() cars?:Car | undefined;
 
   contactForm!:FormGroup;
   myField = new FormControl();//observable, para onChanges
@@ -20,7 +22,7 @@ export class FormReactivoComponent implements OnInit {
     this.contactForm = this.initForm();
     console.log(this.id)
   }
-  
+
   onSubmit():void{
     console.log('form ==>')
 

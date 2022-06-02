@@ -18,7 +18,7 @@ const routes: Routes = [
     path:'alquiler' , component:AlquilerComponent,
     canActivate:[PermissionsGuard],
     canDeactivate:[WithoutSaveGuard],
-    resolve:{cars:DataResolverService}
+    resolve:{car:DataResolverService}
   },
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegisterComponent},
