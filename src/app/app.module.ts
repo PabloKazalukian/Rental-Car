@@ -29,6 +29,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { CalendarComponent } from './components/alquiler/form-reactivo/calendar/calendar.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+// import { MatMomentDateModule}
 
 @NgModule({
   declarations: [
@@ -46,6 +51,7 @@ import {MatListModule} from '@angular/material/list';
     Error404Component,
     LoginComponent,
     RegisterComponent,
+    CalendarComponent,
 
   ],
   imports: [
@@ -65,7 +71,10 @@ import {MatListModule} from '@angular/material/list';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

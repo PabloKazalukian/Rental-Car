@@ -1,44 +1,50 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import {  Subscription } from 'rxjs';
+import { usuario } from '../../core/models/user.interface'
 
-interface usuario{
-  username:string,
-}
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl:'./navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit,OnDestroy {
+
+  private subscripcions: Subscription[]=[];
+
   islogged:boolean = true
-  token!:usuario ;
-  usuario!:usuario | undefined;
+  token:usuario ={username:''} ;
+  usuario!:usuario | {username:''};
+
 
   constructor(private loginSvc:LoginService) {
-    this.loginSvc.isLoggin().subscribe(res=>  this.islogged= res)
-
+    this.subscripcions.push(
+      this.loginSvc.isLoggin().subscribe(res=>  this.islogged= res)
+    )
    }
+
 
   ngOnInit(): void {
     this.accesstoken()
-    this.token = this.loginSvc.readToken();
-    if(this.token.username !== 'null' ){
-      this.usuario = this.token;
-    }
-    console.log(this.usuario)
   }
+
   accesstoken():void{
-    this.usuario = this.loginSvc.readToken();
-    console.log(this.token)
+    this.subscripcions.push(
+      this.loginSvc.readToken().subscribe(res=> this.usuario = res)
+    )
   }
 
   logout():void{
     this.loginSvc.logout()
-    this.accesstoken()
+    this.usuario={username:''}
   }
 
+  ngOnDestroy(): void {
+    this.subscripcions.forEach( sub => sub.unsubscribe());
+  }
 
 
 }

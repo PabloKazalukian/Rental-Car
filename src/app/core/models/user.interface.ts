@@ -10,3 +10,6 @@ export interface LoginResponde{
     token: string
 
 }
+export interface usuario{
+  username:string,
+}

@@ -44,7 +44,7 @@
           </a>
           <span class="spacer"></span>
           <a  *ngIf="!islogged" mat-button routerLink="registro">Registrarse</a>
-          <a  *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario?.username}}</a>
+          <a  *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario.username }}</a>
           <a *ngIf="!islogged;else viewLogout" mat-button routerLink="login">iniciar sesión</a>
           <a mat-button routerLink="/">Inicio</a>
         <!-- </mat-nav-list> -->

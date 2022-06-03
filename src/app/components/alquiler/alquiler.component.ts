@@ -11,12 +11,13 @@ import { Car } from 'src/app/core/models/car.interface';
   styleUrls: ['./alquiler.component.css']
 })
 export class AlquilerComponent implements OnInit, OnDestroy {
+
   private subscripcions: Subscription[]=[];
 
   id!:string;
   cars!:Car
-  cars$!:Observable<Car[]>
   autos!:Car[]
+
   constructor(private readonly route:ActivatedRoute,private readonly carSvc:CarService) { }
 
   ngOnInit(): void {
@@ -35,6 +36,7 @@ export class AlquilerComponent implements OnInit, OnDestroy {
 
 
   }
+
 
   ngOnDestroy(): void {
     this.subscripcions.forEach( sub => sub.unsubscribe());
