@@ -1,7 +1,7 @@
-<div class="d-flex flex-row gap-4 flex-wrap justify-content-center  border rounded-3 mt-3 py-5 contenedor_cars">
+<div class="d-flex flex-row gap-4 flex-wrap justify-content-center  mt-3 py-5 contenedor_cars backgroud">
     <h2 *ngIf="cars.length <1 || cars === undefined">No se han encontrado vehiculos </h2>
     <div *ngFor=" let autos of cars" class="d-inline">
-        <div class="card" style="width: 18rem;">
+        <div class="card card-background" style="width: 18rem;">
             <img src='{{autos.image}}' class="card-img-top" alt="..." style="height: 11rem;">
             <div class="card-body">
               <h5 class="card-title">{{autos.brand.toUpperCase()}}</h5>
@@ -19,9 +19,9 @@
 
           </div>
 
-          <div class="modal fade " id="staticBackdrop{{autos.id_car}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-              <div class="modal-content">
+          <div class="modal fade  " id="staticBackdrop{{autos.id_car}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl ">
+              <div class="modal-content card-background ">
                 <div class="modal-header">
                   <!-- <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5> -->
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

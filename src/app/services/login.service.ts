@@ -78,9 +78,8 @@ export class LoginService {
       this.user.next(helper.decodeToken(userToken))
     }
     return this.user.asObservable()
-
-
   }
+
   private saveToken (token:string):void{
     localStorage.setItem('auth',token);
     const userToken = localStorage.getItem('auth');
@@ -88,5 +87,11 @@ export class LoginService {
       this.user.next(helper.decodeToken(userToken))
     }
     this.loggetIn.next(true);
+  }
+
+  getToken():string | null{
+    const userToken = localStorage.getItem('auth');
+
+    return userToken;
   }
 }

@@ -15,6 +15,7 @@
 
 .contenedor_carrousel{
     position: relative;
+    z-index: 100;
 }
 .texto_bienvenida{
     position: absolute;
@@ -29,7 +30,7 @@
     width: 600px;
 
     color:#f1f1f1;
-    z-index: 1000;
+    z-index: 10;
     top: 68%;
     left: 28%;
 }
@@ -43,7 +44,7 @@
 
     }
   }
-  
+
   @media (max-width: 1100px) {
     .texto_bienvenida{
         width: 320px;
