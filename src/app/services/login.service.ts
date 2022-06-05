@@ -17,7 +17,7 @@ const helper= new JwtHelperService;
 })
 export class LoginService {
   private loggetIn= new BehaviorSubject<boolean>(false)
-  private user = new BehaviorSubject<usuario>({username:''})
+  private user = new BehaviorSubject<usuario>({username:'',userId:0})
 
   private readonly API= `${environment.api}/auth/login`;
   token?:string;

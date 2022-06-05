@@ -8,29 +8,13 @@
          class="alert alert-danger">Este Campo es requerido</div>
     </div>
     <div class="mb-4">
-        <label for="checkAdult" class="form-label">Eres mayor de 18 años?</label>
-        <input type="checkbox" class="form-check-input" id="checkAdult" formControlName="checkAdult"   >
-        <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Este Campo es requerido</div> -->
-    </div>
-    <div class="mb-4">
-        <app-calendar></app-calendar>
-    </div>
-
-    <div class="mb-4 ">
-        <label for="select" class="form-label">Que vehiculo estas buscando?</label>
-        <select class="form-select form-select-sm" id="select"  formControlName="select"  required>
-            <option value="" selected disabled>Seleccione una opción</option>
-            <!-- <option *ngFor=" let car of cars" [value]="car">{{car}}</option> -->
-
-        </select>
-        <!-- <div [hidden]="select.valid || select.pristine" class="alert alert-danger">Este Campo es requerido</div> -->
+        <app-calendar [range]="range" [id]="id"></app-calendar>
     </div>
     <div class="mb-4">
         <label for="comment" class="form-label">Comentario</label>
         <textarea name="comment" type="text" class="form-control" id="comemnt" formControlName="comment" required rows="4" ></textarea>
-        <!-- <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">Este Campo es requerido</div> -->
     </div>
     <button type="submit" class="btn btn-primary float-end"
-        [disabled]="contactForm.invalid">Enviar</button>
+        [disabled]="range.invalid">Enviar</button>
 
 </form>

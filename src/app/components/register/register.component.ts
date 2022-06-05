@@ -24,15 +24,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit():void{
-    // this.authSvc.checkLogin(this.contactForm.value).subscribe({
-    //   next: (res)=>{
-    //     this.login=true
-    //     setTimeout( ()=> this.router.navigate(['/']),2000)
-    //   },
-    //   error: (res)=>{
-    //     this.login=false
-    // },
-    // })
     this.authSvc.registerUser(this.contactForm.value).subscribe({
       next: (res)=>{
         this.success = true

@@ -1,9 +1,14 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { CarService } from 'src/app/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
+import { LoginService } from 'src/app/services/login.service';
+import {FormGroup, FormControl} from '@angular/forms';
+import {DateAdapter} from '@angular/material/core';
+import { request } from 'src/app/core/models/request.interface';
+
 
 @Component({
   selector: 'app-alquiler',
@@ -15,10 +20,11 @@ export class AlquilerComponent implements OnInit, OnDestroy {
   private subscripcions: Subscription[]=[];
 
   id!:string;
+  idUser?:number ;
   cars!:Car
   autos!:Car[]
 
-  constructor(private readonly route:ActivatedRoute,private readonly carSvc:CarService) { }
+  constructor(private readonly route:ActivatedRoute,private readonly carSvc:CarService, private userSvc:LoginService) { }
 
   ngOnInit(): void {
 
@@ -26,6 +32,11 @@ export class AlquilerComponent implements OnInit, OnDestroy {
       this.route.queryParams.subscribe(
         (params)=> this.id = params['id']
       )
+    )
+    this.subscripcions.push(
+      this.userSvc.readToken().subscribe(res =>{
+        this.idUser = res.userId;
+      })
     )
 
     this.subscripcions.push(

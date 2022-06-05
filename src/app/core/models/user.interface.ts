@@ -12,4 +12,5 @@ export interface LoginResponde{
 }
 export interface usuario{
   username:string,
+  userId?: number
 }
