@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { RentalService } from 'src/app/services/rental.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { ownValidation } from './calendar/app.validator';
 
 @Component({
   selector: 'app-form-reactivo',
@@ -19,13 +20,12 @@ export class FormReactivoComponent implements OnInit {
   @Input() id!:string;
   @Input() cars?:Car | undefined;
 
-  range = new FormGroup({
-    start: new FormControl(null,[Validators.required]),
-    end: new FormControl(null,[Validators.required]),
-  });
+  arrRequest!:request[]
+  range!:FormGroup;
+
 
   contactForm!:FormGroup;
-  myField = new FormControl();//observable, para onChanges
+  myField = new FormControl();
   userId?:number
   success!:boolean
 
@@ -35,6 +35,11 @@ export class FormReactivoComponent implements OnInit {
   ngOnInit(): void {
     this.contactForm = this.initForm();
     this.authSvc.readToken().subscribe((res)=>this.userId =res.userId)
+    this.range = this.initFormDates(null);
+    this.rentalSvc.getRequestById(this.id).subscribe((res)=>{
+      this.arrRequest = res;
+      this.range = this.initFormDates(res);
+    })
   }
 
   onSubmit():void{
@@ -59,12 +64,22 @@ export class FormReactivoComponent implements OnInit {
     }
   }
   initForm():FormGroup{
-    //declarar las propiedas que tendran nuestro formulario
+
     return this.fb.group({
       name:['',[Validators.required,Validators.minLength(3)]],
       comment:['',[Validators.required]]
     })
   }
+
+  initFormDates (res:request[] | null):FormGroup{
+    return this.fb.group({
+      start: new FormControl(null,),
+      end: new FormControl(null),
+      total: new FormControl(res)
+    },{ validators:
+      ownValidation.dateCorrect});
+  }
+
 
 
 }
