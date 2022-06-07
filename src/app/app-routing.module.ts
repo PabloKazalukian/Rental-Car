@@ -9,6 +9,7 @@ import {HomeComponent} from './components/home/home.component';
 import { DataResolverService } from './resolvers/data.resolver.service';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/home',pathMatch:'full'},
@@ -22,6 +23,10 @@ const routes: Routes = [
   },
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegisterComponent},
+  {
+    path:'usuario', component:UserComponent,
+    canActivate:[PermissionsGuard],
+  },
   {path:'**' , component:Error404Component},
 ];
 

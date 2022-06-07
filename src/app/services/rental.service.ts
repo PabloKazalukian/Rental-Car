@@ -14,11 +14,11 @@ export class RentalService {
 
   constructor(private readonly http:HttpClient) { }
 
-  // getAllCars():Observable<Car[]>{
-  //   return this.http.get<Car[]>(this.API)
-  // }
   getRequestById(id:string):Observable<request[]>{
     return this.http.get<request[]>(`${this.API}/allOfCarId/${id}`)
+  }
+  getRequestByUserId(userId:number):Observable<request[]>{
+    return this.http.get<request[]>(`${this.API}/allOfUserId/${userId}`)
   }
   sendRequest(form:requestSend):Observable<boolean | void>{
     return this.http.post<requestSend>(this.API,form)

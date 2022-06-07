@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
-import {DateAdapter} from '@angular/material/core';
 import { request,requestSend } from 'src/app/core/models/request.interface';
 import { LoginService } from 'src/app/services/login.service';
 import { RentalService } from 'src/app/services/rental.service';
@@ -16,12 +15,13 @@ import { ownValidation } from './calendar/app.validator';
   styleUrls: ['./form-reactivo.component.css']
 })
 
-export class FormReactivoComponent implements OnInit {
+export class FormReactivoComponent implements OnInit,OnDestroy {
   @Input() id!:string;
   @Input() cars?:Car | undefined;
 
   arrRequest!:request[]
   range!:FormGroup;
+  private subscripcions: Subscription[]=[];
 
 
   contactForm!:FormGroup;
@@ -34,12 +34,16 @@ export class FormReactivoComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactForm = this.initForm();
-    this.authSvc.readToken().subscribe((res)=>this.userId =res.userId)
+    this.subscripcions.push(
+      this.authSvc.readToken().subscribe((res)=>this.userId =res.userId)
+    )
     this.range = this.initFormDates(null);
-    this.rentalSvc.getRequestById(this.id).subscribe((res)=>{
-      this.arrRequest = res;
-      this.range = this.initFormDates(res);
-    })
+    this.subscripcions.push(
+      this.rentalSvc.getRequestById(this.id).subscribe((res)=>{
+        this.arrRequest = res;
+        this.range = this.initFormDates(res);
+      })
+    )
   }
 
   onSubmit():void{
@@ -80,6 +84,8 @@ export class FormReactivoComponent implements OnInit {
       ownValidation.dateCorrect});
   }
 
-
+  ngOnDestroy(): void {
+    this.subscripcions.forEach((e)=> e.unsubscribe())
+  }
 
 }

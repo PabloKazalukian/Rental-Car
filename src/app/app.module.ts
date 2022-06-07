@@ -36,6 +36,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 // import { MatMomentDateModule}
 import { TokenInterceptor } from './services/interceptor/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserComponent } from './components/user/user.component';
+import { TableRentalComponent } from './components/user/table-rental/table-rental.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     CalendarComponent,
+    UserComponent,
+    TableRentalComponent,
 
   ],
   imports: [
@@ -76,7 +82,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     MatListModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

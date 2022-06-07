@@ -1,4 +1,5 @@
 export interface request {
+  id_request?:number,
   initial_date: string,
   final_date: string,
 }

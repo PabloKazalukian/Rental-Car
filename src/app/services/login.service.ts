@@ -26,9 +26,6 @@ export class LoginService {
     this.checkToken();
 
   }
-  private get isLogged():Observable<boolean>{
-    return this.loggetIn.asObservable();
-  }
 
   checkLogin(form:Login):Observable<boolean | void>{
     return this.http.post<LoginResponde>(this.API,form)
@@ -74,7 +71,7 @@ export class LoginService {
 
   readToken ():Observable<usuario> {
     const userToken = localStorage.getItem('auth');
-    if(userToken !== null){
+    if(userToken){
       this.user.next(helper.decodeToken(userToken))
     }
     return this.user.asObservable()
