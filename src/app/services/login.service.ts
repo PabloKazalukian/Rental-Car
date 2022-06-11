@@ -24,7 +24,6 @@ export class LoginService {
 
   constructor(private readonly http:HttpClient) {
     this.checkToken();
-
   }
 
   checkLogin(form:Login):Observable<boolean | void>{
@@ -36,8 +35,7 @@ export class LoginService {
           if(res) return true
           else return false
         }
-      ),
-      catchError((err)=>{ return this.handleError(err) })
+      )
     );
   }
 

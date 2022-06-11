@@ -1,13 +1,9 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import {  Subscription } from 'rxjs';
 import { CarService } from 'src/app/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
 import { LoginService } from 'src/app/services/login.service';
-import {FormGroup, FormControl} from '@angular/forms';
-import {DateAdapter} from '@angular/material/core';
-import { request } from 'src/app/core/models/request.interface';
 
 
 @Component({
@@ -19,7 +15,7 @@ export class AlquilerComponent implements OnInit, OnDestroy {
 
   private subscripcions: Subscription[]=[];
 
-  id!:string;
+  idCar!:string;
   idUser?:number ;
   cars!:Car
   autos!:Car[]
@@ -30,7 +26,7 @@ export class AlquilerComponent implements OnInit, OnDestroy {
 
     this.subscripcions.push(
       this.route.queryParams.subscribe(
-        (params)=> this.id = params['id']
+        (params)=> this.idCar = params['id']
       )
     )
     this.subscripcions.push(
@@ -40,7 +36,7 @@ export class AlquilerComponent implements OnInit, OnDestroy {
     )
 
     this.subscripcions.push(
-      this.carSvc.getCarById(this.id).subscribe(
+      this.carSvc.getCarById(this.idCar).subscribe(
         car=> this.cars = car[0]
       )
     )

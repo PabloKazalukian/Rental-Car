@@ -1,5 +1,8 @@
 <div class="d-flex flex-row gap-4 flex-wrap justify-content-center  mt-3 py-5 contenedor_cars backgroud">
-    <h2 *ngIf="cars.length <1 || cars === undefined">No se han encontrado vehiculos </h2>
+  <app-loading *ngIf="this.loading === true ; else viewNoFount "></app-loading>
+  <ng-template #viewNoFount>
+    <h2 *ngIf=" cars.length <1 ">No se han encontrado vehiculos </h2>
+  </ng-template>
     <div *ngFor=" let autos of cars" class="d-inline">
         <div class="card card-background" style="width: 18rem;">
             <img src='{{autos.image}}' class="card-img-top" alt="..." style="height: 11rem;">

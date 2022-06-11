@@ -5,8 +5,9 @@ import { RentalService } from 'src/app/services/rental.service';
 import { request } from 'src/app/core/models/request.interface';
 import { MatDateRangePicker } from '@angular/material/datepicker';
 import { delay, take } from "rxjs/operators";
-import { isDateHigher } from './app.validator';
+import { isDateHigher,getDays } from './app.validator';
 import { Subscription } from 'rxjs';
+import { Car } from 'src/app/core/models/car.interface';
 
 interface requsitio {initial_date:string,final_date:string}
 
@@ -20,14 +21,12 @@ export class CalendarComponent implements OnInit,AfterViewInit,OnDestroy   {
   @ViewChild(MatDateRangePicker) datepicker!: MatDateRangePicker<Date>;
 
   @Input() range!:FormGroup
-  @Input() id!:string;
+  @Input() idCar!:string;
+  @Input() cars?:Car ;
 
   private subscripcions: Subscription[]=[];
 
   arrRequest!:request[]
-  other!: requsitio[];
-  forbidden: number[] = [];
-
 
 
   constructor(private readonly fb: FormBuilder,private rentalSvc: RentalService) {}
@@ -54,11 +53,10 @@ export class CalendarComponent implements OnInit,AfterViewInit,OnDestroy   {
 
   ngOnInit(): void {
     this.subscripcions.push(
-      this.rentalSvc.getRequestById(this.id).subscribe(res=>{
+      this.rentalSvc.getRequestById(this.idCar).subscribe(res=>{
         this.arrRequest=res;
       })
     )
-
   }
 
   myFilter = (date: Date ): boolean => {
@@ -66,9 +64,24 @@ export class CalendarComponent implements OnInit,AfterViewInit,OnDestroy   {
     const datejs:Date = new Date();
     const jsFinalDate = `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`;
     return (isDateHigher(output,true,jsFinalDate,false)) &&
-    (this.arrRequest.filter(res=> isDateHigher(output,true, res.initial_date,true)&& isDateHigher(output,false, res.final_date,true)).length <1)
+    (this.arrRequest.filter(res=> isDateHigher(output,true, res.initial_date,true) && isDateHigher(output,false, res.final_date,true)).length <1)
   };
 
+  onDate(start:any,end:any): void {
+    let days = 1;
+    if(!this.range.invalid){
+      if(start.value.length > 1 && end.value.length >1 ){
+        days = getDays(start.value,end.value);
+      }
+      if(this.cars?.price !== undefined){
+        this.range.value.days = days;
+        this.range.value.amount = days * this.cars.price;
+      }else{
+        this.range.value.days = 0;
+        this.range.value.amount = 0
+      }
+    }
+  }
   ngOnDestroy(): void {
     this.subscripcions.forEach((e)=> e.unsubscribe())
   }

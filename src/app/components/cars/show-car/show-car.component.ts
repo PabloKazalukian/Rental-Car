@@ -1,10 +1,9 @@
 import { Router } from '@angular/router';
 import { Car } from './../../../core/models/car.interface';
-import { Component, Input, OnInit } from '@angular/core';
-import { Store,select } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
-import * as carSelector from '../car.selector'
-import {loadCar,searchCar,orderPriceCar,orderBrandCar,orderYearCar} from '../car.actions';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import {loadCar,orderBrandCar} from '../car.actions';
 
 
 interface appState{
@@ -19,15 +18,20 @@ interface appState{
   styleUrls:['./show-car.component.css']
 
 })
-export class ShowCarComponent implements OnInit  {
+export class ShowCarComponent implements OnInit,OnDestroy  {
+
+  private subscripcions: Subscription[]=[];
+
+
   carsTotal!:  appState ;
   cars!: Array<Car>;
   car$!:Observable<Car>;
+  loading:boolean=true;
 
   constructor(private store:Store<{autos: appState}>,private readonly router: Router){}
 
   ngOnInit(): void {
-    this.car$ = this.store.pipe(select(carSelector.getCars))
+    this.loading=true;
     this.chargeData();
 
   }
@@ -37,6 +41,17 @@ export class ShowCarComponent implements OnInit  {
   chargeData ():void{
     this.store.dispatch(loadCar())
     this.store.dispatch(orderBrandCar({asc:true}));
-    this.store.select('autos').subscribe((e)=> this.cars= e.car)
+    this.subscripcions.push(
+      this.store.select('autos').subscribe((e)=>{
+        if(e.car.length !==0 || this.loading === false){
+          this.cars= e.car
+          this.loading = false;
+        }
+      })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.subscripcions.forEach( sub => sub.unsubscribe());
   }
 }

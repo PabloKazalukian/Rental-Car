@@ -1,6 +1,6 @@
 import { Car } from 'src/app/core/models/car.interface';
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject,Subscription } from 'rxjs';
 import { Store,select } from '@ngrx/store';
 import {loadCar,searchCar,orderPriceCar,orderBrandCar,orderYearCar} from './car.actions';
 import { CarService } from './../../services/car.service';
@@ -24,10 +24,13 @@ interface text{
   styleUrls: ['./cars.component.css']
 })
 
-export class CarsComponent implements OnInit {
+export class CarsComponent implements OnInit,OnDestroy {
+
+  private subscripcions: Subscription[]=[];
+
   carsTotal!:  appState ;
   cars!: Array<Car>;
-  estado!: object;
+  estado!: boolean;
   car$!:Observable<Car>;
   loading$!:boolean | false;
   ascPrice:boolean=false;
@@ -41,10 +44,14 @@ export class CarsComponent implements OnInit {
   constructor(private store:Store<{autos: appState}>,private readonly carSvc:CarService) {}
 
   ngOnInit(): void {
-    this.carSvc.getAllCars().subscribe(
-      car=>{
-        this.autos = car
-      }
+    this.estado = false;
+    this.subscripcions.push(
+      this.carSvc.getAllCars().subscribe(
+        car=>{
+          this.autos = car
+          this.estado = true;
+        }
+      )
     )
     this.chargeData();
 
@@ -52,15 +59,18 @@ export class CarsComponent implements OnInit {
 
   private chargeData ():void{
     this.store.dispatch(loadCar())
-    // this.store.dispatch(orderBrandCar({asc:true}));
-    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.subscripcions.push(
+      this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    )
     this.loading$ = this.carsTotal.loading;
     this.cars = this.carsTotal.car;
   }
   public search (text?:text): void{
 
     this.store.dispatch(searchCar({brand:text?.brand ||'',model:text?.model || ''}))
-    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.subscripcions.push(
+      this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    )
     this.cars = this.carsTotal.car;
   }
 
@@ -82,7 +92,9 @@ export class CarsComponent implements OnInit {
   public orderPrice (): void{
     this.ascPrice=!this.ascPrice;
     this.store.dispatch(orderPriceCar({asc:this.ascPrice}));
-    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.subscripcions.push(
+      this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    )
     this.ascBrand=!this.ascBrand;
 
     this.cars = this.carsTotal.car
@@ -92,7 +104,9 @@ export class CarsComponent implements OnInit {
     this.ascPrice=!this.ascPrice;
 
     this.store.dispatch(orderBrandCar({asc:this.ascBrand}));
-    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.subscripcions.push(
+      this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    )
     this.cars = this.carsTotal.car
   }
   public orderYear (): void{
@@ -100,7 +114,14 @@ export class CarsComponent implements OnInit {
     this.ascPrice=!this.ascPrice;
 
     this.store.dispatch(orderYearCar({asc:this.ascYear}));
-    this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    this.subscripcions.push(
+      this.store.select('autos').subscribe((e)=> this.carsTotal= e)
+    )
     this.cars = this.carsTotal.car
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscripcions.forEach( sub => sub.unsubscribe());
   }
 }

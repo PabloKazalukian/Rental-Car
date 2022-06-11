@@ -59,3 +59,14 @@ export const containDateDouble = (start:string | null ,end:string | null,compare
   }
   return false
 }
+
+export const getDays = (f1:string,f2:string) =>{
+  // if(f1){}
+  let aFecha1:string[] = f1.split('/');
+  let aFecha2:string[] = f2.split('/');
+  let fFecha1 = Date.UTC(parseInt( aFecha1[2],10),parseInt( aFecha1[0] ,10)-1, parseInt( aFecha1[1],10));
+  let fFecha2 = Date.UTC(parseInt( aFecha2[2],10), parseInt( aFecha2[0],10)-1, parseInt( aFecha2[1],10));
+  let dif = fFecha2 - fFecha1;
+  let dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+  return dias+1;
+}

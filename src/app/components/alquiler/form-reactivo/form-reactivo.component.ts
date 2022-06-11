@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { RentalService } from 'src/app/services/rental.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { ownValidation } from './calendar/app.validator';
+import { ownValidation,getDays } from './calendar/app.validator';
 
 @Component({
   selector: 'app-form-reactivo',
@@ -16,34 +16,39 @@ import { ownValidation } from './calendar/app.validator';
 })
 
 export class FormReactivoComponent implements OnInit,OnDestroy {
-  @Input() id!:string;
+  @Input() idCar!:string;
   @Input() cars?:Car | undefined;
+
 
   arrRequest!:request[]
   range!:FormGroup;
   private subscripcions: Subscription[]=[];
 
 
-  contactForm!:FormGroup;
-  myField = new FormControl();
   userId?:number
+  username?:string;
   success!:boolean
+  loading:boolean=true
 
   constructor(private readonly fb: FormBuilder,private authSvc:LoginService,private rentalSvc:RentalService,private router:Router) { }
 
 
   ngOnInit(): void {
-    this.contactForm = this.initForm();
     this.subscripcions.push(
-      this.authSvc.readToken().subscribe((res)=>this.userId =res.userId)
+      this.authSvc.readToken().subscribe((res)=>{this.userId =res.userId;
+      this.username=res.username;
+    }
+      )
     )
     this.range = this.initFormDates(null);
     this.subscripcions.push(
-      this.rentalSvc.getRequestById(this.id).subscribe((res)=>{
+      this.rentalSvc.getRequestById(this.idCar).subscribe((res)=>{
+        setTimeout(()=> this.loading = false,1000)
         this.arrRequest = res;
         this.range = this.initFormDates(res);
       })
     )
+
   }
 
   onSubmit():void{
@@ -54,7 +59,7 @@ export class FormReactivoComponent implements OnInit,OnDestroy {
         initial_date:start,
         final_date:end,
         created_by:this.userId,
-        rented_car:parseInt(this.id,10),
+        rented_car:parseInt(this.idCar,10),
       }
       this.rentalSvc.sendRequest(result).subscribe({
         next: (res)=>{
@@ -67,19 +72,14 @@ export class FormReactivoComponent implements OnInit,OnDestroy {
       })
     }
   }
-  initForm():FormGroup{
-
-    return this.fb.group({
-      name:['',[Validators.required,Validators.minLength(3)]],
-      comment:['',[Validators.required]]
-    })
-  }
 
   initFormDates (res:request[] | null):FormGroup{
     return this.fb.group({
-      start: new FormControl(null,),
+      start: new FormControl(null),
       end: new FormControl(null),
-      total: new FormControl(res)
+      total: new FormControl(res),
+      amount: new FormControl(0),
+      days: new FormControl(0)
     },{ validators:
       ownValidation.dateCorrect});
   }

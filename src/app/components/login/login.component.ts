@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, Subscription } from 'rxjs';
+import {  Subscription } from 'rxjs';
 import { LoginService } from './../../services/login.service';
 
 
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit,OnDestroy {
 
   contactForm!:FormGroup;
   login!:boolean
-  private suscription = Subscription;
+  private subscripcions: Subscription[]=[];
+
 
   constructor(private readonly fb: FormBuilder,private authSvc:LoginService,private router:Router) { }
 
@@ -26,15 +27,18 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
 
   onSubmit():void{
-    this.authSvc.checkLogin(this.contactForm.value).subscribe({
-      next: (res)=>{
-        this.login=true
-        setTimeout( ()=> this.router.navigate(['/']),2000)
+    this.subscripcions.push(
+      this.authSvc.checkLogin(this.contactForm.value).subscribe({
+        next: (res)=>{
+          this.login=true
+          setTimeout( ()=> this.router.navigate(['/']),2000)
+        },
+        error: (res)=>{
+          this.login=false
       },
-      error: (res)=>{
-        this.login=false
-    },
-    })
+      })
+
+    )
 
   }
   initForm():FormGroup{
@@ -45,7 +49,8 @@ export class LoginComponent implements OnInit,OnDestroy {
     })
   }
 
-  ngOnDestroy():void{
+  ngOnDestroy(): void {
+    this.subscripcions.forEach((e)=> e.unsubscribe())
   }
 
 }

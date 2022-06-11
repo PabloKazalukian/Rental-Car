@@ -1,21 +1,19 @@
-<h2>Complete el formulario</h2>
+<h4>Por favor, Ingrese las fechas de solicitud</h4>
+<h4>Solicitud de {{this.username}} por renta de {{this.cars?.brand}} {{this.cars?.model}}</h4>
+<form (ngSubmit)="onSubmit()" [formGroup]="range">
 
-<form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
-    <div class="mb-4">
-        <label for="name" class="form-label" >Nombre del solicitante</label>
-        <input type="text" class="form-control" id="name" name="name"  required formControlName="name">
-        <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['minlength']"
-         class="alert alert-danger">Este Campo es requerido</div>
+  <div class="mb-4">
+      <app-loading *ngIf="loading;else viewCalendar"></app-loading>
+      <ng-template #viewCalendar>
+        <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
+      </ng-template>
     </div>
-    <div class="mb-4">
-        <app-calendar [range]="range" [id]="id"></app-calendar>
-    </div>
-    <div class="mb-4">
-        <label for="comment" class="form-label">Comentario</label>
-        <textarea name="comment" type="text" class="form-control" id="comemnt" formControlName="comment" required rows="4" ></textarea>
-    </div>
+    <h4>Monto a Pagar por dia: {{this.cars?.price}}</h4>
+    <h4>Cantidad de días: {{this.range.value.days}}</h4>
+    <h4>Monto total: {{this.range.value?.amount}} Usd</h4>
     <button type="submit" class="btn btn-primary float-end"
         [disabled]="range.invalid"
         >Enviar</button>
 
 </form>
+

@@ -46,7 +46,7 @@ export const initialState: {
           return{...state,car:arr }
       }
 
-      
+
     }),
     on(CarActions.orderPriceCar, (state,{asc})=>{
       let nuevo= [...state.car];
@@ -89,7 +89,7 @@ export const initialState: {
           })
           return {...state,
             car: nuevoOrden
-          }}), 
+          }}),
   );
 
   export function carReducer(state: State | undefined, action: Action) {

@@ -16,7 +16,7 @@
       <input type="password" class="form-control" id="password" name="password"  required formControlName="password">
       <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['minlength']"
       class="alert alert-danger">Este Campo es requerido</div>
-  </div>
+    </div>
 
     <button type="submit" class="btn btn-primary float-end"
           [disabled]="contactForm.invalid">Enviar</button>

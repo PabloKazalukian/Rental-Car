@@ -18,15 +18,16 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private authSvc:LoginService,private rentalSvc:RentalService) {}
 
   intercept(
-    request: HttpRequest<unknown>,
+    request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
+  ): Observable<HttpEvent<any>> {
     const token = this.authSvc.getToken();
     // this.authSvc.readToken().subscribe(res=> console.log(res))
     if (token) {
       request = request.clone({
         setHeaders: {
-          auth: `${token}`,
+          'Content-Type': 'application/json; charset=utf-8',
+          'auth': `${token}`,
         },
       });
     }
