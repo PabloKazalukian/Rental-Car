@@ -23,11 +23,12 @@ export class TokenInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const token = this.authSvc.getToken();
     // this.authSvc.readToken().subscribe(res=> console.log(res))
+    console.log(token)
     if (token) {
       request = request.clone({
         setHeaders: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'auth': `${token}`,
+          // 'Content-Type': 'application/json; charset=utf-8',
+          'Auth': `${token}`,
         },
       });
     }

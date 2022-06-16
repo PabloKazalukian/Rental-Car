@@ -5,6 +5,10 @@ import { Observable,map } from 'rxjs';
 import { request, requestSend } from '../core/models/request.interface';
 import { catchError } from 'rxjs/operators';
 
+
+interface idRequest{
+  idRequest:string
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +35,19 @@ export class RentalService {
       ),
       catchError((err)=>{ return this.handleError(err) })
     );
+  }
+
+  cancelRequestByIdRequest(idRequest:number):Observable <boolean | void>{
+    // let idRequest= idNumber;
+    return this.http.put<idRequest>(`http://localhost:3001/request/cancel`, {idRequest})
+    .pipe(
+      map( (res:any)=>{
+        // this.saveToken(res.token)
+        if(res) return true
+        else return false
+        }
+      ),
+    )
   }
 
   private handleError(err:any):Observable<never>{

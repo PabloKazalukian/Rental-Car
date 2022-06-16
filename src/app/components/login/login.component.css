@@ -1,4 +1,8 @@
-.formulario{
+.container_login{
+
   min-height: 60vh;
+}
+.formulario{
   width: 600px;
+  margin-bottom: 2.5rem;
 }

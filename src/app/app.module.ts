@@ -14,13 +14,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavBarComponent} from './components/navbar/navbar.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FormularioComponent } from './components/contact/formulario/formulario.component';
-import { AlquilerComponent } from './components/alquiler/alquiler.component';
-import { FormReactivoComponent } from './components/alquiler/form-reactivo/form-reactivo.component';
 import { HomeComponent } from './components/home/home.component';
 import { Error404Component } from './components/error404/error404.component';
 import { HttpClientModule} from '@angular/common/http'
 import { EffectsModule} from '@ngrx/effects';
-import * as carSelector from './components/cars/car.selector';
 import {carEffects} from './components/cars/car.effects';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -28,20 +25,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule} from '@angular/material/button';
 import { MatSidenavModule} from '@angular/material/sidenav';
-import { MatListModule} from '@angular/material/list';
-import { CalendarComponent } from './components/alquiler/form-reactivo/calendar/calendar.component';
-import { MatDatepickerModule} from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
 import { TokenInterceptor } from './services/interceptor/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UserComponent } from './components/user/user.component';
-import { TableRentalComponent } from './components/user/table-rental/table-rental.component';
-import { MatTableModule} from '@angular/material/table';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CarApplicationComponent } from './components/car-application/car-application.component';
-import { ModifyPassComponent } from './components/user/modify-pass/modify-pass.component';
 
 @NgModule({
   declarations: [
@@ -53,18 +41,12 @@ import { ModifyPassComponent } from './components/user/modify-pass/modify-pass.c
     NavBarComponent,
     ContactComponent,
     FormularioComponent,
-    AlquilerComponent,
-    FormReactivoComponent,
     HomeComponent,
     Error404Component,
     LoginComponent,
     RegisterComponent,
-    CalendarComponent,
-    UserComponent,
-    TableRentalComponent,
     LoadingComponent,
     CarApplicationComponent,
-    ModifyPassComponent,
 
   ],
   imports: [
@@ -84,11 +66,6 @@ import { ModifyPassComponent } from './components/user/modify-pass/modify-pass.c
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatTableModule,
     MatProgressSpinnerModule
   ],
   providers: [

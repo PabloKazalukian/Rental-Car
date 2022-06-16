@@ -3,7 +3,7 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="range">
 
   <div class="mb-4">
-      <app-loading *ngIf="loading;else viewCalendar"></app-loading>
+      <mat-spinner *ngIf="loading;else viewCalendar"></mat-spinner>
       <ng-template #viewCalendar>
         <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
       </ng-template>

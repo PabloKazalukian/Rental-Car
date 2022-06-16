@@ -1,12 +1,11 @@
 
 <div class="marginTop contenedor_user">
-  <p>user works!</p>
-  <h2>Bienvenido {{this.usuario.username}}</h2>
+  <h2>Bienvenido {{this.user.username}}</h2>
   <a mat-raised-button color="warn" routerLink="/usuario/modificarContraseña">Modificar contraseña</a>
   <a mat-raised-button color="primary" routerLink="/solicitarAuto">
     Solicitar auto
   </a>
 
-  <app-table-rental [request]="arrRequest"></app-table-rental>
+  <app-table-rental [user]="this.user"></app-table-rental>
 </div>
 

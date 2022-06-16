@@ -1,3 +1,14 @@
 table {
   width: 100%;
 }
+.td_amount{
+  max-width: 50px;
+}
+.mat-column-modify{
+  padding-left: 45px;
+}
+.switch_buttons{
+  max-width: 184px;
+  padding-left: 35px;
+
+}

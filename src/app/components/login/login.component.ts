@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit,OnDestroy {
   initForm():FormGroup{
     //declarar las propiedas que tendran nuestro formulario
     return this.fb.group({
-      email:['',[Validators.required,Validators.minLength(3)]],
+      email:['',[Validators.required,Validators.minLength(3),Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password:['',[Validators.required,Validators.minLength(3)]],
     })
   }

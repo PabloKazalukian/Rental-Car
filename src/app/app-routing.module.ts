@@ -18,20 +18,17 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:'contacto', component:ContactComponent},
   {
-    path:'alquiler' , component:AlquilerComponent,
+    path:'alquiler' ,
+    loadChildren:()=> import('./modules/rental/rental.module').then(m => m.RentalModule),
     canActivate:[PermissionsGuard],
     // canDeactivate:[WithoutSaveGuard],
-    resolve:{car:DataResolverService}
+    // resolve:{car:DataResolverService}
   },
   {path:'login', component:LoginComponent},
   {path:'registro', component:RegisterComponent},
   {
-    path:'usuario', component:UserComponent,
-    canActivate:[PermissionsGuard],
-  },
-  {
-    path:'usuario/modificarContraseña', component:ModifyPassComponent,
-    canActivate:[PermissionsGuard],
+    path:'usuario',
+      loadChildren:()=> import('./modules/user/user.module').then(m => m.UserModule),
   },
   {
     path:'solicitarAuto', component:CarApplicationComponent,
