@@ -39,7 +39,7 @@ export class RentalService {
 
   cancelRequestByIdRequest(idRequest:number):Observable <boolean | void>{
     // let idRequest= idNumber;
-    return this.http.put<idRequest>(`http://localhost:3001/request/cancel`, {idRequest})
+    return this.http.put<idRequest>(`${this.API}/cancel`, {idRequest})
     .pipe(
       map( (res:any)=>{
         // this.saveToken(res.token)

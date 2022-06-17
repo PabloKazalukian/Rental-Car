@@ -30,6 +30,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CarApplicationComponent } from './components/car-application/car-application.component';
+import { DialogLoggedComponent } from './components/cars/show-car/dialog-logged/dialog-logged.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { CarApplicationComponent } from './components/car-application/car-applic
     RegisterComponent,
     LoadingComponent,
     CarApplicationComponent,
+    DialogLoggedComponent,
 
   ],
   imports: [
@@ -66,7 +69,8 @@ import { CarApplicationComponent } from './components/car-application/car-applic
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [
     {

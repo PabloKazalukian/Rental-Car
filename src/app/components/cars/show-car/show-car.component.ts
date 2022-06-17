@@ -4,7 +4,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import {loadCar,orderBrandCar} from '../car.actions';
-
+import { LoginService } from 'src/app/services/login.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogLoggedComponent} from './dialog-logged/dialog-logged.component';
 
 interface appState{
   loading:boolean,
@@ -27,8 +29,9 @@ export class ShowCarComponent implements OnInit,OnDestroy  {
   cars!: Array<Car>;
   car$!:Observable<Car>;
   loading:boolean=true;
+  notLogged!:Observable<boolean>
 
-  constructor(private store:Store<{autos: appState}>,private readonly router: Router){}
+  constructor(private store:Store<{autos: appState}>,private readonly router: Router,private loginSvc:LoginService,public dialog: MatDialog){}
 
   ngOnInit(): void {
     this.loading=true;
@@ -36,7 +39,16 @@ export class ShowCarComponent implements OnInit,OnDestroy  {
 
   }
   goWithCar(id:number):void{
-    this.router.navigate(['alquiler'],{queryParams:{id}})
+
+    this.loginSvc.isLoggin().subscribe(e=>{
+      if(e){
+        this.router.navigate(['alquiler'],{queryParams:{id}})
+      }else{
+        // this.notLogged.subscribe(e=>{e=true;console.log(e)});
+        const dialogRef = this.dialog.open(DialogLoggedComponent);
+      }
+
+    })
   }
   chargeData ():void{
     this.store.dispatch(loadCar())
