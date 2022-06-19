@@ -8,6 +8,9 @@ import { RentalService } from 'src/app/services/rental.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ownValidation,getDays } from './calendar/app.validator';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
+
 
 @Component({
   selector: 'app-form-reactivo',
@@ -30,15 +33,21 @@ export class FormReactivoComponent implements OnInit,OnDestroy {
   success!:boolean
   loading:boolean=true
 
-  constructor(private readonly fb: FormBuilder,private authSvc:LoginService,private rentalSvc:RentalService,private router:Router) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private authSvc:LoginService,
+    private rentalSvc:RentalService,
+    private router:Router,
+    public dialog: MatDialog
+  ) {}
 
 
   ngOnInit(): void {
     this.subscripcions.push(
-      this.authSvc.readToken().subscribe((res)=>{this.userId =res.userId;
-      this.username=res.username;
-    }
-      )
+      this.authSvc.readToken().subscribe((res)=>{
+        this.userId =res.userId;
+        this.username=res.username;
+      })
     )
     this.range = this.initFormDates(null);
     this.subscripcions.push(
@@ -54,22 +63,16 @@ export class FormReactivoComponent implements OnInit,OnDestroy {
   onSubmit():void{
     let start = new DatePipe('en').transform(this.range.value.start, 'yyyy-MM-dd');
     let end = new DatePipe('en').transform(this.range.value.end, 'yyyy-MM-dd');
+
     if(start && end){
       let result:requestSend ={
         initial_date:start,
         final_date:end,
         created_by:this.userId,
         rented_car:parseInt(this.idCar,10),
+        stateReq:true
       }
-      this.rentalSvc.sendRequest(result).subscribe({
-        next: (res)=>{
-          this.success = true
-          setTimeout( ()=> this.router.navigate(['']),100)
-        },
-        error: (res)=>{
-          this.success = false
-        }
-      })
+      this.dialog.open(DialogConfirmationComponent,{data:result});
     }
   }
 

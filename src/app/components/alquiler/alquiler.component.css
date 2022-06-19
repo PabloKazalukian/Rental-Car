@@ -1,3 +1,20 @@
 .alquiler{
   min-height: 62vh;
 }
+.img_Car{
+  height: 11rem;
+}
+.alquiler_form{
+  background: #353535;
+  border-radius: 15px;
+  backdrop-filter: blur(3px);
+  margin-right: 2.5rem;
+  padding-bottom: 2rem;
+  padding-right: 5rem;
+}
+
+@media (max-width: 1440px)  {
+  .img_Car{
+    height: 7.5rem;
+  }
+}

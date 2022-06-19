@@ -1,16 +1,19 @@
 <div class="container marginTop alquiler" color="primary">
-    <h1>Alquile un vehiculo</h1>
-    <div class="row">
-        <div class="col-9">
-            <app-form-reactivo [idCar]="idCar" [cars]="cars"></app-form-reactivo>
-        </div>
-        <div class="col-3">
-            <img src="{{cars?.image}}" alt="..." style="height: 11rem;">
-            <h2>{{cars?.brand}}</h2>
-            <h2>{{cars?.model}}</h2>
-            <h2>{{cars?.year}}</h2>
-            <h2>{{cars?.price}}</h2>
-        </div>
+  <div class="row ">
+    <div class="col-lg-8 col-md-6 alquiler_form">
+      <div class="d-flex justify-content-between align-items-center p-1">
+        <h1>Alquile un vehiculo</h1>
+        <a mat-raised-button color="primary" routerLink="/solicitarAuto">Solicitar otro vehiculo</a>
+      </div>
+      <app-form-reactivo [idCar]="idCar" [cars]="cars"></app-form-reactivo>
+    </div>
+    <div class="col-lg-3 col-md-5">
+      <img src="{{cars?.image}}" alt="image Car" class="img_Car">
+      <h2>{{cars?.brand}}</h2>
+      <h2>{{cars?.model}}</h2>
+      <h2>{{cars?.year}}</h2>
+      <h2>{{cars?.price}}</h2>
+    </div>
     </div>
 
 </div>

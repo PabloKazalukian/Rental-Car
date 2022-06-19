@@ -7,14 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogLoggedComponent implements OnInit {
 
-  show:boolean=true
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  close():void{
-    this.show=false
   }
 
 }

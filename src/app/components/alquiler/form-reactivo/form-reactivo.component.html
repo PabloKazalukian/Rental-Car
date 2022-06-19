@@ -1,17 +1,22 @@
-<h4>Por favor, Ingrese las fechas de solicitud</h4>
+<h4>Por favor, ingrese las fechas de solicitud</h4>
 <h4>Solicitud de {{this.username}} por renta de {{this.cars?.brand}} {{this.cars?.model}}</h4>
-<form (ngSubmit)="onSubmit()" [formGroup]="range">
+<form (ngSubmit)="onSubmit()" [formGroup]="range" class="container_form">
 
-  <div class="mb-4">
+  <div class="mb-4 ">
+
       <mat-spinner *ngIf="loading;else viewCalendar"></mat-spinner>
-      <ng-template #viewCalendar>
-        <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
+      <ng-template #viewCalendar >
+        <div class="d-flex justify-content-start gap-5 align-items-center">
+          <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
+          <h2 *ngIf="range.invalid && range.touched" class="date_invalid">Fecha invalida</h2>
+          <h2 *ngIf="!range.invalid && range.touched" class="date_correct">Fecha correcta!</h2>
+        </div>
       </ng-template>
     </div>
     <h4>Monto a Pagar por dia: {{this.cars?.price}}</h4>
     <h4>Cantidad de días: {{this.range.value.days}}</h4>
     <h4>Monto total: {{this.range.value?.amount}} Usd</h4>
-    <button type="submit" class="btn btn-primary float-end"
+    <button mat-raised-button color="primary" type="submit" class="float-end"
         [disabled]="range.invalid"
         >Enviar</button>
 

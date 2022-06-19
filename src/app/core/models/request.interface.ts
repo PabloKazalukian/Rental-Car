@@ -13,4 +13,5 @@ export interface requestSend {
   final_date:string,
   created_by?:number,
   rented_car?:number,
+  stateReq:boolean
 }

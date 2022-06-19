@@ -49,6 +49,18 @@ export class RentalService {
       ),
     )
   }
+  confirmRequestByIdRequest(idRequest:number):Observable <boolean | void>{
+    // let idRequest= idNumber;
+    return this.http.put<idRequest>(`${this.API}/confirm`, {idRequest})
+    .pipe(
+      map( (res:any)=>{
+        // this.saveToken(res.token)
+        if(res) return true
+        else return false
+        }
+      ),
+    )
+  }
 
   private handleError(err:any):Observable<never>{
     let errorMessage='ocurrio un error'

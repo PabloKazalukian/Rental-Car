@@ -59,8 +59,21 @@ export class TableRentalComponent implements OnInit {
         },
       })
     )
-
-
+  }
+  confirmRequest(element:any):void{
+    // confirmRequestByIdRequest
+    console.log(element)
+    element.state = 'cancel'
+    this.subscripcions.push(
+      this.requestSvc.confirmRequestByIdRequest(element.id_request).subscribe({
+        next: (res)=>{
+          element.state = 'con';
+        },
+        error: (res)=>{
+          // this.login=false
+        },
+      })
+    )
   }
 
   ngOnDestroy(): void {
