@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,map } from 'rxjs';
-import { request, requestSend } from '../core/models/request.interface';
+import { request, requestReceived, requestSend } from '../core/models/request.interface';
 import { catchError } from 'rxjs/operators';
 
 
@@ -21,14 +21,16 @@ export class RentalService {
   getRequestById(id:string):Observable<request[]>{
     return this.http.get<request[]>(`${this.API}/allOfCarId/${id}`)
   }
-  getRequestByUserId(userId:number):Observable<request[]>{
-    return this.http.get<request[]>(`${this.API}/allOfUserId/${userId}`)
+  getRequestByUserId(userId:number):Observable<requestReceived[]>{
+    return this.http.get<requestReceived[]>(`${this.API}/allOfUserId/${userId}`)
   }
   sendRequest(form:requestSend):Observable<boolean | void>{
+    console.log(form)
     return this.http.post<requestSend>(this.API,form)
     .pipe(
-      map( (res:requestSend)=>{
+      map( (res)=>{
         // this.saveToken(res.token)
+        console.log(res)
         if(res) return true
         else return false
         }
@@ -64,6 +66,7 @@ export class RentalService {
 
   private handleError(err:any):Observable<never>{
     let errorMessage='ocurrio un error'
+    console.log(errorMessage)
     if(err){
       errorMessage = `error code : ${err.message}`
     }

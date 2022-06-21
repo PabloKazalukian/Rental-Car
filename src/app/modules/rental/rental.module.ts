@@ -14,6 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { DialogConfirmationComponent } from 'src/app/components/alquiler/form-reactivo/dialog-confirmation/dialog-confirmation.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   {
@@ -28,7 +30,8 @@ const routes: Routes = [
   declarations: [
     AlquilerComponent,
     FormReactivoComponent,
-    CalendarComponent
+    CalendarComponent,
+    DialogConfirmationComponent
 
 
   ],
@@ -40,8 +43,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatNativeDateModule
-
+    MatNativeDateModule,
+    MatDialogModule
 
   ]
 })

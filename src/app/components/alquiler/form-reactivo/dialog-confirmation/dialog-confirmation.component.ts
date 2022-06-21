@@ -1,5 +1,6 @@
 import { Component, OnInit,Inject, OnDestroy  } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { requestSend } from 'src/app/core/models/request.interface';
 import { RentalService } from 'src/app/services/rental.service';
@@ -13,13 +14,17 @@ export class DialogConfirmationComponent implements OnInit,OnDestroy {
 
   private subscripcions: Subscription[]=[];
 
-  success!:boolean
+  success:boolean=false
+  loading:boolean=false
+  // complete:boolean=false
 
 
   constructor(
     public dialogRef: MatDialogRef<DialogConfirmationComponent>,
     @ Inject(MAT_DIALOG_DATA) public data: requestSend,
-    private rentalSvc:RentalService
+    private rentalSvc:RentalService,
+    private router:Router
+
     ) {}
 
   ngOnInit(): void {
@@ -27,30 +32,45 @@ export class DialogConfirmationComponent implements OnInit,OnDestroy {
   }
 
   request():void{
+    this.loading=true;
     this.data.stateReq=false;
-    console.log(this.data);
     this.subscripcions.push(
       this.rentalSvc.sendRequest(this.data).subscribe({
         next: (res)=>{
-          this.success = true
-          // setTimeout( ()=> this.router.navigate(['']),100)
+          console.log(res);
+          this.loading=false;
+          this.success = true;
+          setTimeout(()=>{
+            this.dialogRef.close();
+            this.router.navigate(['/usuario'])
+          },1000)
+
         },
         error: (res)=>{
+          this.loading=false;
           this.success = false
+          alert('error');
         }
       })
     )
   }
 
   confirm():void{
+    this.loading=true;
     this.subscripcions.push(
       this.rentalSvc.sendRequest(this.data).subscribe({
         next: (res)=>{
+          this.loading=false;
           this.success = true
-          // setTimeout( ()=> this.router.navigate(['']),100)
+          setTimeout(()=>{
+            this.dialogRef.close();
+            this.router.navigate(['/usuario'])
+          },1000)
         },
         error: (res)=>{
+          this.loading=false;
           this.success = false
+          alert('error');
         }
       })
     )

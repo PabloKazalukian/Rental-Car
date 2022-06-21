@@ -51,7 +51,6 @@ import { DialogConfirmationComponent } from './components/alquiler/form-reactivo
     LoadingComponent,
     CarApplicationComponent,
     DialogLoggedComponent,
-    DialogConfirmationComponent,
 
   ],
   imports: [
