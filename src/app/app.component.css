@@ -1,3 +1,7 @@
 .main{
   background: #303030;
 }
+.relative{
+  position: relative;
+  z-index: 1;
+}

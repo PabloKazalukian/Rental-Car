@@ -1,0 +1,102 @@
+.container_img{
+  margin-top: 64px;
+  position: relative;
+  z-index: 5;
+  background-image: url("https://pixabay.com/get/g5e4915f42e5a877699faa60df721ab6e7aa95c2107f3dca776c3e01871d6c2f4881342f274bb042f97503bba44704f91feb0551b3956015924274717e7ffc600_1920.jpg");
+  width: 100%;
+  height: 92vh;
+}
+
+.container_text{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  background: #21212142;
+  display: flex;
+  gap: 20rem;
+  transition: background .7s;
+}
+
+.text1{
+  display: flex;
+  flex-direction: column;
+  padding:5rem 2rem;
+  width: 38%;
+  gap: 20px;
+  background: #21212172;
+  backdrop-filter: saturate(80%) blur(2px);
+  transition: background .3s;
+}
+.textWelcome{
+  font-size: 60px;
+  margin-bottom: 25px;
+}
+.Rental-Car{
+  color: #d51a27;
+}
+.text2{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 40px;
+}
+.text{
+  letter-spacing: 1px;
+  font: 35px/45px Roboto, "Helvetica Neue", sans-serif;
+}
+.textSecundary{
+  letter-spacing: 1px;
+  font: 25px/45px Roboto, "Helvetica Neue", sans-serif;
+  margin: 0px;
+}
+.carrousel_home{
+  box-sizing: border-box;
+  height: auto;
+  overflow: hidden;
+}
+
+.imagen_carrousel{
+  height: 600px;
+}
+
+.contenedor_carrousel{
+  position: relative;
+  z-index: 100;
+}
+.texto_bienvenida{
+  position: absolute;
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.6rem;
+  background: #11111188;
+  width: 600px;
+
+  color:#f1f1f1;
+  z-index: 10;
+  top: 68%;
+  left: 28%;
+}
+
+@media (max-width: 575px) {
+  .imagen_carrousel {
+      height: auto;
+  }
+  .texto_bienvenida{
+      display: none;
+
+  }
+}
+
+@media (max-width: 1100px) {
+  .texto_bienvenida{
+      width: 320px;
+      left: 25%;
+  }
+}

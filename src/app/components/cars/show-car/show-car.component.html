@@ -16,7 +16,7 @@
                 <button mat-stroked-button color="warn" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+autos.id_car">
                   Ver Más
                 </button>
-                <button mat-raised-button color="primary" (click)="goWithCar(autos.id_car)">
+                <button mat-raised-button color="primary" (click)="this.goWithCar(autos.id_car)">
                   Solicitar alquiler
                 </button>
 
@@ -56,6 +56,4 @@
         </div>
     </div>
     <!-- Scrollable modal -->
-
-
 </div>

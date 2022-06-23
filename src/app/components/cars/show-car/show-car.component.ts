@@ -40,15 +40,17 @@ export class ShowCarComponent implements OnInit,OnDestroy  {
   }
   goWithCar(id:number):void{
 
-    this.loginSvc.isLoggin().subscribe(e=>{
-      if(e){
-        this.router.navigate(['alquiler'],{queryParams:{id}})
-      }else{
-        // this.notLogged.subscribe(e=>{e=true;console.log(e)});
-        const dialogRef = this.dialog.open(DialogLoggedComponent);
-      }
+    this.subscripcions.push(
 
-    })
+      this.loginSvc.isLoggin().subscribe(e=>{
+        if(e){
+          this.router.navigate(['alquiler'],{queryParams:{id}})
+        }else{
+          // this.notLogged.subscribe(e=>{e=true;console.log(e)});
+          const dialogRef = this.dialog.open(DialogLoggedComponent);
+        }
+      })
+    )
   }
   chargeData ():void{
     this.store.dispatch(loadCar())

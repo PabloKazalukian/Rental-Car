@@ -1,10 +1,9 @@
 
 <div class="marginTop contenedor_user">
   <h2>Bienvenido {{this.user.username}}</h2>
-  <a mat-raised-button color="warn" routerLink="/usuario/modificarContraseña">Modificar contraseña</a>
-  <a mat-raised-button color="primary" routerLink="/solicitarAuto">
-    Solicitar auto
-  </a>
+  <a mat-raised-button color="warn" routerLink="/usuario/modificarContraseña" class="me-5">Modificar contraseña</a>
+  <a mat-raised-button color="primary" routerLink="/solicitarAuto" >Solicitar auto</a>
+  <h2 class="mt-2">Información de todos las solicitudes :</h2>
 
   <app-table-rental [user]="this.user" ></app-table-rental>
 </div>
