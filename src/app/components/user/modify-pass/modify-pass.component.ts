@@ -19,7 +19,7 @@ export class ModifyPassComponent implements OnInit,OnDestroy {
 
   modifyPass!:FormGroup;
   usuario!:usuario;
-  sucess!:boolean
+  success!:boolean
 
   constructor(private readonly fb: FormBuilder,private loginSvc:LoginService,private userSvc:UserService) { }
 
@@ -35,10 +35,10 @@ export class ModifyPassComponent implements OnInit,OnDestroy {
       this.subscripcions.push(
         this.userSvc.modifyPass(this.modifyPass.value.password1,this.usuario.userId).subscribe({
         next: (res)=>{
-          this.sucess = true;
+          this.success = true;
           },
           error: (res)=>{
-            this.sucess=false
+            this.success=false
         },
       })
       )

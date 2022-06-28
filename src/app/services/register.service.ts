@@ -20,12 +20,16 @@ export class RegisterService {
     .pipe(
       map( (res:userRegister)=>{
         // this.saveToken(res.token)
+        console.log('registro',res);
         if(res) return true
         else return false
         }
-      ),
-      catchError((err)=>{ return this.handleError(err) })
+      )
     );
+  }
+
+  verifyEmail(email:string):Observable<boolean | void>{
+    return this.http.post<boolean>(`${this.API}/verifyEmail`,{email})
   }
 
   private handleError(err:any):Observable<never>{
