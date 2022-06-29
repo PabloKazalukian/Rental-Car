@@ -4,7 +4,7 @@
   z-index: 5;
   background-image: url("../../../../assets/images/porsche-1851246_1920.jpg");
   width: 100%;
-  height: 92vh;
+  min-height: 92vh;
 }
 
 .container_text{
@@ -31,25 +31,19 @@
   transition: background .3s;
 }
 .textWelcome{
-  font-size: 60px;
+  font-size: 3.4rem;
   margin-bottom: 25px;
 }
 .Rental-Car{
   color: #d51a27;
 }
-.text2{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin-top: 40px;
-}
 .text{
   letter-spacing: 1px;
-  font: 35px/45px Roboto, "Helvetica Neue", sans-serif;
+  font: 2rem/2.3rem Roboto, "Helvetica Neue", sans-serif;
 }
 .textSecundary{
   letter-spacing: 1px;
-  font: 25px/45px Roboto, "Helvetica Neue", sans-serif;
+  font: 1.5rem/1.8rem Roboto, "Helvetica Neue", sans-serif;
   margin: 0px;
 }
 .carrousel_home{
@@ -84,13 +78,30 @@
   left: 28%;
 }
 
-@media (max-width: 575px) {
-  .imagen_carrousel {
-      height: auto;
+@media (max-width: 1024px) {
+  .text1{
+    width: 100%;
   }
-  .texto_bienvenida{
-      display: none;
-
+}
+@media (max-width: 780px) {
+  .text1{
+    width: 100%;
+  }
+  .text{
+    letter-spacing: 1px;
+    font: 1.5rem/1.7rem Roboto, "Helvetica Neue", sans-serif;
+  }
+  .textSecundary{
+    letter-spacing: 1px;
+    font: 0.9rem/1rem Roboto, "Helvetica Neue", sans-serif;
+    margin: 0px;
+  }
+  .textWelcome{
+    font-size: 2.4rem;
+    margin-bottom: 5px;
+  }
+  .text2{
+    display: none;
   }
 }
 

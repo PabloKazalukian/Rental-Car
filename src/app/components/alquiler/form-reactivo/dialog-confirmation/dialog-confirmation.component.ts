@@ -65,7 +65,7 @@ export class DialogConfirmationComponent implements OnInit,OnDestroy {
           setTimeout(()=>{
             this.dialogRef.close();
             this.router.navigate(['/usuario'])
-          },1000)
+          },1800)
         },
         error: (res)=>{
           this.loading=false;

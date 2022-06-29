@@ -48,13 +48,6 @@ export class LoginService {
     this.loggetIn.next(false);
   }
 
-  private handleError(err:any):Observable<never>{
-    let errorMessage='ocurrio un error'
-    if(err){
-      errorMessage = `error code : ${err.message}`
-    }
-    return err
-  }
   private checkToken():void{
 
     const userToken = localStorage.getItem('auth');

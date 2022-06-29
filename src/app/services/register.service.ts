@@ -20,7 +20,6 @@ export class RegisterService {
     .pipe(
       map( (res:userRegister)=>{
         // this.saveToken(res.token)
-        console.log('registro',res);
         if(res) return true
         else return false
         }

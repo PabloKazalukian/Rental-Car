@@ -29,3 +29,11 @@ a {
   color: #fff;
   margin: 0px 3px;
 }
+.title{
+  display: inline;
+}
+@media (max-width: 425px) {
+  .title{
+    display: none;
+  }
+}

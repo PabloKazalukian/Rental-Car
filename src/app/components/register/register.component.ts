@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, map } from 'rxjs';
+import { catchError, map, Subscription } from 'rxjs';
 import { RegisterService } from 'src/app/services/register.service';
 import { repeatPass } from 'src/app/shared/repeatPass.validator';
 
@@ -10,34 +10,35 @@ import { repeatPass } from 'src/app/shared/repeatPass.validator';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy  {
 
   contactForm!:FormGroup;
   success:boolean = false
   error:boolean=false
+  private subscripcions: Subscription[]=[];
 
   constructor(private readonly fb: FormBuilder,private authSvc:RegisterService,private router:Router) { }
 
 
   ngOnInit(): void {
     this.contactForm = this.initForm();
+    // console.log(this.contactForm)
     // this.authSvc.verifyEmail("admin@gmail.com").subscribe(e=>console.log(e))
   }
 
   onSubmit():void{
-    this.authSvc.registerUser(this.contactForm.value).subscribe({
-      next: (res)=>{
-        console.log('true',res);
-        this.success = true
-        // setTimeout( ()=> this.router.navigate(['login']),100)
-      },
-      error: (res)=>{
-        console.log('false',res);
-        this.success = false
-        this.error = true
-      }
-    })
-
+    this.subscripcions.push(
+      this.authSvc.registerUser(this.contactForm.value).subscribe({
+        next: (res)=>{
+          this.success = true
+          setTimeout( ()=> this.router.navigate(['login']),1700)
+        },
+        error: (res)=>{
+          this.success = false
+          this.error = true
+        }
+      })
+    )
   }
   initForm():FormGroup{
     //declarar las propiedas que tendran nuestro formulario
@@ -51,11 +52,9 @@ export class RegisterComponent implements OnInit {
     })
   }
   validarEmail(control: AbstractControl) {
-    console.log(control)
     return this.authSvc.verifyEmail(control.value)
     .pipe(
       map(data =>{
-        console.log(data)
         if(data){
           return {emailExist: true}
         }else{
@@ -64,6 +63,10 @@ export class RegisterComponent implements OnInit {
       }),
       catchError(error => error)
     )
+  }
+
+  ngOnDestroy(): void {
+    this.subscripcions.forEach((e)=> e.unsubscribe())
   }
 
 }

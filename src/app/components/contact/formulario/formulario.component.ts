@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { email } from 'src/app/core/models/email.interface';
+import { EmailService } from 'src/app/services/email.service';
 interface contactForm{
   name: string,
-  checkAdult: boolean,
   select: string,
   comment: string,
 }
@@ -11,21 +13,41 @@ interface contactForm{
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
-export class FormularioComponent implements OnInit {
+export class FormularioComponent implements OnInit, OnDestroy {
 
-  model ={
+  private subscripcions: Subscription[]=[];
+
+  model:email ={
     name: '',
-    checkAdult: false,
-    select: '',
+    email: '',
     comment: ''
   }
-  constructor() { }
+  error: boolean = false;
+  success: boolean = false;
+
+  constructor( private emailSvc: EmailService) { }
 
   ngOnInit(): void {
   }
-  
-  public onSubmit(form:any):void{
-    console.log('formolario validado,',form)
+
+  public onSubmit(form:email):void{
+    // console.log('formolario validado,',form);
+    this.subscripcions.push(
+
+      this.emailSvc.sendEmail(form).subscribe({
+        next: (res)=>{
+          this.success = true
+          // setTimeout( ()=> this.router.navigate(['login']),1700)
+        },
+        error: (res)=>{
+          this.success = false
+          this.error = true
+        }
+      })
+    )
   }
 
+  ngOnDestroy(): void {
+    this.subscripcions.forEach((e)=> e.unsubscribe())
+  }
 }

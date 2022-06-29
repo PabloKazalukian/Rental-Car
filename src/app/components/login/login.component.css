@@ -5,3 +5,14 @@
   width: 600px;
   margin-bottom: 2.5rem;
 }
+
+@media (max-width: 625px) {
+  .formulario{
+    width: 400px;
+  }
+}
+@media (max-width: 475px) {
+  .formulario{
+    width: 200px;
+  }
+}

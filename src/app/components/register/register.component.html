@@ -36,9 +36,13 @@
 
   </form>
 </div>
+
 <div *ngIf="this.success" class="marginTop">
   <div class="container mt-5 formulario">
     <h2 class="mt-5">
+      Bienvenido {{contactForm.value.username}}!
+    </h2>
+    <h2 class="mt-5 alert alert-primary">
       Formulario Completado correctamente
     </h2>
   </div>
@@ -54,6 +58,6 @@
             </button>
         </div>
     </div>
-</div>
+  </div>
 </div>
 

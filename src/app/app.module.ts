@@ -34,6 +34,7 @@ import { DialogLoggedComponent } from './components/cars/show-car/dialog-logged/
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogConfirmationComponent } from './components/alquiler/form-reactivo/dialog-confirmation/dialog-confirmation.component';
 import { LandingPageComponent } from './components/home/landing-page/landing-page.component';
+import { HowToUseComponent } from './components/home/how-to-use/how-to-use.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LandingPageComponent } from './components/home/landing-page/landing-pag
     CarApplicationComponent,
     DialogLoggedComponent,
     LandingPageComponent,
+    HowToUseComponent,
 
   ],
   imports: [
