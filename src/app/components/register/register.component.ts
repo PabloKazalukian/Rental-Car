@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit, OnDestroy  {
     //declarar las propiedas que tendran nuestro formulario
     return this.fb.group({
       username:['',[Validators.required,Validators.minLength(3)]],
-      email:['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")],this.validarEmail.bind(this)],
+      email:['',[Validators.required,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")],this.validarEmail.bind(this)],
       password1:['',[Validators.required,Validators.minLength(3)]],
       password2:['',[Validators.required,Validators.minLength(3)]],
     },{

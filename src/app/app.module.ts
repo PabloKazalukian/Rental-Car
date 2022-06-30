@@ -32,9 +32,9 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { CarApplicationComponent } from './components/car-application/car-application.component';
 import { DialogLoggedComponent } from './components/cars/show-car/dialog-logged/dialog-logged.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DialogConfirmationComponent } from './components/alquiler/form-reactivo/dialog-confirmation/dialog-confirmation.component';
 import { LandingPageComponent } from './components/home/landing-page/landing-page.component';
 import { HowToUseComponent } from './components/home/how-to-use/how-to-use.component';
+import {MatCheckboxModule} from '@angular/material/checkbox'
 
 @NgModule({
   declarations: [
@@ -75,7 +75,9 @@ import { HowToUseComponent } from './components/home/how-to-use/how-to-use.compo
     MatButtonModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
+
   ],
   providers: [
     {

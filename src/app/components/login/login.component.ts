@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {  Subscription } from 'rxjs';
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit,OnDestroy {
   contactForm!:FormGroup;
   login!:boolean
   private subscripcions: Subscription[]=[];
-
+  showPas: boolean = false
+  @ViewChild('MyRef') passwordInput!: ElementRef;
 
   constructor(private readonly fb: FormBuilder,private authSvc:LoginService,private router:Router) { }
 
@@ -45,6 +46,11 @@ export class LoginComponent implements OnInit,OnDestroy {
       email:['',[Validators.required,Validators.minLength(3),Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password:['',[Validators.required,Validators.minLength(3)]],
     })
+  }
+
+  showPassword( event:boolean){
+    event? this.passwordInput.nativeElement.type = "text": this.passwordInput.nativeElement.type = "password"
+
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,10 @@
 .container_login{
   min-height: 68vh;
 }
+.contentInput label{
+  font-size: 18px;
+}
+
 .formulario{
   width: 600px;
   margin-bottom: 2.5rem;
