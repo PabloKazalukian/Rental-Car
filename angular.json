@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "Rental-Car"
+  "defaultProject": "Rental-Car",
+  "cli": {
+    "analytics": "bd89148c-02fb-43cf-a50d-9216adf3c6a0"
+  }
 }
