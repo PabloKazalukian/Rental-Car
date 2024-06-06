@@ -4,26 +4,26 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { email } from '../core/models/email.interface';
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class EmailService {
 
 
-  private readonly API= `${environment.api}/email/contact`;
+    private readonly API = `${environment.api}/email/contact`;
 
 
-  constructor(private readonly http:HttpClient) {}
+    constructor(private readonly http: HttpClient) { }
 
-  sendEmail(form:email):Observable<boolean | void>{
+    sendEmail(form: email): Observable<boolean | void> {
 
-    return this.http.post<email>(this.API,form)
-    .pipe(
-      map( (res:email)=>{
-        if(res) return true
-        else return false
-        }
-      )
-    );
-  }
+        return this.http.post<email>(this.API, form)
+            .pipe(
+                map((res: email) => {
+                    if (res) return true
+                    else return false
+                }
+                )
+            );
+    }
 
 }

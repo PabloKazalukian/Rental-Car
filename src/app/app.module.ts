@@ -37,53 +37,53 @@ import { HowToUseComponent } from './components/home/how-to-use/how-to-use.compo
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CarsComponent,
-    ShowCarComponent,
-    FilterCarsComponent,
-    FooterComponent,
-    NavBarComponent,
-    ContactComponent,
-    FormularioComponent,
-    HomeComponent,
-    Error404Component,
-    LoginComponent,
-    RegisterComponent,
-    LoadingComponent,
-    CarApplicationComponent,
-    DialogLoggedComponent,
-    LandingPageComponent,
-    HowToUseComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    StoreModule.forRoot({ autos: carReducer }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 5, // Retains last 5 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-    }),
-    EffectsModule.forRoot([carEffects]), //agregar Effects
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatCheckboxModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        CarsComponent,
+        ShowCarComponent,
+        FilterCarsComponent,
+        FooterComponent,
+        NavBarComponent,
+        ContactComponent,
+        FormularioComponent,
+        HomeComponent,
+        Error404Component,
+        LoginComponent,
+        RegisterComponent,
+        LoadingComponent,
+        CarApplicationComponent,
+        DialogLoggedComponent,
+        LandingPageComponent,
+        HowToUseComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        StoreModule.forRoot({ autos: carReducer }),
+        StoreDevtoolsModule.instrument({
+            maxAge: 5, // Retains last 5 states
+            logOnly: environment.production, // Restrict extension to log-only mode
+            autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+        }),
+        EffectsModule.forRoot([carEffects]), //agregar Effects
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatCheckboxModule,
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

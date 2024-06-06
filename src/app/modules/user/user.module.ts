@@ -15,40 +15,40 @@ import { TokenInterceptor } from 'src/app/services/interceptor/token.interceptor
 
 const routes: Routes = [
 
-  {
-    path:'',
-    component:UserComponent,
-    canActivate:[PermissionsGuard],
-  },
+    {
+        path: '',
+        component: UserComponent,
+        canActivate: [PermissionsGuard],
+    },
 
-  {
-    path:'modificarContraseña',
-    component:ModifyPassComponent,
-    canActivate:[PermissionsGuard],
-  }
+    {
+        path: 'modificarContraseña',
+        component: ModifyPassComponent,
+        canActivate: [PermissionsGuard],
+    }
 ];
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    TableRentalComponent,
-    ModifyPassComponent,
-  ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    ReactiveFormsModule,
-    MatTableModule,
-    MatProgressSpinnerModule,
-    MatButtonModule
+    declarations: [
+        UserComponent,
+        TableRentalComponent,
+        ModifyPassComponent,
+    ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        ReactiveFormsModule,
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatButtonModule
 
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
-  ],
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true,
+        },
+    ],
 })
 export class UserModule { }

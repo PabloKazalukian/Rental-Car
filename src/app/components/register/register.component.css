@@ -1,14 +1,16 @@
-.formulario{
-  min-height: 68vh;
-  width: 600px;
+.formulario {
+    min-height: 68vh;
+    width: 600px;
 }
+
 @media (max-width: 625px) {
-  .formulario{
-    width: 400px;
-  }
+    .formulario {
+        width: 400px;
+    }
 }
+
 @media (max-width: 475px) {
-  .formulario{
-    width: 200px;
-  }
+    .formulario {
+        width: 200px;
+    }
 }

@@ -1,8 +1,8 @@
 export interface Login {
-  email:string,
-  password:string
+    email: string,
+    password: string
 }
-export interface LoginResponde{
+export interface LoginResponde {
     message: string,
     token: string
 

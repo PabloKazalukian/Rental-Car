@@ -1,84 +1,102 @@
-.alquiler{
-  min-height: 66vh;
-}
-.img_Car{
-  width: 100%;
-  height: 12rem;
-}
-.alquiler_form{
-  background: #353535;
-  border-radius: 15px;
-  backdrop-filter: blur(3px);
-  margin-right: 2.5rem;
-  padding-bottom: 2rem;
-  padding-right: 5rem;
-  box-shadow: rgba(0, 0, 9, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-.contentCard{
-  display: grid;
-  width: 100%;
-  margin-top: 5px;
-  margin-left: 52px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-  grid-template-areas:"img img"
-                      "name name"
-                      "price year";
-  padding-bottom: 14px ;
-  border-radius: 12px;
-  background: #d1d1d1;
-  position: relative;
-}
-.contentCard h2{
-  margin-bottom: 1px;
-  text-align: center;
-}
-.contentCard label{
-  text-align: center;
-  width: 100%;
-}
-.dataImg{
-  grid-area: img;
-  box-shadow: 0 0 88px 0 rgba(0, 0, 0, 0.1607843137254902);
-}
-.dataName{
-  grid-area: name;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background: #222;
-  border-bottom: 2px solid #353535;
-  height: 100px;
-}
-.dataPrice{
-  grid-area: price;
-  padding-top: 5px;
-  background: #f44336;
-}
-.dataYear{
-  grid-area: year;
-  padding-top: 5px;
-
-  background: #d51a27;
-}
-.dataName label{
-  color: #666;
-}
-.buttonChangeCar{
-  position: absolute;
-  top: 106%;
-  left: 24%;
-  animation: moveUp .8s 1.6s forwards;
+.alquiler {
+    min-height: 66vh;
 }
 
-
-@media (max-width: 1440px)  {
-  .img_Car{
-    height: 7.5rem;
-  }
+.img_Car {
+    width: 100%;
+    height: 12rem;
 }
+
+.alquiler_form {
+    background: #353535;
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+    margin-right: 2.5rem;
+    padding-bottom: 2rem;
+    padding-right: 5rem;
+    box-shadow: rgba(0, 0, 9, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.contentCard {
+    display: grid;
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 52px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    grid-template-areas: "img img"
+        "name name"
+        "price year";
+    padding-bottom: 14px;
+    border-radius: 12px;
+    background: #d1d1d1;
+    position: relative;
+}
+
+.contentCard h2 {
+    margin-bottom: 1px;
+    text-align: center;
+}
+
+.contentCard label {
+    text-align: center;
+    width: 100%;
+}
+
+.dataImg {
+    grid-area: img;
+    box-shadow: 0 0 88px 0 rgba(0, 0, 0, 0.1607843137254902);
+}
+
+.dataName {
+    grid-area: name;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #222;
+    border-bottom: 2px solid #353535;
+    height: 100px;
+}
+
+.dataPrice {
+    grid-area: price;
+    padding-top: 5px;
+    background: #f44336;
+}
+
+.dataYear {
+    grid-area: year;
+    padding-top: 5px;
+
+    background: #d51a27;
+}
+
+.dataName label {
+    color: #666;
+}
+
+.buttonChangeCar {
+    position: absolute;
+    top: 106%;
+    left: 24%;
+    animation: moveUp .8s 1.6s forwards;
+}
+
+
+@media (max-width: 1440px) {
+    .img_Car {
+        height: 7.5rem;
+    }
+}
+
 @keyframes moveUp {
-  0%{ transform: translateY(0);}
-  100% { transform: translateY(-2rem); opacity: 1; }
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-2rem);
+        opacity: 1;
+    }
 
 }

@@ -18,34 +18,34 @@ import { DialogConfirmationComponent } from 'src/app/components/alquiler/form-re
 import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
-  {
-    path:'',
-    component:AlquilerComponent,
-    // canActivate:[PermissionsGuard],
-    // // canDeactivate:[WithoutSaveGuard],
-    // resolve:{car:DataResolverService}
-  }];
+    {
+        path: '',
+        component: AlquilerComponent,
+        // canActivate:[PermissionsGuard],
+        // // canDeactivate:[WithoutSaveGuard],
+        // resolve:{car:DataResolverService}
+    }];
 
 @NgModule({
-  declarations: [
-    AlquilerComponent,
-    FormReactivoComponent,
-    CalendarComponent,
-    DialogConfirmationComponent
+    declarations: [
+        AlquilerComponent,
+        FormReactivoComponent,
+        CalendarComponent,
+        DialogConfirmationComponent
 
 
-  ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    MatDatepickerModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
-    MatNativeDateModule,
-    MatDialogModule
+    ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        MatDatepickerModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatProgressSpinnerModule,
+        MatNativeDateModule,
+        MatDialogModule
 
-  ]
+    ]
 })
 export class RentalModule { }

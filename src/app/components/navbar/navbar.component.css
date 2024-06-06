@@ -1,39 +1,44 @@
-.spacer{
-  flex: 1 1 auto;
+.spacer {
+    flex: 1 1 auto;
 }
-.navBar{
-  position: fixed;
-  z-index: 100000;
-  background: #21212194;
-  backdrop-filter: saturate(180%) blur(10px);
-  transition: background .3s;
-  height: 64px;
-  display: flex;
-  top: 0;
-  box-sizing: border-box;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  white-space: nowrap;
-  color: #fff;
-  font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
-  letter-spacing: normal;
-  margin: 0;
-  padding: 0px 30px;
+
+.navBar {
+    position: fixed;
+    z-index: 100000;
+    background: #21212194;
+    backdrop-filter: saturate(180%) blur(10px);
+    transition: background .3s;
+    height: 64px;
+    display: flex;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    color: #fff;
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0;
+    padding: 0px 30px;
 }
-.navBar:hover{
-  background: #212121;
+
+.navBar:hover {
+    background: #212121;
 }
+
 a {
-  text-decoration: none;
-  color: #fff;
-  margin: 0px 3px;
+    text-decoration: none;
+    color: #fff;
+    margin: 0px 3px;
 }
-.title{
-  display: inline;
+
+.title {
+    display: inline;
 }
+
 @media (max-width: 425px) {
-  .title{
-    display: none;
-  }
+    .title {
+        display: none;
+    }
 }

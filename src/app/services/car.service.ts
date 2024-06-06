@@ -5,17 +5,17 @@ import { Observable } from 'rxjs';
 import { Car } from '../core/models/car.interface';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CarService {
-  private readonly API= `${environment.api}/car`;
+    private readonly API = `${environment.api}/car`;
 
-  constructor(private readonly http:HttpClient) { }
+    constructor(private readonly http: HttpClient) { }
 
-  getAllCars():Observable<Car[]>{
-    return this.http.get<Car[]>(this.API)
-  }
-  getCarById(id:string):Observable<Car[]>{
-    return this.http.get<Car[]>(`${this.API}/id/${id}`)
-  }
+    getAllCars(): Observable<Car[]> {
+        return this.http.get<Car[]>(this.API)
+    }
+    getCarById(id: string): Observable<Car[]> {
+        return this.http.get<Car[]>(`${this.API}/id/${id}`)
+    }
 }

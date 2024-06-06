@@ -1,11 +1,13 @@
-.contenedor_cars{
+.contenedor_cars {
     /* max-height: 40vh; */
     /* background: rgb(242, 242, 242); */
 
 }
-.card-background{
-  background:#424242;
+
+.card-background {
+    background: #424242;
 }
-.card-color{
-  color: #424242;
+
+.card-color {
+    color: #424242;
 }

@@ -3,21 +3,21 @@ import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } f
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class WithoutSaveGuard implements CanDeactivate<unknown> {
-  canDeactivate(
-    component: unknown,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.hasUser()){
-      return true;
+    canDeactivate(
+        component: unknown,
+        currentRoute: ActivatedRouteSnapshot,
+        currentState: RouterStateSnapshot,
+        nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+        if (this.hasUser()) {
+            return true;
+        }
+        return confirm('Tiene cambios sin guardar')
     }
-    return confirm('Tiene cambios sin guardar')
-  }
-  hasUser():boolean{
-    return false
-  }
-  
+    hasUser(): boolean {
+        return false
+    }
+
 }

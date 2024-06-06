@@ -1,23 +1,23 @@
 <div class="marginTop main contenedor_pass">
 
-  <h2>Modificar constraseña</h2>
-  <form (ngSubmit)="onSubmit()" [formGroup]="modifyPass">
-    <div class="mb-4">
-      <label for="password1" class="form-label" >Ingrese una nueva contraseña</label>
-      <input type="password" class="form-control" id="password1" name="password1"  required formControlName="password1">
-      <div *ngIf="modifyPass.get('password1')?.touched && modifyPass.get('password1')?.errors?.['minlength']"
-      class="alert alert-danger">Este Campo es requerido</div>
-    </div>
-    <div class="mb-4">
-      <label for="password2" class="form-label" >Repita la nueva contraseña</label>
-      <input type="password" class="form-control" id="password2" name="password2"  required formControlName="password2">
-      <div *ngIf="modifyPass.get('password2')?.touched && modifyPass.get('password2')?.errors?.['minlength']"
-      class="alert alert-danger">Este Campo es requerido</div>
-    </div>
+    <h2>Modificar constraseña</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="modifyPass">
+        <div class="mb-4">
+            <label for="password1" class="form-label">Ingrese una nueva contraseña</label>
+            <input type="password" class="form-control" id="password1" name="password1" required
+                formControlName="password1">
+            <div *ngIf="modifyPass.get('password1')?.touched && modifyPass.get('password1')?.errors?.['minlength']"
+                class="alert alert-danger">Este Campo es requerido</div>
+        </div>
+        <div class="mb-4">
+            <label for="password2" class="form-label">Repita la nueva contraseña</label>
+            <input type="password" class="form-control" id="password2" name="password2" required
+                formControlName="password2">
+            <div *ngIf="modifyPass.get('password2')?.touched && modifyPass.get('password2')?.errors?.['minlength']"
+                class="alert alert-danger">Este Campo es requerido</div>
+        </div>
 
-      <button type="submit" class="btn btn-primary float-end"
-          [disabled]="modifyPass.invalid"
-          >Enviar</button>
+        <button type="submit" class="btn btn-primary float-end" [disabled]="modifyPass.invalid">Enviar</button>
 
-  </form>
+    </form>
 </div>

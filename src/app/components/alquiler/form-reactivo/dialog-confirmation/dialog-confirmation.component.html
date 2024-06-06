@@ -1,24 +1,25 @@
 <mat-dialog-content class="loggedBody">
-  <div *ngIf="!success && !loading;">
-    <h2 mat-dialog-title>Confirmación de solicitud</h2>
-    <h4>Usted a solicitado para las fechas: desde {{this.data.initial_date}} hasta {{this.data.final_date}} <hr>
-      Por favor, indique si quiere solicitar o confirmar la solicitud, en caso de confirmar.
-      <h4>
-        <strong>No podra cancelar la solicitud</strong>
-      </h4>
-    </h4>
-    <div class="d-flex justify-content-between flex-wrap">
-      <button mat-stroked-button mat-dialog-close>Cancelar</button>
-      <a mat-raised-button color="primary"  (click)="request()" >Solicitar</a>
-      <a mat-raised-button color="warn"  (click)="confirm()"  >Solicitar y confirmar</a>
+    <div *ngIf="!success && !loading;">
+        <h2 mat-dialog-title>Confirmación de solicitud</h2>
+        <h4>Usted a solicitado para las fechas: desde {{this.data.initial_date}} hasta {{this.data.final_date}}
+            <hr>
+            Por favor, indique si quiere solicitar o confirmar la solicitud, en caso de confirmar.
+            <h4>
+                <strong>No podra cancelar la solicitud</strong>
+            </h4>
+        </h4>
+        <div class="d-flex justify-content-between flex-wrap">
+            <button mat-stroked-button mat-dialog-close>Cancelar</button>
+            <a mat-raised-button color="primary" (click)="request()">Solicitar</a>
+            <a mat-raised-button color="warn" (click)="confirm()">Solicitar y confirmar</a>
+        </div>
     </div>
-  </div>
-  <div *ngIf="!loading && success;">
-    <h2>Se a completado el pedido con exito! </h2>
-    <h4>En breve sera reedirigido</h4>
-  </div>
-  <div *ngIf="loading && !success;">
-    <h2>Procesando solicitud...</h2>
-    <h5>Aguarde un instante.</h5>
-  </div>
+    <div *ngIf="!loading && success;">
+        <h2>Se a completado el pedido con exito! </h2>
+        <h4>En breve sera reedirigido</h4>
+    </div>
+    <div *ngIf="loading && !success;">
+        <h2>Procesando solicitud...</h2>
+        <h5>Aguarde un instante.</h5>
+    </div>
 </mat-dialog-content>

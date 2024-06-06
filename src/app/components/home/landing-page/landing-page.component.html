@@ -1,20 +1,21 @@
-
 <div class="container_img">
-  <div class="container_text">
-    <div class="text1">
-      <h3 class="textWelcome">Bienvenido a </h3>
-      <h3 class="textWelcome Rental-Car">Rental-Car</h3>
-      <p class="text">Un lugar donde podrás alquilar el auto de tus <span class="Rental-Car">
-        sueños
-      </span></p>
-      <a mat-raised-button color="warn" href="/home#flota">Ver nuestra flota</a>
-      <h4 class="textSecundary">Alquila ahora el auto de tus sueños</h4>
-      <a mat-stroked-button class="Rental-Car" routerLink="/login">Iniciar sesión</a>
-      <a mat-stroked-button class="Rental-Car" routerLink="/registro">Registrate</a>
+    <div class="container_text">
+        <div class="text1">
+            <h3 class="textWelcome">Bienvenido a </h3>
+            <h3 class="textWelcome Rental-Car">Rental-Car</h3>
+            <p class="text">Un lugar donde podrás alquilar el auto de tus <span class="Rental-Car">
+                    sueños
+                </span></p>
+            <a mat-raised-button color="warn" href="/home#flota">Ver nuestra flota</a>
+            <h4 class="textSecundary">Alquila ahora el auto de tus sueños</h4>
+            <div *ngIf="!islogged" class="">
+                <a mat-stroked-button class="Rental-Car" routerLink="/login">Iniciar sesión</a>
+                <a mat-stroked-button class="Rental-Car" routerLink="/registro">Registrate</a>
+            </div>
+        </div>
+        <div class="text2">
+        </div>
     </div>
-    <div class="text2">
-    </div>
-  </div>
 </div>
 
 

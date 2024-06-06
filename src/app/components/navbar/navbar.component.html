@@ -1,15 +1,15 @@
 <nav class="navBar">
     <a routerLink="" class="title">
-      <span class="title">Rental-Car</span>
+        <span class="title">Rental-Car</span>
     </a>
     <span class="spacer"></span>
     <a *ngIf="!islogged" mat-button routerLink="registro">Registrarse</a>
-    <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario.username }}</a>
+    <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario.username
+        }}</a>
     <a *ngIf="!islogged;else viewLogout" mat-button routerLink="login">iniciar sesión</a>
     <a mat-button routerLink="/">Inicio</a>
-  <!-- </mat-nav-list> -->
+    <!-- </mat-nav-list> -->
 </nav>
 <ng-template #viewLogout>
-  <a mat-stroked-button color="warn" routerLink="" (click)="this.logout()">Cerrar sesión</a>
+    <a mat-stroked-button color="warn" routerLink="" (click)="this.logout()">Cerrar sesión</a>
 </ng-template>
-

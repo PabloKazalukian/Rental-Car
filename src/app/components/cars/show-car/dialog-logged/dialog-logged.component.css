@@ -1,35 +1,39 @@
-.contentCard{
-  position: fixed;
-  top: 25%;
-  left: 0%;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.cardLogged{
-  background: #121212;
-  opacity: .9;
-  backdrop-filter: blur(2px);
-  border: 1px solid #fff;
-  border-radius: 12px;
-  padding: 3rem;
-  width: 350px;
-  transition: opacity 1s;
-}
-.cardLogged:hover{
-  opacity: 1;
-}
-.loggedBody{
-  /* background: #232354; */
-  width: auto;
-}
-.closeDialog{
-  display: none;
+.contentCard {
+    position: fixed;
+    top: 25%;
+    left: 0%;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.buttonsLogged{
-  display: flex;
-  justify-content: space-between;
+.cardLogged {
+    background: #121212;
+    opacity: .9;
+    backdrop-filter: blur(2px);
+    border: 1px solid #fff;
+    border-radius: 12px;
+    padding: 3rem;
+    width: 350px;
+    transition: opacity 1s;
+}
+
+.cardLogged:hover {
+    opacity: 1;
+}
+
+.loggedBody {
+    /* background: #232354; */
+    width: auto;
+}
+
+.closeDialog {
+    display: none;
+}
+
+.buttonsLogged {
+    display: flex;
+    justify-content: space-between;
 }

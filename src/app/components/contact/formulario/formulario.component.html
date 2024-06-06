@@ -1,48 +1,49 @@
 <div class="formulario">
 
-  <form *ngIf="!success && !error" (ngSubmit)="onSubmit(contactForm.value)"  #contactForm="ngForm" >
-    <h2>Enviame un mensaje:</h2>
-      <div class="mb-4">
-          <label for="name" class="form-label" >Nombre:</label>
-          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" required #name="ngModel">
-          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Este Campo es requerido</div>
-      </div>
-      <div class="mb-4">
-        <label for="email" class="form-label" >Email:</label>
-        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="model.email" required #email="ngModel">
-        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Este Campo es requerido</div>
-    </div>
-      <div class="mb-4">
-          <label for="comment" class="form-label">Comentario:</label>
-          <textarea name="comment" type="text" class="form-control" id="comemnt" name="comment" [(ngModel)]="model.comment" required rows="4" #comment="ngModel"></textarea>
-          <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">Este Campo es requerido</div>
-      </div>
-      <button type="submit" class="btn btn-primary float-end"
-          [disabled]="contactForm.invalid">Enviar</button>
+    <form *ngIf="!success && !error" (ngSubmit)="onSubmit(contactForm.value)" #contactForm="ngForm">
+        <h2>Enviame un mensaje:</h2>
+        <div class="mb-4">
+            <label for="name" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" required
+                #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Este Campo es requerido</div>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="form-label">Email:</label>
+            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="model.email" required
+                #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Este Campo es requerido</div>
+        </div>
+        <div class="mb-4">
+            <label for="comment" class="form-label">Comentario:</label>
+            <textarea name="comment" type="text" class="form-control" id="comemnt" name="comment"
+                [(ngModel)]="model.comment" required rows="4" #comment="ngModel"></textarea>
+            <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">Este Campo es requerido</div>
+        </div>
+        <button type="submit" class="btn btn-primary float-end" [disabled]="contactForm.invalid">Enviar</button>
 
-  </form>
-  <div *ngIf="this.success" class="marginTop">
-    <div class="container mt-5 ">
-      <h2 class="mt-5 alert alert-primary">
-        Correo enviado correctamente!
-      </h2>
-      <h4>Muchas gracias por tu mensaje, lo revisare a la brevedad.</h4>
-      <button class="btn btn-danger">
-        <a class="navbar-brand fs-2 fw-bold  text-white mx-0" routerLink="">Volver a Rental-Car</a>
-    </button>
-    </div>
-  </div>
-  <div *ngIf="this.error" >
-    <div class="container mt-5 errorcontainer">
-      <div class="d-flex flex-column justify-content-center mt-5">
-          <h1>Ocurrio un error Inesperado</h1>
-          <div>
+    </form>
+    <div *ngIf="this.success" class="marginTop">
+        <div class="container mt-5 ">
+            <h2 class="mt-5 alert alert-primary">
+                Correo enviado correctamente!
+            </h2>
+            <h4>Muchas gracias por tu mensaje, lo revisare a la brevedad.</h4>
             <button class="btn btn-danger">
-                <a class="navbar-brand fs-3 fw-bold  text-white mx-0" routerLink="">Rental-Car</a>
+                <a class="navbar-brand fs-2 fw-bold  text-white mx-0" routerLink="">Volver a Rental-Car</a>
             </button>
-          </div>
-      </div>
+        </div>
     </div>
-  </div>
+    <div *ngIf="this.error">
+        <div class="container mt-5 errorcontainer">
+            <div class="d-flex flex-column justify-content-center mt-5">
+                <h1>Ocurrio un error Inesperado</h1>
+                <div>
+                    <button class="btn btn-danger">
+                        <a class="navbar-brand fs-3 fw-bold  text-white mx-0" routerLink="">Rental-Car</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-

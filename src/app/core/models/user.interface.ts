@@ -1,16 +1,16 @@
 export interface userRegister {
-  username:string,
-  email:string,
-  password:string,
-  confirmPassword:string,
+    username: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
 }
 
-export interface LoginResponde{
+export interface LoginResponde {
     message: string,
     token: string
 
 }
-export interface usuario{
-  username:string,
-  userId?: number
+export interface usuario {
+    username: string,
+    userId?: number
 }

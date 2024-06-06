@@ -1,57 +1,58 @@
-
 <div class="d-flex flex-row gap-4 flex-wrap justify-content-center  mt-3 py-5 contenedor_cars backgroud">
-  <app-loading *ngIf="this.loading === true ; else viewNoFount "></app-loading>
-  <ng-template #viewNoFount>
-    <h2 *ngIf=" cars.length <1 ">No se han encontrado vehiculos </h2>
-  </ng-template>
+    <app-loading *ngIf="this.loading === true ; else viewNoFount "></app-loading>
+    <ng-template #viewNoFount>
+        <h2 *ngIf=" cars.length <1 ">No se han encontrado vehiculos </h2>
+    </ng-template>
     <div *ngFor=" let autos of cars" class="d-inline">
         <div class="card card-background" style="width: 18rem;">
             <img src='{{autos.image}}' class="card-img-top" alt="..." style="height: 11rem;">
             <div class="card-body">
-              <h5 class="card-title">{{autos.brand.toUpperCase()}}</h5>
-              <p class="card-text">Modelo: {{autos.model}}</p>
-              <p class="card-text">Año: {{autos.year}}</p>
-              <p class="card-text">Precio: {{autos.price}}  us$</p>
-              <div class="d-flex justify-content-between ">
-                <button mat-stroked-button color="warn" data-bs-toggle="modal" [attr.data-bs-target]="'#staticBackdrop'+autos.id_car">
-                  Ver Más
-                </button>
-                <button mat-raised-button color="warn" (click)="this.goWithCar(autos.id_car)">
-                  Solicitar alquiler
-                </button>
+                <h5 class="card-title">{{autos.brand.toUpperCase()}}</h5>
+                <p class="card-text">Modelo: {{autos.model}}</p>
+                <p class="card-text">Año: {{autos.year}}</p>
+                <p class="card-text">Precio: {{autos.price}} us$</p>
+                <div class="d-flex justify-content-between ">
+                    <button mat-stroked-button color="warn" data-bs-toggle="modal"
+                        [attr.data-bs-target]="'#staticBackdrop'+autos.id_car">
+                        Ver Más
+                    </button>
+                    <button mat-raised-button color="warn" (click)="this.goWithCar(autos.id_car)">
+                        Solicitar alquiler
+                    </button>
 
-              </div>
+                </div>
 
             </div>
 
-          </div>
+        </div>
 
-          <div class="modal fade  " id="staticBackdrop{{autos.id_car}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade  " id="staticBackdrop{{autos.id_car}}" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-xl ">
-              <div class="modal-content card-background ">
-                <div class="modal-header">
-                  <!-- <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5> -->
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <img src='{{autos.image}}' class="card-img-top" alt="..." style="height: 30rem;">
-                  <h5 class="card-title">{{autos.brand.toUpperCase()}} {{autos.model}} {{autos.year}}</h5>
-                  <p class="card-text"><strong>Precio:</strong> {{autos.price}}  us$</p>
-                  <div>
-                    <h2>Especificaciones: </h2>
-                    <p> <strong>Motor:</strong>{{autos.engine}}</p>
-                    <p><strong>Potencia: </strong> {{autos.power}}</p>
-                    <p><strong>Par Motor: </strong> {{autos.torque}}</p>
-                    <p><strong>Velocidad Máxima: </strong>{{autos.max_speed}}</p>
-                    <p><strong>Aceleración: </strong> {{autos.acceleration}}</p>
-                    <p><strong>Consumo: </strong>{{autos.consumption}}</p>
+                <div class="modal-content card-background ">
+                    <div class="modal-header">
+                        <!-- <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5> -->
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src='{{autos.image}}' class="card-img-top" alt="..." style="height: 30rem;">
+                        <h5 class="card-title">{{autos.brand.toUpperCase()}} {{autos.model}} {{autos.year}}</h5>
+                        <p class="card-text"><strong>Precio:</strong> {{autos.price}} us$</p>
+                        <div>
+                            <h2>Especificaciones: </h2>
+                            <p> <strong>Motor:</strong>{{autos.engine}}</p>
+                            <p><strong>Potencia: </strong> {{autos.power}}</p>
+                            <p><strong>Par Motor: </strong> {{autos.torque}}</p>
+                            <p><strong>Velocidad Máxima: </strong>{{autos.max_speed}}</p>
+                            <p><strong>Aceleración: </strong> {{autos.acceleration}}</p>
+                            <p><strong>Consumo: </strong>{{autos.consumption}}</p>
 
-                  </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-              </div>
             </div>
         </div>
     </div>

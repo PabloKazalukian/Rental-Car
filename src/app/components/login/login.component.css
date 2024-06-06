@@ -1,22 +1,24 @@
-.container_login{
-  min-height: 68vh;
-}
-.contentInput label{
-  font-size: 18px;
+.container_login {
+    min-height: 68vh;
 }
 
-.formulario{
-  width: 600px;
-  margin-bottom: 2.5rem;
+.contentInput label {
+    font-size: 18px;
+}
+
+.formulario {
+    width: 600px;
+    margin-bottom: 2.5rem;
 }
 
 @media (max-width: 625px) {
-  .formulario{
-    width: 400px;
-  }
+    .formulario {
+        width: 400px;
+    }
 }
+
 @media (max-width: 475px) {
-  .formulario{
-    width: 200px;
-  }
+    .formulario {
+        width: 200px;
+    }
 }
