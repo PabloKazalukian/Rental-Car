@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/services/interceptor/token.interceptor';
+import { ModifyUserComponent } from 'src/app/components/user/modify-user/modify-user.component';
+
 
 
 const routes: Routes = [
@@ -25,7 +27,14 @@ const routes: Routes = [
         path: 'modificarContraseña',
         component: ModifyPassComponent,
         canActivate: [PermissionsGuard],
+    },
+
+    {
+        path: 'modificarUsuario',
+        component: ModifyUserComponent,
+        canActivate: [PermissionsGuard],
     }
+
 ];
 
 @NgModule({

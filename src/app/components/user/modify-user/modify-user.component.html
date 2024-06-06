@@ -1,0 +1,49 @@
+<div *ngIf="!this.error && !this.success" class="marginTop main contenedor_User">
+
+    <h2>Modificar Usuario</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="modifyUser">
+        <div class="mb-4">
+            <label for="username" class="form-label">Ingrese una nuevo Nombre de usuario</label>
+            <input type="text" class="form-control" id="username" name="username" required formControlName="username">
+            <div *ngIf="modifyUser.get('username')?.touched && modifyUser.get('username')?.errors?.['minlength']"
+                class="alert alert-danger">Este Campo es requerido</div>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="form-label">Ingrese un nuevo Email</label>
+            <input type="email" class="form-control" id="email" name="email" required formControlName="email">
+            <!-- <div *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['minlength']"
+                class="alert alert-danger">Este Campo es requerido</div> -->
+            <div *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['pattern']"
+                class="alert alert-danger">Este Campo es requerido</div>
+            <div *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['emailExist'] "
+                class="alert alert-danger">Email existente</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary float-end" [disabled]="modifyUser.invalid">Enviar</button>
+
+    </form>
+</div>
+
+<div *ngIf="this.success" class="marginTop">
+    <div class="container mt-5 formulario">
+        <h2 class="mt-5">
+            Bienvenido {{modifyUser.value.username}}!
+        </h2>
+        <h2 class="mt-5 alert alert-primary">
+            Formulario Completado correctamente
+        </h2>
+    </div>
+</div>
+
+<div *ngIf="this.error">
+    <div class="container mt-5 errorcontainer">
+        <div class="d-flex flex-column justify-content-center mt-5">
+            <h1>Ocurrio un error Inesperado</h1>
+            <div>
+                <button class="btn btn-danger">
+                    <a class="navbar-brand fs-3 fw-bold  text-white mx-0" routerLink="">Rental-Car</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

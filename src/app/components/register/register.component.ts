@@ -17,29 +17,30 @@ export class RegisterComponent implements OnInit, OnDestroy {
     error: boolean = false
     private subscripcions: Subscription[] = [];
 
-    constructor(private readonly fb: FormBuilder, private authSvc: RegisterService, private router: Router) { }
+    constructor(private readonly fb: FormBuilder, private authSvc: RegisterService, private router: Router) { };
 
 
     ngOnInit(): void {
         this.contactForm = this.initForm();
         // console.log(this.contactForm)
         // this.authSvc.verifyEmail("admin@gmail.com").subscribe(e=>console.log(e))
-    }
+    };
 
     onSubmit(): void {
         this.subscripcions.push(
             this.authSvc.registerUser(this.contactForm.value).subscribe({
                 next: (res) => {
-                    this.success = true
+                    this.success = true;
                     setTimeout(() => this.router.navigate(['login']), 1700)
                 },
                 error: (res) => {
-                    this.success = false
-                    this.error = true
+                    this.success = false;
+                    this.error = true;
                 }
             })
         )
-    }
+    };
+
     initForm(): FormGroup {
         //declarar las propiedas que tendran nuestro formulario
         return this.fb.group({
@@ -50,7 +51,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
         }, {
             validators: repeatPass.dateCorrect,
         })
-    }
+    };
+
     validarEmail(control: AbstractControl) {
         return this.authSvc.verifyEmail(control.value)
             .pipe(

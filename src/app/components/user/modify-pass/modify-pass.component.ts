@@ -12,6 +12,7 @@ import { usuario } from 'src/app/core/models/user.interface';
     templateUrl: './modify-pass.component.html',
     styleUrls: ['./modify-pass.component.css']
 })
+
 export class ModifyPassComponent implements OnInit, OnDestroy {
 
 
@@ -27,8 +28,8 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
         this.modifyPass = this.initForm();
         this.subscripcions.push(
             this.loginSvc.readToken().subscribe(res => this.usuario = res)
-        )
-    }
+        );
+    };
 
     onSubmit(): void {
         if (this.usuario.userId !== undefined) {
@@ -41,9 +42,9 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
                         this.success = false
                     },
                 })
-            )
-        }
-    }
+            );
+        };
+    };
 
     initForm(): FormGroup {
         //declarar las propiedas que tendran nuestro formulario
@@ -52,12 +53,11 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
             password2: ['', [Validators.required, Validators.minLength(3)]],
         }, {
             validators: repeatPass.dateCorrect
-        }
-        )
-    }
+        })
+    };
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
-    }
+    };
 
 }

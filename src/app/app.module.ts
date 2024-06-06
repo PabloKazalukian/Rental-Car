@@ -35,6 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LandingPageComponent } from './components/home/landing-page/landing-page.component';
 import { HowToUseComponent } from './components/home/how-to-use/how-to-use.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ModifyUserComponent } from './components/user/modify-user/modify-user.component';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         DialogLoggedComponent,
         LandingPageComponent,
         HowToUseComponent,
+        ModifyUserComponent,
     ],
     imports: [
         BrowserModule,

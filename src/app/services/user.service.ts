@@ -6,7 +6,12 @@ import { catchError } from 'rxjs/operators';
 
 interface newPass {
     newPass: string
-}
+};
+
+interface newUser {
+    username: string,
+    email: string
+};
 
 @Injectable({
     providedIn: 'root'
@@ -25,17 +30,28 @@ export class UserService {
                     // this.saveToken(res.token)
                     if (res) return true
                     else return false
-                }
-                )
+                })
                 // catchError((err)=>{ return this.handleError(err) })
             );
-    }
+    };
+
+    modifyUser(user: newUser, idUser: number): Observable<boolean | void> {
+        return this.http.put<newUser>(`${this.API}/modifyUser/${idUser}`, { username: user.username, email: user.email })
+            .pipe(
+                map((res: any) => {
+                    // this.saveToken(res.token)
+                    if (res) return true
+                    else return false
+                })
+            );
+    };
+
 
     private handleError(err: any): Observable<never> {
-        let errorMessage = 'ocurrio un error'
+        let errorMessage = 'ocurrio un error';
         if (err) {
-            errorMessage = `error code : ${err.message}`
+            errorMessage = `error code : ${err.message}`;
         }
-        return err
+        return err;
     }
 }
