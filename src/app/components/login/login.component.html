@@ -1,6 +1,4 @@
 <div class="container_login marginTop d-flex justify-content flex-column align-items-center">
-
-
     <h2 class="mt-3">Inicie sesión</h2>
 
     <form *ngIf="this.login !==true" class="formulario " (ngSubmit)="onSubmit()" [formGroup]="contactForm">
@@ -25,10 +23,10 @@
 
     </form>
 
-    <div *ngIf="this.login ===true" class="formulario">
+    <div *ngIf="this.login === true" class="formulario">
         <h2 class="alert alert-primary">Sesión iniciada con exito!</h2>
     </div>
-    <div *ngIf="this.login ===false" class="">
+    <div *ngIf="this.login === false" class="">
         <h2 class="alert alert-danger">Hubo un problema con su inicio de sesión.</h2>
     </div>
 </div>

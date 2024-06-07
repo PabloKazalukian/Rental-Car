@@ -20,9 +20,11 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
 
     modifyPass!: FormGroup;
     usuario!: usuario;
-    success!: boolean
+    success: boolean = false;
+    error: boolean = false;
 
-    constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private userSvc: UserService) { }
+
+    constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private userSvc: UserService, private router: Router) { }
 
     ngOnInit(): void {
         this.modifyPass = this.initForm();
@@ -37,6 +39,9 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
                 this.userSvc.modifyPass(this.modifyPass.value.password1, this.usuario.userId).subscribe({
                     next: (res) => {
                         this.success = true;
+                        setTimeout(() => {
+                            this.router.navigate(['/usuario']);
+                        }, 2000);
                     },
                     error: (res) => {
                         this.success = false

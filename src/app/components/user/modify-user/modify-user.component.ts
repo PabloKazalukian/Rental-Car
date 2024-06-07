@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription, catchError, map } from 'rxjs';
 import { usuario } from 'src/app/core/models/user.interface';
 import { LoginService } from 'src/app/services/login.service';
@@ -21,7 +22,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     success: boolean = false;
     error: boolean = false;
 
-    constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private authSvc: RegisterService, private userSvc: UserService) { }
+    constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private authSvc: RegisterService, private userSvc: UserService, private router: Router) { }
 
     ngOnInit(): void {
         this.modifyUser = this.initForm();
@@ -36,6 +37,9 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
                 this.userSvc.modifyUser(this.modifyUser.value, this.usuario.userId).subscribe({
                     next: (res) => {
                         this.success = true;
+                        setTimeout(() => {
+                            this.router.navigate(['/usuario']);
+                        }, 2000);
                     },
                     error: (res) => {
                         this.success = false;
@@ -63,7 +67,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
                     if (data) {
                         return { emailExist: true }
                     } else {
-                        return null
+                        return null;
                     };
                 }),
                 catchError(error => error)

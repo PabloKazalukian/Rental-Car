@@ -10,12 +10,13 @@ import { RentalService } from 'src/app/services/rental.service';
     templateUrl: './dialog-confirmation.component.html',
     styleUrls: ['./dialog-confirmation.component.css']
 })
+
 export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    success: boolean = false
-    loading: boolean = false
+    success: boolean = false;
+    loading: boolean = false;
     // complete:boolean=false
 
 
@@ -24,12 +25,11 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
         @Inject(MAT_DIALOG_DATA) public data: requestSend,
         private rentalSvc: RentalService,
         private router: Router
-
-    ) { }
+    ) { };
 
     ngOnInit(): void {
         console.log(this.data);
-    }
+    };
 
     request(): void {
         this.loading = true;
@@ -37,14 +37,12 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
         this.subscripcions.push(
             this.rentalSvc.sendRequest(this.data).subscribe({
                 next: (res) => {
-                    console.log(res);
                     this.loading = false;
                     this.success = true;
                     setTimeout(() => {
                         this.dialogRef.close();
-                        this.router.navigate(['/usuario'])
-                    }, 1000)
-
+                        this.router.navigate(['/usuario']);
+                    }, 1000);
                 },
                 error: (res) => {
                     this.loading = false;
@@ -52,8 +50,8 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
                     alert('error');
                 }
             })
-        )
-    }
+        );
+    };
 
     confirm(): void {
         this.loading = true;
@@ -61,23 +59,23 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
             this.rentalSvc.sendRequest(this.data).subscribe({
                 next: (res) => {
                     this.loading = false;
-                    this.success = true
+                    this.success = true;
                     setTimeout(() => {
                         this.dialogRef.close();
-                        this.router.navigate(['/usuario'])
-                    }, 1800)
+                        this.router.navigate(['/usuario']);
+                    }, 1800);
                 },
                 error: (res) => {
                     this.loading = false;
-                    this.success = false
+                    this.success = false;
                     alert('error');
                 }
             })
         )
-    }
+    };
 
     ngOnDestroy(): void {
-        this.subscripcions.forEach((e) => e.unsubscribe())
-    }
+        this.subscripcions.forEach((e) => e.unsubscribe());
+    };
 
 }
