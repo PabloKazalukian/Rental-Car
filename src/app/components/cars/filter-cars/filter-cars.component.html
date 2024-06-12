@@ -2,12 +2,12 @@
 
     <h2>Encuentra tu vehiculo!</h2>
     <div class="row mb-1 pe-0 ">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <label>Marca:</label>
             <input type="text" id="#textBrandI" [(ngModel)]='textBrand' class="form-control col-6"
                 ng-model="selectedGcode" placeholder="Ingrese Marca buscada" (keyup)="searchFilter()" />
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <label>Modelo:</label>
             <input type="text" id="#textModelI" [(ngModel)]='textModel' class="form-control col-6"
                 ng-model="selectedGcodes" placeholder="Ingrese Modelo buscado" (keyup)="searchFilter()" />
@@ -16,8 +16,8 @@
     </div>
     <div class="p-0 mt-2 d-flex flex-wrap justify-content-end align-items-center gap-2 pe-4">
         <p class="p-0 m-0">Ordernamientos:</p>
-        <button class="btn btn-outline-secondary" (click)="order('price')">Ordenar por Precio</button>
-        <button class="btn btn-outline-secondary" (click)="order('brand')">Ordenar por Marca</button>
-        <button class="btn btn-outline-secondary" (click)="order('year')">Ordenar por Año</button>
+        <button mat-stroked-button color="accent" (click)="order('price')">Ordenar por Precio</button>
+        <button mat-stroked-button color="accent" (click)="order('brand')">Ordenar por Marca</button>
+        <button mat-stroked-button color="accent" (click)="order('year')">Ordenar por Año</button>
     </div>
 </div>

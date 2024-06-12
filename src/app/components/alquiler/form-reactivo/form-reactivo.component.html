@@ -6,7 +6,7 @@
 
         <mat-spinner *ngIf="loading;else viewCalendar"></mat-spinner>
         <ng-template #viewCalendar>
-            <div class="d-flex justify-content-start gap-5 align-items-center">
+            <div class="d-flex flex-wrap justify-content-start gap-sm-5 gap-1 align-items-center">
                 <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
                 <h2 *ngIf="range.invalid && range.touched" class="date_invalid">Fecha invalida</h2>
                 <h2 *ngIf="!range.invalid && range.touched" class="date_correct">Fecha correcta!</h2>

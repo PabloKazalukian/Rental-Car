@@ -13,13 +13,14 @@ export class PermissionsGuard implements CanActivate {
         if (this.hasUser()) {
             return true;
         }
-        alert("you don't permissions")
-        setTimeout(() => this.router.navigate(['/']), 700)
-        return false
-    }
+        alert("you don't permissions");
+        setTimeout(() => this.router.navigate(['/']), 700);
+        return false;
+    };
+
     hasUser(): boolean {
         if (localStorage.getItem('auth')) return true;
-        else return false
-    }
+        else return false;
+    };
 
 }

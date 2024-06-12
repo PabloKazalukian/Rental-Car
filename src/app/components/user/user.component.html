@@ -1,9 +1,13 @@
 <div class="marginTop contenedor_user">
-    <h2>Bienvenido {{this.user.username}}</h2>
-    <a mat-raised-button color="warn" routerLink="/usuario/modificar-usuario" class="me-5">Modificar Usuario</a>
-    <a mat-raised-button color="warn" routerLink="/usuario/modificar-pass" class="me-5">Modificar contraseña</a>
-    <a mat-raised-button color="primary" routerLink="/solicitar-auto">Solicitar auto</a>
-    <h2 class="mt-2">Información de todas las solicitudes :</h2>
+    <h2 class="ps-4 ps-md-0">Bienvenido {{this.user.username}}</h2>
+    <div class="d-flex flex-column gap-3 px-2 flex-lg-row mb-2 jutify-content-center align-items-center">
+        <a mat-raised-button color="warn" class="btn-user " routerLink="/usuario/modificar-usuario">Modificar
+            Usuario</a>
+        <a mat-raised-button color="warn" class="btn-user " routerLink="/usuario/modificar-pass">Modificar
+            contraseña</a>
+        <a mat-raised-button color="primary" class="btn-user " routerLink="/solicitar-auto">Solicitar auto</a>
+    </div>
+    <h2 class="mt-2 ps-4 ps-md-0">Información de todas las solicitudes :</h2>
 
     <app-table-rental [user]="this.user"></app-table-rental>
 </div>

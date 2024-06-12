@@ -13,9 +13,16 @@ table {
 .switch_buttons {
     max-width: 184px;
     padding-left: 35px;
-
 }
 
 .confirmBtn {
     background: #2f51b5;
+}
+
+@media (max-width: 768px) {
+    .switch_buttons {
+        padding: 10px 0px;
+        display: flex;
+        flex-direction: column;
+    }
 }

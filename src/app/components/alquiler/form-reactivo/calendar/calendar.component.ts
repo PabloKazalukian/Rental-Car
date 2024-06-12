@@ -32,7 +32,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(private readonly fb: FormBuilder, private rentalSvc: RentalService) { }
     ngAfterViewInit() {
         this.resubscribe();
-    }
+    };
 
     resubscribe() {
         this.subscripcions.push(
@@ -49,7 +49,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                     this.resubscribe();
                 })
         )
-    }
+    };
 
     ngOnInit(): void {
         this.subscripcions.push(
@@ -57,7 +57,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.arrRequest = res;
             })
         )
-    }
+    };
 
     myFilter = (date: Date): boolean => {
         let output = String(date.getDate()).padStart(2, '0') + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + date.getFullYear();
@@ -81,9 +81,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.range.value.amount = 0
             }
         }
-    }
+    };
+
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
-    }
+    };
 
 }

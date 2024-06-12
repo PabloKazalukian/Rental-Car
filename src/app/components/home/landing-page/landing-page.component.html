@@ -8,13 +8,12 @@
                 </span></p>
             <a mat-raised-button color="warn" href="/home#flota">Ver nuestra flota</a>
             <h4 class="textSecundary">Alquila ahora el auto de tus sueños</h4>
-            <div *ngIf="!islogged" class="">
-                <a mat-stroked-button class="Rental-Car" routerLink="/login">Iniciar sesión</a>
-                <a mat-stroked-button class="Rental-Car" routerLink="/registro">Registrate</a>
+            <div *ngIf="!islogged" class="d-flex flex-column gap-2 justify-content-evenly">
+                <a mat-stroked-button class="Rental-Car btn-loggin" routerLink="/login">Iniciar sesión</a>
+                <a mat-stroked-button class="Rental-Car btn-loggin" routerLink="/registro">Registrate</a>
             </div>
         </div>
-        <div class="text2">
-        </div>
+        <div class="text2"></div>
     </div>
 </div>
 

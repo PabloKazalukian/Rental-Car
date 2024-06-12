@@ -26,13 +26,14 @@ export class UserComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subscripcions.push(
             this.authSvc.readToken().subscribe(res => this.user = res)
-        )
+        );
+
         if (this.user?.userId) {
             this.subscripcions.push(
                 this.requestSvc.getRequestByUserId(this.user.userId).pipe(
                     // delay(1700)
                 ).subscribe((res) => {
-                    console.log(res)
+                    console.log(res);
                     this.requestAll = res;
                     this.dataSourcePast = this.requestAll.filter(r => isDateHigher(r.final_date, false, this.getDateTodayToString(), true));
                     this.dataSourcePast.forEach(r => {
@@ -40,41 +41,42 @@ export class UserComponent implements OnInit, OnDestroy {
                             this.completeRequest(r);
                             r.state = 'con';
                         }
-                    })
-                    this.data.next(this.requestAll)
+                    });
+                    this.data.next(this.requestAll);
                     this.dataSource = this.requestAll;
 
                     setTimeout(() => {
                         this.show = false;
-                    }, 1700)
+                    }, 1700);
                 })
-            )
-
+            );
         }
-    }
+    };
+
     readData(): Observable<requestReceived[]> {
         return this.data.asObservable();
-    }
+    };
 
     getDateTodayToString(): string {
         const datejs: Date = new Date();
         return `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`
-    }
+    };
+
     completeRequest(request: requestReceived): void {
         this.subscripcions.push(
             this.requestSvc.confirmRequestByIdRequest(request.id_request).subscribe({
                 next: (res) => {
-                    // element.state = 'con';
                     console.log(res);
                 },
                 error: (res) => {
-                    // this.login=false
+                    console.log(res);
                 },
             })
         )
-    }
+    };
+
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
-    }
+    };
 
 }

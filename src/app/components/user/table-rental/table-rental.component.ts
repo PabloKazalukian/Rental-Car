@@ -20,8 +20,10 @@ export class TableRentalComponent implements OnInit {
     show!: boolean
     request!: requestReceived[]
     dataSource!: requestReceived[];
+    displayedColumns: string[] = ['initial_date', 'final_date', 'brand', 'model', 'amount', 'modify'];
 
     constructor(private requestSvc: RentalService, private data: UserComponent) { }
+
 
     ngOnInit(): void {
         this.show = true;
@@ -31,12 +33,12 @@ export class TableRentalComponent implements OnInit {
                     if (e !== undefined) {
                         this.dataSource = e;
                         this.request = e;
-                        this.show = false
-                        console.log(this.dataSource)
+                        this.show = false;
+                        // console.log(this.dataSource)
                     }
                 })
             )
-            , 2000)
+            , 2000);
         // this.dataSource.next(e=>console.log(e))
 
         // if(this.user?.userId){
@@ -65,9 +67,8 @@ export class TableRentalComponent implements OnInit {
         //   )
 
         // }
-    }
+    };
 
-    displayedColumns: string[] = ['initial_date', 'final_date', 'brand', 'model', 'amount', 'modify'];
 
     // completeRequest(request:request):void{
     //   this.subscripcions.push(
@@ -95,7 +96,8 @@ export class TableRentalComponent implements OnInit {
                 },
             })
         )
-    }
+    };
+
     confirmRequest(element: any): void {
         // confirmRequestByIdRequest
         element.state = 'cancel'
@@ -109,9 +111,9 @@ export class TableRentalComponent implements OnInit {
                 },
             })
         )
-    }
+    };
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
-    }
+    };
 }

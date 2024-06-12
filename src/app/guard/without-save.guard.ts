@@ -15,9 +15,10 @@ export class WithoutSaveGuard implements CanDeactivate<unknown> {
             return true;
         }
         return confirm('Tiene cambios sin guardar')
-    }
+    };
+
     hasUser(): boolean {
-        return false
-    }
+        return false;
+    };
 
 }

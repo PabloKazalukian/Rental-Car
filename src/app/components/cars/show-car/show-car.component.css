@@ -11,3 +11,7 @@
 .card-color {
     color: #424242;
 }
+
+.card_blur:active {
+    border: 1px solid #d51a27;
+}

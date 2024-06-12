@@ -3,8 +3,10 @@
     position: relative;
     z-index: 5;
     background-image: url("../../../../assets/images/porsche-1851246_1920.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
-    min-height: 92vh;
+    min-height: 94vh;
 }
 
 .container_text {
@@ -84,6 +86,8 @@
     top: 68%;
     left: 28%;
 }
+
+
 
 
 @media (max-width: 1024px) {
