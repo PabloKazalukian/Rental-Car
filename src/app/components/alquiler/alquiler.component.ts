@@ -28,20 +28,19 @@ export class AlquilerComponent implements OnInit, OnDestroy {
             this.route.queryParams.subscribe(
                 (params) => this.idCar = params['id']
             )
-        )
+        );
+
         this.subscripcions.push(
             this.userSvc.readToken().subscribe(res => {
                 this.idUser = res.userId;
             })
-        )
+        );
 
         this.subscripcions.push(
             this.carSvc.getCarById(this.idCar).subscribe(
                 car => this.cars = car[0]
             )
-        )
-
-
+        );
     }
 
 

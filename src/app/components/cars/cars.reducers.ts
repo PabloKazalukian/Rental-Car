@@ -21,34 +21,43 @@ export const initialState: {
 
 const _carReducer = createReducer(
     initialState,
-    on(CarActions.loadCarEffect, (state, { carState }) => {
-        return {
-            ...state,
-            loading: true,
-            cars: carState,
-            car: carState,
+    on(CarActions.loadCarEffect, (state, { carState }): State => {
+        console.log(carState);
+        if (state.loading === true) {
+            return {
+                ...state,
+                car: state.cars
+            };
+        } else {
+
+            return {
+                ...state,
+                loading: true,
+                cars: carState,
+                car: carState,
+            };
         }
     }),
-    on(CarActions.searchCar, (state, { brand, model }) => {
+    on(CarActions.searchCar, (state, { brand, model }): State => {
+        console.log(brand, model);
         if (brand === '' && model === '') {
             return { ...state, car: state.cars }
         } else {
-            let arr = state.cars.filter((e): any => {
+            let arr = state.cars.filter((e: Car): Car | void => {
                 if (e.brand.toLocaleLowerCase().includes(brand.toLocaleLowerCase())) {
-                    return e
+                    return e;
                 }
             });
+            console.log(model)
             if (model !== '') {
-                arr = arr.filter((e): any => {
+                arr = arr.filter((e): Car | void => {
                     if (e.model.toLocaleLowerCase().includes(model.toLocaleLowerCase())) {
-                        return e
+                        return e;
                     }
                 })
             }
             return { ...state, car: arr }
-        }
-
-
+        };
     }),
     on(CarActions.orderPriceCar, (state, { asc }) => {
         let nuevo = [...state.car];

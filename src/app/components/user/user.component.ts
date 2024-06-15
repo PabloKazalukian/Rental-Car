@@ -33,7 +33,6 @@ export class UserComponent implements OnInit, OnDestroy {
                 this.requestSvc.getRequestByUserId(this.user.userId).pipe(
                     // delay(1700)
                 ).subscribe((res) => {
-                    console.log(res);
                     this.requestAll = res;
                     this.dataSourcePast = this.requestAll.filter(r => isDateHigher(r.final_date, false, this.getDateTodayToString(), true));
                     this.dataSourcePast.forEach(r => {

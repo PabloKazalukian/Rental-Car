@@ -64,7 +64,7 @@ import { ModifyUserComponent } from './components/user/modify-user/modify-user.c
         ReactiveFormsModule,
         StoreModule.forRoot({ autos: carReducer }),
         StoreDevtoolsModule.instrument({
-            maxAge: 5, // Retains last 5 states
+            maxAge: 25, // Retains last 5 states
             logOnly: environment.production, // Restrict extension to log-only mode
             autoPause: true, // Pauses recording actions and state changes when the extension window is not open
         }),

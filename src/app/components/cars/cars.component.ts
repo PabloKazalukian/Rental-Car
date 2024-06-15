@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { loadCar, searchCar, orderPriceCar, orderBrandCar, orderYearCar } from './car.actions';
 import { CarService } from './../../services/car.service';
 import * as carSelector from './car.selector'
+import { ActivatedRoute } from '@angular/router';
 
 
 interface appState {
@@ -28,10 +29,13 @@ export class CarsComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    carsTotal!: appState;
-    cars!: Array<Car>;
+    // carsTotal!: appState;
+    // cars!: Array<Car>;
     estado!: boolean;
     car$!: Observable<Car>;
+    searchModel!: string;
+    searchBrand!: string;
+    searchParams: boolean = false;
     loading$!: boolean | false;
     ascPrice: boolean = false;
     ascBrand: boolean = false;
@@ -41,10 +45,11 @@ export class CarsComponent implements OnInit, OnDestroy {
     autos?: any = [];
     carObservable: Subject<any> = new Subject();
 
-    constructor(private store: Store<{ autos: appState }>, private readonly carSvc: CarService) { }
+    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly carSvc: CarService) { }
 
     ngOnInit(): void {
         this.estado = false;
+
         this.subscripcions.push(
             this.carSvc.getAllCars().subscribe(
                 car => {
@@ -52,27 +57,29 @@ export class CarsComponent implements OnInit, OnDestroy {
                     this.estado = true;
                 }
             )
+        );
+
+        this.route.queryParams.subscribe(
+            (params) => {
+                this.searchModel = params['model'];
+                this.searchBrand = params['brand'];
+            }
         )
-        this.chargeData();
-
-    }
-
-    private chargeData(): void {
-        this.store.dispatch(loadCar())
         this.subscripcions.push(
-            this.store.select('autos').subscribe((e) => this.carsTotal = e)
-        )
-        this.loading$ = this.carsTotal.loading;
-        this.cars = this.carsTotal.car;
-    }
+            this.store.select('autos').subscribe((state: appState): void => {
+                if (this.searchParams === false && state.loading !== false) {
+                    this.store.dispatch(searchCar({ brand: this.searchBrand || '', model: this.searchModel || '' }));
+                    this.searchParams = true;
+                }
+            })
+        );
+
+        // this.chargeData(); 
+    };
+
     public search(text?: text): void {
-
-        this.store.dispatch(searchCar({ brand: text?.brand || '', model: text?.model || '' }))
-        this.subscripcions.push(
-            this.store.select('autos').subscribe((e) => this.carsTotal = e)
-        )
-        this.cars = this.carsTotal.car;
-    }
+        this.store.dispatch(searchCar({ brand: text?.brand || '', model: text?.model || '' }));
+    };
 
     public order(order: string): void {
         switch (order) {
@@ -88,40 +95,29 @@ export class CarsComponent implements OnInit, OnDestroy {
             default:
         }
 
-    }
+    };
+
     public orderPrice(): void {
         this.ascPrice = !this.ascPrice;
         this.store.dispatch(orderPriceCar({ asc: this.ascPrice }));
-        this.subscripcions.push(
-            this.store.select('autos').subscribe((e) => this.carsTotal = e)
-        )
         this.ascBrand = !this.ascBrand;
+    };
 
-        this.cars = this.carsTotal.car
-    }
     public orderBrand(): void {
         this.ascBrand = !this.ascBrand;
         this.ascPrice = !this.ascPrice;
 
         this.store.dispatch(orderBrandCar({ asc: this.ascBrand }));
-        this.subscripcions.push(
-            this.store.select('autos').subscribe((e) => this.carsTotal = e)
-        )
-        this.cars = this.carsTotal.car
-    }
+    };
+
     public orderYear(): void {
         this.ascYear = !this.ascYear;
         this.ascPrice = !this.ascPrice;
 
         this.store.dispatch(orderYearCar({ asc: this.ascYear }));
-        this.subscripcions.push(
-            this.store.select('autos').subscribe((e) => this.carsTotal = e)
-        )
-        this.cars = this.carsTotal.car
-    }
-
+    };
 
     ngOnDestroy(): void {
         this.subscripcions.forEach(sub => sub.unsubscribe());
-    }
+    };
 }

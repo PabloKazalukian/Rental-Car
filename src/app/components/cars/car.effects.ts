@@ -17,14 +17,12 @@ export class carEffects {
                 .pipe(
 
                     map(carState => ({ type: '[CAR LIST] Load all Cars', carState })),
-                    // catchError(() => EMPTY)
                     catchError((error) => {
                         return error;     //return from(['A','B','C'])
                     })
                 ))
-        )
-    })
-
+        );
+    });
 
     constructor(
         private actions$: Actions,
