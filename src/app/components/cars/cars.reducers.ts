@@ -22,7 +22,7 @@ export const initialState: {
 const _carReducer = createReducer(
     initialState,
     on(CarActions.loadCarEffect, (state, { carState }): State => {
-        console.log(carState);
+        // console.log(carState);
         if (state.loading === true) {
             return {
                 ...state,
@@ -39,7 +39,7 @@ const _carReducer = createReducer(
         }
     }),
     on(CarActions.searchCar, (state, { brand, model }): State => {
-        console.log(brand, model);
+        // console.log(brand, model);
         if (brand === '' && model === '') {
             return { ...state, car: state.cars }
         } else {
@@ -48,7 +48,7 @@ const _carReducer = createReducer(
                     return e;
                 }
             });
-            console.log(model)
+            // console.log(model)
             if (model !== '') {
                 arr = arr.filter((e): Car | void => {
                     if (e.model.toLocaleLowerCase().includes(model.toLocaleLowerCase())) {

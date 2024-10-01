@@ -73,7 +73,7 @@ export class ShowCarComponent implements OnInit, OnDestroy {
                 if (e.loading === false) {
                     this.store.dispatch(loadCar());
                 } else {
-                    console.log(e);
+                    // console.log(e);
 
                     if (e.car.length !== 0 || this.loading === false) {
                         this.cars = e.car;

@@ -38,13 +38,13 @@
                 </ng-container>
 
                 <ng-container matColumnDef="modify">
-                    <th mat-header-cell *matHeaderCellDef> Cancelar</th>
+                    <th mat-header-cell *matHeaderCellDef> Estado</th>
                     <td mat-cell *matCellDef="let element" [ngSwitch]="element.state" class="switch_buttons">
 
                         <button *ngSwitchCase="'req'" mat-raised-button color="warn"
                             (click)="cancelRequest(element)">Cancelar</button>
                         <button *ngSwitchCase="'req'" mat-raised-button (click)="confirmRequest(element)"
-                            class="confirmBtn ms-md-5">Confirmar</button>
+                            class="confirmBtn ms-lg-5">Confirmar</button>
                         <button *ngSwitchCase="'con'" mat-raised-button class="confirmBtn">Confirmado</button>
                         <button *ngSwitchCase="'cancel'" mat-stroked-button color="primary">Cancelado</button>
                         <button *ngSwitchCase="'cancelNow'" mat-stroked-button color="primary">Ha sido cancelado Con

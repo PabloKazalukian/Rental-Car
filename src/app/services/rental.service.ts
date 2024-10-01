@@ -25,7 +25,7 @@ export class RentalService {
         return this.http.get<requestReceived[]>(`${this.API}/allOfUserId/${userId}`)
     }
     sendRequest(form: requestSend): Observable<boolean | void> {
-        console.log(form)
+        // console.log(form)
         return this.http.post<requestSend>(this.API, form)
             .pipe(
                 map((res) => {
