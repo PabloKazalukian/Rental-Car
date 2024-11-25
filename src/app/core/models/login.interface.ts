@@ -5,5 +5,4 @@ export interface Login {
 export interface LoginResponde {
     message: string,
     token: string
-
 }

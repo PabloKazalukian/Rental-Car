@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, map, Subscription } from 'rxjs';
+import { catchError, map, of, Subscription } from 'rxjs';
 import { RegisterService } from 'src/app/services/register.service';
 import { repeatPass } from 'src/app/shared/repeatPass.validator';
 
@@ -63,7 +63,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
                         return null
                     }
                 }),
-                catchError(error => error)
+                catchError(error => {
+                    console.log(error);
+                    return of({ emailExist: false })
+                })
             )
     }
 

@@ -27,8 +27,8 @@ export class RegisterService {
             );
     }
 
-    verifyEmail(email: string): Observable<boolean | void> {
-        return this.http.post<boolean>(`${this.API}/verifyEmail`, { email })
+    verifyEmail(email: string): Observable<any> {
+        return this.http.post<any>(`${this.API}/verifyEmail`, { email })
     }
 
     private handleError(err: any): Observable<never> {
