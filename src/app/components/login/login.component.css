@@ -11,6 +11,12 @@
     margin-bottom: 2.5rem;
 }
 
+.contentCheckbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 @media (max-width: 625px) {
     .formulario {
         width: 400px;

@@ -3,7 +3,7 @@
 
     <form *ngIf="this.login !==true" class="formulario " (ngSubmit)="onSubmit()" [formGroup]="contactForm">
         <div class="mb-4 contentInput">
-            <label for="email" class="form-label">Ingrese su email</label>
+            <label for="email" class="form-label">Ingrese su email o su nombre de usuario</label>
             <input type="email" class="form-control" id="email" name="email" required formControlName="email">
             <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['minlength']"
                 class="alert alert-danger">Este Campo es requerido</div>
@@ -13,8 +13,14 @@
             <input type="password" class="form-control" id="password" #MyRef name="password" required
                 formControlName="password">
             <!-- <label>Mostrar Contraseña</label><input type="checkbox"> -->
-            <mat-checkbox class="mt-2" [checked]="showPas" (change)="showPassword($event.checked)">Mostrar
-                contraseña</mat-checkbox>
+            <div class="contentCheckbox">
+
+                <mat-checkbox class="mt-2" [checked]="showPas" (change)="showPassword($event.checked)">Mostrar
+                    contraseña</mat-checkbox>
+                <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordame
+                </mat-checkbox>
+            </div>
+
             <div *ngIf="contactForm.get('password')?.touched && contactForm.get('password')?.errors?.['minlength']"
                 class="alert alert-danger">Este Campo es requerido</div>
         </div>

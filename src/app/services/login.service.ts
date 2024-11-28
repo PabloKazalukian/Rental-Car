@@ -27,7 +27,7 @@ export class LoginService {
     checkLogin(form: Login): Observable<boolean | void> {
         return this.http.post<LoginResponde>(this.API, form).pipe(
             map((res: LoginResponde) => {
-                this.saveToken(res.token);
+                this.saveToken(res.accessToken);
                 this.loggetIn.next(true);
                 if (res) return true;
                 else return false;
@@ -79,5 +79,24 @@ export class LoginService {
         const userToken = localStorage.getItem('auth');
 
         return userToken;
+    }
+
+    getCredentials(): { remember: boolean, username: string | null, password: string | null } {
+        const remember = (localStorage.getItem('remember')) === 'true' ? true : false;
+        const username = localStorage.getItem('username');
+        const password = localStorage.getItem('password');
+        return { remember, username, password };
+    }
+
+    saveCredentials(credentials: { remember: boolean, username: string, password: string }): void {
+        localStorage.setItem('remember', credentials.remember ? 'true' : 'false');
+        localStorage.setItem('username', credentials.username);
+        localStorage.setItem('password', credentials.password);
+    }
+
+    removeCredentials(): void {
+        localStorage.setItem('remember', 'false');
+        localStorage.setItem('username', '');
+        localStorage.setItem('password', '');
     }
 }
