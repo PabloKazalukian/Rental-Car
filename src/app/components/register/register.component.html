@@ -11,10 +11,11 @@
         <div class="mb-4">
             <label for="email" class="form-label">Ingrese un email</label>
             <input type="email" class="form-control" id="email" name="email" required formControlName="email">
-            <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['pattern']"
+            <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['pattern'] "
                 class="alert alert-danger">Este Campo es requerido</div>
             <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['emailExist'] "
                 class="alert alert-danger">Email existente</div>
+
         </div>
         <div class="mb-4">
             <label for="password1" class="form-label">Ingrese una contraseña</label>

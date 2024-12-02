@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         //declarar las propiedas que tendran nuestro formulario
         return this.fb.group({
             username: ['', [Validators.required, Validators.minLength(3)]],
-            email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")], !this.validarEmail.bind(this)],
+            email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")], this.validarEmail.bind(this)],
             password1: ['', [Validators.required, Validators.minLength(3)]],
             password2: ['', [Validators.required, Validators.minLength(3)]],
         }, {
@@ -54,10 +54,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
     };
 
     validarEmail(control: AbstractControl) {
+        console.log(control)
         return this.authSvc.verifyEmail(control.value)
             .pipe(
                 map(data => {
                     if (data) {
+                        console.log(data);
                         return { emailExist: true }
                     } else {
                         return null
