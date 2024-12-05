@@ -7,6 +7,8 @@
             <input type="text" class="form-control" id="username" name="username" required formControlName="username">
             <div *ngIf="contactForm.get('username')?.touched && contactForm.get('username')?.errors?.['minlength']"
                 class="alert alert-danger">Este Campo es requerido</div>
+            <div *ngIf="contactForm.get('username')?.touched && contactForm.get('username')?.errors?.['usernameExist'] "
+                class="alert alert-danger">El usuario ya existente</div>
         </div>
         <div class="mb-4">
             <label for="email" class="form-label">Ingrese un email</label>
@@ -14,7 +16,7 @@
             <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['pattern'] "
                 class="alert alert-danger">Este Campo es requerido</div>
             <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['emailExist'] "
-                class="alert alert-danger">Email existente</div>
+                class="alert alert-danger">el Email ya existente</div>
 
         </div>
         <div class="mb-4">

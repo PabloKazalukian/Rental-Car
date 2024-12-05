@@ -31,6 +31,10 @@ export class RegisterService {
         return this.http.post<any>(`${this.API}/verifyEmail`, { email })
     }
 
+    verifyUsername(username: string): Observable<any> {
+        return this.http.post<any>(`${this.API}/verifyUsername`, { username })
+    }
+
     private handleError(err: any): Observable<never> {
         let errorMessage = 'ocurrio un error'
         if (err) {
