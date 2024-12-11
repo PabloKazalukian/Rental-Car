@@ -10,3 +10,13 @@ export class repeatPass {
     }
 
 }
+
+// export function passwordMatchValidator(control: AbstractControl) {
+//     const password1 = control.get('password1');
+//     const password2 = control.get('password2');
+//     if (password1 && password2 && password1.value !== password2.value) {
+//         password2.setErrors({ passwordMismatch: true });
+//     } else {
+//         return null;
+//     }
+// }
