@@ -1,42 +1,74 @@
 <div *ngIf="!this.error && !this.success" class="container mt-5 d-flex justify-content flex-column align-items-center">
     <h2 class="mt-5">Crea tu cuenta</h2>
 
-    <form class="formulario mt-3" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+    <form class="formulario mt-3" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
         <div class="mb-4">
-            <label for="username" class="form-label">Ingrese un nombre de usuario</label>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your username</mat-label>
+                <input matInput placeholder="ingrese un nombre de usuario" [formGroup]="registerForm" required>
+                <mat-error *ngIf="registerForm.invalid">el usuario es invalido</mat-error>
+            </mat-form-field>
+            <!-- <label for="username" class="form-label">Ingrese un nombre de usuario</label>
             <input type="text" class="form-control" id="username" name="username" required formControlName="username">
-            <div *ngIf="contactForm.get('username')?.touched && contactForm.get('username')?.errors?.['minlength']"
+            <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['minlength']"
                 class="alert alert-danger">Este Campo es requerido</div>
-            <div *ngIf="contactForm.get('username')?.touched && contactForm.get('username')?.errors?.['usernameExist'] "
-                class="alert alert-danger">El usuario ya existente</div>
+            <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['usernameExist'] "
+                class="alert alert-danger">El usuario ya existente</div> -->
         </div>
         <div class="mb-4">
+            <mat-form-field appearance="fill">
+
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" [formGroup]="registerForm" required>
+                <mat-error *ngIf="registerForm.invalid">el email es invalido</mat-error>
+                <!-- <mat-error *ngIf="registerForm.invalid">el email es invalido</mat-error> -->
+            </mat-form-field>
+            <!-- <input matStartDate placeholder="Fecha inicial">
             <label for="email" class="form-label">Ingrese un email</label>
             <input type="email" class="form-control" id="email" name="email" required formControlName="email">
-            <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['pattern'] "
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['pattern'] "
                 class="alert alert-danger">Este Campo es requerido</div>
-            <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['emailExist'] "
-                class="alert alert-danger">el Email ya existente</div>
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['emailExist'] "
+                class="alert alert-danger">el Email ya existente</div> -->
 
         </div>
         <div class="mb-4">
-            <label for="password1" class="form-label">Ingrese una contraseña</label>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <!-- <label for="password1" class="form-label">Ingrese una contraseña</label>
             <input type="password" class="form-control" id="password1" name="password1" required
                 formControlName="password1">
-            <div *ngIf="contactForm.get('password1')?.touched && contactForm.get('password1')?.errors?.['minlength']"
-                class="alert alert-danger">Este Campo es requerido</div>
+            <div *ngIf="registerForm.get('password1')?.touched && registerForm.get('password1')?.errors?.['minlength']"
+                class="alert alert-danger">Este Campo es requerido</div> -->
         </div>
         <div class="mb-4">
-            <label for="password2" class="form-label">Confirme la contraseña</label>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <!-- <label for="password2" class="form-label">Confirme la contraseña</label>
             <input type="password" class="form-control" id="password2" name="password2" required
                 formControlName="password2">
-            <div *ngIf="contactForm.get('password2')?.touched && contactForm.get('password2')?.errors?.['minlength']"
+            <div *ngIf="registerForm.get('password2')?.touched && registerForm.get('password2')?.errors?.['minlength']"
                 class="alert alert-danger">Este Campo es requerido</div>
-            <div *ngIf="contactForm?.touched && contactForm.errors?.['dateIncorrect']" class="alert alert-danger">Las
-                contraseñas no coinciden</div>
+            <div *ngIf="registerForm?.touched && registerForm.errors?.['dateIncorrect']" class="alert alert-danger">Las
+                contraseñas no coinciden</div> -->
         </div>
 
-        <button type="submit" class="btn btn-primary float-end" [disabled]="contactForm.invalid">Enviar</button>
+        <div class="d-flex justify-content-end align-items-end">
+            <button type="submit" mat-raised-button color="warn" [disabled]="registerForm.invalid">Enviar</button>
+        </div>
 
     </form>
 </div>
@@ -44,7 +76,7 @@
 <div *ngIf="this.success" class="marginTop">
     <div class="container mt-5 formulario">
         <h2 class="mt-5">
-            Bienvenido {{contactForm.value.username}}!
+            Bienvenido {{registerForm.value.username}}!
         </h2>
         <h2 class="mt-5 alert alert-primary">
             Formulario Completado correctamente

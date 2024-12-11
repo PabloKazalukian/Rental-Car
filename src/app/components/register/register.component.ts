@@ -12,23 +12,24 @@ import { repeatPass } from 'src/app/shared/repeatPass.validator';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-    contactForm!: FormGroup;
+    registerForm!: FormGroup;
     success: boolean = false
     error: boolean = false
     private subscripcions: Subscription[] = [];
 
     constructor(private readonly fb: FormBuilder, private authSvc: RegisterService, private router: Router) { };
+    hide = true;
 
 
     ngOnInit(): void {
-        this.contactForm = this.initForm();
-        // console.log(this.contactForm)
+        this.registerForm = this.initForm();
+        // console.log(this.registerForm)
         // this.authSvc.verifyEmail("admin@gmail.com").subscribe(e=>console.log(e))
     };
 
     onSubmit(): void {
         this.subscripcions.push(
-            this.authSvc.registerUser(this.contactForm.value).subscribe({
+            this.authSvc.registerUser(this.registerForm.value).subscribe({
                 next: (res) => {
                     this.success = true;
                     setTimeout(() => this.router.navigate(['login']), 1700)
@@ -55,6 +56,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     validateEmail(control: AbstractControl) {
         console.log(control)
+
         return this.authSvc.verifyEmail(control.value)
             .pipe(
                 map(data => {
@@ -64,6 +66,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     } else {
                         return null
                     }
+                }),
+                catchError(error => {
+                    console.log(error);
+                    console.log(control)
+                    return of(null)
                 })
             )
     }
@@ -72,11 +79,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
         return this.authSvc.verifyUsername(control.value)
             .pipe(
                 map(data => {
+                    console.log(data);
                     if (data) {
                         return { usernameExist: true }
                     } else {
                         return null
                     }
+                }),
+                catchError(error => {
+                    console.log(error);
+                    return of(null)
                 })
             )
     }

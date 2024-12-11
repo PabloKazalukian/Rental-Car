@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environment
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CarsComponent } from './components/cars/cars.component';
-import { StoreModule } from '@ngrx/store';
-import { carReducer } from './components/cars/cars.reducers';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { carReducer } from './components/cars/cars.reducers';
+import { carEffects } from './components/cars/car.effects';
+import { CarsComponent } from './components/cars/cars.component';
 import { ShowCarComponent } from './components/cars/show-car/show-car.component';
 import { FilterCarsComponent } from './components/cars/filter-cars/filter-cars.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -16,26 +19,27 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FormularioComponent } from './components/contact/formulario/formulario.component';
 import { HomeComponent } from './components/home/home.component';
 import { Error404Component } from './components/error404/error404.component';
-import { HttpClientModule } from '@angular/common/http';
-import { EffectsModule } from '@ngrx/effects';
-import { carEffects } from './components/cars/car.effects';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { TokenInterceptor } from './services/interceptor/token.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CarApplicationComponent } from './components/car-application/car-application.component';
 import { DialogLoggedComponent } from './components/cars/show-car/dialog-logged/dialog-logged.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { LandingPageComponent } from './components/home/landing-page/landing-page.component';
+import { ModifyUserComponent } from './components/user/modify-user/modify-user.component';
+import { TokenInterceptor } from './services/interceptor/token.interceptor';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HowToUseComponent } from './components/home/how-to-use/how-to-use.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ModifyUserComponent } from './components/user/modify-user/modify-user.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
     declarations: [
@@ -78,6 +82,9 @@ import { ModifyUserComponent } from './components/user/modify-user/modify-user.c
         MatProgressSpinnerModule,
         MatDialogModule,
         MatCheckboxModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule
     ],
     providers: [
         {

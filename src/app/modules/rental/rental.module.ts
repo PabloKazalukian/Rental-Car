@@ -16,6 +16,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogConfirmationComponent } from 'src/app/components/alquiler/form-reactivo/dialog-confirmation/dialog-confirmation.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+
 
 const routes: Routes = [
     {
@@ -44,7 +46,8 @@ const routes: Routes = [
         MatButtonModule,
         MatProgressSpinnerModule,
         MatNativeDateModule,
-        MatDialogModule
+        MatDialogModule,
+        MatInputModule
 
     ]
 })

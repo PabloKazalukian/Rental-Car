@@ -1,7 +1,15 @@
 .formulario {
     min-height: 68vh;
     width: 600px;
+    /* border: 1px solid #777; */
+    background: #21212194;
+
+    border-radius: .5rem;
+    padding: 3rem;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    height: 1rem;
 }
+
 
 @media (max-width: 625px) {
     .formulario {

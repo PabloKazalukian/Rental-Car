@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModifyPassComponent } from 'src/app/components/user/modify-pass/modify-pass.component';
 import { TokenInterceptor } from 'src/app/services/interceptor/token.interceptor';
 import { ModifyUserComponent } from 'src/app/components/user/modify-user/modify-user.component';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -49,7 +50,8 @@ const routes: Routes = [
         ReactiveFormsModule,
         MatTableModule,
         MatProgressSpinnerModule,
-        MatButtonModule
+        MatButtonModule,
+        MatInputModule
 
     ],
     providers: [
