@@ -1,4 +1,5 @@
-import { User } from '../../../../../Api-Rental-Car/src/interfaces/user.interface';
+import { User } from "./user.interface"
+
 export interface Login {
     email: string,
     password: string

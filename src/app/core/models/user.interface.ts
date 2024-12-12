@@ -14,3 +14,10 @@ export interface usuario {
     username: string,
     userId?: number
 }
+
+export interface User {
+    username: string,
+    password: string,
+    email: string,
+    role: string
+}
