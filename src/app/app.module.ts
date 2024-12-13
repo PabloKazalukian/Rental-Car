@@ -39,6 +39,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { FormClassDirective } from './shared/form-class.directive';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { MatIconModule } from '@angular/material/icon';
         LandingPageComponent,
         HowToUseComponent,
         ModifyUserComponent,
+        FormClassDirective,
     ],
     imports: [
         BrowserModule,

@@ -6,9 +6,13 @@
     font-size: 18px;
 }
 
-.formulario {
+/* .formulario {
     width: 600px;
     margin-bottom: 2.5rem;
+} */
+
+.mat-form-field {
+    display: block;
 }
 
 .contentCheckbox {
