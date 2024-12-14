@@ -22,6 +22,7 @@ interface text {
 })
 export class FilterCarsComponent implements OnInit {
 
+    btnSelected: string = '';
     @Input() orderPrice: any;
     @Input() orderBrand: any;
     @Input() orderYear: any;
@@ -48,6 +49,7 @@ export class FilterCarsComponent implements OnInit {
     };
 
     public order(order: string): void {
+        this.btnSelected = order;
         this.newOrderEvent.emit(order);
     };
 
