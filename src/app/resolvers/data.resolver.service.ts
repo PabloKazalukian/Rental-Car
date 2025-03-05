@@ -9,7 +9,7 @@ const cars = ['auto1', 'auto2']
 @Injectable({ providedIn: 'root' })
 export class DataResolverService implements Resolve<any> {
 
-    car!: Observable<Car[]>;
+    car!: Observable<Car>;
     autos!: Car[];
 
     constructor(private readonly carSvc: CarService) { }

@@ -28,9 +28,9 @@ export class UserComponent implements OnInit, OnDestroy {
             this.authSvc.readToken().subscribe(res => this.user = res)
         );
 
-        if (this.user?.userId) {
+        if (this.user.sub) {
             this.subscripcions.push(
-                this.requestSvc.getRequestByUserId(this.user.userId).pipe(
+                this.requestSvc.getRequestByUserId(this.user.sub).pipe(
                     // delay(1700)
                 ).subscribe((res) => {
                     this.requestAll = res;

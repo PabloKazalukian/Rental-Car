@@ -28,7 +28,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
 
-    userId?: number
+    userId!: string;
     username?: string;
     success!: boolean
     loading: boolean = true
@@ -45,13 +45,14 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subscripcions.push(
             this.authSvc.readToken().subscribe((res) => {
-                this.userId = res.userId;
+                this.userId = res.sub;
                 this.username = res.username;
             })
         )
         this.range = this.initFormDates(null);
         this.subscripcions.push(
             this.rentalSvc.getRequestById(this.idCar).subscribe((res) => {
+                console.log(res)
                 setTimeout(() => this.loading = false, 1000)
                 this.arrRequest = res;
                 this.range = this.initFormDates(res);
@@ -66,11 +67,11 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
 
         if (start && end) {
             let result: requestSend = {
-                initial_date: start,
-                final_date: end,
-                created_by: this.userId,
-                rented_car: parseInt(this.idCar, 10),
-                stateReq: true
+                initialDate: start,
+                finalDate: end,
+                user_id: this.userId,
+                car_id: this.idCar,
+                state: 'req'
             }
             this.dialog.open(DialogConfirmationComponent, { data: result });
         }

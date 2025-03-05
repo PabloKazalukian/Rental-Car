@@ -23,7 +23,7 @@ export class UserService {
 
     constructor(private readonly http: HttpClient) { }
 
-    modifyPass(pass: string, idUser: number): Observable<boolean | void> {
+    modifyPass(pass: string, idUser: string): Observable<boolean | void> {
         return this.http.put<newPass>(`${this.API}/modifyPass/${idUser}`, { newPass: pass })
             .pipe(
                 map((res: any) => {
@@ -35,7 +35,7 @@ export class UserService {
             );
     };
 
-    modifyUser(user: newUser, idUser: number): Observable<boolean | void> {
+    modifyUser(user: newUser, idUser: string): Observable<boolean | void> {
         return this.http.put<newUser>(`${this.API}/modifyUser/${idUser}`, { username: user.username, email: user.email })
             .pipe(
                 map((res: any) => {

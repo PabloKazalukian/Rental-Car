@@ -32,9 +32,9 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     };
 
     onSubmit(): void {
-        if (this.usuario.userId !== undefined) {
+        if (this.usuario.sub !== undefined) {
             this.subscripcions.push(
-                this.userSvc.modifyUser(this.modifyUser.value, this.usuario.userId).subscribe({
+                this.userSvc.modifyUser(this.modifyUser.value, this.usuario.sub).subscribe({
                     next: (res) => {
                         this.success = true;
                         setTimeout(() => {

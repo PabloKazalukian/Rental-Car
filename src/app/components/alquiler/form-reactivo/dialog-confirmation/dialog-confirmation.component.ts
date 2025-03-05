@@ -33,7 +33,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
     request(): void {
         this.loading = true;
-        this.data.stateReq = false;
+        this.data.state = 'req';
         this.subscripcions.push(
             this.rentalSvc.sendRequest(this.data).subscribe({
                 next: (res) => {
@@ -55,6 +55,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
     confirm(): void {
         this.loading = true;
+        this.data.state = 'con';
         this.subscripcions.push(
             this.rentalSvc.sendRequest(this.data).subscribe({
                 next: (res) => {

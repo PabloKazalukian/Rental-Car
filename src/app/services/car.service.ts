@@ -17,7 +17,7 @@ export class CarService {
         return this.http.get<Response<Car[]>>(this.API).pipe(map(response => response.data));
     }
 
-    getCarById(id: string): Observable<Car[]> {
-        return this.http.get<Response<Car[]>>(`${this.API}/id/${id}`).pipe(map(response => response.data));
+    getCarById(id: string): Observable<Car> {
+        return this.http.get<Response<Car>>(`${this.API}/${id}`).pipe(map(response => response.data));
     }
 }

@@ -34,9 +34,9 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
     };
 
     onSubmit(): void {
-        if (this.usuario.userId !== undefined) {
+        if (this.usuario.sub !== undefined) {
             this.subscripcions.push(
-                this.userSvc.modifyPass(this.modifyPass.value.password1, this.usuario.userId).subscribe({
+                this.userSvc.modifyPass(this.modifyPass.value.password1, this.usuario.sub).subscribe({
                     next: (res) => {
                         this.success = true;
                         setTimeout(() => {

@@ -42,7 +42,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
                     delay(2)
                 )
                 .subscribe(() => {
-                    isDateHigher
+                    // isDateHigher
                     this.arrRequest
                     this.datepicker.disabled = false;
                     this.datepicker.open();
@@ -64,7 +64,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         const datejs: Date = new Date();
         const jsFinalDate = `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`;
         return (isDateHigher(output, true, jsFinalDate, false)) &&
-            (this.arrRequest.filter(res => isDateHigher(output, true, res.initial_date, true) && isDateHigher(output, false, res.final_date, true)).length < 1)
+            (this.arrRequest.filter(res => isDateHigher(output, true, res.initialDate, true) && isDateHigher(output, false, res.finalDate, true)).length < 1)
     };
 
     onDate(start: any, end: any): void {

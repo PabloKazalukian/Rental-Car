@@ -9,7 +9,7 @@ export class ownValidation {
         const end = new DatePipe('en').transform(control.value.end, 'dd-MM-yyyy');
         if (start !== null && end) {
             if (control.value.total.filter((res: request) => {
-                return containDateDouble(start, end, res.initial_date, res.final_date)
+                return containDateDouble(start, end, res.initialDate, res.finalDate)
             }).length < 1) return null;
             else return { dateCorrect: true }
         }

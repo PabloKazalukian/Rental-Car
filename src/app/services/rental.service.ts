@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { request, requestReceived, requestSend } from '../core/models/request.interface';
 import { catchError } from 'rxjs/operators';
+import { Response } from '../core/models/response.interface';
 
 
 interface idRequest {
@@ -18,14 +19,15 @@ export class RentalService {
 
     constructor(private readonly http: HttpClient) { }
 
-    getRequestById(id: string): Observable<request[]> {
-        return this.http.get<request[]>(`${this.API}/allOfCarId/${id}`)
+    getRequestById(idCar: string): Observable<request[]> {
+        return this.http.get<Response<request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map(response => response.data));
     }
-    getRequestByUserId(userId: number): Observable<requestReceived[]> {
+    getRequestByUserId(userId: string): Observable<requestReceived[]> {
         return this.http.get<requestReceived[]>(`${this.API}/allOfUserId/${userId}`)
     }
     sendRequest(form: requestSend): Observable<boolean | void> {
         // console.log(form)
+        console.log(form)
         return this.http.post<requestSend>(this.API, form)
             .pipe(
                 map((res) => {

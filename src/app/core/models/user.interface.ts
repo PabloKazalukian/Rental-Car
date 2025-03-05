@@ -12,7 +12,8 @@ export interface LoginResponde {
 }
 export interface usuario {
     username: string,
-    userId?: number
+    sub: string,
+    role: string
 }
 
 export interface User {
@@ -21,3 +22,9 @@ export interface User {
     email: string,
     role: string
 }
+
+export interface credentialsUser {
+    remember: boolean,
+    username: string,
+    password: string
+} 

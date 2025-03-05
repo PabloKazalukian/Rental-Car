@@ -6,7 +6,7 @@ import { Car } from '../core/models/car.interface';
 import { catchError } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login, LoginResponde } from '../core/models/login.interface';
-import { usuario } from '../core/models/user.interface';
+import { credentialsUser, usuario } from '../core/models/user.interface';
 
 const helper = new JwtHelperService();
 
@@ -15,7 +15,7 @@ const helper = new JwtHelperService();
 })
 export class LoginService {
     private loggetIn = new BehaviorSubject<boolean>(false);
-    private user = new BehaviorSubject<usuario>({ username: '', userId: 0 });
+    private user = new BehaviorSubject<usuario>({ username: '', sub: '', role: "" });
 
     private readonly API = `${environment.api}/auth/login`;
     token?: string;
@@ -88,7 +88,7 @@ export class LoginService {
         return { remember, username, password };
     }
 
-    saveCredentials(credentials: { remember: boolean, username: string, password: string }): void {
+    saveCredentials(credentials: credentialsUser): void {
         localStorage.setItem('remember', credentials.remember ? 'true' : 'false');
         localStorage.setItem('username', credentials.username);
         localStorage.setItem('password', credentials.password);

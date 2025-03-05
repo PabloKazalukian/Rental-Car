@@ -1,20 +1,20 @@
 export interface request {
     id_request: number,
-    initial_date: string,
-    final_date: string,
+    initialDate: string,
+    finalDate: string,
 
 }
 export interface requests {
-    initial_date: string,
-    final_date: string,
+    initialDate: string,
+    finalDate: string,
 }
 
 export interface requestSend {
-    initial_date: string,
-    final_date: string,
-    created_by?: number,
-    rented_car?: number,
-    stateReq: boolean
+    initialDate: string,
+    finalDate: string,
+    user_id: string,
+    car_id: string,
+    state: string,
 }
 
 export interface requestReceived {

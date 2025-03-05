@@ -13,17 +13,17 @@
                 <p class="card-text">Precio: {{autos.price}} us$</p>
                 <div class="d-flex justify-content-between ">
                     <button mat-stroked-button color="warn" data-bs-toggle="modal"
-                        [attr.data-bs-target]="'#staticBackdrop'+autos.id_car">
+                        [attr.data-bs-target]="'#staticBackdrop'+autos.id">
                         Ver Más
                     </button>
-                    <button mat-raised-button color="warn" (click)="this.goWithCar(autos.id_car)">
+                    <button mat-raised-button color="warn" (click)="this.goWithCar(autos.id)">
                         Solicitar alquiler
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade  " id="staticBackdrop{{autos.id_car}}" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade  " id="staticBackdrop{{autos.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-xl ">
                 <div class="modal-content card-background ">

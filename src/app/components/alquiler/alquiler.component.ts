@@ -16,7 +16,7 @@ export class AlquilerComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
     idCar!: string;
-    idUser?: number;
+    idUser?: string;
     cars!: Car
     autos!: Car[]
 
@@ -32,19 +32,18 @@ export class AlquilerComponent implements OnInit, OnDestroy {
 
         this.subscripcions.push(
             this.userSvc.readToken().subscribe(res => {
-                this.idUser = res.userId;
+                this.idUser = res.sub;
             })
         );
 
         this.subscripcions.push(
             this.carSvc.getCarById(this.idCar).subscribe(
-                car => this.cars = car[0]
+                car => this.cars = car
             )
         );
-    }
-
+    };
 
     ngOnDestroy(): void {
         this.subscripcions.forEach(sub => sub.unsubscribe());
-    }
+    };
 }
