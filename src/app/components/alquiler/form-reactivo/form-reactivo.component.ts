@@ -52,13 +52,11 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
         this.range = this.initFormDates(null);
         this.subscripcions.push(
             this.rentalSvc.getRequestById(this.idCar).subscribe((res) => {
-                console.log(res)
                 setTimeout(() => this.loading = false, 1000)
                 this.arrRequest = res;
                 this.range = this.initFormDates(res);
             })
-        )
-
+        );
     }
 
     onSubmit(): void {
@@ -67,6 +65,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
 
         if (start && end) {
             let result: requestSend = {
+                amount: this.range.value?.amount,
                 initialDate: start,
                 finalDate: end,
                 user_id: this.userId,
@@ -75,7 +74,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
             }
             this.dialog.open(DialogConfirmationComponent, { data: result });
         }
-    }
+    };
 
     initFormDates(res: request[] | null): FormGroup {
         return this.fb.group({
@@ -88,10 +87,10 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
             validators:
                 ownValidation.dateCorrect
         });
-    }
+    };
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
-    }
+    };
 
 }

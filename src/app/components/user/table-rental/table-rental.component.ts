@@ -30,6 +30,7 @@ export class TableRentalComponent implements OnInit {
         setTimeout(() =>
             this.subscripcions.push(
                 this.data.readData().subscribe(e => {
+                    console.log(e)
                     if (e !== undefined) {
                         this.dataSource = e;
                         this.request = e;
@@ -87,7 +88,7 @@ export class TableRentalComponent implements OnInit {
     cancelRequest(element: any): void {
         element.state = 'cancel'
         this.subscripcions.push(
-            this.requestSvc.cancelRequestByIdRequest(element.id_request).subscribe({
+            this.requestSvc.cancelRequestByIdRequest(element.id).subscribe({
                 next: (res) => {
                     element.state = 'cancelNow';
                 },
@@ -102,7 +103,7 @@ export class TableRentalComponent implements OnInit {
         // confirmRequestByIdRequest
         element.state = 'cancel'
         this.subscripcions.push(
-            this.requestSvc.confirmRequestByIdRequest(element.id_request).subscribe({
+            this.requestSvc.confirmRequestByIdRequest(element.id).subscribe({
                 next: (res) => {
                     element.state = 'con';
                 },

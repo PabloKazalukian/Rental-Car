@@ -33,8 +33,10 @@ export class UserComponent implements OnInit, OnDestroy {
                 this.requestSvc.getRequestByUserId(this.user.sub).pipe(
                     // delay(1700)
                 ).subscribe((res) => {
+                    console.log(res);
                     this.requestAll = res;
-                    this.dataSourcePast = this.requestAll.filter(r => isDateHigher(r.final_date, false, this.getDateTodayToString(), true));
+                    this.dataSourcePast = this.requestAll.filter(r => isDateHigher(r.finalDate, false, this.getDateTodayToString(), true));
+                    console.log(this.dataSourcePast);
                     this.dataSourcePast.forEach(r => {
                         if (r.state === 'req') {
                             this.completeRequest(r);
@@ -58,12 +60,13 @@ export class UserComponent implements OnInit, OnDestroy {
 
     getDateTodayToString(): string {
         const datejs: Date = new Date();
+        console.log(`${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`)
         return `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`
     };
 
     completeRequest(request: requestReceived): void {
         this.subscripcions.push(
-            this.requestSvc.confirmRequestByIdRequest(request.id_request).subscribe({
+            this.requestSvc.confirmRequestByIdRequest(request.id).subscribe({
                 next: (res) => {
                     console.log(res);
                 },

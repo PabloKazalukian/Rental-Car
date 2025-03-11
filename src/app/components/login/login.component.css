@@ -21,6 +21,12 @@
     justify-content: space-between;
 }
 
+.mat-input-element:-webkit-autofill,
+.mat-input-element:-webkit-autofill:hover,
+.mat-input-element:-webkit-autofill:focus {
+    color: #fff222;
+}
+
 @media (max-width: 625px) {
     .formulario {
         width: 400px;

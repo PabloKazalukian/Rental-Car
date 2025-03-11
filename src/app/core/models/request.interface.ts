@@ -10,6 +10,7 @@ export interface requests {
 }
 
 export interface requestSend {
+    amount: number,
     initialDate: string,
     finalDate: string,
     user_id: string,
@@ -18,12 +19,12 @@ export interface requestSend {
 }
 
 export interface requestReceived {
-    amount: number
-    brand: string
-    final_date: string
-    id_request: number
-    initial_date: string
-    model: string
-    price: number
+    amount: number,
+    brand: string,
+    finalDate: string,
+    id: string,
+    initialDate: string,
+    model: string,
+    price: number,
     state: string
 }

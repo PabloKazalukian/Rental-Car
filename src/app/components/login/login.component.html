@@ -29,13 +29,14 @@
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
-            <!-- <label for="password" class="form-label">Ingrese su contraseña</label>
-            <input type="password" class="form-control" id="password" #MyRef name="password" required
-                formControlName="password">
-            <label>Mostrar Contraseña</label><input type="checkbox"> -->
-            <div class="contentCheckbox">
-                <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordame
-                </mat-checkbox>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="contentCheckbox">
+                    <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordame
+                    </mat-checkbox>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a mat-link href="#" class="forgotPassword">Olvidé mi contraseña</a>
+                </div>
             </div>
         </div>
 

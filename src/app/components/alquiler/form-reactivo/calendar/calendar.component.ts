@@ -60,6 +60,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
     myFilter = (date: Date): boolean => {
+        console.log(date)
         let output = String(date.getDate()).padStart(2, '0') + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + date.getFullYear();
         const datejs: Date = new Date();
         const jsFinalDate = `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`;

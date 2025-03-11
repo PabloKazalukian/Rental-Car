@@ -23,7 +23,7 @@ export class RentalService {
         return this.http.get<Response<request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map(response => response.data));
     }
     getRequestByUserId(userId: string): Observable<requestReceived[]> {
-        return this.http.get<requestReceived[]>(`${this.API}/allOfUserId/${userId}`)
+        return this.http.get<Response<requestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(map(response => response.data));
     }
     sendRequest(form: requestSend): Observable<boolean | void> {
         // console.log(form)
@@ -53,7 +53,7 @@ export class RentalService {
                 ),
             )
     }
-    confirmRequestByIdRequest(idRequest: number): Observable<boolean | void> {
+    confirmRequestByIdRequest(idRequest: string): Observable<boolean | void> {
         // let idRequest= idNumber;
         return this.http.put<idRequest>(`${this.API}/confirm`, { idRequest })
             .pipe(
@@ -68,10 +68,10 @@ export class RentalService {
 
     private handleError(err: any): Observable<never> {
         let errorMessage = 'ocurrio un error'
-        console.log(errorMessage)
         if (err) {
             errorMessage = `error code : ${err.message}`
         }
+        console.log(errorMessage)
         return err
     }
 }

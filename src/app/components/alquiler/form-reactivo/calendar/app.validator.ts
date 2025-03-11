@@ -20,7 +20,7 @@ export class ownValidation {
 }
 export const isDateHigher = (finalDate: string, bigger: boolean, jsFinalDate: string, includ: boolean): boolean => {
 
-
+    // console.log(finalDate, bigger, jsFinalDate, includ);
     if (finalDate !== undefined) {
         const fdD = parseInt(finalDate[0] + finalDate[1], 10);
         const fdM = parseInt(finalDate[3] + (finalDate[4] !== "-" ? finalDate[4] : ""), 10);
@@ -30,6 +30,10 @@ export const isDateHigher = (finalDate: string, bigger: boolean, jsFinalDate: st
         const jsfdD = parseInt(arr[0], 10);
         const jsfdM = parseInt(arr[1], 10);
         const jsfdA = parseInt(arr[2], 10);
+        // console.log(jsfdD, jsfdM, jsfdA);
+        // console.log(finalDate);
+        // console.log(fdD, fdM, fdA);
+
         if (fdA > jsfdA) {//2021 2022
             return bigger ? true : false
         }
