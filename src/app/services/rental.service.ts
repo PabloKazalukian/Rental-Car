@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { request, requestReceived, requestSend } from '../core/models/request.interface';
 import { catchError } from 'rxjs/operators';
 import { Response } from '../core/models/response.interface';
@@ -23,7 +23,11 @@ export class RentalService {
         return this.http.get<Response<request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map(response => response.data));
     }
     getRequestByUserId(userId: string): Observable<requestReceived[]> {
-        return this.http.get<Response<requestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(map(response => response.data));
+        return this.http.get<Response<requestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(map(response => response.data),
+            catchError(error => {
+                console.error("Error en la petición:", error); // Log del error
+                return throwError(() => new Error("Error al obtener las solicitudes. Intente nuevamente.")); // Lanza un error manejado
+            }))
     }
     sendRequest(form: requestSend): Observable<boolean | void> {
         // console.log(form)
@@ -41,9 +45,9 @@ export class RentalService {
             );
     }
 
-    cancelRequestByIdRequest(idRequest: number): Observable<boolean | void> {
+    cancelRequestByIdRequest(requestId: string): Observable<boolean | void> {
         // let idRequest= idNumber;
-        return this.http.put<idRequest>(`${this.API}/cancel`, { idRequest })
+        return this.http.put<idRequest>(`${this.API}/cancel`, { requestId })
             .pipe(
                 map((res: any) => {
                     // this.saveToken(res.token)

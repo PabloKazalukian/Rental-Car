@@ -60,12 +60,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
     myFilter = (date: Date): boolean => {
-        console.log(date)
-        let output = String(date.getDate()).padStart(2, '0') + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + date.getFullYear();
-        const datejs: Date = new Date();
-        const jsFinalDate = `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`;
-        return (isDateHigher(output, true, jsFinalDate, false)) &&
-            (this.arrRequest.filter(res => isDateHigher(output, true, res.initialDate, true) && isDateHigher(output, false, res.finalDate, true)).length < 1)
+
+        const dateToday: Date = new Date();
+
+        return (isDateHigher(date, dateToday, true)) &&
+            (this.arrRequest.filter(res => isDateHigher(date, res.initialDate, true) && isDateHigher(date, res.finalDate, true)).length < 1)
     };
 
     onDate(start: any, end: any): void {

@@ -33,10 +33,9 @@ export class UserComponent implements OnInit, OnDestroy {
                 this.requestSvc.getRequestByUserId(this.user.sub).pipe(
                     // delay(1700)
                 ).subscribe((res) => {
-                    console.log(res);
                     this.requestAll = res;
-                    this.dataSourcePast = this.requestAll.filter(r => isDateHigher(r.finalDate, false, this.getDateTodayToString(), true));
-                    console.log(this.dataSourcePast);
+                    this.dataSourcePast = this.getExpiredRequests(this.requestAll);
+                    // .filter(r => isDateHigher(r.finalDate, false, this.getDateTodayToString(), true));
                     this.dataSourcePast.forEach(r => {
                         if (r.state === 'req') {
                             this.completeRequest(r);
@@ -54,13 +53,26 @@ export class UserComponent implements OnInit, OnDestroy {
         }
     };
 
+    private getExpiredRequests(requests: any[]): any[] {
+        return requests.filter(request =>
+            this.isExpiredDate(request.finalDate, this.getCurrentDateAsString())
+        );
+    }
+
+    private isExpiredDate(finalDate: string, currentDate: string): boolean {
+        return isDateHigher(finalDate, currentDate, true);
+    }
+
+    private getCurrentDateAsString(): string {
+        return this.getDateTodayToString();
+    }
+
     readData(): Observable<requestReceived[]> {
         return this.data.asObservable();
     };
 
-    getDateTodayToString(): string {
+    private getDateTodayToString(): string {
         const datejs: Date = new Date();
-        console.log(`${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`)
         return `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`
     };
 

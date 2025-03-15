@@ -30,12 +30,10 @@ export class TableRentalComponent implements OnInit {
         setTimeout(() =>
             this.subscripcions.push(
                 this.data.readData().subscribe(e => {
-                    console.log(e)
                     if (e !== undefined) {
                         this.dataSource = e;
                         this.request = e;
                         this.show = false;
-                        // console.log(this.dataSource)
                     }
                 })
             )
@@ -86,13 +84,15 @@ export class TableRentalComponent implements OnInit {
     // }
 
     cancelRequest(element: any): void {
-        element.state = 'cancel'
+        // element.state = 'cancel';
+        console.log(element)
         this.subscripcions.push(
             this.requestSvc.cancelRequestByIdRequest(element.id).subscribe({
                 next: (res) => {
                     element.state = 'cancelNow';
                 },
                 error: (res) => {
+                    console.log(res)
                     // this.login=false
                 },
             })
@@ -101,7 +101,7 @@ export class TableRentalComponent implements OnInit {
 
     confirmRequest(element: any): void {
         // confirmRequestByIdRequest
-        element.state = 'cancel'
+        // element.state = 'can'
         this.subscripcions.push(
             this.requestSvc.confirmRequestByIdRequest(element.id).subscribe({
                 next: (res) => {
