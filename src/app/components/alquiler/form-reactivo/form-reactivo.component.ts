@@ -66,8 +66,8 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
         if (start && end) {
             let result: requestSend = {
                 amount: this.range.value?.amount,
-                initialDate: start,
-                finalDate: end,
+                initialDate: this.range.value.start,
+                finalDate: this.range.value.end,
                 user_id: this.userId,
                 car_id: this.idCar,
                 state: 'req'

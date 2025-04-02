@@ -28,7 +28,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
     ) { };
 
     ngOnInit(): void {
-        console.log(this.data);
+        // console.log(this.data);
     };
 
     request(): void {

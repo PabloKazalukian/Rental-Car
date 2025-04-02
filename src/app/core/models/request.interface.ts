@@ -11,8 +11,8 @@ export interface requests {
 
 export interface requestSend {
     amount: number,
-    initialDate: string,
-    finalDate: string,
+    initialDate: Date,
+    finalDate: Date,
     user_id: string,
     car_id: string,
     state: string,

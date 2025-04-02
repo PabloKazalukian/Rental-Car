@@ -34,14 +34,14 @@ export class UserComponent implements OnInit, OnDestroy {
                     // delay(1700)
                 ).subscribe((res) => {
                     this.requestAll = res;
-                    this.dataSourcePast = this.getExpiredRequests(this.requestAll);
+                    // this.dataSourcePast = this.getExpiredRequests(this.requestAll);
                     // .filter(r => isDateHigher(r.finalDate, false, this.getDateTodayToString(), true));
-                    this.dataSourcePast.forEach(r => {
-                        if (r.state === 'req') {
-                            this.completeRequest(r);
-                            r.state = 'con';
-                        }
-                    });
+                    // this.dataSourcePast.forEach(r => {
+                    //     if (r.state === 'req') {
+                    //         this.completeRequest(r);
+                    //         r.state = 'con';
+                    //     }
+                    // });
                     this.data.next(this.requestAll);
                     this.dataSource = this.requestAll;
 
