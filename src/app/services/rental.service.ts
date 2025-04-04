@@ -28,7 +28,8 @@ export class RentalService {
                 console.error("Error en la petición:", error); // Log del error
                 return throwError(() => new Error("Error al obtener las solicitudes. Intente nuevamente.")); // Lanza un error manejado
             }))
-    }
+    };
+
     sendRequest(form: requestSend): Observable<boolean | void> {
         // console.log(form)
         console.log(form)
@@ -43,23 +44,22 @@ export class RentalService {
                 ),
                 catchError((err) => { return this.handleError(err) })
             );
-    }
+    };
 
     cancelRequestByIdRequest(requestId: string): Observable<boolean | void> {
-        // let idRequest= idNumber;
+
         return this.http.put<idRequest>(`${this.API}/cancel`, { requestId })
             .pipe(
                 map((res: any) => {
-                    // this.saveToken(res.token)
                     if (res) return true
                     else return false
-                }
-                ),
+                }),
             )
-    }
-    confirmRequestByIdRequest(idRequest: string): Observable<boolean | void> {
+    };
+
+    confirmRequestByIdRequest(requestId: string): Observable<boolean | void> {
         // let idRequest= idNumber;
-        return this.http.put<idRequest>(`${this.API}/confirm`, { idRequest })
+        return this.http.put<idRequest>(`${this.API}/confirm`, { requestId })
             .pipe(
                 map((res: any) => {
                     // this.saveToken(res.token)
@@ -68,7 +68,7 @@ export class RentalService {
                 }
                 ),
             )
-    }
+    };
 
     private handleError(err: any): Observable<never> {
         let errorMessage = 'ocurrio un error'

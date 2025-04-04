@@ -26,7 +26,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    arrRequest!: request[]
+    arrRequest!: request[];
+    blockedDates: Set<string> = new Set();
 
 
     constructor(private readonly fb: FormBuilder, private rentalSvc: RentalService) { }
@@ -55,16 +56,34 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         this.subscripcions.push(
             this.rentalSvc.getRequestById(this.idCar).subscribe(res => {
                 this.arrRequest = res;
+                this.calculateBlockedDates(); // Precalcular fechas bloqueadas
             })
         )
     };
+
+    calculateBlockedDates(): void {
+        this.blockedDates.clear();
+
+        this.arrRequest.forEach(res => {
+            let current = new Date(res.initialDate);
+            let end = new Date(res.finalDate);
+
+            while (current <= end) {
+                this.blockedDates.add(this.formatDate(current)); // Guardamos en el Set
+                current.setDate(current.getDate() + 1);
+            }
+        });
+    }
+
+    formatDate(date: Date): string {
+        return date.toISOString().split('T')[0]; // "2025-04-07"
+    }
 
     myFilter = (date: Date): boolean => {
 
         const dateToday: Date = new Date();
 
-        return (isDateHigher(date, dateToday, true)) &&
-            (this.arrRequest.filter(res => isDateHigher(date, res.initialDate, true) && isDateHigher(date, res.finalDate, true)).length < 1)
+        return isDateHigher(date, dateToday, false) && !this.blockedDates.has(this.formatDate(date));
     };
 
     onDate(start: any, end: any): void {

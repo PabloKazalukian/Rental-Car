@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     error: boolean = false
     private subscripcions: Subscription[] = [];
     imageUrl: string = 'assets/images/logo-no-background.png';
+    imageBackground: string = 'assets/images/superdeportivo_optimized.jpg';
 
     constructor(private readonly fb: FormBuilder, private authSvc: RegisterService, private router: Router) { };
     hide = true;

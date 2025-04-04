@@ -5,9 +5,7 @@ import { Car } from 'src/app/core/models/car.interface';
 import { request, requestSend } from 'src/app/core/models/request.interface';
 import { LoginService } from 'src/app/services/login.service';
 import { RentalService } from 'src/app/services/rental.service';
-import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { ownValidation, getDays } from './calendar/app.validator';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component';
 
@@ -37,7 +35,6 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
         private readonly fb: FormBuilder,
         private authSvc: LoginService,
         private rentalSvc: RentalService,
-        private router: Router,
         public dialog: MatDialog
     ) { }
 
@@ -83,10 +80,11 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
             total: new FormControl(res),
             amount: new FormControl(0),
             days: new FormControl(0)
-        }, {
-            validators:
-                ownValidation.dateCorrect
-        });
+        })
+        // {
+        //     validators:
+        //         ownValidation.dateCorrect
+        // });
     };
 
     ngOnDestroy(): void {

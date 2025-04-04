@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+    --color-primary: #f44336;
+    --color-secondary: #2196f3;
+    --color-accent: #ff9800;
+    --color-error: #d51a27;
+    --color-success: #4caf50;
+
+    --color-surface: #424242;
+    --color-background: #303030;
+    --color-background--2: #21212194;
+    --color-background-black: #171717;
+    --color-text--muted: #C9C9C9;
+    --color-text: #fff;
+}
+
 html,
 body {
     margin: 0;
@@ -7,18 +22,6 @@ body {
     background: #303030;
     color: #fff;
     box-sizing: border-box;
-}
-
-.formulario {
-    min-height: 68vh;
-    width: 600px;
-    /* border: 1px solid #777; */
-    background: #21212194;
-
-    border-radius: .5rem;
-    padding: 3rem;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    height: 1rem;
 }
 
 .main {

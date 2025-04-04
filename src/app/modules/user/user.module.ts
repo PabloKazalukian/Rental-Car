@@ -13,6 +13,9 @@ import { ModifyPassComponent } from 'src/app/components/user/modify-pass/modify-
 import { TokenInterceptor } from 'src/app/services/interceptor/token.interceptor';
 import { ModifyUserComponent } from 'src/app/components/user/modify-user/modify-user.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -51,7 +54,10 @@ const routes: Routes = [
         MatTableModule,
         MatProgressSpinnerModule,
         MatButtonModule,
-        MatInputModule
+        MatInputModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatFormFieldModule,
 
     ],
     providers: [

@@ -24,10 +24,10 @@ export const isDateHigher = (date1: string | Date, date2: string | Date, includ:
 
 
     const format: string = 'D/M/YYYY'
-    const momentDate1 = moment(date1, format);
-    const momentDate2 = moment(date2, format);
+    const momentDate1 = moment(date1);
+    const momentDate2 = moment(date2);
 
-
+    // console.log(momentDate1.toString(), momentDate2.toDate())
     return includ ? momentDate1.isSameOrAfter(momentDate2) : momentDate1.isAfter(momentDate2);
 };
 

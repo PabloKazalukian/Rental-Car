@@ -6,6 +6,9 @@ import { RentalService } from 'src/app/services/rental.service';
 import { delay, tap, take } from "rxjs/operators";
 import { usuario } from 'src/app/core/models/user.interface';
 import { UserComponent } from '../user.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
     selector: 'app-table-rental',
@@ -20,6 +23,7 @@ export class TableRentalComponent implements OnInit {
     show!: boolean
     request!: requestReceived[]
     dataSource!: requestReceived[];
+    dataSourceComplete!: requestReceived[];
     displayedColumns: string[] = ['initial_date', 'final_date', 'brand', 'model', 'amount', 'modify'];
 
     constructor(private requestSvc: RentalService, private data: UserComponent) { }
@@ -32,56 +36,28 @@ export class TableRentalComponent implements OnInit {
                 this.data.readData().subscribe(e => {
                     if (e !== undefined) {
                         this.dataSource = e;
+                        this.dataSourceComplete = e;
+                        console.log(e)
                         this.request = e;
                         this.show = false;
                     }
                 })
             )
             , 2000);
-        // this.dataSource.next(e=>console.log(e))
-
-        // if(this.user?.userId){
-        //   this.subscripcions.push(
-        //     this.requestSvc.getRequestByUserId(this.user.userId).pipe(
-        //       // delay(1700)
-        //     ).subscribe((res)=>{
-        //       console.log(res)
-        //       this.request=res;
-        //       const datejs:Date = new Date();
-        //       const jsFinalDate = `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`
-        //       this.dataSourcePast =  this.request.filter(r=>isDateHigher(r.final_date,false,jsFinalDate,true));
-        //       console.log(this.dataSourcePast);
-        //       this.dataSourcePast.forEach(r=>{
-        //           if(r.state==='req'){
-        //             this.completeRequest(r);
-        //             r.state= 'con';
-        //           }
-        //       })
-        //       this.dataSource = this.request;
-
-        //       setTimeout(()=> {
-        //         this.show=false;
-        //       },1700)
-        //     })
-        //   )
-
-        // }
     };
 
 
-    // completeRequest(request:request):void{
-    //   this.subscripcions.push(
-    //     this.requestSvc.confirmRequestByIdRequest(request.id_request).subscribe({
-    //       next: (res)=>{
-    //         // element.state = 'con';
-    //         console.log(res);
-    //       },
-    //       error: (res)=>{
-    //         // this.login=false
-    //       },
-    //     })
-    //   )
-    // }
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        console.log(filterValue)
+        if (filterValue) {
+            this.dataSource = this.dataSourceComplete.filter(({ car_id }) => car_id.model.toLowerCase().includes(filterValue) || car_id.brand.toLowerCase().includes(filterValue.toLowerCase()));
+        } else {
+            this.dataSource = this.dataSourceComplete
+        }
+        // this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
 
     cancelRequest(element: any): void {
         // element.state = 'cancel';
@@ -102,6 +78,7 @@ export class TableRentalComponent implements OnInit {
     confirmRequest(element: any): void {
         // confirmRequestByIdRequest
         // element.state = 'can'
+        console.log(element.id)
         this.subscripcions.push(
             this.requestSvc.confirmRequestByIdRequest(element.id).subscribe({
                 next: (res) => {

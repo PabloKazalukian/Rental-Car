@@ -1,3 +1,5 @@
+import { Car } from "./car.interface"
+
 export interface request {
     id_request: number,
     initialDate: string,
@@ -22,6 +24,7 @@ export interface requestReceived {
     amount: number,
     brand: string,
     finalDate: string,
+    car_id: Car,
     id: string,
     initialDate: string,
     model: string,
