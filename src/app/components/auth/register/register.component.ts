@@ -13,8 +13,8 @@ import { repeatPass } from 'src/app/shared/repeatPass.validator';
 export class RegisterComponent implements OnInit, OnDestroy {
 
     registerForm!: FormGroup;
-    success: boolean = false
-    error: boolean = false
+    success: boolean = false;
+    error: boolean = false;
     private subscripcions: Subscription[] = [];
     imageUrl: string = 'assets/images/logo-no-background.png';
     imageBackground: string = 'assets/images/superdeportivo_optimized.jpg';

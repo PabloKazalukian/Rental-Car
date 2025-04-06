@@ -19,8 +19,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FormularioComponent } from './components/contact/formulario/formulario.component';
 import { HomeComponent } from './components/home/home.component';
 import { Error404Component } from './components/error404/error404.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { CarApplicationComponent } from './components/car-application/car-application.component';
 import { DialogLoggedComponent } from './components/cars/show-car/dialog-logged/dialog-logged.component';
@@ -40,6 +40,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormClassDirective } from './shared/form-class.directive';
+import { AuthComponent } from './components/auth/auth.component';
+import { SuccessComponent } from './components/shared/success/success.component';
+import { ErrorComponent } from './components/shared/error/error.component';
 
 
 @NgModule({
@@ -63,6 +66,9 @@ import { FormClassDirective } from './shared/form-class.directive';
         HowToUseComponent,
         ModifyUserComponent,
         FormClassDirective,
+        AuthComponent,
+        SuccessComponent,
+        ErrorComponent,
     ],
     imports: [
         BrowserModule,

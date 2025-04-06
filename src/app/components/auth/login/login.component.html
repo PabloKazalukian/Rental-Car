@@ -1,0 +1,53 @@
+<div class="">
+    <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
+        <form *ngIf="this.login !==true" class="formulario " (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+            <div class="titulo">
+                <h2 class=""> Inicie sesión </h2>
+            </div>
+            <div class="mb-4 ">
+                <mat-form-field class="input-form-field" appearance="fill">
+                    <mat-label>Email o nombre de usuario</mat-label>
+                    <input matInput placeholder="pat@example.com" id="email" name="email" formControlName="email"
+                        required>
+                    <mat-error
+                        *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['minlength'] ">Este
+                        Campo es requerido</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="mb-4 ">
+                <mat-form-field appearance="fill">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" id="password" name="password" required
+                        formControlName="password">
+                    <mat-error *ngIf="contactForm.get('password')?.errors?.['minlength']">Este
+                        Campo es requerido</mat-error>
+
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="contentCheckbox">
+                        <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordarme
+                        </mat-checkbox>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <a mat-link href="#" class="forgotPassword">Olvidé mi contraseña</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-end">
+                <button type="submit" mat-raised-button color="warn" [disabled]="contactForm.invalid">Enviar</button>
+            </div>
+        </form>
+        <div *ngIf="this.login === true" class="formulario">
+            <app-success [text]="'Sesión iniciada con exito!'"></app-success>
+            <!-- <h2 class="alert alert-primary">Sesión iniciada con exito!</h2> -->
+        </div>
+        <div *ngIf="this.login === false" class="">
+            <h2 class="alert alert-danger">Hubo un problema con su inicio de sesión.</h2>
+        </div>
+    </app-auth>
+</div>

@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoginService } from './../../services/login.service';
+import { LoginService } from './../../../services/login.service';
 
 
 @Component({
@@ -13,12 +13,12 @@ import { LoginService } from './../../services/login.service';
 export class LoginComponent implements OnInit, OnDestroy {
 
     contactForm!: FormGroup;
-    login!: boolean
+    login!: boolean;
     private subscripcions: Subscription[] = [];
     showPas: boolean = false;
     remember: boolean = false;
     @ViewChild('MyRef') passwordInput!: ElementRef;
-    hide = true;
+    hide: boolean = true;
 
     constructor(private readonly fb: FormBuilder, private authSvc: LoginService, private router: Router) { }
 

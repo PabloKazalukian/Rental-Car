@@ -1,14 +1,5 @@
-.container_login {
+/* .container_login {
     min-height: 68vh;
-}
-
-.contentInput label {
-    font-size: 18px;
-}
-
-/* .formulario {
-    width: 600px;
-    margin-bottom: 2.5rem;
 } */
 
 .mat-form-field {
@@ -27,7 +18,21 @@
     color: #fff222;
 }
 
-@media (max-width: 625px) {
+.titulo {
+    /* border-radius: .5em; */
+    margin-bottom: 1em;
+    width: 100%;
+    /* background-color: var(--color-primary); */
+    color: var(--color-text);
+}
+
+.titulo h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 2rem 0px;
+}
+
+/* @media (max-width: 625px) {
     .formulario {
         width: 400px;
     }
@@ -37,4 +42,4 @@
     .formulario {
         width: 200px;
     }
-}
+} */
