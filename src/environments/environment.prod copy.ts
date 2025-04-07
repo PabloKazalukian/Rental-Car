@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    api: 'https://api-rental-car.herokuapp.com'
+    api: 'https://web-production-6900.up.railway.app/'
 };
