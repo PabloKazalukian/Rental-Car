@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    overflow-x: scroll;
 }
 
 .td_amount {
@@ -17,6 +18,10 @@ table {
 
 .confirmBtn {
     background: #2f51b5;
+}
+
+.mat-paginator-container {
+    min-width: 462px;
 }
 
 @media (max-width: 954px) {

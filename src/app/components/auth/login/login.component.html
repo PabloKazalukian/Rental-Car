@@ -44,10 +44,9 @@
         </form>
         <div *ngIf="this.login === true" class="formulario">
             <app-success [text]="'Sesión iniciada con exito!'"></app-success>
-            <!-- <h2 class="alert alert-primary">Sesión iniciada con exito!</h2> -->
         </div>
         <div *ngIf="this.login === false" class="">
-            <h2 class="alert alert-danger">Hubo un problema con su inicio de sesión.</h2>
+            <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
         </div>
     </app-auth>
 </div>

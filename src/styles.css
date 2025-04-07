@@ -15,9 +15,33 @@
     --color-text: #fff;
 }
 
+html {
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+* {
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+/* 
+.container {
+    max-width: 100vw;
+    overflow-x: hidden;
+} */
+
 html,
 body {
     margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background: #303030;
     color: #fff;
@@ -40,4 +64,10 @@ body {
 input {
     transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
     /* Evita cambios de color bruscos */
+}
+
+@media (max-width: 365px) {
+    .main {
+        padding: 0px 2rem;
+    }
 }

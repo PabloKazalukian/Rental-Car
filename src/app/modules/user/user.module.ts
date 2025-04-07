@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -50,6 +51,7 @@ const routes: Routes = [
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
+        SharedModule,
         ReactiveFormsModule,
         MatTableModule,
         MatProgressSpinnerModule,

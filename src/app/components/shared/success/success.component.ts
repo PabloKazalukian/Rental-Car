@@ -1,18 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-success',
     templateUrl: './success.component.html',
     styleUrls: ['./success.component.css']
 })
-export class SuccessComponent implements OnInit {
+
+export class SuccessComponent {
 
 
     @Input() text: string = '';
-
-    constructor() { }
-
-    ngOnInit(): void {
-    }
 
 }

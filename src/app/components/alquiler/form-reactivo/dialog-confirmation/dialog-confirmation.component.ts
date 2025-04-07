@@ -15,7 +15,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    success: boolean = false;
+    success: boolean = true;
     loading: boolean = false;
     // complete:boolean=false
 
@@ -28,7 +28,6 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
     ) { };
 
     ngOnInit(): void {
-        // console.log(this.data);
     };
 
     request(): void {

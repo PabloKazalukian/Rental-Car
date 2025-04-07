@@ -4,6 +4,13 @@
     box-sizing: content-box;
 }
 
+.container__table {
+    width: 100%;
+    overflow-x: auto;
+    /* ⬅ solo aparece la barra si el contenido se pasa */
+    overflow-y: hidden;
+}
+
 @media (max-width: 768px) {
     .contenedor_user {
         padding: 0px;

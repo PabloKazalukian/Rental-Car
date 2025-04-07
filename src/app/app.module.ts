@@ -41,8 +41,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormClassDirective } from './shared/form-class.directive';
 import { AuthComponent } from './components/auth/auth.component';
-import { SuccessComponent } from './components/shared/success/success.component';
-import { ErrorComponent } from './components/shared/error/error.component';
+import { SharedModule } from './modules/shared/shared.module';
 
 
 @NgModule({
@@ -67,8 +66,6 @@ import { ErrorComponent } from './components/shared/error/error.component';
         ModifyUserComponent,
         FormClassDirective,
         AuthComponent,
-        SuccessComponent,
-        ErrorComponent,
     ],
     imports: [
         BrowserModule,
@@ -92,7 +89,8 @@ import { ErrorComponent } from './components/shared/error/error.component';
         MatCheckboxModule,
         MatFormFieldModule,
         MatInputModule,
-        MatIconModule
+        MatIconModule,
+        SharedModule
     ],
     providers: [
         {

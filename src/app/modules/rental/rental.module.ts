@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogConfirmationComponent } from 'src/app/components/alquiler/form-reactivo/dialog-confirmation/dialog-confirmation.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '../shared/shared.module';
 
 
 const routes: Routes = [
@@ -33,13 +34,12 @@ const routes: Routes = [
         AlquilerComponent,
         FormReactivoComponent,
         CalendarComponent,
-        DialogConfirmationComponent
-
-
+        DialogConfirmationComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
         CommonModule,
+        SharedModule,
         MatDatepickerModule,
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -48,7 +48,6 @@ const routes: Routes = [
         MatNativeDateModule,
         MatDialogModule,
         MatInputModule
-
     ]
 })
 export class RentalModule { }

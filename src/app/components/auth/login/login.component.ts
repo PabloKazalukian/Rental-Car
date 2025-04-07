@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     contactForm!: FormGroup;
     login!: boolean;
+    // login: boolean = true;
     private subscripcions: Subscription[] = [];
     showPas: boolean = false;
     remember: boolean = false;
@@ -26,12 +27,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         const credentials = this.authSvc.getCredentials();
         this.contactForm = this.initForm();
-        console.log(credentials)
         this.remember = credentials.remember;
+
         if (this.remember) {
             this.contactForm.patchValue({ email: credentials.username, password: credentials.password });
         }
-    }
+    };
 
     onSubmit(): void {
 
@@ -50,10 +51,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                     this.login = false
                 },
             })
-
         )
+    };
 
-    }
     initForm(): FormGroup {
         //declarar las propiedas que tendran nuestro formulario
         return this.fb.group({
@@ -61,18 +61,18 @@ export class LoginComponent implements OnInit, OnDestroy {
             // Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
             password: ['', [Validators.required, Validators.minLength(3)]],
         })
-    }
+    };
 
     showPassword(event: boolean) {
         event ? this.passwordInput.nativeElement.type = "text" : this.passwordInput.nativeElement.type = "password"
-    }
+    };
 
     rememberMe(event: boolean) {
         this.remember = event;
-    }
+    };
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
-    }
+    };
 
 }

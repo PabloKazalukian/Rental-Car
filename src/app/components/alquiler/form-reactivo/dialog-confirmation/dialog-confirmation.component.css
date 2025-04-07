@@ -3,5 +3,17 @@ strong {
 }
 
 .loggedBody {
-    width: 450px;
+    max-width: 650px;
+    height: 400px;
+    display: flex;
+    align-items: center;
 }
+
+@media (max-width: 425px) {
+    .loggedBody {
+        padding: 0px 4px;
+    }
+
+}
+
+@media (max-width: 320px) {}

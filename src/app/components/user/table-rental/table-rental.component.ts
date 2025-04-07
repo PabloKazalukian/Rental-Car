@@ -37,7 +37,6 @@ export class TableRentalComponent implements OnInit {
                     if (e !== undefined) {
                         this.dataSource = e;
                         this.dataSourceComplete = e;
-                        console.log(e)
                         this.request = e;
                         this.show = false;
                     }
@@ -50,7 +49,7 @@ export class TableRentalComponent implements OnInit {
 
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
-        console.log(filterValue)
+        // console.log(filterValue)
         if (filterValue) {
             this.dataSource = this.dataSourceComplete.filter(({ car_id }) => car_id.model.toLowerCase().includes(filterValue) || car_id.brand.toLowerCase().includes(filterValue.toLowerCase()));
         } else {

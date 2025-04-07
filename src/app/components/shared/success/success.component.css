@@ -11,7 +11,7 @@ img {
     border-radius: .5rem;
     height: 100%;
     z-index: 1;
-    min-width: 260px;
+    min-width: 200px;
     /* overflow: hidden; */
 }
 
@@ -25,7 +25,7 @@ img {
     height: 2.5vw;
     max-height: 25px;
     background-color: var(--color-success);
-    z-index: 0;
+    z-index: 2;
     border-radius: 0px 0px 40px 40px;
     /* box-shadow: 0 2px 6px rgba(200, 10, 01, 0.1); */
 }
@@ -38,6 +38,8 @@ img {
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+    background: var(--color-background);
+    border-radius: 100%;
 }
 
 .success-message__content {
@@ -47,9 +49,10 @@ img {
     justify-content: center;
     align-items: center;
     gap: 1em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-.success-message__content__menssage {
+.success-message__content__message {
     background: var(--color-success);
     width: 100%;
     /* text-align: center; */
@@ -59,11 +62,11 @@ img {
     height: 40px;
 }
 
-.success-message__menssage_under h4 {
+.success-message__message_under h4 {
     color: var(--color-text--muted)
 }
 
-.success-message__content__menssage h4 {
+.success-message__content__message h4 {
     font-size: 1.2rem;
     margin: 0px;
 }
@@ -182,9 +185,20 @@ img {
 @media (max-width: 768px) {
 
     .success-message__icon {
-        top: -10vh;
+        top: -6vh;
     }
 
+    img {
+        width: 8em;
+    }
+
+    .success-message__content {
+        padding-top: 5rem;
+    }
+
+    .success-message__title {
+        font-size: 1.6rem;
+    }
 
     .success-message {
         margin-top: 4rem;
@@ -192,8 +206,30 @@ img {
 
 }
 
-@media (max-width: 320px) {
+@media (max-width: 365px) {
     .success-message__icon {
-        top: -6vh;
+        top: -4vh;
     }
+
+    .success-message__content {
+        padding-top: 3rem;
+    }
+
+    img {
+        width: 4em;
+    }
+
+    .success-message__content__message h4 {
+        font-size: .9rem;
+    }
+
+    .success-underline {
+        transform: translate(10px);
+    }
+
+    .success-message__title {
+        font-size: 1.2rem;
+        margin: 0px;
+    }
+
 }
