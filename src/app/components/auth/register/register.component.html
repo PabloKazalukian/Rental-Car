@@ -1,6 +1,6 @@
-<div *ngIf="!this.error && !this.success" class="">
+<div class="">
     <app-auth [imageBackground]="'assets/images/superdeportivo_optimized.jpg'">
-        <form class="item-1" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+        <form *ngIf="!this.error && !this.success" class="item-1" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
 
             <div class="titulo">
                 <h2> Crea una cuenta </h2>
@@ -69,29 +69,20 @@
             </div>
 
         </form>
-    </app-auth>
-</div>
-
-<div *ngIf="this.success" class="marginTop">
-    <div class="container mt-5 ">
-        <h2 class="mt-5">
-            Bienvenido {{registerForm.value.username}}!
-        </h2>
-        <h2 class="mt-5 alert alert-primary">
-            Formulario Completado correctamente
-        </h2>
-    </div>
-</div>
-
-<div *ngIf="this.error">
-    <div class="container mt-5 errorcontainer">
-        <div class="d-flex flex-column justify-content-center mt-5">
-            <h1>Ocurrio un error Inesperado</h1>
-            <div>
-                <button class="btn btn-danger">
-                    <a class="navbar-brand fs-3 fw-bold  text-white mx-0" routerLink="">Rental-Car</a>
-                </button>
+        <div *ngIf="this.success " class="formulario">
+            <app-success [text]="'Sesión iniciada con exito!'"></app-success>
+        </div>
+        <div *ngIf="this.error">
+            <div class="container mt-5 errorcontainer">
+                <div class="d-flex flex-column justify-content-center mt-5">
+                    <h1>Ocurrio un error Inesperado</h1>
+                    <div>
+                        <button class="btn btn-danger">
+                            <a class="navbar-brand fs-3 fw-bold  text-white mx-0" routerLink="">Rental-Car</a>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </app-auth>
 </div>

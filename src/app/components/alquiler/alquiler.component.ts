@@ -17,12 +17,15 @@ export class AlquilerComponent implements OnInit, OnDestroy {
 
     idCar!: string;
     idUser?: string;
-    cars!: Car
-    autos!: Car[]
+    cars!: Car;
+    autos!: Car[];
+    imageLoaded = false;
 
     constructor(private readonly route: ActivatedRoute, private readonly carSvc: CarService, private userSvc: LoginService) { }
 
     ngOnInit(): void {
+
+        this.imageLoaded = false;
 
         this.subscripcions.push(
             this.route.queryParams.subscribe(
@@ -42,6 +45,13 @@ export class AlquilerComponent implements OnInit, OnDestroy {
             )
         );
     };
+
+    onImageLoad(): void {
+        // Forzar 2 segundos antes de mostrar la imagen
+        setTimeout(() => {
+            this.imageLoaded = true;
+        }, 1700);
+    }
 
     ngOnDestroy(): void {
         this.subscripcions.forEach(sub => sub.unsubscribe());

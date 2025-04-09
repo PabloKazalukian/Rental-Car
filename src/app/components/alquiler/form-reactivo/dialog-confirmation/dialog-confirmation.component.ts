@@ -15,7 +15,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    success: boolean = true;
+    success: boolean = false;
     loading: boolean = false;
     // complete:boolean=false
 

@@ -1,13 +1,13 @@
-.alquiler {
+.rental__container__spacing {
     min-height: 66vh;
 }
 
-.img_Car {
+.rental__image__car {
     width: 100%;
-    height: 12rem;
+    height: 17rem;
 }
 
-.alquiler_form {
+.rental__form__container {
     background: #353535;
     border-radius: 15px;
     backdrop-filter: blur(3px);
@@ -15,77 +15,130 @@
     box-shadow: rgba(0, 0, 9, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-.contentCard {
+.rental__card__content {
     display: grid;
     width: 100%;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    grid-template-areas: "img img"
-        "name name"
-        "price year";
-    padding-bottom: 14px;
+    grid-template-areas:
+        "wrapper"
+        "model"
+        "button";
+    /* padding-bottom: 14px; */
     border-radius: 12px;
     background: #d1d1d1;
+    height: 458px;
+    overflow: hidden;
     position: relative;
 }
 
-.contentCard h2 {
+.rental__card__content::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--color-background-black);
+    z-index: 0;
+    animation: fillBackgroundUp 1.5s ease-out forwards;
+    /* border-radius: 10px; */
+}
+
+.rental__card__content>* {
+    position: relative;
+    z-index: 1;
+}
+
+.rental__card__content h2 {
     margin-bottom: 1px;
     text-align: center;
 }
 
-.contentCard label {
+.rental__card__content label {
     text-align: center;
     width: 100%;
 }
 
-.dataImg {
-    grid-area: img;
+.rental__image__wrapper {
+    grid-area: wrapper;
+    height: 14rem;
     box-shadow: 0 0 88px 0 rgba(0, 0, 0, 0.1607843137254902);
 }
 
-.dataName {
+.rental__info__model {
+    grid-area: model;
+    display: grid;
+    grid-template-areas:
+        "name name"
+        "price year";
+    background: var(--color-background-black);
+    border-bottom: 2px solid #353535;
+    /* height: 100px; */
+}
+
+.rental__info__name {
     grid-area: name;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    background: #222;
-    border-bottom: 2px solid #353535;
-    height: 100px;
+    align-items: center;
+    justify-content: center;
+
 }
 
-.dataPrice {
+.rental__info__price {
     grid-area: price;
-    padding-top: 5px;
-    background: #f44336;
+    /* padding-top: 5px; */
+    background: var(--color-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }
 
-.dataYear {
+.rental__info__year {
     grid-area: year;
-    padding-top: 5px;
+    /* width: 208px; */
 
-    background: #d51a27;
+    /* padding-top: 5px; */
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    /* font-weight: 800; */
 }
 
-.dataName label {
-    color: #666;
+
+.rental__info__model label {
+    color: var(--color-text--muted);
 }
 
-.buttonChangeCar {
-    position: absolute;
-    top: 106%;
-    left: 24%;
-    animation: moveUp .8s 1.6s forwards;
+.rental__info__year label {
+    color: var(--color-text)
 }
 
+.rental__info__button {
+    grid-area: button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rental__button__change-car {
+    /* animation: moveUp 0.8s 1.6s forwards; */
+}
 
 @media (max-width: 1440px) {
-    .img_Car {
+    .rental__image__car {
         height: 7.5rem;
     }
 
-    .contentCard {}
+    .rental__card__content {
+        /* Optional media-specific styling */
+    }
 }
 
 @keyframes moveUp {
@@ -97,5 +150,51 @@
         transform: translateY(-2rem);
         opacity: 1;
     }
-
 }
+
+@keyframes fillBackgroundUp {
+    0% {
+        height: 0%;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 17rem;
+    background: linear-gradient(90deg, #ccc 25%, #e0e0e0 50%, #ccc 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.rental__image__car.hidden {
+    display: none;
+}
+
+/* @keyframes slideUpFadeIn {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+        background-color: #d1d1d1;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        background-color: var(--color-background-black);
+    }
+} */
