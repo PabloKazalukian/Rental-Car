@@ -94,7 +94,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .rental__info__year {
@@ -110,7 +109,6 @@
     background: var(--color-primary);
     /* font-weight: 800; */
 }
-
 
 .rental__info__model label {
     color: var(--color-text--muted);
@@ -133,7 +131,7 @@
 
 @media (max-width: 1440px) {
     .rental__image__car {
-        height: 7.5rem;
+        /* height: 7.5rem; */
     }
 
     .rental__card__content {
