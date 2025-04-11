@@ -49,6 +49,10 @@
 }
 
 @media (max-width: 1440px) {
+    .layout {
+        min-height: 100vh;
+    }
+
     .item-form {
         padding: 0px 60px;
     }
@@ -66,6 +70,8 @@
         display: block;
         padding: 1rem;
         text-align: center;
+        /* min-height: calc(101vh - 4rem); */
+
         /* height: calc(80vh - 4rem); */
 
         /* opcional si querés centrar el contenido */
