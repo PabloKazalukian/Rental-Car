@@ -4,7 +4,7 @@
     </a>
     <span class="spacer"></span>
     <a *ngIf="!islogged" mat-button routerLink="registro">Registrarse</a>
-    <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario.username
+    <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario?.username
         }}</a>
     <a *ngIf="!islogged;else viewLogout" mat-button routerLink="login">Iniciar sesión</a>
     <a mat-button routerLink="/">Inicio</a>

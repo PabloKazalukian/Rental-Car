@@ -36,7 +36,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
     }
 
     logout(): void {
-        this.loginSvc.logout()
+        this.loginSvc.logout();
+        console.log(this.usuario);
         this.usuario = { username: '', sub: '', role: '' }
     }
 

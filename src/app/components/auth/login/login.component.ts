@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.subscripcions.push(
             this.authSvc.checkLogin(this.contactForm.value).subscribe({
                 next: (res) => {
+                    console.log(res);
                     if (this.remember) {
                         this.authSvc.saveCredentials({ remember: this.remember, username: this.contactForm.get('email')?.value, password: this.contactForm.get('password')?.value })
                     } else {

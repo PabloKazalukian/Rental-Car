@@ -4,8 +4,8 @@
 
 export const environment = {
     production: false,
-    // api: 'http://localhost:3001/api',
-    api: 'https://web-production-6900.up.railway.app/api'
+    api: 'http://localhost:3001/api',
+    // api: 'https://web-production-6900.up.railway.app/api'
 
 };
 

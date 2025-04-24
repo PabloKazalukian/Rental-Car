@@ -50,7 +50,7 @@ export class AlquilerComponent implements OnInit, OnDestroy {
         // Forzar 2 segundos antes de mostrar la imagen
         setTimeout(() => {
             this.imageLoaded = true;
-        }, 1700);
+        }, 1000);
     }
 
     ngOnDestroy(): void {
