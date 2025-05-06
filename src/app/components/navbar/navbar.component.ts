@@ -13,36 +13,59 @@ import { usuario } from '../../core/models/user.interface'
 })
 export class NavBarComponent implements OnInit, OnDestroy {
 
-    private subscripcions: Subscription[] = [];
+    private subscriptions: Subscription[] = [];
 
     islogged: boolean = true;
     token: usuario = { username: '', sub: '', role: '' };
     usuario!: usuario | { username: '', sub: '', role: '' };
 
     constructor(private loginSvc: LoginService) {
-        this.subscripcions.push(
+        this.subscriptions.push(
             this.loginSvc.isLoggin().subscribe(res => this.islogged = res)
         )
     }
 
     ngOnInit(): void {
         this.accesstoken()
+        // this.subscriptions.push(
+        //     this.loginSvc.test().subscribe({
+        //         next: (res: any) => {
+        //             console.log(res);
+
+        //         },
+        //         error: (res: any) => {
+        //             console.log(res);
+        //         }
+        //     })
+        // )
     }
 
     accesstoken(): void {
-        this.subscripcions.push(
+        this.subscriptions.push(
             this.loginSvc.readToken().subscribe(res => this.usuario = res)
         )
     }
 
     logout(): void {
-        this.loginSvc.logout();
-        console.log(this.usuario);
+        this.subscriptions.push(
+            this.loginSvc.logout().subscribe({
+                next: (res: any) => {
+                    console.log(res);
+                    this.islogged = false;
+                },
+                error: (res: any) => {
+                    console.log(res);
+                }
+            }
+
+            )
+        );
+
         this.usuario = { username: '', sub: '', role: '' }
     }
 
     ngOnDestroy(): void {
-        this.subscripcions.forEach(sub => sub.unsubscribe());
+        this.subscriptions.forEach(sub => sub.unsubscribe());
     }
 
 }

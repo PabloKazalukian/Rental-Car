@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CarApplicationComponent } from './components/car-application/car-application.component';
+import { CallbackComponent } from './components/auth/callback/callback.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
         // resolve:{car:DataResolverService}
     },
     { path: 'login', component: LoginComponent },
+    { path: 'callback', component: CallbackComponent },
     { path: 'registro', component: RegisterComponent },
     {
         path: 'usuario',

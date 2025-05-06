@@ -41,6 +41,12 @@
             <div class="d-flex justify-content-end align-items-end">
                 <button type="submit" mat-raised-button color="warn" [disabled]="contactForm.invalid">Enviar</button>
             </div>
+
+            <button type="button" (click)="loginWithGoogle()" class="google-btn">
+                <img src="assets/images/Google__G__logo.svg" alt="Google logo" class="google-logo" />
+                Iniciar sesión con Google
+            </button>
+
         </form>
         <div *ngIf="this.login === true" class="formulario">
             <app-success [text]="'Sesión iniciada con exito!'"></app-success>

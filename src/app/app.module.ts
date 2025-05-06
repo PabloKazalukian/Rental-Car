@@ -42,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormClassDirective } from './shared/form-class.directive';
 import { AuthComponent } from './components/auth/auth.component';
 import { SharedModule } from './modules/shared/shared.module';
+import { CallbackComponent } from './components/auth/callback/callback.component';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { SharedModule } from './modules/shared/shared.module';
         ModifyUserComponent,
         FormClassDirective,
         AuthComponent,
+        CallbackComponent,
     ],
     imports: [
         BrowserModule,
@@ -97,7 +99,7 @@ import { SharedModule } from './modules/shared/shared.module';
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true,
-        },
+        }
     ],
     bootstrap: [AppComponent],
 })

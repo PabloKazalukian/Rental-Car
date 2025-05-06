@@ -19,7 +19,7 @@ export class PermissionsGuard implements CanActivate {
     };
 
     hasUser(): boolean {
-        if (sessionStorage.getItem('token')) return true;
+        if (localStorage.getItem('token')) return true;
         else return false;
     };
 

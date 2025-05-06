@@ -6,6 +6,8 @@ export const environment = {
     production: false,
     api: 'http://localhost:3001/api',
     // api: 'https://web-production-6900.up.railway.app/api'
+    // googleClientId: '921923361549-79nce09047kbsct3pludii7lojmc229u.apps.googleusercontent.com'
+    googleClientId: '921923361549-msk10ulmksa5uqkrjhne7n4roj7a7hkc.apps.googleusercontent.com'
 
 };
 

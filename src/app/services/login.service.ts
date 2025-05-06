@@ -1,9 +1,7 @@
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, throwError } from 'rxjs';
-import { Car } from '../core/models/car.interface';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject, catchError, from, map, Observable, of, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login, LoginResponde } from '../core/models/login.interface';
 import { credentialsUser, usuario } from '../core/models/user.interface';
@@ -11,33 +9,30 @@ import { decrypt, encrypt } from '../shared/encryption.util';
 
 const helper = new JwtHelperService();
 
+declare global {
+    interface Window {
+        google?: any;
+    }
+}
+
 @Injectable({
     providedIn: 'root',
 })
 export class LoginService {
     private loggetIn = new BehaviorSubject<boolean>(false);
-    private user = new BehaviorSubject<usuario>({ username: '', sub: '', role: "" });
+    private user = new BehaviorSubject<usuario>({ username: '', sub: '', role: '' });
+    private userGoogle = new BehaviorSubject<any>({});  // Replace SocialUser with any, since we're dealing with raw data now.
 
-    private readonly API = `${environment.api}/auth/login`;
+    private readonly API = `${environment.api}/auth`;
     token?: string;
 
     constructor(private readonly http: HttpClient) {
         this.checkToken();
+        this.test();
     }
 
-    // checkLogin(form: Login): Observable<boolean | void> {
-    //     return this.http.post<LoginResponde>(this.API, form).pipe(
-    //         map((res: LoginResponde) => {
-    //             this.saveToken(res.accessToken);
-    //             this.loggetIn.next(true);
-    //             if (res) return true;
-    //             else return false;
-    //         })
-    //     );
-    // }
-
     checkLogin(form: Login): Observable<boolean | void> {
-        return this.http.post<LoginResponde>(this.API, form, { withCredentials: true }).pipe(
+        return this.http.post<LoginResponde>(`${this.API}/login`, form, { withCredentials: true }).pipe(
             map((res: LoginResponde) => {
                 // Ya no guardamos el token, el backend lo guarda como cookie
                 this.saveToken(res.accessToken);
@@ -47,28 +42,44 @@ export class LoginService {
         );
     }
 
+    test(): Observable<boolean> {
+        return this.http.get<string>(`${this.API}/me`, { withCredentials: true }).pipe(
+            map(response => {
+                if (response && response) {
+                    this.saveToken(response);
+                    return true;
+                }
+                return false;
+            }),
+            catchError(error => {
+                console.error('Token inválido o expirado:', error);
+                this.logout();
+                return of(false);
+            })
+        );
+    }
+
     isLoggin(): Observable<boolean> {
         return this.loggetIn.asObservable();
     }
 
-    logout(): void {
-        sessionStorage.removeItem('user');
-        sessionStorage.removeItem('token');
-
+    logout(): Observable<void> {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
         this.loggetIn.next(false);
+        return this.http.get<void>(`${this.API}/logout`, { withCredentials: true }).pipe(map(response => response));
     }
 
     private checkToken(): void {
-        const userToken = sessionStorage.getItem('token');
+        const userToken = localStorage.getItem('token');
         if (userToken !== null) {
             const isExpired = helper.isTokenExpired(userToken);
             !isExpired ? this.loggetIn.next(true) : this.logout();
         }
-        //set userIsLogged = isExpired
     }
 
     readToken(): Observable<usuario> {
-        const encryptedUser = sessionStorage.getItem('user');
+        const encryptedUser = localStorage.getItem('user');
 
         if (encryptedUser) {
             const decryptedUser = decrypt(encryptedUser);
@@ -87,25 +98,22 @@ export class LoginService {
             role: decoded.role,
         };
 
-        // Guardar user en sessionStorage encriptado
+        // Guardar user en localStorage encriptado
         const encryptedUser = encrypt(JSON.stringify(user));
-        sessionStorage.setItem('user', encryptedUser);
-        sessionStorage.setItem('token', token);
+        localStorage.setItem('user', encryptedUser);
+        localStorage.setItem('token', token);
 
         this.user.next(user);
         this.loggetIn.next(true);
     }
 
-    // getToken(): string | null {
-    //     const userToken = sessionStorage.getItem('user');
+    // Nueva implementación para login con Google Identity Services
 
-    //     return userToken;
-    // }
 
     getCredentials(): { remember: boolean, username: string | null, password: string | null } {
-        const remember = sessionStorage.getItem('remember') === 'true';
-        const usernameEncrypted = sessionStorage.getItem('username');
-        const passwordEncrypted = sessionStorage.getItem('password');
+        const remember = localStorage.getItem('remember') === 'true';
+        const usernameEncrypted = localStorage.getItem('username');
+        const passwordEncrypted = localStorage.getItem('password');
         return {
             remember,
             username: usernameEncrypted ? decrypt(usernameEncrypted) : null,
@@ -114,15 +122,15 @@ export class LoginService {
     }
 
     saveCredentials(credentials: credentialsUser): void {
-        sessionStorage.setItem('remember', credentials.remember ? 'true' : 'false');
-        sessionStorage.setItem('username', encrypt(credentials.username));
-        sessionStorage.setItem('password', encrypt(credentials.password));
+        localStorage.setItem('remember', credentials.remember ? 'true' : 'false');
+        localStorage.setItem('username', encrypt(credentials.username));
+        localStorage.setItem('password', encrypt(credentials.password));
     }
 
     removeCredentials(): void {
-        sessionStorage.setItem('remember', 'false');
-        sessionStorage.removeItem('username');
-        sessionStorage.removeItem('password');
+        localStorage.setItem('remember', 'false');
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
     }
-
 }
+
