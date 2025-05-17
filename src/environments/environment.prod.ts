@@ -1,4 +1,6 @@
 export const environment = {
-    production: true,
-    api: 'https://web-production-6900.up.railway.app/api'
+  production: true,
+  // api: 'https://web-production-6900.up.railway.app/api'
+  api: 'https://api-rental-car-9niy.onrender.com/api'
+
 };
