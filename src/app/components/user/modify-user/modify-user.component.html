@@ -1,51 +1,64 @@
-<div class="marginTop main contenedor_User">
-    <div *ngIf="!this.error && !this.success">
+<div class="container__login">
+    <!-- <div *ngIf="!this.error && !this.success"> -->
+    <app-auth [imageBackground]="'assets/images/bugatti_optimized.jpg'">
 
-        <h2>Modificar Usuario</h2>
         <form (ngSubmit)="onSubmit()" [formGroup]="modifyUser">
-            <div class="mb-4">
-                <label for="username" class="form-label">Ingrese una nuevo Nombre de usuario</label>
-                <input type="text" class="form-control" id="username" name="username" required
-                    formControlName="username">
-                <div *ngIf="modifyUser.get('username')?.touched && modifyUser.get('username')?.errors?.['minlength']"
-                    class="alert alert-danger">Este Campo es requerido</div>
-            </div>
-            <div class="mb-4">
-                <label for="email" class="form-label">Ingrese un nuevo Email</label>
-                <input type="email" class="form-control" id="email" name="email" required formControlName="email">
-                <!-- <div *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['minlength']" class="alert alert-danger">Este Campo es requerido</div> -->
-                <div *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['pattern']"
-                    class="alert alert-danger">Este Campo es requerido</div>
-                <div *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['emailExist'] "
-                    class="alert alert-danger">Email existente</div>
+            <!-- <h2>Modificar Usuario</h2> -->
+            <div class="titulo">
+                <h2 class=""> Modifique su usuario </h2>
             </div>
 
-            <button type="submit" class="btn btn-primary float-end" [disabled]="modifyUser.invalid">Enviar</button>
+            <app-form-input name="username" label="Ingrese un nuevo Nombre de usuario" placeholder="nombre de usuario"
+                [control]="modifyUser.get('username')!" [errorMessages]="{
+      required: 'Este campo es requerido',
+      minlength: 'Debe tener al menos 3 caracteres'
+    }"></app-form-input>
+
+            <app-form-input name="email" label="Ingrese un nuevo email" placeholder="pat@example.com"
+                [control]="modifyUser.get('email')!" [errorMessages]="{
+      required: 'Este campo es requerido',
+      pattern: 'Formato de email inválido',
+      emailExist: 'Email existente'
+    }"></app-form-input>
+
+            <div class="d-flex justify-content-end align-items-end">
+                <app-form-button text="Enviar" color="warn" [disabled]="modifyUser.invalid"></app-form-button>
+            </div>
+            <!-- <div class="mb-4 ">
+                <mat-form-field class="input-form-field" appearance="fill">
+                    <mat-label>Ingrese una nuevo Nombre de usuario</mat-label>
+                    <input matInput placeholder="nombre de usuario" id="username" name="username"
+                        formControlName="username" required>
+                    <mat-error
+                        *ngIf="modifyUser.get('username')?.touched && modifyUser.get('username')?.errors?.['minlength']"
+                        class="alert alert-danger">Este Campo es requerido</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="mb-4 ">
+                <mat-form-field class="input-form-field" appearance="fill">
+                    <mat-label>Ingrese una nuevo email</mat-label>
+                    <input matInput placeholder="pat@example.com" id="email" name="email" formControlName="email"
+                        required>
+                    <mat-error *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['pattern']"
+                        class="alert alert-danger">Este Campo es requerido</mat-error>
+                    <mat-error
+                        *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['emailExist'] "
+                        class="alert alert-danger">Email existente</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-end">
+                <button type="submit" mat-raised-button color="warn" [disabled]="modifyUser.invalid">Enviar</button>
+            </div> -->
 
         </form>
-    </div>
 
-    <div *ngIf="this.success" class="marginTop">
-        <div class="container mt-5 formulario">
-            <h2 class="mt-5">
-                Perfecto! {{modifyUser.value.username}}!
-            </h2>
-            <h2 class="mt-5 alert alert-primary">
-                Formulario Completado correctamente
-            </h2>
+        <div *ngIf="this.success === true" class="formulario">
+            <app-success [text]="'Sesión iniciada con exito!'"></app-success>
         </div>
-    </div>
-
-    <div *ngIf="this.error">
-        <div class="container mt-5 errorcontainer">
-            <div class="d-flex flex-column justify-content-center mt-5">
-                <h1>Ocurrio un error Inesperado</h1>
-                <div>
-                    <button class="btn btn-danger">
-                        <a class="navbar-brand fs-3 fw-bold  text-white mx-0" routerLink="">Rental-Car</a>
-                    </button>
-                </div>
-            </div>
+        <div *ngIf="this.error === true && this.success == false" class="">
+            <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
         </div>
-    </div>
+    </app-auth>
 </div>

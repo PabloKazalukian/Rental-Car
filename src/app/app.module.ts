@@ -43,6 +43,8 @@ import { FormClassDirective } from './shared/form-class.directive';
 import { AuthComponent } from './components/auth/auth.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { CallbackComponent } from './components/auth/callback/callback.component';
+import { FormInputComponent } from './components/shared/form-input/form-input.component';
+import { FormButtonComponent } from './components/shared/form-button/form-button.component';
 
 
 @NgModule({
@@ -68,6 +70,8 @@ import { CallbackComponent } from './components/auth/callback/callback.component
         FormClassDirective,
         AuthComponent,
         CallbackComponent,
+        FormInputComponent,
+        FormButtonComponent,
     ],
     imports: [
         BrowserModule,

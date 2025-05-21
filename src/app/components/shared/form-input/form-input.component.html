@@ -1,0 +1,16 @@
+<mat-form-field appearance="fill" class="input-form-field">
+    <mat-label>{{ label }}</mat-label>
+
+    <input matInput [type]="hideToggle ? (hide ? 'password' : 'text') : type" formControlName="name"
+        [placeholder]="placeholder" [id]="name" [name]="name" required />
+
+    <button *ngIf="hideToggle" type="button" mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+
+    <mat-error *ngFor="let key of errorKeys">
+        <span *ngIf="control.touched && control.hasError(key)">
+            {{ errorMessages[key] }}
+        </span>
+    </mat-error>
+</mat-form-field>

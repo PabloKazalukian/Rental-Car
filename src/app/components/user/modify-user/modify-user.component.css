@@ -1,3 +1,20 @@
-.contenedor_User {
+/* .contenedor_User {
     min-height: 65vh;
+} */
+.titulo {
+    /* border-radius: .5em; */
+    margin-bottom: 1em;
+    width: 100%;
+    /* background-color: var(--color-primary); */
+    color: var(--color-text);
+}
+
+.titulo h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 2rem 0px;
+}
+
+.mat-form-field {
+    display: block;
 }
