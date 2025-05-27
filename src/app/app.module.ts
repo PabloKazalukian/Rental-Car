@@ -45,6 +45,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { CallbackComponent } from './components/auth/callback/callback.component';
 import { FormInputComponent } from './components/shared/form-input/form-input.component';
 import { FormButtonComponent } from './components/shared/form-button/form-button.component';
+import { ScrollAnimateDirective } from './shared/scroll-animate.directive';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { FormButtonComponent } from './components/shared/form-button/form-button
         CallbackComponent,
         FormInputComponent,
         FormButtonComponent,
+        ScrollAnimateDirective,
     ],
     imports: [
         BrowserModule,

@@ -9,13 +9,15 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class CallbackComponent implements OnInit {
 
+    success: boolean = false;
+
     constructor(private router: Router, private authSvc: LoginService) { }
 
     ngOnInit(): void {
         this.authSvc.test().subscribe({
             next: (res: boolean) => {
-                console.log('completin', res);
                 if (res) {
+                    this.success = true;
                     setTimeout(() => {
                         this.router.navigate(['/home']);
                     }, 2000);

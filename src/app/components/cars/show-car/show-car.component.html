@@ -5,7 +5,9 @@
     </ng-template>
     <div *ngFor=" let autos of cars" class="d-inline">
         <div class="card card-background mat-elevation-z8 card_blur" style="width: 18rem;">
-            <img src='{{autos.image}}' class="card-img-top" alt="..." style="height: 11rem;">
+            <div class="image-container">
+                <img src='{{autos.image}}' class="card-img-top " alt="..." style="height: 11rem;">
+            </div>
             <div class="card-body">
                 <h5 class="card-title">{{autos.brand.toUpperCase()}}</h5>
                 <p class="card-text">Modelo: {{autos.model}}</p>
