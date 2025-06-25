@@ -15,10 +15,10 @@
             <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Este Campo es requerido</div>
         </div>
         <div class="mb-4">
-            <label for="comment" class="form-label">Comentario:</label>
-            <textarea name="comment" type="text" class="form-control" id="comemnt" name="comment"
-                [(ngModel)]="model.comment" required rows="4" #comment="ngModel"></textarea>
-            <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">Este Campo es requerido</div>
+            <label for="message" class="form-label">Comentario:</label>
+            <textarea name="message" type="text" class="form-control" id="comemnt" name="message"
+                [(ngModel)]="model.message" required rows="4" #message="ngModel"></textarea>
+            <div [hidden]="message.valid || message.pristine" class="alert alert-danger">Este Campo es requerido</div>
         </div>
         <button type="submit" class="btn btn-primary float-end" [disabled]="contactForm.invalid">Enviar</button>
 

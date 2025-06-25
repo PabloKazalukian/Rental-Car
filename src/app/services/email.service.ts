@@ -9,7 +9,7 @@ import { email } from '../core/models/email.interface';
 export class EmailService {
 
 
-    private readonly API = `${environment.api}/email/contact`;
+    private readonly API = `${environment.api}/email`;
 
 
     constructor(private readonly http: HttpClient) { }

@@ -5,7 +5,7 @@ import { EmailService } from 'src/app/services/email.service';
 interface contactForm {
     name: string,
     select: string,
-    comment: string,
+    message: string,
 }
 
 @Component({
@@ -20,7 +20,7 @@ export class FormularioComponent implements OnInit, OnDestroy {
     model: email = {
         name: '',
         email: '',
-        comment: ''
+        message: ''
     }
     error: boolean = false;
     success: boolean = false;
