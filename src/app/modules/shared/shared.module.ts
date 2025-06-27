@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ErrorComponent } from 'src/app/components/shared/error/error.component';
 import { SuccessComponent } from 'src/app/components/shared/success/success.component';
 import { MessageErrorComponent } from 'src/app/components/shared/message-error/message-error.component';
+import { LoadingComponent } from 'src/app/components/shared/loading/loading.component';
 
 
 
@@ -10,7 +11,8 @@ import { MessageErrorComponent } from 'src/app/components/shared/message-error/m
     declarations: [
         SuccessComponent,
         ErrorComponent,
-        MessageErrorComponent
+        MessageErrorComponent,
+        LoadingComponent
     ],
     imports: [
         CommonModule
@@ -18,7 +20,8 @@ import { MessageErrorComponent } from 'src/app/components/shared/message-error/m
     exports: [
         SuccessComponent,
         ErrorComponent,
-        MessageErrorComponent
+        MessageErrorComponent,
+        LoadingComponent
     ]
 })
 export class SharedModule { }

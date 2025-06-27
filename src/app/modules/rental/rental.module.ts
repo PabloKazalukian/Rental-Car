@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AlquilerComponent } from 'src/app/components/alquiler/alquiler.component';
 import { FormReactivoComponent } from 'src/app/components/alquiler/form-reactivo/form-reactivo.component';
-import { LoadingComponent } from 'src/app/components/loading/loading.component';
 import { CalendarComponent } from 'src/app/components/alquiler/form-reactivo/calendar/calendar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';

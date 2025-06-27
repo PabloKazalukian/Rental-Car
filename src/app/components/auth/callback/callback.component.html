@@ -1,12 +1,18 @@
 <div>
     <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
 
-
-        <div *ngIf="this.success === true" class="">
-            <app-success [text]="'Sesión iniciada con google exitosa!'"></app-success>
+        <div class="d-flex justify-content-center align-items-center flex-column">
+            <div class="spinner-container" *ngIf="this.loading">
+                <app-loading color="primary"></app-loading>
+            </div>
         </div>
-        <div *ngIf="this.success === false" class="">
-            <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
+        <div *ngIf="!this.loading" class="text-center">
+            <div *ngIf="this.success === true" class="">
+                <app-success [text]="'Sesión iniciada con google exitosa!'"></app-success>
+            </div>
+            <div *ngIf="this.success === false" class="">
+                <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
+            </div>
         </div>
 
     </app-auth>

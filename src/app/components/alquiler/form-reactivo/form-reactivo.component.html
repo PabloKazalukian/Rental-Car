@@ -4,7 +4,10 @@
 
     <div class="mb-4 ">
 
-        <mat-spinner *ngIf="loading;else viewCalendar"></mat-spinner>
+        <!-- <mat-spinner *ngIf="loading;else viewCalendar"></mat-spinner> -->
+        <div *ngIf="loading;else viewCalendar" class="spinner">
+            <app-loading color="confirm"></app-loading>
+        </div>
         <ng-template #viewCalendar>
             <div class="d-flex flex-wrap justify-content-start gap-sm-5 gap-1 align-items-center">
                 <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>

@@ -21,7 +21,6 @@ import { HomeComponent } from './components/home/home.component';
 import { Error404Component } from './components/error404/error404.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { CarApplicationComponent } from './components/car-application/car-application.component';
 import { DialogLoggedComponent } from './components/cars/show-car/dialog-logged/dialog-logged.component';
 import { LandingPageComponent } from './components/home/landing-page/landing-page.component';
@@ -62,7 +61,7 @@ import { ScrollAnimateDirective } from './shared/scroll-animate.directive';
         Error404Component,
         LoginComponent,
         RegisterComponent,
-        LoadingComponent,
+        // LoadingComponent,
         CarApplicationComponent,
         DialogLoggedComponent,
         LandingPageComponent,

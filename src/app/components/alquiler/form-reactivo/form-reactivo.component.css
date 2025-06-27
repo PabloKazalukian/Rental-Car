@@ -2,6 +2,11 @@
     /* margin-right: 7.5rem; */
 }
 
+.spinner {
+    height: 80px;
+    width: 80px;
+}
+
 .date_invalid {
     color: #c2185b;
 }

@@ -6,6 +6,7 @@
     --color-accent: #ff9800;
     --color-error: #d51a27;
     --color-success: #4caf50;
+    --color-confirm: #c2185b;
 
     --color-surface: #424242;
     --color-background: #303030;
@@ -13,7 +14,16 @@
     --color-background-black: #171717;
     --color-text--muted: #C9C9C9;
     --color-text: #fff;
+
+    /* --color-confirm-1: '#e53935'; */
+    /* --color-confirm-2: '#d32f2f'; */
+    /* --color-confirm-3: '#f06292'; */
+    /* --color-confirm-4: '#ff7043'; */
+    /* --color-confirm-6: '#EF5350'; */
+    /* --color-confirm-alt: '#43a047'; */
+
 }
+
 
 html {
     overflow-y: scroll;
