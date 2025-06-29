@@ -1,0 +1,14 @@
+<div class="stepper-container" *ngIf="steps.length > 0">
+    <div class="step" *ngFor="let step of steps; let i = index">
+        <div class="circle" [class.completed]="completedSteps[i]" [class.current]="i === currentStep">
+            <span *ngIf="completedSteps[i]" class="checkmark">&#10003;</span>
+            <span *ngIf="!completedSteps[i]">{{ i + 1 }}</span>
+        </div>
+        <div class="label" [ngClass]="{
+        'label-completed': completedSteps[i],
+        'label-incomplete': !completedSteps[i]
+      }">{{ step }}</div>
+
+        <div class="line" *ngIf="i < steps.length - 1"></div>
+    </div>
+</div>

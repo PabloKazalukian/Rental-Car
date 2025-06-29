@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -17,18 +17,24 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
     success: boolean = false;
     loading: boolean = false;
+    timeout: number = 1800; // tiempo de espera para cerrar el dialogo y redirigir al usuario
     // complete:boolean=false
 
 
     constructor(
         public dialogRef: MatDialogRef<DialogConfirmationComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: requestSend,
+        @Inject(MAT_DIALOG_DATA) public data: requestSend & { onConfirm: () => void },
         private rentalSvc: RentalService,
         private router: Router
     ) { };
 
     ngOnInit(): void {
     };
+
+    cancel(): void {
+        this.dialogRef.close('cancelled'); // <- le avisamos al padre que se canceló
+    }
+
 
     request(): void {
         this.loading = true;
@@ -38,10 +44,11 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
                 next: (res) => {
                     this.loading = false;
                     this.success = true;
+                    this.data.onConfirm();
                     setTimeout(() => {
                         this.dialogRef.close();
                         this.router.navigate(['/usuario']);
-                    }, 1000);
+                    }, this.timeout);
                 },
                 error: (res) => {
                     this.loading = false;
@@ -60,10 +67,12 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
                 next: (res) => {
                     this.loading = false;
                     this.success = true;
+                    this.data.onConfirm();
+
                     setTimeout(() => {
                         this.dialogRef.close();
                         this.router.navigate(['/usuario']);
-                    }, 1800);
+                    }, this.timeout);
                 },
                 error: (res) => {
                     this.loading = false;

@@ -15,6 +15,7 @@ export class AlquilerComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
+    step = 1;
     idCar!: string;
     idUser?: string;
     cars!: Car;

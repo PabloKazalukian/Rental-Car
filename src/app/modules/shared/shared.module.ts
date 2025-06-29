@@ -4,7 +4,7 @@ import { ErrorComponent } from 'src/app/components/shared/error/error.component'
 import { SuccessComponent } from 'src/app/components/shared/success/success.component';
 import { MessageErrorComponent } from 'src/app/components/shared/message-error/message-error.component';
 import { LoadingComponent } from 'src/app/components/shared/loading/loading.component';
-
+import { StepperComponent } from 'src/app/components/shared/stepper/stepper.component';
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import { LoadingComponent } from 'src/app/components/shared/loading/loading.comp
         SuccessComponent,
         ErrorComponent,
         MessageErrorComponent,
-        LoadingComponent
+        LoadingComponent,
+        StepperComponent
     ],
     imports: [
         CommonModule
@@ -21,7 +22,8 @@ import { LoadingComponent } from 'src/app/components/shared/loading/loading.comp
         SuccessComponent,
         ErrorComponent,
         MessageErrorComponent,
-        LoadingComponent
+        LoadingComponent,
+        StepperComponent
     ]
 })
 export class SharedModule { }

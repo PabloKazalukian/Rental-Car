@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
@@ -19,12 +19,12 @@ import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confir
 export class FormReactivoComponent implements OnInit, OnDestroy {
     @Input() idCar!: string;
     @Input() cars?: Car | undefined;
+    @Output() stepChanged = new EventEmitter<number>();
 
 
     arrRequest!: request[]
     range!: FormGroup;
     private subscripcions: Subscription[] = [];
-
 
     userId!: string;
     username?: string;
@@ -69,7 +69,33 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
                 car_id: this.idCar,
                 state: 'req'
             }
-            this.dialog.open(DialogConfirmationComponent, { data: result });
+            if (this.range.valid) {
+                // Marca paso 2 como completo
+                this.stepChanged.emit(2); // Paso 3 (confirmación)
+            }
+            const dialogRef = this.dialog.open(DialogConfirmationComponent, {
+                data: {
+                    ...result, onConfirm: () => {
+                        console.log('Solicitud confirmada');
+                        this.stepChanged.emit(3); // ✅ PASO 3 COMPLETO
+                        //   this.showSuccess.emit();  // ✅ Mostrar app-success si querés
+                    }
+                }
+            });
+
+            dialogRef.afterClosed().subscribe((result) => {
+                console.log('El diálogo se cerró con el resultado:', result);
+
+                if (result === true) {
+                    // Confirmado
+                } else if (result === 'cancelled') {
+                    // Cancelación con botón
+                    this.stepChanged.emit(1);
+                } else {
+                    this.stepChanged.emit(1);
+                    // Cierre fuera del diálogo
+                }
+            });
         }
     };
 
