@@ -1,13 +1,13 @@
-import { PermissionsGuard } from './guard/permissions.guard';
-import { Error404Component } from './components/error404/error404.component';
+import { PermissionsGuard } from './core/guard/permissions.guard';
+import { Error404Component } from './pages/error/error404.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactComponent } from './components/contact/contact.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { CarApplicationComponent } from './components/car-application/car-application.component';
-import { CallbackComponent } from './components/auth/callback/callback.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { CarApplicationComponent } from './pages/request-car/car-application.component';
+import { CallbackComponent } from './pages/auth/callback/callback.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,17 +15,17 @@ const routes: Routes = [
     { path: 'contacto', component: ContactComponent },
     {
         path: 'alquiler',
-        loadChildren: () => import('./modules/rental/rental.module').then(m => m.RentalModule),
+        loadChildren: () => import('./pages/rental/rental.module').then(m => m.RentalModule),
         canActivate: [PermissionsGuard],
         // canDeactivate:[WithoutSaveGuard],
         // resolve:{car:DataResolverService}
     },
-    { path: 'login', component: LoginComponent },
-    { path: 'callback', component: CallbackComponent },
-    { path: 'registro', component: RegisterComponent },
+    { path: 'auth/login', component: LoginComponent },
+    { path: 'auth/callback', component: CallbackComponent },
+    { path: 'auth/registro', component: RegisterComponent },
     {
         path: 'usuario',
-        loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),
+        loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
     },
     {
         path: 'solicitar-auto', component: CarApplicationComponent,
