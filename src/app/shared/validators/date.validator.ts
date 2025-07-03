@@ -51,3 +51,12 @@ export const getDays = (f1: string, f2: string) => {
     let dias = Math.floor(dif / (1000 * 60 * 60 * 24));
     return dias + 1;
 }
+
+export const formatDateToLocale = (date: string | Date): string => {
+    const fecha = new Date(date);
+    return new Intl.DateTimeFormat(navigator.language, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).format(fecha);
+};

@@ -1,85 +1,27 @@
-<mat-spinner *ngIf="show; else viewLogout"></mat-spinner>
+<app-table [data]="dataSource" [columns]="columns" [loading]="show" [actionsTemplate]="actionButtons">
+</app-table>
 
-<ng-template #viewLogout>
-    <mat-form-field appearance="standard">
-        <mat-label>Filtrar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Buscar">
-    </mat-form-field>
+<ng-template #actionButtons let-row>
+    <div class="actions">
 
-    <div *ngIf="dataSource.length < 1; else viewExist">
-        <h2>No se ha encontrado ninguna solicitud de un vehículo.</h2>
+        <app-btn *ngIf="row.state === 'req'" [type]="'raised'" [color]="'error'" [text]="'Cancelar'"></app-btn>
+
+
+
+        <app-btn *ngIf=" row.state==='req'" [type]="'raised'" [color]="'primary'" [text]="'Confirmar'"></app-btn>
+
+
+
+
+        <app-btn *ngIf="row.state === 'con'" [type]="'raised'" [color]="'confirm'" [text]="'Confirmado'"></app-btn>
+
+
+        <!-- <button  mat-stroked-button color="accent" disabled>
+            Cancelado
+        </button> -->
+        <app-btn *ngIf="row.state === 'can'" [type]="'outline'" [color]="'error'" [text]="'Cancelado'"></app-btn>
+
+
+        <app-btn *ngIf="row.state === 'cancelNow'"></app-btn>
     </div>
-
-    <ng-template #viewExist>
-        <div class="w-min-25">
-
-            <!-- Campo de búsqueda -->
-
-            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 p-24 p-md-0">
-
-                <ng-container matColumnDef="initial_date">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Inicial </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.initialDate | date: 'dd/MM/yy'}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="final_date">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Final </th>
-                    <td mat-cell *matCellDef="let element"> {{element?.finalDate | date: 'dd/MM/yy'}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="brand">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
-                    <td mat-cell *matCellDef="let element">
-                        <a routerLink="/solicitar-auto" [queryParams]="{brand: element.car_id.brand}">
-                            {{element.car_id.brand}}
-                        </a>
-                    </td>
-                </ng-container>
-
-                <ng-container matColumnDef="model">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
-                    <td mat-cell *matCellDef="let element">
-                        <a routerLink="/solicitar-auto" [queryParams]="{model: element.car_id.model}">
-                            {{element.car_id.model}}
-                        </a>
-                    </td>
-                </ng-container>
-
-                <ng-container matColumnDef="amount">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
-                    <td mat-cell *matCellDef="let element" class="td_amount"> {{element.amount}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="modify">
-                    <th mat-header-cell *matHeaderCellDef> Estado </th>
-                    <td mat-cell *matCellDef="let element" [ngSwitch]="element.state" class="switch_buttons">
-                        <button *ngSwitchCase="'req'" mat-raised-button color="warn" (click)="cancelRequest(element)">
-                            Cancelar
-                        </button>
-                        <button *ngSwitchCase="'req'" mat-raised-button (click)="confirmRequest(element)"
-                            class="confirmBtn ms-lg-5">
-                            Confirmar
-                        </button>
-                        <button *ngSwitchCase="'con'" mat-raised-button class="confirmBtn">
-                            Confirmado
-                        </button>
-                        <button *ngSwitchCase="'can'" mat-stroked-button color="primary">
-                            Cancelado
-                        </button>
-                        <button *ngSwitchCase="'cancelNow'" mat-stroked-button color="primary">
-                            Ha sido cancelado con éxito!
-                        </button>
-                    </td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-
-            <!-- Paginación -->
-            <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
-
-        </div>
-    </ng-template>
-
 </ng-template>

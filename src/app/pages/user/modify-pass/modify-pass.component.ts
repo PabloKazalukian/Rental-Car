@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { repeatPass } from 'src/app/shared/repeatPass.validator'
+import { repeatPass } from 'src/app/shared/validators/repeatPass.validator'
 import { usuario } from 'src/app/core/models/user.interface';
 
 @Component({

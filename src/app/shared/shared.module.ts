@@ -5,6 +5,9 @@ import { SuccessComponent } from 'src/app/shared/components/ui/success/success.c
 import { MessageErrorComponent } from 'src/app/shared/components/ui/message-error/message-error.component';
 import { LoadingComponent } from 'src/app/shared/components/ui/loading/loading.component';
 import { StepperComponent } from 'src/app/shared/components/ui/stepper/stepper.component';
+import { TableComponent } from './components/ui/table/table.component';
+import { RouterModule } from '@angular/router';
+import { BtnComponent } from './components/ui/btn/btn.component';
 
 
 @NgModule({
@@ -13,17 +16,23 @@ import { StepperComponent } from 'src/app/shared/components/ui/stepper/stepper.c
         ErrorComponent,
         MessageErrorComponent,
         LoadingComponent,
-        StepperComponent
+        StepperComponent,
+        TableComponent,
+        BtnComponent,
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule
     ],
     exports: [
         SuccessComponent,
         ErrorComponent,
         MessageErrorComponent,
         LoadingComponent,
-        StepperComponent
+        StepperComponent,
+        TableComponent,
+        RouterModule,
+        BtnComponent
     ]
 })
 export class SharedModule { }

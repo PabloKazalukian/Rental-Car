@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { catchError, map, of, Subscription } from 'rxjs';
 import { RegisterService } from 'src/app/core/services/register.service';
-import { repeatPass } from 'src/app/shared/repeatPass.validator';
+import { repeatPass } from 'src/app/shared/validators/repeatPass.validator';
 
 @Component({
     selector: 'app-register',

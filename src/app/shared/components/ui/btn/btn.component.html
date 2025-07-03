@@ -1,0 +1,7 @@
+<a *ngIf="routerLink && !isDisabled;else btn" class="btn" [ngClass]="[color, type]" [routerLink]="routerLink">
+    {{ text }}
+</a>
+<ng-template #btn>
+    <button class="btn" [ngClass]="[color, type]" [disabled]="isDisabled">{{
+        text}} </button>
+</ng-template>

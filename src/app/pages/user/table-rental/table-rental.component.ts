@@ -1,20 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { request, requestReceived } from 'src/app/core/models/request.interface';
+import { requestReceived } from 'src/app/core/models/request.interface';
 import { Subscription } from 'rxjs';
-import { isDateHigher } from '../../../shared/app.validator';
 import { RentalService } from 'src/app/core/services/rental.service';
-import { delay, tap, take } from "rxjs/operators";
 import { usuario } from 'src/app/core/models/user.interface';
 import { UserComponent } from '../user.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
+import { formatDateToLocale } from 'src/app/shared/validators/date.validator';
 
 @Component({
     selector: 'app-table-rental',
     templateUrl: './table-rental.component.html',
     styleUrls: ['./table-rental.component.css']
 })
+
 export class TableRentalComponent implements OnInit {
 
     private subscripcions: Subscription[] = [];
@@ -22,9 +19,24 @@ export class TableRentalComponent implements OnInit {
     @Input() user!: usuario
     show!: boolean
     request!: requestReceived[]
-    dataSource!: requestReceived[];
-    dataSourceComplete!: requestReceived[];
+    dataSource!: RequestTableRow[];
+    dataSourceComplete!: RequestTableRow[];
     displayedColumns: string[] = ['initial_date', 'final_date', 'brand', 'model', 'amount', 'modify'];
+    columns = [
+        { key: 'initialDate', label: 'Fecha Inicial' },
+        { key: 'finalDate', label: 'Fecha Final' },
+        {
+            key: 'brand',
+            label: 'Marca',
+            link: (value: string) => `/solicitar-auto?brand=${value.replace(/ /g, '-')}`
+        },
+        {
+            key: 'model',
+            label: 'Modelo',
+            link: (value: string) => `/solicitar-auto?model=${value.replace(/ /g, '-')}`
+        },
+        { key: 'amount', label: 'Monto' }
+    ];
 
     constructor(private requestSvc: RentalService, private data: UserComponent) { }
 
@@ -35,8 +47,17 @@ export class TableRentalComponent implements OnInit {
             this.subscripcions.push(
                 this.data.readData().subscribe(e => {
                     if (e !== undefined) {
-                        this.dataSource = e;
-                        this.dataSourceComplete = e;
+                        console.log(e)
+                        const requestTable: RequestTableRow[] = e.map((r): RequestTableRow => ({
+                            initialDate: formatDateToLocale(r.initialDate),
+                            finalDate: formatDateToLocale(r.finalDate),
+                            brand: r.car_id.brand,
+                            model: r.car_id.model,
+                            amount: r.amount,
+                            state: r.state
+                        }));
+                        this.dataSource = requestTable;
+                        this.dataSourceComplete = requestTable;
                         this.request = e;
                         this.show = false;
                     }
@@ -47,16 +68,16 @@ export class TableRentalComponent implements OnInit {
 
 
 
-    applyFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
-        // console.log(filterValue)
-        if (filterValue) {
-            this.dataSource = this.dataSourceComplete.filter(({ car_id }) => car_id.model.toLowerCase().includes(filterValue) || car_id.brand.toLowerCase().includes(filterValue.toLowerCase()));
-        } else {
-            this.dataSource = this.dataSourceComplete
-        }
-        // this.dataSource.filter = filterValue.trim().toLowerCase();
-    }
+    // applyFilter(event: Event) {
+    //     const filterValue = (event.target as HTMLInputElement).value;
+    //     // console.log(filterValue)
+    //     if (filterValue) {
+    //         this.dataSource = this.dataSourceComplete.filter(({ car_id }) => car_id.model.toLowerCase().includes(filterValue) || car_id.brand.toLowerCase().includes(filterValue.toLowerCase()));
+    //     } else {
+    //         this.dataSource = this.dataSourceComplete
+    //     }
+    //     // this.dataSource.filter = filterValue.trim().toLowerCase();
+    // }
 
     cancelRequest(element: any): void {
         // element.state = 'cancel';
@@ -93,4 +114,13 @@ export class TableRentalComponent implements OnInit {
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
     };
+}
+
+export interface RequestTableRow {
+    initialDate: string;
+    finalDate: string;
+    brand: string;
+    model: string;
+    amount: number;
+    state: string; // Para los botones condicionales
 }

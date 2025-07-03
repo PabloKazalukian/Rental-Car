@@ -4,7 +4,7 @@ import { requestReceived } from 'src/app/core/models/request.interface';
 import { usuario } from 'src/app/core/models/user.interface';
 import { LoginService } from 'src/app/core/services/login.service';
 import { RentalService } from 'src/app/core/services/rental.service';
-import { isDateHigher } from 'src/app/shared/app.validator';
+import { isDateHigher } from 'src/app/shared/validators/date.validator';
 
 @Component({
     selector: 'app-user',

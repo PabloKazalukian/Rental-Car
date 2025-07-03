@@ -15,3 +15,11 @@
 .card_blur:active {
     border: 1px solid #d51a27;
 }
+
+.spinner-container {
+    height: 220px;
+    width: 220px;
+    background: var(--color-surface);
+    padding: 10px;
+    border-radius: 100%;
+}

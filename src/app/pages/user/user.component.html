@@ -6,6 +6,8 @@
         <a mat-raised-button color="warn" class="btn-user " routerLink="/usuario/modificar-pass">Modificar
             contraseña</a>
         <a mat-raised-button color="primary" class="btn-user " routerLink="/solicitar-auto">Solicitar auto</a>
+        <app-btn [routerLink]="'/solicitar-auto'" [text]="'Solicitar auto'" [color]="'primary'"
+            [type]="'raised'"></app-btn>
     </div>
     <h2 class="mt-2 ps-4 ps-md-0">Información de todas las solicitudes :</h2>
 

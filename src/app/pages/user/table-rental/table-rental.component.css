@@ -1,10 +1,8 @@
-table {
-    width: 100%;
-    overflow-x: scroll;
-}
-
-.td_amount {
-    max-width: 50px;
+.actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 .mat-column-modify {
@@ -32,3 +30,4 @@ table {
         flex-direction: column;
     }
 }
+

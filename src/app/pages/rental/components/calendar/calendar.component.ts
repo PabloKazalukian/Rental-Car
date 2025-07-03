@@ -5,7 +5,7 @@ import { RentalService } from 'src/app/core/services/rental.service';
 import { request } from 'src/app/core/models/request.interface';
 import { MatDateRangePicker } from '@angular/material/datepicker';
 import { delay, take } from "rxjs/operators";
-import { isDateHigher, getDays } from '../../../../shared/app.validator';
+import { isDateHigher, getDays } from '../../../../shared/validators/date.validator';
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
 
