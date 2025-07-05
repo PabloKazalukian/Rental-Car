@@ -9,9 +9,10 @@ export class BtnComponent implements OnInit {
 
     @Input() text: string = '';
     @Input() isDisabled: boolean = false;
-    @Input() type: string = 'basic'; // 'basic', 'raised' or 'outline'
+    @Input() variant: string = 'basic'; // 'basic', 'raised' or 'outline'
     @Input() color: string = 'primary'; // 'primary', 'secundary', 'surface', 'success', ' error', 'confirm'.
     @Input() routerLink?: string = '';
+    @Input() buttonType: 'button' | 'submit' | 'reset' = 'button';
 
     constructor() { }
 

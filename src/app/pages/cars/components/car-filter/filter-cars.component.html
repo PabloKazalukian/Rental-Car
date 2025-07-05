@@ -1,32 +1,49 @@
-<div class="row mt-1  p-2 rounded-2 contenedor_filtro">
-
+<div class="row mt-1 p-2 rounded-2 contenedor_filtro">
     <h2>Encuentra tu vehiculo!</h2>
-    <div class="row mb-1 pe-0 ">
+    <div class="row mb-1 pe-0">
         <mat-form-field class="input-form-field" appearance="fill">
             <mat-label>Seleccione una marca:</mat-label>
-            <input matInput type="text" id="#textBrandI" [(ngModel)]='textBrand' ng-model="selectedGcode"
-                placeholder="Ingrese modelo buscado" (keyup)="searchFilter()">
+            <input
+                matInput
+                variant="text"
+                id="#textBrandI"
+                [(ngModel)]="textBrand"
+                ng-model="selectedGcode"
+                placeholder="Ingrese modelo buscado"
+                (keyup)="searchFilter()" />
         </mat-form-field>
         <mat-form-field class="input-form-field" appearance="fill">
             <mat-label>Seleccione un modelo:</mat-label>
-            <input matInput type="text" id="#textModelI" [(ngModel)]='textModel' ng-model="selectedGcodes"
-                placeholder="Ingrese modelo buscado" (keyup)="searchFilter()">
+            <input
+                matInput
+                variant="text"
+                id="#textModelI"
+                [(ngModel)]="textModel"
+                ng-model="selectedGcodes"
+                placeholder="Ingrese modelo buscado"
+                (keyup)="searchFilter()" />
         </mat-form-field>
-
     </div>
     <div class="p-0 mt-2 d-flex flex-wrap justify-content-end align-items-center gap-2 pe-4">
         <p class="p-0 m-0">Ordernamientos:</p>
-        <button mat-stroked-button [color]="(btnSelected === 'price') ? 'warn' : 'accent'"
-            (click)="order('price')">Ordenar por
-            Precio</button>
-        <button mat-stroked-button [color]="(btnSelected === 'brand') ? 'warn' : 'accent'"
-            (click)="order('brand')">Ordenar por
-            Marca</button>
-        <button mat-stroked-button [color]="(btnSelected === 'year') ? 'warn' : 'accent'"
-            (click)="order('year')">Ordenar por
-            Año</button>
-        <button mat-stroked-button class="h-2" [color]="(btnSelected ==='') ? 'warn' : 'accent'"
-            (click)="order('')">Borrar</button>
+        <app-btn
+            [text]="'Ordenar por Precio'"
+            [variant]="btnSelected === 'price' ? 'stroked' : 'ghost'"
+            [color]="'primary'"
+            (click)="order('price')"></app-btn>
 
+        <app-btn
+            [text]="'Ordenar por Marca'"
+            [variant]="btnSelected === 'brand' ? 'stroked' : 'ghost'"
+            [color]="'primary'"
+            (click)="order('brand')"></app-btn>
+
+        <app-btn
+            [text]="'Ordenar por Año'"
+            [variant]="btnSelected === 'year' ? 'stroked' : 'ghost'"
+            [color]="'primary'"
+            (click)="order('year')"></app-btn>
+
+        <app-btn [text]="'Borrar'" [variant]="'raised'" [color]="'confirm'" (click)="reset()"></app-btn>
     </div>
 </div>

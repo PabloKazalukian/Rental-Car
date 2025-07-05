@@ -24,11 +24,9 @@
                 <tr *ngFor="let row of paginatedData">
                     <td *ngFor="let col of columns">
                         <ng-container *ngIf="col.link; else plainText">
-                            <!-- <a [routerLink]="col.link(row[col.key])">{{ row[col.key] }}</a> -->
                             <a [routerLink]="['/solicitar-auto']" [queryParams]="getQueryParams(col, row)">
                                 {{ row[col.key] }}
                             </a>
-
                         </ng-container>
                         <ng-template #plainText>
                             {{ row[col.key] }}

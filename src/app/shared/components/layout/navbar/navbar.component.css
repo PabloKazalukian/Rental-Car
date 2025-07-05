@@ -6,10 +6,11 @@
     position: fixed;
     z-index: 100000;
     background: #21212194;
-    backdrop-filter: saturate(180%) blur(10px);
-    transition: background .3s;
+    /* backdrop-filter: saturate(180%) blur(10px); */
+    transition: background 0.3s;
     height: 64px;
     display: flex;
+    gap: 6px;
     top: 0;
     box-sizing: border-box;
     width: 100%;
@@ -17,7 +18,10 @@
     align-items: center;
     white-space: nowrap;
     color: #fff;
-    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    font:
+        500 20px/32px Roboto,
+        'Helvetica Neue',
+        sans-serif;
     letter-spacing: normal;
     margin: 0;
     padding: 0px 30px;

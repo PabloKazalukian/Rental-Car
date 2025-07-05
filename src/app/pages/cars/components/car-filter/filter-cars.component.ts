@@ -53,5 +53,12 @@ export class FilterCarsComponent implements OnInit {
         this.newOrderEvent.emit(order);
     };
 
+    public reset(): void {
+        this.textModel = '';
+        this.textBrand = '';
+        this.order('');
+        this.newSearchEvent.emit({ model: '', brand: '' });
+    }
+
 }
 

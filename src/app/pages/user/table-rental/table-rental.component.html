@@ -1,27 +1,27 @@
-<app-table [data]="dataSource" [columns]="columns" [loading]="show" [actionsTemplate]="actionButtons">
-</app-table>
+<app-table [data]="dataSource" [columns]="columns" [loading]="show" [actionsTemplate]="actionButtons"></app-table>
 
 <ng-template #actionButtons let-row>
     <div class="actions">
+        <app-btn
+            *ngIf="row.state === 'req'"
+            [variant]="'raised'"
+            [color]="'error'"
+            [text]="'Cancelar'"
+            (click)="cancelRequest(row)"></app-btn>
 
-        <app-btn *ngIf="row.state === 'req'" [type]="'raised'" [color]="'error'" [text]="'Cancelar'"></app-btn>
+        <app-btn
+            *ngIf="row.state === 'req'"
+            [variant]="'raised'"
+            [color]="'primary'"
+            [text]="'Confirmar'"
+            (click)="confirmRequest(row)"></app-btn>
 
-
-
-        <app-btn *ngIf=" row.state==='req'" [type]="'raised'" [color]="'primary'" [text]="'Confirmar'"></app-btn>
-
-
-
-
-        <app-btn *ngIf="row.state === 'con'" [type]="'raised'" [color]="'confirm'" [text]="'Confirmado'"></app-btn>
-
-
+        <app-btn *ngIf="row.state === 'con'" [variant]="'basic'" [color]="'confirm'" [text]="'Confirmado'"></app-btn>
         <!-- <button  mat-stroked-button color="accent" disabled>
             Cancelado
         </button> -->
-        <app-btn *ngIf="row.state === 'can'" [type]="'outline'" [color]="'error'" [text]="'Cancelado'"></app-btn>
+        <app-btn *ngIf="row.state === 'can'" [variant]="'outline'" [color]="'error'" [text]="'Cancelado'"></app-btn>
 
-
-        <app-btn *ngIf="row.state === 'cancelNow'"></app-btn>
+        <app-btn *ngIf="row.state === 'cancelNow'" [variant]="'outline'" [color]="'confirm'" [text]="'Cancelado con exito!'"></app-btn>
     </div>
 </ng-template>

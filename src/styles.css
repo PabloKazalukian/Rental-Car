@@ -1,7 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    --color-primary: #f44336;
+    --font-title: 'Lora', serif;
+    --font-body: 'Inter', sans-serif;
+
+
+    --color-primary: #d63a3a;
+    --color-confirm: #b02c55;
+    --color-secondary: #3a6ebf;
+    --color-accent: #ffb74d;
+    --color-success: #4caf50;
+    --color-error: #cc1e2c;
+
+    /* COLORES DE TEXTO */
+    --color-text: #ffffff;
+    --color-text--muted: #B0B0B0;
+    --color-text--muted--hover: #e0e0e0;
+
+    /* HOVER (más opacos o profundos, no chillones) */
+    --color-primary--hover: #b02a2a;
+    --color-secondary--hover: #305fa6;
+    --color-accent--hover: #ff9800;
+    --color-success--hover: #388e3c;
+    --color-error--hover: #99171f;
+    --color-confirm--hover: #9a2146;
+    --color-text--hover: #ffffff05;
+
+
+    /* SUPERFICIE Y BACKGROUND */
+    --color-surface: #393939;
+    --color-background: #1e1e1e;
+    --color-background--2: #121212bb;
+    --color-background-black: #0f0f0f;
+
+        /* PRIMARY */
+    --color-primary--hover-faint: rgba(214, 58, 58, 0.05);      /* #d63a3a */
+    --color-confirm--hover-faint: rgba(176, 44, 85, 0.05);       /* #b02c55 */
+    --color-secondary--hover-faint: rgba(58, 110, 191, 0.05);    /* #3a6ebf */
+    --color-accent--hover-faint: rgba(255, 183, 77, 0.05)      /* #ffb74d */
+    --color-success--hover-faint: rgba(76, 175, 80, 0.05);       /* #4caf50 */
+    --color-error--hover-faint: rgba(204, 30, 44, 0.05);         /* #cc1e2c */
+
+
+
+
+  /* --color-primary: #f44336;
     --color-secondary: #2196f3;
     --color-accent: #ff9800;
     --color-error: #d51a27;
@@ -18,7 +62,12 @@
     --color-confirm--hover: #ad1457;
      --color-text--muted--hover: #C9E9E9;
 
-     /* --color-primary--hover: rgba(244, 67, 54, 0.1);
+     --color-surface: #424242;
+     --color-background: #303030;
+     --color-background--2: #21212194;
+     --color-background-black: #171717; */
+
+    /* --color-primary--hover: rgba(244, 67, 54, 0.1);
     --color-secondary--hover: rgba(33, 150, 243, 0.1);
     --color-accent--hover: rgba(255, 152, 0, 0.1);
     --color-success--hover: rgba(76, 175, 80, 0.1);
@@ -26,10 +75,6 @@
     --color-confirm--hover: rgba(194, 24, 91, 0.1);
     --color-text--muted--hover: #C9E9E9; */
 
-    --color-surface: #424242;
-    --color-background: #303030;
-    --color-background--2: #21212194;
-    --color-background-black: #171717;
 
     /* --color-confirm-1: '#e53935'; */
     /* --color-confirm-2: '#d32f2f'; */
@@ -68,10 +113,19 @@ body {
     padding: 0;
     overflow-x: hidden;
     width: 100vw;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: #303030;
+    font-family: var(--font-body);
+    background: var(--color-background);
     color: #fff;
     box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6,
+.mat-h1, .mat-h2, .mat-h3, .mat-title, .mat-subheading-1, .mat-subheading-2 {
+  font-family: var(--font-title) !important;
+}
+
+body, html, p, span, label, input, textarea, button, .mat-body, .mat-body-1 {
+  font-family: var(--font-body) !important;
 }
 
 .main {
@@ -79,8 +133,8 @@ body {
     margin: 0px;
 }
 
-.backgroud {
-    background: #303030;
+.background {
+    background: var(--color-background--2);
 }
 
 .marginTop {

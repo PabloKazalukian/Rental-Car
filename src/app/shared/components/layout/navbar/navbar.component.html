@@ -3,11 +3,16 @@
         <span class="title">Rental-Car</span>
     </a>
     <span class="spacer"></span>
-    <a *ngIf="!islogged" mat-button routerLink="auth/registro">Registrarse</a>
-    <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{this.usuario?.username
-        }}</a>
-    <a *ngIf="!islogged;else viewLogout" mat-button routerLink="auth/login">Iniciar sesión</a>
-    <a mat-button routerLink="/">Inicio</a>
+    <!-- <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{ this.usuario?.username }}</a> -->
+
+    <app-btn *ngIf="islogged" [routerLink]="'/usuario'" [text]="usuario.username" [color]="'primary'" [variant]="'stroked'"></app-btn>
+    <app-btn *ngIf="islogged" [text]="'Cerrar sesión'" [color]="'confirm'" [variant]="'stroked'" (click)="logout()"></app-btn>
+
+    <app-btn *ngIf="!islogged" [routerLink]="'/auth/registro'" [text]="'Registrarse'" [color]="'text'" [variant]="'basic'"></app-btn>
+    <app-btn *ngIf="!islogged" [routerLink]="'/auth/login'" [text]="'Iniciar sesión'" [color]="'text'" [variant]="'basic'"></app-btn>
+
+    <app-btn [routerLink]="'/'" [text]="'Inicio'" [color]="'text'" [variant]="'basic'"></app-btn>
+
     <!-- </mat-nav-list> -->
 </nav>
 <ng-template #viewLogout>

@@ -1,7 +1,7 @@
 .btn{
     width: full-width;
     height: 36px;
-    padding: 0 20px;
+    padding: 0 16px;
     border-radius: 5px;
     border: none;
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -62,10 +62,23 @@
   color: var(--color-text);
 }
 
+.btn.ghost {
+  background-color: transparent;
+  border: none;
+  color: var(--color-text--muted);
+  font-weight: 400;
+}
+
+.btn.stroked {
+  background-color: transparent;
+  border: 1px solid var(--color-surface);
+}
+
 .btn.raised.secondary { background-color: var(--color-secondary); }
 .btn.raised.success { background-color: var(--color-success); }
 .btn.raised.error { background-color: var(--color-error); }
 .btn.raised.confirm { background-color: var(--color-confirm); }
+.btn.raised.text{ background-color: transparent; }
 
 /* Outline override (borde del color) */
 .btn.outline.primary { border-color: var(--color-primary); }
@@ -74,38 +87,78 @@
 .btn.outline.error { border-color: var(--color-error); }
 .btn.outline.confirm { border-color: var(--color-confirm); }
 
+.btn.stroked.primary { color: var(--color-primary); }
+.btn.stroked.secondary { color: var(--color-secondary); }
+.btn.stroked.success { color: var(--color-success); }
+.btn.stroked.error { color: var(--color-error); }
+.btn.stroked.confirm { color: var(--color-confirm); }
+.btn.stroked.text{ color: var(--color-text)}
+
+
 /* ---------------- HOVERS ---------------- */
 .btn.basic.primary:hover,
 .btn.outline.primary:hover,
 .btn.raised.primary:hover {
   background-color: var(--color-primary--hover);
-  color: white;
+  color: var(--color-text);
+}
+
+.btn.basic.text:hover,
+.btn.outline.text:hover,
+.btn.raised.text:hover {
+  background-color: var(--color-text--hover);
+  color: var(--color-text);
 }
 
 .btn.basic.secondary:hover,
+.btn.raised.secondary:hover,
 .btn.outline.secondary:hover {
   background-color: var(--color-secondary--hover);
-  color: white;
+  color: var(--color-text);
 }
 
 .btn.basic.success:hover,
+.btn.raised.success:hover,
 .btn.outline.success:hover {
   background-color: var(--color-success--hover);
-  color: white;
+  color: var(--color-text);
 }
 
 .btn.basic.error:hover,
+.btn.raised.error:hover,
 .btn.outline.error:hover {
   background-color: var(--color-error--hover);
-  color: white;
+  color: var(--color-text);
 }
 
 .btn.basic.confirm:hover,
+.btn.raised.confirm:hover,
 .btn.outline.confirm:hover {
   background-color: var(--color-confirm--hover);
-  color: white;
+  color: var(--color-text);
 }
 
+.btn.stroked.confirm:hover {
+  background-color: var(--color-confirm--hover-faint);
+}
+
+.btn.stroked.primary:hover {
+  background-color: var(--color-primary--hover-faint);
+}
+.btn.stroked.secondary:hover {
+  background-color: var(--color-secondary--hover-faint);
+}
+.btn.stroked.success:hover {
+  background-color: var(--color-success--hover-faint);
+}
+.btn.stroked.error:hover {
+  background-color: var(--color-error--hover-faint);
+}
+
+.btn.ghost:hover {
+  background-color: var(--color-surface--hover-faint);
+  color: var(--color-text);
+}
 /* ---------------- DISABLED ---------------- */
 .btn:disabled {
   background-color: var(--color-surface);
@@ -114,6 +167,6 @@
   border: none;
 }
 
-
-
-
+.btn:focus{
+    box-shadow: 0 0 0 3px transparent;
+}

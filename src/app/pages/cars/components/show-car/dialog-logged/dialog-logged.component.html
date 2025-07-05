@@ -1,14 +1,21 @@
 <h2 mat-dialog-title>No has iniciado sesion</h2>
 <mat-dialog-content>
     <div class="loggedBody">
-        <h4>Debe iniciar sesión para poder solicitad un vehiculo.
-            <hr>
+        <h4>
+            Debe iniciar sesión para poder solicitad un vehiculo.
+            <hr />
             Por favor ingresa con tu cuenta o
             <a routerLink="/registro" [mat-dialog-close]="true">crea una nueva cuenta</a>
         </h4>
         <div class="buttonsLogged">
-            <button mat-stroked-button mat-dialog-close>Cerrar</button>
-            <a mat-raised-button color="primary" [mat-dialog-close]="true" routerLink="/login">Iniciar sesión</a>
+            <app-btn [text]="'Cerrar'" [variant]="'basic'" [color]="'primary'" mat-dialog-close></app-btn>
+
+            <app-btn
+                [text]="'Iniciar sesión'"
+                [variant]="'raised'"
+                [color]="'confirm'"
+                [routerLink]="'/auth/login'"
+                [mat-dialog-close]="true"></app-btn>
         </div>
     </div>
 </mat-dialog-content>

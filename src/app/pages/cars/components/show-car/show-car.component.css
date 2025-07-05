@@ -5,15 +5,15 @@
 }
 
 .card-background {
-    background: #424242;
+    background: var(--color-surface);
 }
 
 .card-color {
-    color: #424242;
+    color: var(--color-primary);
 }
 
 .card_blur:active {
-    border: 1px solid #d51a27;
+    border: 1px solid var(--color-primary);
 }
 
 .spinner-container {

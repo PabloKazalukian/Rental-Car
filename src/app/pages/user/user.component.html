@@ -1,13 +1,15 @@
 <div class="marginTop contenedor_user">
-    <h2 class="ps-4 ps-md-0">Bienvenido {{this.user.username}}</h2>
+    <h2 class="ps-4 ps-md-0">Bienvenido {{ this.user.username }}</h2>
     <div class="d-flex flex-column gap-3 px-2 flex-lg-row mb-2 jutify-content-center align-items-center">
-        <a mat-raised-button color="warn" class="btn-user " routerLink="/usuario/modificar-usuario">Modificar
-            Usuario</a>
-        <a mat-raised-button color="warn" class="btn-user " routerLink="/usuario/modificar-pass">Modificar
-            contraseña</a>
-        <a mat-raised-button color="primary" class="btn-user " routerLink="/solicitar-auto">Solicitar auto</a>
-        <app-btn [routerLink]="'/solicitar-auto'" [text]="'Solicitar auto'" [color]="'primary'"
-            [type]="'raised'"></app-btn>
+        <app-btn
+            [routerLink]="'/usuario/modificar-usuario'"
+            [text]="'Modificar Usuario'"
+            [color]="'secondary'"
+            [variant]="'raised'"></app-btn>
+
+        <app-btn [routerLink]="'/usuario/modificar-pass'" [text]="'Modificar contraseña'" [color]="'error'" [variant]="'raised'"></app-btn>
+
+        <app-btn [routerLink]="'/solicitar-auto'" [text]="'Solicitar auto'" [color]="'primary'" [variant]="'raised'"></app-btn>
     </div>
     <h2 class="mt-2 ps-4 ps-md-0">Información de todas las solicitudes :</h2>
 

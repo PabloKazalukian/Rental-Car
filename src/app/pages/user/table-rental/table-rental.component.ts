@@ -49,6 +49,7 @@ export class TableRentalComponent implements OnInit {
                     if (e !== undefined) {
                         console.log(e)
                         const requestTable: RequestTableRow[] = e.map((r): RequestTableRow => ({
+                            id: r.id,
                             initialDate: formatDateToLocale(r.initialDate),
                             finalDate: formatDateToLocale(r.finalDate),
                             brand: r.car_id.brand,
@@ -117,6 +118,7 @@ export class TableRentalComponent implements OnInit {
 }
 
 export interface RequestTableRow {
+    id: string;
     initialDate: string;
     finalDate: string;
     brand: string;

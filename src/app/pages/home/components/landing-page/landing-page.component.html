@@ -1,39 +1,38 @@
 <div class="container_img">
     <picture class="landing-img">
-        <source srcset="assets/images/porsche-1851246_1920_cleanup.avif" type="image/avif">
-        <source srcset="assets/images/porsche-1851246_1920_cleanup.webp" type="image/webp">
-        <img class="img__rental-car" src="assets/images/porsche-1851246_1920_cleanup.jpg"
-            alt="Imagen portada Rental-Car" loading="eager" fetchpriority="high" />
+        <source srcset="assets/images/porsche-1851246_1920_cleanup.avif" variant="image/avif" />
+        <source srcset="assets/images/porsche-1851246_1920_cleanup.webp" variant="image/webp" />
+        <img
+            class="img__rental-car"
+            src="assets/images/porsche-1851246_1920_cleanup.jpg"
+            alt="Imagen portada Rental-Car"
+            loading="eager"
+            fetchpriority="high" />
     </picture>
     <div class="container_text">
         <div class="text1">
-            <h3 class="textWelcome" appScrollAnimate>Bienvenido a </h3>
+            <h3 class="textWelcome" appScrollAnimate>Bienvenido a</h3>
             <h3 class="textWelcome Rental-Car" appScrollAnimate>Rental-Car</h3>
-            <p class="text">Un lugar donde podrás alquilar el auto de tus <span class="Rental-Car">
-                    sueños
-                </span></p>
-            <a mat-raised-button color="warn" href="/home#flota">Ver nuestra flota</a>
+            <p class="text">
+                Un lugar donde podrás alquilar el auto de tus
+                <span class="Rental-Car">sueños</span>
+            </p>
+            <app-btn
+                [routerLink]="'/home'"
+                fragment="flota"
+                [text]="'Ver nuestra flota'"
+                [color]="'primary'"
+                [variant]="'raised'"></app-btn>
+
             <h4 class="textSecundary">Alquila ahora el auto de tus sueños</h4>
             <div *ngIf="!islogged" class="d-flex flex-column gap-2 justify-content-evenly">
-                <a mat-stroked-button class="Rental-Car btn-loggin" routerLink="/login">Iniciar sesión</a>
-                <a mat-stroked-button class="Rental-Car btn-loggin" routerLink="/registro">Registrate</a>
+                <app-btn [routerLink]="'/auth/login'" [text]="'Iniciar sesión'" [color]="'primary'" [variant]="'stroked'"></app-btn>
+                <app-btn [routerLink]="'/auth/registro'" [text]="'Registrate'" [color]="'primary'" [variant]="'stroked'"></app-btn>
             </div>
         </div>
         <div class="text2"></div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- <div class="row contenedor_carrousel">
   <div class="texto_bienvenida">
@@ -52,11 +51,11 @@
           <img src="https://www.autobild.es/sites/autobild.es/public/styles/855/public/dc/fotos/Ferrari-sf90-stradale.jpg?itok=hIMHrOop" class="d-block w-100 imagen_carrousel" alt="...">
       </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+      <button class="carousel-control-prev" variant="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+      <button class="carousel-control-next" variant="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
       </button>
