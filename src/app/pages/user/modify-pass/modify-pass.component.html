@@ -1,46 +1,38 @@
 <div class="marginTop main contenedor_pass">
     <div *ngIf="!this.error && !this.success">
-
         <h2>Modificar constraseña</h2>
         <form (ngSubmit)="onSubmit()" [formGroup]="modifyPass">
             <div class="mb-4">
                 <label for="password1" class="form-label">Ingrese una nueva contraseña</label>
-                <input type="password" class="form-control" id="password1" name="password1" required
-                    formControlName="password1">
-                <div *ngIf="modifyPass.get('password1')?.touched && modifyPass.get('password1')?.errors?.['minlength']"
-                    class="alert alert-danger">Este Campo es requerido</div>
+                <input type="password" class="form-control" id="password1" name="password1" required formControlName="password1" />
+                <div
+                    *ngIf="modifyPass.get('password1')?.touched && modifyPass.get('password1')?.errors?.['minlength']"
+                    class="alert alert-danger">
+                    Este Campo es requerido
+                </div>
             </div>
             <div class="mb-4">
                 <label for="password2" class="form-label">Repita la nueva contraseña</label>
-                <input type="password" class="form-control" id="password2" name="password2" required
-                    formControlName="password2">
-                <div *ngIf="modifyPass.get('password2')?.touched && modifyPass.get('password2')?.errors?.['minlength']"
-                    class="alert alert-danger">Este Campo es requerido</div>
-            </div>
-
-            <button type="submit" class="btn btn-primary float-end" [disabled]="modifyPass.invalid">Enviar</button>
-
-        </form>
-    </div>
-
-    <div *ngIf="this.success" class="marginTop">
-        <div class="container mt-5 formulario">
-            <h2 class="mt-5 alert alert-primary">
-                Formulario Completado correctamente
-            </h2>
-        </div>
-    </div>
-
-    <div *ngIf="this.error">
-        <div class="container mt-5 errorcontainer">
-            <div class="d-flex flex-column justify-content-center mt-5">
-                <h1>Ocurrio un error Inesperado</h1>
-                <div>
-                    <button class="btn btn-danger">
-                        <a class="navbar-brand fs-3 fw-bold  text-white mx-0" routerLink="">Rental-Car</a>
-                    </button>
+                <input type="password" class="form-control" id="password2" name="password2" required formControlName="password2" />
+                <div
+                    *ngIf="modifyPass.get('password2')?.touched && modifyPass.get('password2')?.errors?.['minlength']"
+                    class="alert alert-danger">
+                    Este Campo es requerido
                 </div>
             </div>
-        </div>
+
+            <app-btn
+                [text]="'Enviar'"
+                [color]="'confirm'"
+                [variant]="'raised'"
+                [buttonType]="'submit'"
+                [isDisabled]="modifyPass.invalid"></app-btn>
+        </form>
+    </div>
+    <div *ngIf="this.success === true" class="formulario">
+        <app-success [text]="'Sesión iniciada con exito!'"></app-success>
+    </div>
+    <div *ngIf="this.error === true && this.success == false" class="">
+        <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
     </div>
 </div>

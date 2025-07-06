@@ -17,6 +17,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SharedModule } from '../../shared/shared.module';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 
 
@@ -60,6 +61,7 @@ const routes: Routes = [
         MatSortModule,
         MatPaginatorModule,
         MatFormFieldModule,
+        MaterialModule
 
     ],
     providers: [

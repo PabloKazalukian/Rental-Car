@@ -17,9 +17,7 @@
             (click)="confirmRequest(row)"></app-btn>
 
         <app-btn *ngIf="row.state === 'con'" [variant]="'basic'" [color]="'confirm'" [text]="'Confirmado'"></app-btn>
-        <!-- <button  mat-stroked-button color="accent" disabled>
-            Cancelado
-        </button> -->
+
         <app-btn *ngIf="row.state === 'can'" [variant]="'outline'" [color]="'error'" [text]="'Cancelado'"></app-btn>
 
         <app-btn *ngIf="row.state === 'cancelNow'" [variant]="'outline'" [color]="'confirm'" [text]="'Cancelado con exito!'"></app-btn>

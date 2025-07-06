@@ -8,6 +8,7 @@ import { StepperComponent } from 'src/app/shared/components/ui/stepper/stepper.c
 import { TableComponent } from './components/ui/table/table.component';
 import { RouterModule } from '@angular/router';
 import { BtnComponent } from './components/ui/btn/btn.component';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BtnComponent } from './components/ui/btn/btn.component';
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        MaterialModule // Assuming you have a MaterialModule for Angular Material components
     ],
     exports: [
         SuccessComponent,

@@ -9,13 +9,12 @@ h2 {
     margin: 0px;
 }
 
-
 .error-message {
     margin-top: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .5em;
+    gap: 0.5em;
     padding: 2px;
     border: 2px solid var(--color-error);
     border-radius: 1em;

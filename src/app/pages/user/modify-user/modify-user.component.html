@@ -1,57 +1,29 @@
 <div class="container__login">
     <!-- <div *ngIf="!this.error && !this.success"> -->
     <app-auth [imageBackground]="'assets/images/bugatti_optimized.jpg'">
-
         <form (ngSubmit)="onSubmit()" [formGroup]="modifyUser">
             <!-- <h2>Modificar Usuario</h2> -->
             <div class="titulo">
-                <h2 class=""> Modifique su usuario </h2>
+                <h2 class="">Modifique su usuario</h2>
             </div>
 
-            <app-form-input name="username" label="Ingrese un nuevo Nombre de usuario" placeholder="nombre de usuario"
-                [control]="modifyUser.get('username')!" [errorMessages]="{
-      required: 'Este campo es requerido',
-      minlength: 'Debe tener al menos 3 caracteres'
-    }"></app-form-input>
+            <app-form-input
+                name="username"
+                label="Ingrese un nuevo Nombre de usuario"
+                placeholder="nombre de usuario"
+                [control]="modifyUser.get('username')!"
+                [errorMessages]="userNameErrors"></app-form-input>
 
-            <app-form-input name="email" label="Ingrese un nuevo email" placeholder="pat@example.com"
-                [control]="modifyUser.get('email')!" [errorMessages]="{
-      required: 'Este campo es requerido',
-      pattern: 'Formato de email inválido',
-      emailExist: 'Email existente'
-    }"></app-form-input>
+            <app-form-input
+                name="email"
+                label="Ingrese un nuevo email"
+                placeholder="pat@example.com"
+                [control]="modifyUser.get('email')!"
+                [errorMessages]="emailErrors"></app-form-input>
 
             <div class="d-flex justify-content-end align-items-end">
                 <app-form-button text="Enviar" color="warn" [disabled]="modifyUser.invalid"></app-form-button>
             </div>
-            <!-- <div class="mb-4 ">
-                <mat-form-field class="input-form-field" appearance="fill">
-                    <mat-label>Ingrese una nuevo Nombre de usuario</mat-label>
-                    <input matInput placeholder="nombre de usuario" id="username" name="username"
-                        formControlName="username" required>
-                    <mat-error
-                        *ngIf="modifyUser.get('username')?.touched && modifyUser.get('username')?.errors?.['minlength']"
-                        class="alert alert-danger">Este Campo es requerido</mat-error>
-                </mat-form-field>
-            </div>
-
-            <div class="mb-4 ">
-                <mat-form-field class="input-form-field" appearance="fill">
-                    <mat-label>Ingrese una nuevo email</mat-label>
-                    <input matInput placeholder="pat@example.com" id="email" name="email" formControlName="email"
-                        required>
-                    <mat-error *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['pattern']"
-                        class="alert alert-danger">Este Campo es requerido</mat-error>
-                    <mat-error
-                        *ngIf="modifyUser.get('email')?.touched && modifyUser.get('email')?.errors?.['emailExist'] "
-                        class="alert alert-danger">Email existente</mat-error>
-                </mat-form-field>
-            </div>
-
-            <div class="d-flex justify-content-end align-items-end">
-                <button type="submit" mat-raised-button color="warn" [disabled]="modifyUser.invalid">Enviar</button>
-            </div> -->
-
         </form>
 
         <div *ngIf="this.success === true" class="formulario">

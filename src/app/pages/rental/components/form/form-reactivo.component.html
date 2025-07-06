@@ -1,11 +1,9 @@
 <h4>Por favor, ingrese las fechas de solicitud</h4>
-<h4>Solicitud de {{this.username}} por renta de {{this.cars?.brand}} {{this.cars?.model}}</h4>
+<h4>Solicitud de {{ this.username }} por renta de {{ this.cars?.brand }} {{ this.cars?.model }}</h4>
 <form (ngSubmit)="onSubmit()" [formGroup]="range" class="container_form">
-
-    <div class="mb-4 ">
-
+    <div class="mb-4">
         <!-- <mat-spinner *ngIf="loading;else viewCalendar"></mat-spinner> -->
-        <div *ngIf="loading;else viewCalendar" class="spinner">
+        <div *ngIf="loading; else viewCalendar" class="spinner">
             <app-loading color="confirm"></app-loading>
         </div>
         <ng-template #viewCalendar>
@@ -16,10 +14,8 @@
             </div>
         </ng-template>
     </div>
-    <h4>Monto a Pagar por dia: {{this.cars?.price}}</h4>
-    <h4>Cantidad de días: {{this.range.value.days}}</h4>
-    <h4>Monto total: {{this.range.value?.amount}} Usd</h4>
-    <button mat-raised-button color="primary" type="su*bmit" class="float-end"
-        [disabled]="range.invalid">Enviar</button>
-
+    <h4>Monto a Pagar por dia: {{ this.cars?.price }}</h4>
+    <h4>Cantidad de días: {{ this.range.value.days }}</h4>
+    <h4>Monto total: {{ this.range.value?.amount }} Usd</h4>
+    <app-btn [text]="'Enviar'" [color]="'primary'" [variant]="'raised'" [buttonType]="'submit'" [isDisabled]="range.invalid"></app-btn>
 </form>

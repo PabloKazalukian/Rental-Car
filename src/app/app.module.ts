@@ -115,7 +115,7 @@ import { environment } from '../environments/environment';
         MatFormFieldModule,
         MatInputModule,
         MatIconModule,
-        SharedModule
+        SharedModule,
     ],
     providers: [
         {

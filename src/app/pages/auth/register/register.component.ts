@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             this.authSvc.registerUser(this.registerForm.value).subscribe({
                 next: (res) => {
                     this.success = true;
-                    setTimeout(() => this.router.navigate(['login']), 1700)
+                    setTimeout(() => this.router.navigate(['auth/login']), 1700)
                 },
                 error: (res) => {
                     this.success = false;

@@ -17,6 +17,7 @@ import { DialogConfirmationComponent } from 'src/app/pages/rental/components/dia
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 
 const routes: Routes = [
@@ -46,7 +47,8 @@ const routes: Routes = [
         MatProgressSpinnerModule,
         MatNativeDateModule,
         MatDialogModule,
-        MatInputModule
+        MatInputModule,
+        // MaterialModule
     ]
 })
 export class RentalModule { }
