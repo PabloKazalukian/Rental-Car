@@ -1,4 +1,15 @@
-.spinner-container {
+.auth-container__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-calback__spinner {
     height: 120px;
     width: 120px;
+}
+
+.auth-callback__message {
+    text-align: center;
 }

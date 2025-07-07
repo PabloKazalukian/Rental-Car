@@ -34,7 +34,8 @@ import { MaterialModule } from './material.module';
         StepperComponent,
         TableComponent,
         RouterModule,
-        BtnComponent
+        BtnComponent,
+        MaterialModule
     ]
 })
 export class SharedModule { }

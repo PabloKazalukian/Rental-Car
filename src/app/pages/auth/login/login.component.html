@@ -1,10 +1,10 @@
 <div class="container__login">
     <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
         <form *ngIf="this.login !== true" class="formulario" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
-            <div class="titulo">
-                <h2 class="">Inicie sesión</h2>
+            <div class="text-center">
+                <h2 class="text-2xl">Inicie sesión</h2>
             </div>
-            <div class="mb-4">
+            <div class="login-form__field">
                 <mat-form-field class="input-form-field" appearance="fill">
                     <mat-label>Email o nombre de usuario</mat-label>
                     <input matInput placeholder="pat@example.com" id="email" name="email" formControlName="email" required />
@@ -13,7 +13,7 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <div class="mb-4">
+            <div class="login-form__field">
                 <mat-form-field appearance="fill">
                     <mat-label>Contraseña</mat-label>
                     <input matInput [type]="hide ? 'password' : 'text'" id="password" name="password" required formControlName="password" />
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-end align-items-end">
+            <div class="login-form__field--btn">
                 <app-btn
                     [text]="'Iniciar sesión'"
                     [color]="'primary'"
@@ -47,16 +47,19 @@
                     [buttonType]="'submit'"
                     [isDisabled]="contactForm.invalid"></app-btn>
             </div>
+            <div class="login-form__divider">
+                <span class="login-form__divider-text">o continuar con</span>
+            </div>
 
-            <button type="button" (click)="loginWithGoogle()" class="google-btn">
+            <button type="button" (click)="loginWithGoogle()" class="login-form__google-btn">
                 <img src="assets/images/Google__G__logo.svg" alt="Google logo" class="google-logo" />
                 Iniciar sesión con Google
             </button>
         </form>
-        <div *ngIf="this.login === true" class="formulario">
+        <div *ngIf="this.login === true">
             <app-success [text]="'Sesión iniciada con exito!'"></app-success>
         </div>
-        <div *ngIf="this.login === false" class="">
+        <div *ngIf="this.login === false">
             <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
         </div>
     </app-auth>

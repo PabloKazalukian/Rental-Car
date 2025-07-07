@@ -47,7 +47,7 @@ import { DialogLoggedComponent } from './pages/cars/components/show-car/dialog-l
 import { FilterCarsComponent } from './pages/cars/components/car-filter/filter-cars.component';
 import { LandingPageComponent } from './pages/home/components/landing-page/landing-page.component';
 import { HowToUseComponent } from './pages/home/components/how-to-use/how-to-use.component';
-import { FormularioComponent } from './pages/contact/components/formulario/formulario.component';
+import { FormContactComponent } from './pages/contact/components/form-contact/form-contact.component';
 
 // 🔹 Shared Components / Directives
 import { NavBarComponent } from './shared/components/layout/navbar/navbar.component';
@@ -74,12 +74,11 @@ import { environment } from '../environments/environment';
         FooterComponent,
         NavBarComponent,
         ContactComponent,
-        FormularioComponent,
+        FormContactComponent,
         HomeComponent,
         Error404Component,
         LoginComponent,
         RegisterComponent,
-        // LoadingComponent,
         CarApplicationComponent,
         DialogLoggedComponent,
         LandingPageComponent,

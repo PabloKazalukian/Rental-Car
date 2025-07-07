@@ -1,34 +1,52 @@
-.item-1 .input-form-field {
+.register-form__input {
     display: block;
 }
 
-.titulo {
-    /* border-radius: .5em; */
-    margin-bottom: 1em;
+.register-form__title {
     width: 100%;
-    /* background-color: var(--color-primary); */
     color: var(--color-text);
 }
 
-.titulo h2 {
+.register-form__title-text {
     text-align: center;
-    font-size: 2.2rem;
-    margin: .3em 0px;
+    font-size: var(--font-size-2xl);
+    margin-bottom: 2rem;
 }
 
-.input-form-field {
-    /* width: 100%; */
-    /* display: flex; */
+.register-form__field {
+    margin-bottom: 0.75rem;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-    transition: background-color 0s 600000s, color 0s 600000s !important;
+.register-form__input-fill {
+    /* Podés agregar estilos específicos si es necesario */
 }
 
-/* .mat-form-field {
-    display: block;
-} */
+.register-form__link {
+    margin-top: 1rem;
+}
+
+.register-form__action {
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: flex-end; */
+}
+
+.register-form__success {
+    /* Estilos del mensaje de éxito */
+}
+
+.register-form__error {
+    margin-top: 5rem;
+}
+
+.register-form__error-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+/* ================= MEDIA QUERIES ================= */
 
 @media (max-width: 1023px) {
     .formularios {
@@ -39,10 +57,9 @@ input:-webkit-autofill:focus {
         display: none;
     }
 
-    .item-1 {
+    .register-form {
         min-width: none;
         grid-column: 1 / span 1;
-
     }
 
     .img_background {
@@ -52,16 +69,11 @@ input:-webkit-autofill:focus {
     .contenedor {
         display: block;
         grid-template-columns: 1fr;
-
     }
 }
 
 @media (max-width: 625px) {
     .formularios {
-        /* margin: 0px; */
         padding: 0px;
     }
 }
-
-
-@media (max-width: 475px) {}

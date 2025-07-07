@@ -9,11 +9,11 @@ interface contactForm {
 }
 
 @Component({
-    selector: 'app-formulario',
-    templateUrl: './formulario.component.html',
-    styleUrls: ['./formulario.component.css']
+    selector: 'app-form-contact',
+    templateUrl: './form-contact.component.html',
+    styleUrls: ['./form-contact.component.css']
 })
-export class FormularioComponent implements OnInit, OnDestroy {
+export class FormContactComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 

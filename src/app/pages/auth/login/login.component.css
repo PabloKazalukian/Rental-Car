@@ -1,7 +1,3 @@
-/* .container_login {
-    min-height: 68vh;
-} */
-
 .mat-form-field {
     display: block;
 }
@@ -18,45 +14,60 @@
     color: #fff222;
 }
 
-.titulo {
-    /* border-radius: .5em; */
+.login-title {
     margin-bottom: 1em;
     width: 100%;
-    /* background-color: var(--color-primary); */
     color: var(--color-text);
 }
 
-.titulo h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin: 2rem 0px;
+.login-form__field {
+    margin-bottom: 1.5rem;
 }
 
-.google-btn {
+.login-form__field--btn {
+    width: 100%;
+}
+
+.login-form__divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.login-form__divider::before,
+.login-form__divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-surface);
+}
+
+.login-form__divider-text {
+    margin: 0 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text--muted);
+    white-space: nowrap;
+}
+
+.login-form__google-btn {
     background-color: var(--color-text);
     color: var(--color-surface);
     width: 100%;
-    height: 50px;
+    height: 45px;
     border-radius: 5px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
     font-weight: 500;
     margin-top: 1rem;
-    font-family: "Google Sans", arial, sans-serif;
+    font-family: 'Google Sans', arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
 }
 
-/* @media (max-width: 625px) {
-    .formulario {
-        width: 400px;
-    }
+.text-2xl {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 2rem;
 }
-
-@media (max-width: 475px) {
-    .formulario {
-        width: 200px;
-    }
-} */

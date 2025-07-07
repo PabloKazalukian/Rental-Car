@@ -1,14 +1,12 @@
-<div class="contenedor">
-    <div class="layout">
-        <div class="item-img">
-            <img [src]="imageBackground" alt="image" class="img-fluid">
+<div class="login-container">
+    <div class="login-layout">
+        <div class="login-layout__image">
+            <img [src]="imageBackground" alt="image" class="login-layout__image-img" />
         </div>
-        <div class="item-form">
-            <div>
-                <ng-content></ng-content> <!-- Aquí se inyectará el formulario -->
-                <div class="d-flex justify-content-center">
-                    <img [src]="imageUrl" alt="image Car" class="img_Car">
-                </div>
+        <div class="login-layout__form">
+            <ng-content></ng-content>
+            <div class="login-layout__form-img-container">
+                <img [src]="imageUrl" alt="image Car" class="login-layout__form-img" />
             </div>
         </div>
     </div>
