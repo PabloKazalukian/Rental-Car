@@ -1,31 +1,21 @@
-<div class="row mt-1 p-2 rounded-2 contenedor_filtro">
-    <h2>Encuentra tu vehiculo!</h2>
-    <div class="row mb-1 pe-0">
-        <mat-form-field class="input-form-field" appearance="fill">
+<div class="filter-cars">
+    <h2 class="filter-cars__title">¡Encontrá tu vehículo!</h2>
+
+    <div class="filter-cars__inputs">
+        <mat-form-field class="filter-cars__input" appearance="fill">
             <mat-label>Seleccione una marca:</mat-label>
-            <input
-                matInput
-                variant="text"
-                id="#textBrandI"
-                [(ngModel)]="textBrand"
-                ng-model="selectedGcode"
-                placeholder="Ingrese modelo buscado"
-                (keyup)="searchFilter()" />
+            <input matInput id="#textBrandI" [(ngModel)]="textBrand" placeholder="Ingrese modelo buscado" (keyup)="searchFilter()" />
         </mat-form-field>
-        <mat-form-field class="input-form-field" appearance="fill">
+
+        <mat-form-field class="filter-cars__input" appearance="fill">
             <mat-label>Seleccione un modelo:</mat-label>
-            <input
-                matInput
-                variant="text"
-                id="#textModelI"
-                [(ngModel)]="textModel"
-                ng-model="selectedGcodes"
-                placeholder="Ingrese modelo buscado"
-                (keyup)="searchFilter()" />
+            <input matInput id="#textModelI" [(ngModel)]="textModel" placeholder="Ingrese modelo buscado" (keyup)="searchFilter()" />
         </mat-form-field>
     </div>
-    <div class="p-0 mt-2 d-flex flex-wrap justify-content-end align-items-center gap-2 pe-4">
-        <p class="p-0 m-0">Ordernamientos:</p>
+
+    <div class="filter-cars__actions">
+        <p class="filter-cars__label">Ordenamientos:</p>
+
         <app-btn
             [text]="'Ordenar por Precio'"
             [variant]="btnSelected === 'price' ? 'stroked' : 'ghost'"

@@ -43,8 +43,7 @@
         </table>
 
         <div class="pagination">
-            <button *ngFor="let page of totalPagesArray; let i = index" (click)="goToPage(i)"
-                [class.active]="i === currentPage">
+            <button *ngFor="let page of totalPagesArray; let i = index" (click)="goToPage(i)" [class.active]="i === currentPage">
                 {{ i + 1 }}
             </button>
         </div>

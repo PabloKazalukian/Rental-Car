@@ -1,6 +1,7 @@
-<div class="marginTop contenedor_user">
-    <h2 class="ps-4 ps-md-0">Bienvenido {{ this.user.username }}</h2>
-    <div class="d-flex flex-column gap-3 px-2 flex-lg-row mb-2 jutify-content-center align-items-center">
+<div class="marginTop user">
+    <h2 class="user__title">Bienvenido {{ this.user.username }}</h2>
+
+    <div class="user__actions">
         <app-btn
             [routerLink]="'/usuario/modificar-usuario'"
             [text]="'Modificar Usuario'"
@@ -11,9 +12,10 @@
 
         <app-btn [routerLink]="'/solicitar-auto'" [text]="'Solicitar auto'" [color]="'primary'" [variant]="'raised'"></app-btn>
     </div>
-    <h2 class="mt-2 ps-4 ps-md-0">Información de todas las solicitudes :</h2>
 
-    <div class="container__table">
+    <h2 class="user__subtitle">Información de todas las solicitudes :</h2>
+
+    <div class="user__table">
         <app-table-rental [user]="this.user"></app-table-rental>
     </div>
 </div>

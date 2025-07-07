@@ -1,0 +1,10 @@
+.cars {
+    margin-top: 3rem;
+}
+
+.cars__title {
+    font-size: var(--font-size-2xl);
+    /* font-weight: 600; */
+    margin-bottom: 1rem;
+    text-align: center;
+}

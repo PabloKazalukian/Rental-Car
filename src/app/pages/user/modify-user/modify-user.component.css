@@ -1,20 +1,33 @@
-/* .contenedor_User {
-    min-height: 65vh;
-} */
-.titulo {
-    /* border-radius: .5em; */
+.mod-user {
+    /* container principal si querés seguir extendiéndolo */
+}
+
+.mod-user__form {
+    width: 100%;
+}
+
+.mod-user__title {
     margin-bottom: 1em;
     width: 100%;
-    /* background-color: var(--color-primary); */
     color: var(--color-text);
 }
 
-.titulo h2 {
+.mod-user__title h2 {
     text-align: center;
     font-size: 2.2rem;
-    margin: 2rem 0px;
+    margin: 2rem 0;
 }
 
-.mat-form-field {
-    display: block;
+.mod-user__form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.mod-user__success {
+    margin-top: 2rem;
+}
+
+.mod-user__error {
+    margin-top: 2rem;
 }

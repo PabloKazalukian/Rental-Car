@@ -1,33 +1,6 @@
-.actions{
+.actions {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
-
-.mat-column-modify {
-    padding-left: 45px;
-}
-
-.switch_buttons {
-    max-width: 184px;
-    padding-left: 35px;
-}
-
-.confirmBtn {
-    background: #2f51b5;
-}
-
-.mat-paginator-container {
-    min-width: 462px;
-}
-
-@media (max-width: 954px) {
-    .switch_buttons {
-        padding: 10px 0px;
-        padding-left: 0px;
-        display: flex;
-        flex-direction: column;
-    }
-}
-

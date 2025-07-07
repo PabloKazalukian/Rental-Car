@@ -1,10 +1,8 @@
-<div class="container__login">
-    <!-- <div *ngIf="!this.error && !this.success"> -->
+<div class="mod-user">
     <app-auth [imageBackground]="'assets/images/bugatti_optimized.jpg'">
-        <form (ngSubmit)="onSubmit()" [formGroup]="modifyUser">
-            <!-- <h2>Modificar Usuario</h2> -->
-            <div class="titulo">
-                <h2 class="">Modifique su usuario</h2>
+        <form class="mod-user__form" (ngSubmit)="onSubmit()" [formGroup]="modifyUser">
+            <div class="mod-user__title">
+                <h2>Modifique su usuario</h2>
             </div>
 
             <app-form-input
@@ -21,15 +19,16 @@
                 [control]="modifyUser.get('email')!"
                 [errorMessages]="emailErrors"></app-form-input>
 
-            <div class="d-flex justify-content-end align-items-end">
+            <div class="mod-user__form-actions">
                 <app-form-button text="Enviar" color="warn" [disabled]="modifyUser.invalid"></app-form-button>
             </div>
         </form>
 
-        <div *ngIf="this.success === true" class="formulario">
+        <div *ngIf="this.success === true" class="mod-user__success">
             <app-success [text]="'Sesión iniciada con exito!'"></app-success>
         </div>
-        <div *ngIf="this.error === true && this.success == false" class="">
+
+        <div *ngIf="this.error === true && this.success == false" class="mod-user__error">
             <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
         </div>
     </app-auth>

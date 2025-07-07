@@ -1,4 +1,4 @@
-.stepper-container {
+.stepper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,7 +8,7 @@
     overflow-x: auto;
 }
 
-.step {
+.stepper__step {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,7 @@
     flex: 1;
 }
 
-.circle {
+.stepper__circle {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -32,33 +32,33 @@
     position: relative;
 }
 
-.circle.completed {
+.stepper__circle--completed {
     background-color: var(--color-confirm);
     border-color: var(--color-confirm);
     color: white;
     animation: fade-in 0.3s ease-in-out;
 }
 
-.circle.current {
+.stepper__circle--current {
     border: 3px solid var(--color-confirm);
 }
 
-.label {
+.stepper__label {
     margin-top: 0.5rem;
     text-align: center;
     font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
-.label-completed {
+.stepper__label--completed {
     color: var(--color-text--muted);
 }
 
-.label-incomplete {
+.stepper__label--incomplete {
     color: var(--color-text);
 }
 
-.line {
+.stepper__line {
     position: absolute;
     height: 2px;
     background-color: var(--color-confirm);
@@ -68,18 +68,17 @@
     z-index: 0;
 }
 
+.stepper__checkmark {
+    animation: fade-in 0.2s ease-out;
+}
+
 @keyframes fade-in {
     from {
         transform: scale(0.7);
         opacity: 0;
     }
-
     to {
         transform: scale(1);
         opacity: 1;
     }
-}
-
-.checkmark {
-    animation: fade-in 0.2s ease-out;
 }

@@ -1,10 +1,11 @@
-<div class="contentHow p-5">
-    <h2 class="d-flex justify-content-evenly align-item-center titleAll px-5">Como usar Rental-Car?</h2>
-    <div class=" d-flex justify-content-evenly align-item-center flex-wrap p-4 gap-5">
-        <div *ngFor="let diccionary of diccionary" class="contentCard">
-            <h3 class="title">{{diccionary.tittle}}</h3>
-            <hr>
-            <div class="text" [innerHTML]="diccionary.text"> </div>
+<div class="how">
+    <h2 class="how__title">¿Cómo usar Rental-Car?</h2>
+
+    <div class="how__cards">
+        <div *ngFor="let diccionary of diccionary" class="how__card">
+            <h3 class="how__card-title">{{ diccionary.tittle }}</h3>
+            <hr />
+            <div class="how__card-text" [innerHTML]="diccionary.text"></div>
         </div>
     </div>
 </div>
