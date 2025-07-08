@@ -7,11 +7,11 @@ import { LoginService } from 'src/app/core/services/login.service';
 
 
 @Component({
-    selector: 'app-alquiler',
-    templateUrl: './alquiler.component.html',
-    styleUrls: ['./alquiler.component.css']
+    selector: 'app-rental',
+    templateUrl: './rental.component.html',
+    styleUrls: ['./rental.component.css']
 })
-export class AlquilerComponent implements OnInit, OnDestroy {
+export class RentalComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 

@@ -2,15 +2,19 @@
     <h2 class="filter-cars__title">¡Encontrá tu vehículo!</h2>
 
     <div class="filter-cars__inputs">
-        <mat-form-field class="filter-cars__input" appearance="fill">
-            <mat-label>Seleccione una marca:</mat-label>
-            <input matInput id="#textBrandI" [(ngModel)]="textBrand" placeholder="Ingrese modelo buscado" (keyup)="searchFilter()" />
-        </mat-form-field>
+        <app-form-input
+            class="filter-cars__input"
+            [label]="'Seleccione una marca:'"
+            [type]="'text'"
+            [placeholder]="'Ingrese marca buscada'"
+            [control]="textBrandControl"></app-form-input>
 
-        <mat-form-field class="filter-cars__input" appearance="fill">
-            <mat-label>Seleccione un modelo:</mat-label>
-            <input matInput id="#textModelI" [(ngModel)]="textModel" placeholder="Ingrese modelo buscado" (keyup)="searchFilter()" />
-        </mat-form-field>
+        <app-form-input
+            class="filter-cars__input"
+            [label]="'Seleccione un modelo:'"
+            [type]="'text'"
+            [placeholder]="'Ingrese modelo buscado'"
+            [control]="textModelControl"></app-form-input>
     </div>
 
     <div class="filter-cars__actions">

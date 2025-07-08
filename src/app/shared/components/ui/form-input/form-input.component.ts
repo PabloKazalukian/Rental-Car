@@ -1,24 +1,30 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
-    selector: 'app-form-input',
-    templateUrl: './form-input.component.html',
-    styleUrls: ['./form-input.component.css']
+  selector: 'app-form-input',
+  templateUrl: './form-input.component.html',
+  styleUrls: ['./form-input.component.css']
 })
-export class FormInputComponent {
-    @Input() label!: string;
-    @Input() type: string = 'text';
-    @Input() placeholder: string = '';
-    @Input() control!: FormControl | AbstractControl;
-    @Input() name!: string;
-    @Input() errorMessages!: { [key: string]: string };
-    @Input() hideToggle: boolean = false;
-    hide: boolean = true;
+export class FormInputComponent implements OnInit {
+  @Input() control!: FormControl;
+  @Input() label!: string;
+  @Input() type: 'text' | 'email' | 'password' = 'text';
+  @Input() placeholder: string = '';
+  @Input() showTogglePassword: boolean = false;
 
-    public Object = Object;
+  hidePassword: boolean = true;
 
-    get errorKeys(): string[] {
-        return this.control?.errors ? Object.keys(this.control.errors) : [];
-    }
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  get showError(): boolean {
+    return this.control?.touched && this.control?.invalid;
+  }
+
+  togglePassword(): void {
+    this.hidePassword = !this.hidePassword;
+  }
 }
+

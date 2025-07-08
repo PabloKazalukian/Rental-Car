@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { AlquilerComponent } from 'src/app/pages/rental/alquiler.component';
+import { RentalComponent } from 'src/app/pages/rental/rental.component';
 import { FormReactivoComponent } from 'src/app/pages/rental/components/form/form-reactivo.component';
 import { CalendarComponent } from 'src/app/pages/rental/components/calendar/calendar.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 const routes: Routes = [
     {
         path: '',
-        component: AlquilerComponent,
+        component: RentalComponent,
         // canActivate:[PermissionsGuard],
         // // canDeactivate:[WithoutSaveGuard],
         // resolve:{car:DataResolverService}
@@ -30,7 +30,7 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        AlquilerComponent,
+        RentalComponent,
         FormReactivoComponent,
         CalendarComponent,
         DialogConfirmationComponent,

@@ -5,22 +5,22 @@
                 <h2>Modifique su usuario</h2>
             </div>
 
-            <app-form-input
+            <!-- <app-form-input
                 name="username"
                 label="Ingrese un nuevo Nombre de usuario"
                 placeholder="nombre de usuario"
                 [control]="modifyUser.get('username')!"
-                [errorMessages]="userNameErrors"></app-form-input>
+                [errorMessages]="userNameErrors"></app-form-input> -->
 
-            <app-form-input
+            <!-- <app-form-input
                 name="email"
                 label="Ingrese un nuevo email"
                 placeholder="pat@example.com"
                 [control]="modifyUser.get('email')!"
-                [errorMessages]="emailErrors"></app-form-input>
+                [errorMessages]="emailErrors"></app-form-input> -->
 
             <div class="mod-user__form-actions">
-                <app-form-button text="Enviar" color="warn" [disabled]="modifyUser.invalid"></app-form-button>
+                <app-form-button text="Enviar" color="warn"></app-form-button>
             </div>
         </form>
 
@@ -29,7 +29,7 @@
         </div>
 
         <div *ngIf="this.error === true && this.success == false" class="mod-user__error">
-            <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
+            <app-message-error [messageError]="'Hubo un problema.'"></app-message-error>
         </div>
     </app-auth>
 </div>

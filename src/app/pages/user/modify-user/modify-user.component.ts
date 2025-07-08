@@ -22,14 +22,14 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     success: boolean = false;
     error: boolean = false;
     userNameErrors = {
-  required: 'Este campo es requerido',
-  minlength: 'Debe tener al menos 3 caracteres',
+    required: 'Este campo es requerido',
+    minlength: 'Debe tener al menos 3 caracteres',
 };
 
 emailErrors = {
-  required: 'Este campo es requerido',
-  pattern: 'Formato de email inválido',
-  emailExist: 'Email existente',
+    required: 'Este campo es requerido',
+    pattern: 'Formato de email inválido',
+    emailExist: 'Email existente',
 };
 
     constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private authSvc: RegisterService, private userSvc: UserService, private router: Router) { }

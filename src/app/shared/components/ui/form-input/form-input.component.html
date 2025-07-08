@@ -1,22 +1,31 @@
-<mat-form-field appearance="fill" class="input-form-field">
-    <mat-label>{{ label }}</mat-label>
+<div class="form-input">
+    <label class="form-input__label">{{ label }}</label>
 
-    <input
-        matInput
-        [type]="hideToggle ? (hide ? 'password' : 'text') : type"
-        formControlName="name"
-        [placeholder]="placeholder"
-        [id]="name"
-        [name]="name"
-        required />
+    <div class="form-input__field">
+        <input
+            [type]="type === 'password' && hidePassword ? 'password' : 'text'"
+            [formControl]="control"
+            [placeholder]="placeholder"
+            [class.input-error]="showError" />
 
-    <button *ngIf="hideToggle" type="button" mat-icon-button matSuffix (click)="hide = !hide">
-        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-    </button>
+        <button *ngIf="showTogglePassword" type="button" class="form-input__toggle" (click)="togglePassword()">
+            {{ hidePassword ? '🙈' : '🐵' }}
+        </button>
+    </div>
 
-    <mat-error *ngFor="let key of errorKeys">
-        <span *ngIf="control.touched && control.hasError(key)">
-            {{ errorMessages[key] }}
+    <div *ngIf="showError" class="form-input__error">
+        <span *ngIf="control.errors?.['required']">Este campo es obligatorio</span>
+        <span *ngIf="control.errors?.['minlength']">
+            Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres
         </span>
-    </mat-error>
-</mat-form-field>
+
+        <span *ngIf="control.errors?.['email']">Formato de email inválido</span>
+
+        <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe</span>
+        <span *ngIf="control.errors?.['emailExist']">El email es invalido</span>
+        <span *ngIf="control.errors?.['passNoRepeat']">Las contraseñas no coinciden</span>
+        <!-- <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe</span> -->
+
+        <!-- Otros errores posibles -->
+    </div>
+</div>

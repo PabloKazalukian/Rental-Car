@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login.service';
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         const credentials = this.authSvc.getCredentials();
         this.contactForm = this.initForm();
+        console.log( typeof this.contactForm.get('password') )
         this.remember = credentials.remember;
 
         if (this.remember) {
@@ -80,6 +81,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     rememberMe(event: boolean): void {
         this.remember = event;
+    }
+
+    get emailControl(): FormControl {
+        return this.contactForm.get('email') as FormControl;
+    }
+
+    get passwordControl(): FormControl {
+        return this.contactForm.get('password') as FormControl;
     }
 
     ngOnDestroy(): void {

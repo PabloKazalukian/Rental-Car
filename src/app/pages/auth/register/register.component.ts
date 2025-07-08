@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, map, of, Subscription } from 'rxjs';
 import { RegisterService } from 'src/app/core/services/register.service';
@@ -18,15 +18,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
     imageUrl: string = 'assets/images/logo-no-background.png';
     imageBackground: string = 'assets/images/superdeportivo_optimized.jpg';
+    hide = true;
 
     constructor(private readonly fb: FormBuilder, private authSvc: RegisterService, private router: Router) { };
-    hide = true;
 
 
     ngOnInit(): void {
         this.registerForm = this.initForm();
-        // console.log(this.registerForm)
-        // this.authSvc.verifyEmail("admin@gmail.com").subscribe(e=>console.log(e))
     };
 
     onSubmit(): void {
@@ -57,21 +55,17 @@ export class RegisterComponent implements OnInit, OnDestroy {
     };
 
     validateEmail(control: AbstractControl) {
-        console.log(control)
 
         return this.authSvc.verifyEmail(control.value)
             .pipe(
                 map(data => {
                     if (data) {
-                        console.log(data);
                         return { emailExist: true }
                     } else {
                         return null
                     }
                 }),
                 catchError(error => {
-                    console.log(error);
-                    console.log(control)
                     return of(null)
                 })
             )
@@ -81,7 +75,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         return this.authSvc.verifyUsername(control.value)
             .pipe(
                 map(data => {
-                    console.log(data);
                     if (data) {
                         return { usernameExist: true }
                     } else {
@@ -89,14 +82,29 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     }
                 }),
                 catchError(error => {
-                    console.log(error);
                     return of(null)
                 })
             )
     }
 
+    get usernameControl(): FormControl {
+        return this.registerForm.get('username') as FormControl;
+    }
+
+    get emailControl(): FormControl {
+        return this.registerForm.get('email') as FormControl;
+    }
+
+    get password1Control(): FormControl {
+        return this.registerForm.get('password1') as FormControl;
+    }
+
+    get password2Control(): FormControl {
+        return this.registerForm.get('password2') as FormControl;
+    }
+
+
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())
     }
-
 }

@@ -1,16 +1,18 @@
-<div class="container marginTop rental__container__spacing" color="primary">
-    <div class="row">
-        <app-stepper [steps]="['Seleccionar auto', 'Elegir fechas', 'Confirmación']" [currentStep]="step"></app-stepper>
-        <div class="col-lg-8 col-md-6 rental__form__container">
-            <div class="rental__title">
+<div class="container marginTop rental" color="primary">
+    <div class="rental__container">
+        <div class="rental__stepper">
+            <app-stepper [steps]="['Seleccionar auto', 'Elegir fechas', 'Confirmación']" [currentStep]="step"></app-stepper>
+        </div>
+        <div class="rental__form">
+            <div class="rental__form-title">
                 <h1>Alquile un vehiculo</h1>
             </div>
 
             <app-form-reactivo (stepChanged)="step = $event" [idCar]="idCar" [cars]="cars"></app-form-reactivo>
         </div>
-        <div class="col-lg-4 col-md-5">
+        <div class="rental__card">
             <aside class="rental__card__content">
-                <div class="rental__image__wrapper">
+                <div class="rental__card-image__wrapper">
                     <div *ngIf="!imageLoaded" class="skeleton-image"></div>
                     <img
                         [src]="cars?.image"
@@ -19,23 +21,23 @@
                         (load)="onImageLoad()"
                         [class.hidden]="!imageLoaded" />
                 </div>
-                <div class="rental__info__model">
-                    <div class="rental__info__name">
+                <div class="rental__card-info__model">
+                    <div class="rental__card-info__name">
                         <label>Modelo:</label>
                         <h2>{{ cars?.brand }} {{ cars?.model }}</h2>
                     </div>
-                    <div class="rental__info__price">
+                    <div class="rental__card-info__price">
                         <label>Precio por día:</label>
                         <h2>{{ cars?.price }}</h2>
                     </div>
-                    <div class="rental__info__year">
+                    <div class="rental__card-info__year">
                         <label>año:</label>
                         <h2>{{ cars?.year }}</h2>
                     </div>
                 </div>
-                <div class="rental__info__button">
+                <div class="rental__card-info__button">
                     <div>
-                        <a mat-raised-button color="warn" routerLink="/solicitar-auto" class="rental__button__change-car">
+                        <a mat-raised-button color="warn" routerLink="/solicitar-auto" class="rental__card-button__change-car">
                             Solicitar otro vehiculo
                         </a>
                     </div>

@@ -6,82 +6,38 @@
             </div>
 
             <div class="register-form__field">
-                <mat-form-field class="register-form__input" appearance="fill">
-                    <mat-label>Ingrese un usuario</mat-label>
-                    <input
-                        class="register-form__input-fill"
-                        matInput
-                        placeholder="ingrese un nombre de usuario"
-                        id="username"
-                        name="username"
-                        formControlName="username"
-                        required />
-                    <mat-error *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['minlength']">
-                        Este campo es requerido
-                    </mat-error>
-                    <mat-error *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.errors?.['usernameExist']">
-                        El usuario ya existe
-                    </mat-error>
-                </mat-form-field>
+                <!-- <mat-form-field class="register-form__input" appearance="fill"> -->
+
+                <app-form-input
+                    [label]="'Ingrese un usuario'"
+                    [type]="'text'"
+                    [placeholder]="'ingrese un nombre de usuario'"
+                    [control]="usernameControl"></app-form-input>
+                <!-- </mat-form-field> -->
             </div>
 
             <div class="register-form__field">
-                <mat-form-field class="register-form__input" appearance="fill">
-                    <mat-label>Ingrese un email</mat-label>
-                    <input matInput placeholder="pat@example.com" id="email" name="email" formControlName="email" required />
-                    <mat-error *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['pattern']">
-                        Este Campo es requerido
-                    </mat-error>
-                    <mat-error *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.errors?.['emailExist']">
-                        El email es invalido
-                    </mat-error>
-                </mat-form-field>
+                <app-form-input
+                    [label]="'Ingrese un email'"
+                    [type]="'email'"
+                    [placeholder]="'pat@example.com'"
+                    [control]="emailControl"></app-form-input>
             </div>
 
             <div class="register-form__field">
-                <mat-form-field class="register-form__input" appearance="fill">
-                    <mat-label>Enter your password</mat-label>
-                    <input
-                        matInput
-                        [type]="hide ? 'password' : 'text'"
-                        id="password1"
-                        name="password1"
-                        required
-                        formControlName="password1" />
-                    <mat-error *ngIf="registerForm.get('password1')?.errors?.['minlength']">Este Campo es requerido</mat-error>
-                    <button
-                        type="button"
-                        mat-icon-button
-                        matSuffix
-                        (click)="hide = !hide"
-                        [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    </button>
-                </mat-form-field>
+                <app-form-input
+                    [label]="'Ingrese una contraseña'"
+                    [type]="'password'"
+                    [placeholder]="'Ingrese su contraseña'"
+                    [control]="password1Control"></app-form-input>
             </div>
 
             <div class="register-form__field">
-                <mat-form-field class="register-form__input" appearance="fill">
-                    <mat-label>Enter your password</mat-label>
-                    <input
-                        matInput
-                        [type]="hide ? 'password' : 'text'"
-                        id="password2"
-                        name="password2"
-                        required
-                        formControlName="password2" />
-                    <mat-error *ngIf="registerForm.get('password2')?.errors?.['minlength']">Este Campo es requerido</mat-error>
-                    <button
-                        type="button"
-                        mat-icon-button
-                        matSuffix
-                        (click)="hide = !hide"
-                        [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    </button>
-                </mat-form-field>
+                <app-form-input
+                    [label]="'Repita la contraseña'"
+                    [type]="'password'"
+                    [placeholder]="'Ingrese nuevamente password'"
+                    [control]="password2Control"></app-form-input>
             </div>
 
             <mat-error *ngIf="registerForm.errors?.['passNoRepeat']">Las contraseñas no coinciden</mat-error>
@@ -97,7 +53,7 @@
                     [color]="'primary'"
                     [variant]="'raised'"
                     [buttonType]="'submit'"
-                    [isDisabled]="registerForm.invalid"></app-btn>
+                    [isDisabled]="registerForm.invalid || registerForm.pending"></app-btn>
             </div>
         </form>
 

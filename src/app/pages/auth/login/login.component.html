@@ -5,37 +5,26 @@
                 <h2 class="text-2xl">Inicie sesión</h2>
             </div>
             <div class="login-form__field">
-                <mat-form-field class="input-form-field" appearance="fill">
-                    <mat-label>Email o nombre de usuario</mat-label>
-                    <input matInput placeholder="pat@example.com" id="email" name="email" formControlName="email" required />
-                    <mat-error *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors?.['minlength']">
-                        Este Campo es requerido
-                    </mat-error>
-                </mat-form-field>
+                <app-form-input
+                    [label]="'Email o nombre de usuario'"
+                    [type]="'text'"
+                    [placeholder]="'pat@example.com'"
+                    [control]="emailControl"></app-form-input>
             </div>
             <div class="login-form__field">
-                <mat-form-field appearance="fill">
-                    <mat-label>Contraseña</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" id="password" name="password" required formControlName="password" />
-                    <mat-error *ngIf="contactForm.get('password')?.errors?.['minlength']">Este Campo es requerido</mat-error>
-
-                    <button
-                        type="button"
-                        mat-icon-button
-                        matSuffix
-                        (click)="hide = !hide"
-                        [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                    </button>
-                </mat-form-field>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="contentCheckbox">
-                        <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordarme</mat-checkbox>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <a mat-link href="#" class="forgotPassword">Olvidé mi contraseña</a>
-                    </div>
+                <app-form-input
+                    [label]="'Contraseña'"
+                    [type]="'password'"
+                    [placeholder]="'********'"
+                    [control]="passwordControl"
+                    [showTogglePassword]="true"></app-form-input>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="contentCheckbox">
+                    <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordarme</mat-checkbox>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a mat-link href="#" class="forgotPassword">Olvidé mi contraseña</a>
                 </div>
             </div>
 
