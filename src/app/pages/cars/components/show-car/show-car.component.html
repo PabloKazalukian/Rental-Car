@@ -1,36 +1,35 @@
-<div class="d-flex flex-row gap-4 flex-wrap justify-content-center mt-3 py-5 contenedor_cars">
-    <div class="spinner-container" *ngIf="this.loading === true; else viewNoFount">
+<div class="show-cars">
+    <div class="show-cars__spinner" *ngIf="this.loading === true; else viewNoFount">
         <app-loading></app-loading>
     </div>
     <ng-template #viewNoFount>
         <h2 *ngIf="cars.length < 1">No se han encontrado vehiculos</h2>
     </ng-template>
-    <div *ngFor="let autos of cars" class="d-inline">
-        <div class="card card-background mat-elevation-z8 card_blur" style="width: 18rem">
-            <div class="image-container">
-                <img src="{{ autos.image }}" class="card-img-top" alt="..." style="height: 11rem" />
+    <div *ngFor="let autos of cars" class="show-cars__card">
+        <div class="image-container show-cars__image">
+            <img src="{{ autos.image }}" class="card-img-top show-cars__image--photo" alt="..." />
+        </div>
+        <div class="show-cars__card-body">
+            <div class="show-cars__card-fields">
+                <h5 class="show-cars__card-text--title">{{ autos.brand.toUpperCase() }}</h5>
+                <p class="show-cars__card-text--model">{{ autos.model }}</p>
+                <p class="show-cars__card-text--year">{{ autos.year }}</p>
+                <p class="show-cars__card-text--price">{{ autos.price }} us$</p>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ autos.brand.toUpperCase() }}</h5>
-                <p class="card-text">Modelo: {{ autos.model }}</p>
-                <p class="card-text">Año: {{ autos.year }}</p>
-                <p class="card-text">Precio: {{ autos.price }} us$</p>
-                <div class="d-flex justify-content-between">
-                    <app-btn
-                        [text]="'Ver Más'"
-                        [color]="'primary'"
-                        [variant]="'stroked'"
-                        data-bs-toggle="modal"
-                        [attr.data-bs-target]="'#staticBackdrop' + autos.id"></app-btn>
-                    <app-btn
-                        [text]="'Solicitar alquiler'"
-                        [color]="'primary'"
-                        [variant]="'raised'"
-                        (click)="this.goWithCar(autos.id)"></app-btn>
-                </div>
+            <div class="show-cars__card-actions">
+                <app-btn
+                    [text]="'Solicitar alquiler'"
+                    [color]="'primary'"
+                    [variant]="'raised'"
+                    (click)="this.goWithCar(autos.id)"></app-btn>
+                <app-btn
+                    [text]="'Ver Más'"
+                    [color]="'text'"
+                    [variant]="'stroked'"
+                    data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#staticBackdrop' + autos.id"></app-btn>
             </div>
         </div>
-
         <div
             class="modal fade"
             id="staticBackdrop{{ autos.id }}"

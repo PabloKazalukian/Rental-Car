@@ -22,6 +22,8 @@
     --font-size-4xl: 3rem; /* 48px */
     --font-size-5xl: 3.75rem; /* 60px */
 
+    --border-radius: 0.5rem;
+
     --color-primary: #d63a3a;
     --color-confirm: #b02c55;
     --color-secondary: #3a6ebf;

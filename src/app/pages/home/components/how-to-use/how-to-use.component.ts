@@ -15,7 +15,7 @@ export class HowToUseComponent implements OnInit {
         {
             tittle: "Debes iniciar sesión",
             text: `Si no posees una cuenta, puedes registrarte
-    <a href="/registro">aquí</a>
+    <a href="auth/registro">aquí</a>
     muy facilmente, solo necesitas un correo electronico, un usuario y una contraseña.`},
         {
             tittle: "Selecciona tu vehiculo",
