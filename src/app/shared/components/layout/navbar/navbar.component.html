@@ -1,21 +1,37 @@
-<nav class="navBar">
-    <a routerLink="" class="title">
-        <span class="title">Rental-Car</span>
-    </a>
-    <span class="spacer"></span>
-    <!-- <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{ this.usuario?.username }}</a> -->
+<nav class="nav-bar">
+    <div class="nav-bar__container">
+        <a routerLink="" class="title">
+            <span class="title">Rental-Car</span>
+        </a>
+        <span class="spacer"></span>
 
-    <app-btn [routerLink]="'/contacto'" [text]="'Contáctanos'" [color]="'text'" [variant]="'basic'"></app-btn>
+        <div class="nav-bar__links">
+            <app-btn [routerLink]="'/contacto'" [text]="'Contáctanos'" [color]="'text'" [variant]="'basic'"></app-btn>
 
-    <app-btn *ngIf="islogged" [routerLink]="'/usuario'" [text]="usuario.username" [color]="'primary'" [variant]="'stroked'"></app-btn>
-    <app-btn *ngIf="islogged" [text]="'Cerrar sesión'" [color]="'confirm'" [variant]="'stroked'" (click)="logout()"></app-btn>
+            <app-btn
+                *ngIf="islogged"
+                [routerLink]="'/usuario'"
+                [text]="usuario.username"
+                [color]="'primary'"
+                [variant]="'stroked'"></app-btn>
+            <app-btn *ngIf="islogged" [text]="'Cerrar sesión'" [color]="'confirm'" [variant]="'stroked'" (click)="logout()"></app-btn>
 
-    <app-btn *ngIf="!islogged" [routerLink]="'/auth/registro'" [text]="'Registrarse'" [color]="'text'" [variant]="'basic'"></app-btn>
-    <app-btn *ngIf="!islogged" [routerLink]="'/auth/login'" [text]="'Iniciar sesión'" [color]="'text'" [variant]="'basic'"></app-btn>
+            <app-btn
+                *ngIf="!islogged"
+                [routerLink]="'/auth/registro'"
+                [text]="'Registrarse'"
+                [color]="'text'"
+                [variant]="'basic'"></app-btn>
+            <app-btn
+                *ngIf="!islogged"
+                [routerLink]="'/auth/login'"
+                [text]="'Iniciar sesión'"
+                [color]="'text'"
+                [variant]="'basic'"></app-btn>
 
-    <app-btn [routerLink]="'/'" [text]="'Inicio'" [color]="'text'" [variant]="'basic'"></app-btn>
-
-    <!-- </mat-nav-list> -->
+            <app-btn [routerLink]="'/'" [text]="'Inicio'" [color]="'text'" [variant]="'basic'"></app-btn>
+        </div>
+    </div>
 </nav>
 <ng-template #viewLogout>
     <a mat-stroked-button color="warn" routerLink="" (click)="this.logout()">Cerrar sesión</a>

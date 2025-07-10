@@ -57,7 +57,7 @@ import { FormButtonComponent } from './shared/components/ui/form-button/form-but
 import { ScrollAnimateDirective } from './shared/directives/scroll-animate.directive';
 import { FormClassDirective } from './shared/directives/form-class.directive';
 import { SharedModule } from './shared/shared.module';
-import { TaxtareaComponent } from './shared/components/ui/taxtarea/taxtarea.component';
+import { TaxtareaComponent } from './shared/components/ui/textarea/textarea.component';
 
 // 🔹 Interceptors
 import { TokenInterceptor } from './core/interceptors/token.interceptor';

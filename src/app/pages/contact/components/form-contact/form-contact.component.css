@@ -20,7 +20,3 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-
-.formulario {
-    min-height: 68vh;
-}

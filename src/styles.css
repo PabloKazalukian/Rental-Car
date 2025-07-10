@@ -5,6 +5,12 @@
     --font-title: 'Lora', serif;
     --font-body: 'Inter', sans-serif;
 
+    --app-container-sm: 640px;
+    --app-container-md: 768px;
+    --app-container-lg: 1024px;
+    --app-container-xl: 1280px;
+    --app-container-2xl: 1600px;
+
     --font-size-xs: 0.75rem; /* 12px */
     --font-size-sm: 0.875rem; /* 14px */
     --font-size-base: 1rem; /* 16px */
@@ -57,9 +63,12 @@ html {
 }
 
 .app-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    max-width: var(--app-container-2xl);
+    padding-left: clamp(1rem, 4vw, 3rem);
+    padding-right: clamp(1rem, 4vw, 3rem);
+    margin: 80px auto 0 auto;
+    width: 100%;
+    box-sizing: border-box;
 
     @media (max-width: 768px) {
         padding: 0 0.5rem;

@@ -1,3 +1,10 @@
-.formulario {
-    min-height: 68vh;
+.contact {
+}
+
+.contact__title {
+    font-size: var(--font-size-2xl);
+    text-align: center;
+    /* margin: 2rem 0rem; */
+    padding: 0.5rem;
+    /* margin: 4rem 0px; */
 }

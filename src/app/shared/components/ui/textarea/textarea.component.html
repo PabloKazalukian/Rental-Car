@@ -3,7 +3,7 @@
 
     <textarea [formControl]="control" [placeholder]="placeholder" [class.textarea-error]="showError" class="textarea" rows="4"></textarea>
 
-    <div *ngIf="showError" class="taxtarea__error">
+    <div *ngIf="showError" class="form-textarea__error">
         <span *ngIf="control.errors?.['required']">Este campo es obligatorio</span>
         <span *ngIf="control.errors?.['minlength']">
             Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres
