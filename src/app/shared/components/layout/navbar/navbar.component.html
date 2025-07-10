@@ -5,6 +5,8 @@
     <span class="spacer"></span>
     <!-- <a mat-stroked-button color="primary" *ngIf="islogged" mat-button routerLink="usuario">{{ this.usuario?.username }}</a> -->
 
+    <app-btn [routerLink]="'/contacto'" [text]="'Contáctanos'" [color]="'text'" [variant]="'basic'"></app-btn>
+
     <app-btn *ngIf="islogged" [routerLink]="'/usuario'" [text]="usuario.username" [color]="'primary'" [variant]="'stroked'"></app-btn>
     <app-btn *ngIf="islogged" [text]="'Cerrar sesión'" [color]="'confirm'" [variant]="'stroked'" (click)="logout()"></app-btn>
 

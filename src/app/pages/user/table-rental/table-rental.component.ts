@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { requestReceived } from 'src/app/core/models/request.interface';
+import { RequestReceived } from 'src/app/core/models/request.interface';
 import { Subscription } from 'rxjs';
 import { RentalService } from 'src/app/core/services/rental.service';
-import { usuario } from 'src/app/core/models/user.interface';
+import { Usuario } from 'src/app/core/models/user.interface';
 import { UserComponent } from '../user.component';
 import { formatDateToLocale } from 'src/app/shared/validators/date.validator';
 
@@ -16,9 +16,9 @@ export class TableRentalComponent implements OnInit {
 
     private subscripcions: Subscription[] = [];
 
-    @Input() user!: usuario
+    @Input() user!: Usuario
     show!: boolean
-    request!: requestReceived[]
+    request!: RequestReceived[]
     dataSource!: RequestTableRow[];
     dataSourceComplete!: RequestTableRow[];
     displayedColumns: string[] = ['initial_date', 'final_date', 'brand', 'model', 'amount', 'modify'];

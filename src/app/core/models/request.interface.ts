@@ -1,17 +1,17 @@
 import { Car } from "./car.interface"
 
-export interface request {
+export interface Request {
     id_request: number,
     initialDate: string,
     finalDate: string,
 
 }
-export interface requests {
+export interface Requests {
     initialDate: string,
     finalDate: string,
 }
 
-export interface requestSend {
+export interface RequestSend {
     amount: number,
     initialDate: Date,
     finalDate: Date,
@@ -20,7 +20,7 @@ export interface requestSend {
     state: string,
 }
 
-export interface requestReceived {
+export interface RequestReceived {
     amount: number,
     brand: string,
     finalDate: string,

@@ -8,36 +8,36 @@
             <div class="register-form__field">
                 <!-- <mat-form-field class="register-form__input" appearance="fill"> -->
 
-                <app-form-input
+                <app-input
                     [label]="'Ingrese un usuario'"
                     [type]="'text'"
                     [placeholder]="'ingrese un nombre de usuario'"
-                    [control]="usernameControl"></app-form-input>
+                    [control]="usernameControl"></app-input>
                 <!-- </mat-form-field> -->
             </div>
 
             <div class="register-form__field">
-                <app-form-input
+                <app-input
                     [label]="'Ingrese un email'"
                     [type]="'email'"
                     [placeholder]="'pat@example.com'"
-                    [control]="emailControl"></app-form-input>
+                    [control]="emailControl"></app-input>
             </div>
 
             <div class="register-form__field">
-                <app-form-input
+                <app-input
                     [label]="'Ingrese una contraseña'"
                     [type]="'password'"
                     [placeholder]="'Ingrese su contraseña'"
-                    [control]="password1Control"></app-form-input>
+                    [control]="password1Control"></app-input>
             </div>
 
             <div class="register-form__field">
-                <app-form-input
+                <app-input
                     [label]="'Repita la contraseña'"
                     [type]="'password'"
                     [placeholder]="'Ingrese nuevamente password'"
-                    [control]="password2Control"></app-form-input>
+                    [control]="password2Control"></app-input>
             </div>
 
             <mat-error *ngIf="registerForm.errors?.['passNoRepeat']">Las contraseñas no coinciden</mat-error>

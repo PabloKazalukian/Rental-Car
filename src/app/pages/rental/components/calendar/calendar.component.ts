@@ -2,7 +2,7 @@ import { Component, Input, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@
 
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RentalService } from 'src/app/core/services/rental.service';
-import { request } from 'src/app/core/models/request.interface';
+import { Request } from 'src/app/core/models/request.interface';
 import { MatDateRangePicker } from '@angular/material/datepicker';
 import { delay, take } from "rxjs/operators";
 import { isDateHigher, getDays } from '../../../../shared/validators/date.validator';
@@ -26,7 +26,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    arrRequest!: request[];
+    arrRequest!: Request[];
     blockedDates: Set<string> = new Set();
 
 

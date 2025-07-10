@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
-import { request, requestSend } from 'src/app/core/models/request.interface';
+import { Request, RequestSend } from 'src/app/core/models/request.interface';
 import { LoginService } from 'src/app/core/services/login.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { DatePipe } from '@angular/common';
@@ -22,7 +22,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
     @Output() stepChanged = new EventEmitter<number>();
 
 
-    arrRequest!: request[]
+    arrRequest!: Request[]
     range!: FormGroup;
     private subscripcions: Subscription[] = [];
 
@@ -61,7 +61,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
         let end = new DatePipe('en').transform(this.range.value.end, 'yyyy-MM-dd');
 
         if (start && end) {
-            let result: requestSend = {
+            let result: RequestSend = {
                 amount: this.range.value?.amount,
                 initialDate: this.range.value.start,
                 finalDate: this.range.value.end,
@@ -99,7 +99,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
         }
     };
 
-    initFormDates(res: request[] | null): FormGroup {
+    initFormDates(res: Request[] | null): FormGroup {
         return this.fb.group({
             start: new FormControl(null),
             end: new FormControl(null),

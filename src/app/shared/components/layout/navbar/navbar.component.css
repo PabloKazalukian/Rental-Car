@@ -5,7 +5,7 @@
 .navBar {
     position: fixed;
     z-index: 100000;
-    background: #21212194;
+    background: var(--color-background--2);
     /* backdrop-filter: saturate(180%) blur(10px); */
     transition: background 0.3s;
     height: 64px;

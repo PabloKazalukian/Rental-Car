@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator'
-import { usuario } from 'src/app/core/models/user.interface';
+import { Usuario } from 'src/app/core/models/user.interface';
 
 @Component({
     selector: 'app-modify-pass',
@@ -19,7 +19,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
     modifyPass!: FormGroup;
-    usuario!: usuario;
+    usuario!: Usuario;
     success: boolean = false;
     error: boolean = false;
 

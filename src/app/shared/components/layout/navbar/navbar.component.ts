@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/login.service';
 import { Subscription } from 'rxjs';
-import { usuario } from 'src/app/core/models/user.interface';
+import { Usuario } from 'src/app/core/models/user.interface';
 
 
 
@@ -16,8 +16,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[] = [];
 
     islogged: boolean = true;
-    token: usuario = { username: '', sub: '', role: '' };
-    usuario!: usuario | { username: '', sub: '', role: '' };
+    token: Usuario = { username: '', sub: '', role: '' };
+    usuario!: Usuario | { username: '', sub: '', role: '' };
 
     constructor(private loginSvc: LoginService) {
         this.subscriptions.push(

@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     remember: boolean = false;
     @ViewChild('MyRef') passwordInput!: ElementRef;
     hide: boolean = true;
-    private googleClient: any;
     private readonly API = `${environment.api}/auth`;
 
 
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         const credentials = this.authSvc.getCredentials();
         this.contactForm = this.initForm();
-        console.log( typeof this.contactForm.get('password') )
+        // console.log( typeof this.contactForm.get('password') )
         this.remember = credentials.remember;
 
         if (this.remember) {

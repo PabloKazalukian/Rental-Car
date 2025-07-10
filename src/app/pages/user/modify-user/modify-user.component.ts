@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription, catchError, map } from 'rxjs';
-import { usuario } from 'src/app/core/models/user.interface';
+import { Usuario } from 'src/app/core/models/user.interface';
 import { LoginService } from 'src/app/core/services/login.service';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -18,7 +18,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
     modifyUser!: FormGroup;
-    usuario!: usuario;
+    usuario!: Usuario;
     success: boolean = false;
     error: boolean = false;
     userNameErrors = {

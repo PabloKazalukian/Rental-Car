@@ -2,7 +2,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, throwError } from 'rxjs';
-import { request, requestReceived, requestSend } from '../models/request.interface';
+import { Request, RequestReceived, RequestSend } from '../models/request.interface';
 import { catchError } from 'rxjs/operators';
 import { Response } from '../models/response.interface';
 
@@ -19,21 +19,21 @@ export class RentalService {
 
     constructor(private readonly http: HttpClient) { }
 
-    getRequestById(idCar: string): Observable<request[]> {
-        return this.http.get<Response<request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map(response => response.data));
+    getRequestById(idCar: string): Observable<Request[]> {
+        return this.http.get<Response<Request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map(response => response.data));
     }
-    getRequestByUserId(userId: string): Observable<requestReceived[]> {
-        return this.http.get<Response<requestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(map(response => response.data),
+    getRequestByUserId(userId: string): Observable<RequestReceived[]> {
+        return this.http.get<Response<RequestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(map(response => response.data),
             catchError(error => {
                 console.error("Error en la petición:", error); // Log del error
                 return throwError(() => new Error("Error al obtener las solicitudes. Intente nuevamente.")); // Lanza un error manejado
             }))
     };
 
-    sendRequest(form: requestSend): Observable<boolean | void> {
+    sendRequest(form: RequestSend): Observable<boolean | void> {
         // console.log(form)
         console.log(form)
-        return this.http.post<requestSend>(this.API, form)
+        return this.http.post<RequestSend>(this.API, form)
             .pipe(
                 map((res) => {
                     // this.saveToken(res.token)

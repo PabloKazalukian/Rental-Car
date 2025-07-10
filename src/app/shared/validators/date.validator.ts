@@ -1,6 +1,6 @@
 import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms"
 import { DatePipe } from '@angular/common';
-import { request } from 'src/app/core/models/request.interface';
+import { Request } from 'src/app/core/models/request.interface';
 import moment from 'moment';
 
 export class ownValidation {
@@ -9,7 +9,7 @@ export class ownValidation {
         const start = new DatePipe('en').transform(control.value.start, 'dd-MM-yyyy');
         const end = new DatePipe('en').transform(control.value.end, 'dd-MM-yyyy');
         if (start !== null && end) {
-            if (control.value.total.filter((res: request) => {
+            if (control.value.total.filter((res: Request) => {
                 return containDateDouble(start, end, res.initialDate, res.finalDate)
             }).length < 1) return null;
             else return { dateCorrect: true }

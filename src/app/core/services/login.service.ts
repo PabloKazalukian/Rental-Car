@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, from, map, Observable, of, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Login, LoginResponde } from '../models/login.interface';
-import { credentialsUser, usuario } from '../models/user.interface';
+import { credentialsUser, Usuario } from '../models/user.interface';
 import { decrypt, encrypt } from '../../shared/utils/encryption.util';
 
 const helper = new JwtHelperService();
@@ -20,7 +20,7 @@ declare global {
 })
 export class LoginService {
     private loggetIn = new BehaviorSubject<boolean>(false);
-    private user = new BehaviorSubject<usuario>({ username: '', sub: '', role: '' });
+    private user = new BehaviorSubject<Usuario>({ username: '', sub: '', role: '' });
     private userGoogle = new BehaviorSubject<any>({});  // Replace SocialUser with any, since we're dealing with raw data now.
 
     private readonly API = `${environment.api}/auth`;
@@ -78,7 +78,7 @@ export class LoginService {
         }
     }
 
-    readToken(): Observable<usuario> {
+    readToken(): Observable<Usuario> {
         const encryptedUser = localStorage.getItem('user');
 
         if (encryptedUser) {
@@ -92,7 +92,7 @@ export class LoginService {
 
     private saveToken(token: string): void {
         const decoded = helper.decodeToken(token);
-        const user: usuario = {
+        const user: Usuario = {
             username: decoded.username,
             sub: decoded.sub,
             role: decoded.role,

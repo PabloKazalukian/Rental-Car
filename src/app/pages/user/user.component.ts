@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { requestReceived } from 'src/app/core/models/request.interface';
-import { usuario } from 'src/app/core/models/user.interface';
+import { RequestReceived } from 'src/app/core/models/request.interface';
+import { Usuario } from 'src/app/core/models/user.interface';
 import { LoginService } from 'src/app/core/services/login.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { isDateHigher } from 'src/app/shared/validators/date.validator';
@@ -14,13 +14,13 @@ import { isDateHigher } from 'src/app/shared/validators/date.validator';
 export class UserComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
-    user!: usuario
+    user!: Usuario
     show!: boolean
-    private data = new BehaviorSubject<requestReceived[]>([])
+    private data = new BehaviorSubject<RequestReceived[]>([])
 
-    requestAll!: requestReceived[]
-    dataSource!: requestReceived[];
-    dataSourcePast!: requestReceived[];
+    requestAll!: RequestReceived[]
+    dataSource!: RequestReceived[];
+    dataSourcePast!: RequestReceived[];
     constructor(private authSvc: LoginService, private requestSvc: RentalService) { }
 
     ngOnInit(): void {
@@ -67,7 +67,7 @@ export class UserComponent implements OnInit, OnDestroy {
         return this.getDateTodayToString();
     }
 
-    readData(): Observable<requestReceived[]> {
+    readData(): Observable<RequestReceived[]> {
         return this.data.asObservable();
     };
 
@@ -76,7 +76,7 @@ export class UserComponent implements OnInit, OnDestroy {
         return `${datejs.getDate()}-${datejs.getMonth() + 1}-${datejs.getFullYear()}`
     };
 
-    completeRequest(request: requestReceived): void {
+    completeRequest(request: RequestReceived): void {
         this.subscripcions.push(
             this.requestSvc.confirmRequestByIdRequest(request.id).subscribe({
                 next: (res) => {

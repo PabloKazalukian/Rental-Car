@@ -1,29 +1,15 @@
-<div class="formulario">
-    <form *ngIf="!success && !error" (ngSubmit)="onSubmit(contactForm.value)" #contactForm="ngForm">
-        <h2>Enviame un mensaje:</h2>
-        <div class="mb-4">
-            <label for="name" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" required #name="ngModel" />
-            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Este Campo es requerido</div>
+<div class="form-contact">
+    <form class="form-contact__content" *ngIf="!success && !error" (ngSubmit)="onSubmit(contactForm.value)" [formGroup]="contactForm">
+        <h2 class="form-contact__title">Enviame un mensaje:</h2>
+        <div class="form-contact__field">
+            <app-input [label]="'Nombre:'" [type]="'text'" [placeholder]="'Ingrese su nombre'" [control]="nameControl"></app-input>
         </div>
-        <div class="mb-4">
-            <label for="email" class="form-label">Email:</label>
-            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="model.email" required #email="ngModel" />
-            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Este Campo es requerido</div>
+        <div class="form-contact__field">
+            <app-input [label]="'Email:'" [type]="'email'" [placeholder]="'Ingrese su email'" [control]="emailControl"></app-input>
         </div>
-        <div class="mb-4">
-            <label for="message" class="form-label">Comentario:</label>
-            <textarea
-                name="message"
-                type="text"
-                class="form-control"
-                id="comemnt"
-                name="message"
-                [(ngModel)]="model.message"
-                required
-                rows="4"
-                #message="ngModel"></textarea>
-            <div [hidden]="message.valid || message.pristine" class="alert alert-danger">Este Campo es requerido</div>
+
+        <div class="form-contact__field">
+            <app-taxtarea [label]="'Mensaje:'" [placeholder]="'Ingrese su mensaje'" [control]="messageControl"></app-taxtarea>
         </div>
         <app-btn
             [buttonType]="'submit'"
@@ -32,19 +18,14 @@
             [variant]="'raised'"
             [isDisabled]="contactForm?.invalid ?? true"></app-btn>
     </form>
-    <div *ngIf="this.success" class="marginTop">
-        <div class="container mt-5">
-            <h2 class="mt-5 alert alert-primary">Correo enviado correctamente!</h2>
-            <h4>Muchas gracias por tu mensaje, lo revisare a la brevedad.</h4>
-            <app-btn [text]="'Volver al inicio'" [color]="'success'" [variant]="'raised'" [routerLink]="'/'"></app-btn>
-        </div>
+    <div *ngIf="this.success === true && this.error === false">
+        <app-success
+            [text]="
+                'Correo enviado correctamente!.
+            Muchas gracias por tu mensaje, lo revisare a la brevedad.'
+            "></app-success>
     </div>
-    <div *ngIf="this.error">
-        <div class="container mt-5 errorcontainer">
-            <div class="d-flex flex-column justify-content-center mt-5">
-                <h1>Ocurrio un error Inesperado</h1>
-                <app-btn [text]="'Volver al inicio'" [color]="'error'" [variant]="'raised'" [routerLink]="'/'"></app-btn>
-            </div>
-        </div>
+    <div *ngIf="this.success === false && this.error === true">
+        <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
     </div>
 </div>

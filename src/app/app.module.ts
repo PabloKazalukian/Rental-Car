@@ -52,11 +52,12 @@ import { FormContactComponent } from './pages/contact/components/form-contact/fo
 // 🔹 Shared Components / Directives
 import { NavBarComponent } from './shared/components/layout/navbar/navbar.component';
 import { FooterComponent } from './shared/components/layout/footer/footer.component';
-import { FormInputComponent } from './shared/components/ui/form-input/form-input.component';
+import { FormInputComponent } from './shared/components/ui/input/input.component';
 import { FormButtonComponent } from './shared/components/ui/form-button/form-button.component';
 import { ScrollAnimateDirective } from './shared/directives/scroll-animate.directive';
 import { FormClassDirective } from './shared/directives/form-class.directive';
 import { SharedModule } from './shared/shared.module';
+import { TaxtareaComponent } from './shared/components/ui/taxtarea/taxtarea.component';
 
 // 🔹 Interceptors
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
@@ -88,6 +89,7 @@ import { environment } from '../environments/environment';
         AuthComponent,
         CallbackComponent,
         FormInputComponent,
+        TaxtareaComponent,
         FormButtonComponent,
         ScrollAnimateDirective,
     ],

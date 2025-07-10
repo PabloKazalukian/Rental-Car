@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, OnDestroy, Output, EventEmitter } from '@ang
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { requestSend } from 'src/app/core/models/request.interface';
+import { RequestSend } from 'src/app/core/models/request.interface';
 import { RentalService } from 'src/app/core/services/rental.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
     constructor(
         public dialogRef: MatDialogRef<DialogConfirmationComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: requestSend & { onConfirm: () => void },
+        @Inject(MAT_DIALOG_DATA) public data: RequestSend & { onConfirm: () => void },
         private rentalSvc: RentalService,
         private router: Router
     ) { };

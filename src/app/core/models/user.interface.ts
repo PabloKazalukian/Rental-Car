@@ -10,7 +10,7 @@ export interface LoginResponde {
     token: string
 
 }
-export interface usuario {
+export interface Usuario {
     username: string,
     sub: string,
     role: string
@@ -27,4 +27,4 @@ export interface credentialsUser {
     remember: boolean,
     username: string,
     password: string
-} 
+}

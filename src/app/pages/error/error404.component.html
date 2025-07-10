@@ -1,6 +1,24 @@
-<div class="container mt-5 errorcontainer">
-    <div class="d-flex flex-column justify-content-center mt-5">
-        <h1>Lo sentimos, página no encontrada</h1>
+<div class="error__container">
+    <!-- <img src="assets/images/rueda_reflejo_opt.jpg" alt="Error 404" class="error__background-image" /> -->
+    <!-- <picture class="error__background-image">
+        <source srcset="assets/images/rueda_reflejo_opt.jpg" type="image/avif" />
+        <source srcset="assets/images/rueda_reflejo_opt.jpg" type="image/webp" />
+        <img
+            class="landing__image-img"
+            src="assets/images/porsche-1851246_1920_cleanup.jpg"
+            alt="Imagen portada Rental-Car"
+            loading="eager"
+            fetchpriority="high" />
+    </picture> -->
+
+    <div class="error__content">
+        <h1 class="error__title">
+            Lo sentimos,
+            <br />
+            No encontramos lo que buscás.
+        </h1>
+        <h2 class="error__subtitle">Es posible que el enlace esté roto o que la dirección haya sido escrita incorrectamente.</h2>
+        <h3 class="error__description">Por favor, verifica la URL o vuelve a la página de inicio.</h3>
         <div>
             <app-btn [routerLink]="'/home'" [text]="'Volver al inicio'" [color]="'error'" [variant]="'raised'"></app-btn>
         </div>
