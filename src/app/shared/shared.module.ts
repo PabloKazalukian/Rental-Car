@@ -8,6 +8,9 @@ import { TableComponent } from './components/ui/table/table.component';
 import { RouterModule } from '@angular/router';
 import { BtnComponent } from './components/ui/btn/btn.component';
 import { MaterialModule } from './material.module';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { ModalComponent } from './components/ui/modal/modal.component';
+import { DialogComponent } from './components/ui/dialog/dialog.component';
 
 
 @NgModule({
@@ -18,6 +21,9 @@ import { MaterialModule } from './material.module';
         StepperComponent,
         TableComponent,
         BtnComponent,
+        ClickOutsideDirective,
+        ModalComponent,
+        DialogComponent,
     ],
     imports: [
         CommonModule,

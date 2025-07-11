@@ -7,6 +7,9 @@ import { loadCar, orderBrandCar } from '../../../../store/cars/car.actions';
 import { LoginService } from 'src/app/core/services/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogLoggedComponent } from './dialog-logged/dialog-logged.component';
+import { OverlayService } from '../../../../shared/services/ui/overlay.service';
+import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
+import { ModalCarComponent } from './modal-car/modal-car.component';
 
 interface appState {
     loading: boolean,
@@ -33,7 +36,9 @@ export class ShowCarComponent implements OnInit, OnDestroy {
     loading: boolean = true;
     notLogged!: Observable<boolean>;
 
-    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private loginSvc: LoginService, public dialog: MatDialog) { }
+    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private loginSvc: LoginService, public dialog: MatDialog,
+        private overlayService:OverlayService
+    ) { }
 
     ngOnInit(): void {
         this.loading = true;
@@ -84,6 +89,16 @@ export class ShowCarComponent implements OnInit, OnDestroy {
         );
 
     };
+
+    // abrirDialog(): void {
+    //    this.dialogService.open();
+    // }
+
+    abrirModalCar(auto: Car): void {
+     this.overlayService.open(ModalCarComponent, {
+        data: auto
+    });
+}
 
     ngOnDestroy(): void {
         this.subscripcions.forEach(sub => sub.unsubscribe());

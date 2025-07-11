@@ -64,6 +64,7 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
 // 🔹 Environment
 import { environment } from '../environments/environment';
+import { ModalCarComponent } from './pages/cars/components/show-car/modal-car/modal-car.component';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { environment } from '../environments/environment';
         TaxtareaComponent,
         FormButtonComponent,
         ScrollAnimateDirective,
+        ModalCarComponent,
     ],
     imports: [
         BrowserModule,

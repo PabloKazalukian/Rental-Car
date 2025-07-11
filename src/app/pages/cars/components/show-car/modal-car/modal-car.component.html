@@ -1,0 +1,48 @@
+<div class="modal-car" (click)="cerrar()">
+    <div class="modal-car__content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <app-btn [text]="'X'" [variant]="'raised'" [color]="'error'" (click)="cerrar()"></app-btn>
+        </div>
+
+        <div class="modal-body">
+            <img [src]="car.image" alt="imagen auto" style="height: 30rem" />
+            <h5 class="card-title">{{ car.brand.toUpperCase() }} {{ car.model }} {{ car.year }}</h5>
+            <p>
+                <strong>Precio:</strong>
+                {{ car.price }} us$
+            </p>
+
+            <div>
+                <h2>Especificaciones:</h2>
+                <p>
+                    <strong>Motor:</strong>
+                    {{ car.specificationsCar.engine }}
+                </p>
+                <p>
+                    <strong>Potencia:</strong>
+                    {{ car.specificationsCar.power }}
+                </p>
+                <p>
+                    <strong>Par Motor:</strong>
+                    {{ car.specificationsCar.torque }}
+                </p>
+                <p>
+                    <strong>Velocidad Máxima:</strong>
+                    {{ car.specificationsCar.max_speed }}
+                </p>
+                <p>
+                    <strong>Aceleración:</strong>
+                    {{ car.specificationsCar.acceleration }}
+                </p>
+                <p>
+                    <strong>Consumo:</strong>
+                    {{ car.specificationsCar.consumption }}
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'confirm'" (click)="cerrar()"></app-btn>
+        </div>
+    </div>
+</div>

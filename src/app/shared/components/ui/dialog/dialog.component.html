@@ -1,0 +1,10 @@
+<div class="dialog-backdrop" appClickOutside (clickOutside)="onCancel()">
+    <div class="dialog-box" (click)="$event.stopPropagation()">
+        <h2>{{ title }}</h2>
+        <p>¿Estás seguro de realizar esta acción?</p>
+        <div class="dialog-actions">
+            <button (click)="onCancel()">Cancelar</button>
+            <button (click)="onConfirm()">Aceptar</button>
+        </div>
+    </div>
+</div>

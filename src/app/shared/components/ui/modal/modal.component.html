@@ -1,0 +1,5 @@
+<div class="modal-backdrop" appClickOutside (clickOutside)="close()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <ng-content></ng-content>
+    </div>
+</div>
