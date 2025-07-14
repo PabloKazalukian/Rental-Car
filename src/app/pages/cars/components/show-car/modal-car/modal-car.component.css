@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .modal-car__content {
@@ -18,12 +18,22 @@
     overflow-y: auto;
 }
 
-.modal-header {
+.modal-car__header {
     display: flex;
     justify-content: flex-end;
+    padding: 0px;
 }
 
-.modal-footer {
+.modal-car__body {
+    margin-top: 0px;
+}
+
+.modal-car__body-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.modal__footer {
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { LoginService } from 'src/app/core/services/login.service';
 
 
@@ -15,9 +16,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
     islogged: boolean = true;
 
-    constructor(private loginSvc: LoginService) {
+    constructor(private authnSvc: AuthService) {
         this.subscripcions.push(
-            this.loginSvc.isLoggin().subscribe(res => this.islogged = res)
+            this.authnSvc._loggenIn$.subscribe(res => this.islogged = res)
         )
     }
 

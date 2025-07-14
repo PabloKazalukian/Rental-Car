@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/login.service';
 import { Subscription } from 'rxjs';
 import { Usuario } from 'src/app/core/models/user.interface';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 
 
@@ -17,32 +18,22 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
     islogged: boolean = true;
     token: Usuario = { username: '', sub: '', role: '' };
+    user$ = this.authSvc._user$;
     usuario!: Usuario | { username: '', sub: '', role: '' };
 
-    constructor(private loginSvc: LoginService) {
+    constructor(private loginSvc: LoginService, private authSvc: AuthService) {
         this.subscriptions.push(
-            this.loginSvc.isLoggin().subscribe(res => this.islogged = res)
+            this.authSvc._loggenIn$.subscribe(res => this.islogged = res)
         )
     }
 
     ngOnInit(): void {
-        this.accesstoken()
-        // this.subscriptions.push(
-        //     this.loginSvc.test().subscribe({
-        //         next: (res: any) => {
-        //             console.log(res);
-
-        //         },
-        //         error: (res: any) => {
-        //             console.log(res);
-        //         }
-        //     })
-        // )
+        this.accesstoken();
     }
 
     accesstoken(): void {
         this.subscriptions.push(
-            this.loginSvc.readToken().subscribe(res => this.usuario = res)
+            this.user$.subscribe(res => { this.usuario = res; console.log(res) }) //errorqui
         )
     }
 
@@ -56,11 +47,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
                 error: (res: any) => {
                     console.log(res);
                 }
-            }
-
-            )
+            })
         );
-
         this.usuario = { username: '', sub: '', role: '' }
     }
 

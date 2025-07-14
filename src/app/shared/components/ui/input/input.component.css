@@ -36,6 +36,18 @@ input:focus {
     border-color: var(--color-error);
 }
 
+.form-input__error {
+    color: var(--color-error);
+    font-size: 0.8rem;
+    min-height: 1.3rem;
+}
+
+.form-input__error-placeholder {
+    color: var(--color-error);
+    /* font-size: var(--font-size-xs); */
+    min-height: 1.3rem;
+}
+
 .form-input__toggle {
     background: none;
     border: none;
@@ -43,9 +55,4 @@ input:focus {
     right: 0.75rem;
     cursor: pointer;
     font-size: 1rem;
-}
-
-.form-input__error {
-    color: var(--color-error);
-    font-size: 0.8rem;
 }

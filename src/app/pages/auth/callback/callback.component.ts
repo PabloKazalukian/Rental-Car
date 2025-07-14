@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
@@ -12,10 +13,10 @@ export class CallbackComponent implements OnInit {
     success: boolean = false;
     loading: boolean = true;
 
-    constructor(private router: Router, private authSvc: LoginService) { }
+    constructor(private router: Router, private authSvc: AuthService) { }
 
     ngOnInit(): void {
-        this.authSvc.test().subscribe({
+        this.authSvc.checkCookie().subscribe({
             next: (res: boolean) => {
                 this.loading = false;
                 if (res) {

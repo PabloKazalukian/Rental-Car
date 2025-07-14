@@ -1,6 +1,14 @@
 .mod-user {
     /* container principal si querés seguir extendiéndolo */
 }
+.mod-car__spinner-container {
+    display: flex;
+    justify-content: center;
+}
+.mod-car__spinner {
+    height: 120px;
+    width: 120px;
+}
 
 .mod-user__form {
     width: 100%;
@@ -18,7 +26,12 @@
     margin: 2rem 0;
 }
 
+.mod-user__form-field {
+    margin-bottom: 0.75rem;
+}
+
 .mod-user__form-actions {
+    margin-top: 1.25rem;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;

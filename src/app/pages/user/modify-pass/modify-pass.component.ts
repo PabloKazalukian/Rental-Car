@@ -20,6 +20,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
 
     modifyPass!: FormGroup;
     usuario!: Usuario;
+    loading: boolean = true;
     success: boolean = false;
     error: boolean = false;
 
@@ -29,7 +30,16 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.modifyPass = this.initForm();
         this.subscripcions.push(
-            this.loginSvc.readToken().subscribe(res => this.usuario = res)
+            this.loginSvc.readToken().subscribe({
+                next: (res) => {
+                    this.usuario = res;
+                    this.loading = false;
+                },
+                error: (err) => {
+                    console.log(err);
+                    this.success = false;
+                }
+            })
         );
     };
 
@@ -38,6 +48,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
             this.subscripcions.push(
                 this.userSvc.modifyPass(this.modifyPass.value.password1, this.usuario.sub).subscribe({
                     next: (res) => {
+                        console.log(res);
                         this.success = true;
                         setTimeout(() => {
                             this.router.navigate(['/usuario']);
@@ -60,6 +71,14 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
             validators: repeatPass.dateCorrect
         })
     };
+
+    get password1Control(): FormControl {
+        return this.modifyPass.get('password1') as FormControl;
+    }
+
+    get password2Control(): FormControl {
+        return this.modifyPass.get('password2') as FormControl;
+    }
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())

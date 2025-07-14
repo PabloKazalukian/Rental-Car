@@ -46,7 +46,7 @@ const routes: Routes = [
     declarations: [
         UserComponent,
         TableRentalComponent,
-        ModifyPassComponent,
+        // ModifyPassComponent,
     ],
     imports: [
         RouterModule.forChild(routes),

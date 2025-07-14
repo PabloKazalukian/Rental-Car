@@ -1,11 +1,11 @@
-<div class="modal-car" (click)="cerrar()">
-    <div class="modal-car__content" (click)="$event.stopPropagation()">
-        <div class="modal-header">
+<div class="modal-car">
+    <div class="modal-car__content">
+        <div class="modal-car__header">
             <app-btn [text]="'X'" [variant]="'raised'" [color]="'error'" (click)="cerrar()"></app-btn>
         </div>
 
-        <div class="modal-body">
-            <img [src]="car.image" alt="imagen auto" style="height: 30rem" />
+        <div class="modal-car__body">
+            <img [src]="car.image" class="modal-car__body-image" alt="imagen auto" style="height: 30rem" />
             <h5 class="card-title">{{ car.brand.toUpperCase() }} {{ car.model }} {{ car.year }}</h5>
             <p>
                 <strong>Precio:</strong>
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="modal-footer">
+        <div class="modal-car__footer">
             <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'confirm'" (click)="cerrar()"></app-btn>
         </div>
     </div>

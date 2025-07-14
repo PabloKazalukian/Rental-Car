@@ -2,6 +2,8 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { CredentialsService } from 'src/app/core/services/auth/credential.service';
 import { LoginService } from 'src/app/core/services/login.service';
 import { environment } from 'src/environments/environment';
 
@@ -24,10 +26,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     private readonly API = `${environment.api}/auth`;
 
 
-    constructor(private readonly fb: FormBuilder, private authSvc: LoginService, private router: Router) { }
+    constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private authSvc: AuthService, private credentialsSvc: CredentialsService, private router: Router) { }
 
     ngOnInit(): void {
-        const credentials = this.authSvc.getCredentials();
+        const credentials = this.credentialsSvc.getCredentials();
         this.contactForm = this.initForm();
         // console.log( typeof this.contactForm.get('password') )
         this.remember = credentials.remember;
@@ -49,17 +51,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     onSubmit(): void {
         this.subscriptions.push(
-            this.authSvc.checkLogin(this.contactForm.value).subscribe({
+            this.loginSvc.login(this.contactForm.value).subscribe({
                 next: (res) => {
                     console.log(res);
                     if (this.remember) {
-                        this.authSvc.saveCredentials({
+                        this.credentialsSvc.saveCredentials({
                             remember: this.remember,
                             username: this.contactForm.get('email')?.value,
                             password: this.contactForm.get('password')?.value
                         });
                     } else {
-                        this.authSvc.removeCredentials();
+                        this.credentialsSvc.removeCredentials();
                     }
                     this.login = true;
                     setTimeout(() => this.router.navigate(['/']), 2000);

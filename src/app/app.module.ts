@@ -1,5 +1,5 @@
 // 🔹 Angular Core
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -65,7 +65,12 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 // 🔹 Environment
 import { environment } from '../environments/environment';
 import { ModalCarComponent } from './pages/cars/components/show-car/modal-car/modal-car.component';
+import { AuthService } from './core/services/auth/auth.service';
+import { ModifyPassComponent } from './pages/user/modify-pass/modify-pass.component';
 
+export function initAuth(authSvc: AuthService): () => void {
+    return () => authSvc.init();
+}
 
 @NgModule({
     declarations: [
@@ -86,6 +91,7 @@ import { ModalCarComponent } from './pages/cars/components/show-car/modal-car/mo
         LandingPageComponent,
         HowToUseComponent,
         ModifyUserComponent,
+        ModifyPassComponent,
         FormClassDirective,
         AuthComponent,
         CallbackComponent,
@@ -125,6 +131,12 @@ import { ModalCarComponent } from './pages/cars/components/show-car/modal-car/mo
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true,
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initAuth,
+            deps: [AuthService],
+            multi: true
         }
     ],
     bootstrap: [AppComponent],

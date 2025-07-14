@@ -6,7 +6,6 @@ export class repeatPass {
             return { passNoRepeat: true }
         } else return null
     }
-
 }
 
 // export function passwordMatchValidator(control: AbstractControl) {

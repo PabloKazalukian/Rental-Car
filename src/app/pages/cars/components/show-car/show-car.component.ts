@@ -10,6 +10,7 @@ import { DialogLoggedComponent } from './dialog-logged/dialog-logged.component';
 import { OverlayService } from '../../../../shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { ModalCarComponent } from './modal-car/modal-car.component';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 interface appState {
     loading: boolean,
@@ -36,8 +37,8 @@ export class ShowCarComponent implements OnInit, OnDestroy {
     loading: boolean = true;
     notLogged!: Observable<boolean>;
 
-    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private loginSvc: LoginService, public dialog: MatDialog,
-        private overlayService:OverlayService
+    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private loginSvc: LoginService, private authSvc: AuthService, public dialog: MatDialog,
+        private overlayService: OverlayService
     ) { }
 
     ngOnInit(): void {
@@ -58,7 +59,7 @@ export class ShowCarComponent implements OnInit, OnDestroy {
     goWithCar(id: number): void {
 
         this.subscripcions.push(
-            this.loginSvc.isLoggin().subscribe(e => {
+            this.authSvc._loggenIn$.subscribe(e => {
                 if (e) {
                     this.router.navigate(['alquiler'], { queryParams: { id } });
                 } else {
@@ -95,10 +96,10 @@ export class ShowCarComponent implements OnInit, OnDestroy {
     // }
 
     abrirModalCar(auto: Car): void {
-     this.overlayService.open(ModalCarComponent, {
-        data: auto
-    });
-}
+        this.overlayService.open(ModalCarComponent, {
+            data: auto
+        });
+    }
 
     ngOnDestroy(): void {
         this.subscripcions.forEach(sub => sub.unsubscribe());
