@@ -41,7 +41,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
         this.subscriptions.push(
             this.loginSvc.logout().subscribe({
                 next: (res: any) => {
-                    console.log(res);
                     this.islogged = false;
                 },
                 error: (res: any) => {

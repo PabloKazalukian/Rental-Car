@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/core/services/auth/login.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator'
 import { Usuario } from 'src/app/core/models/user.interface';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
     selector: 'app-modify-pass',
@@ -26,12 +27,12 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
     samePass: { show: boolean, msg: string } = { show: false, msg: '' }
 
 
-    constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private userSvc: UserService, private router: Router) { }
+    constructor(private readonly fb: FormBuilder, private authSvc: AuthService, private loginSvc: LoginService, private userSvc: UserService, private router: Router) { }
 
     ngOnInit(): void {
         this.modifyPass = this.initForm();
         this.subscripcions.push(
-            this.loginSvc.readToken().subscribe({
+            this.authSvc._user$.subscribe({
                 next: (res) => {
                     this.usuario = res;
                     this.loading = false;
@@ -58,7 +59,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
                     error: (res) => {
                         this.samePass = {
                             show: true,
-                            msg: res
+                            msg: res.message
                         }
                         this.error = true;
                         this.success = false;

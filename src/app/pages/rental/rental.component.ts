@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CarService } from 'src/app/core/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
 import { LoginService } from 'src/app/core/services/auth/login.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class RentalComponent implements OnInit, OnDestroy {
     autos!: Car[];
     imageLoaded = false;
 
-    constructor(private readonly route: ActivatedRoute, private readonly carSvc: CarService, private userSvc: LoginService) { }
+    constructor(private readonly route: ActivatedRoute, private authSvc: AuthService, private readonly carSvc: CarService, private userSvc: LoginService) { }
 
     ngOnInit(): void {
 
@@ -35,7 +36,7 @@ export class RentalComponent implements OnInit, OnDestroy {
         );
 
         this.subscripcions.push(
-            this.userSvc.readToken().subscribe(res => {
+            this.authSvc._user$.subscribe(res => {
                 this.idUser = res.sub;
             })
         );

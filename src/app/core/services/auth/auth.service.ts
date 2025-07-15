@@ -53,7 +53,6 @@ export class AuthService {
     }
 
     clearSession(): void {
-        console.log('work')
         this.user$.next({ username: '', sub: '', role: '' });
         this.loggetIn$.next(false);
         localStorage.removeItem('token');
@@ -63,7 +62,6 @@ export class AuthService {
     checkCookie(): Observable<boolean> {
         return this.http.get<Usuario>(`${this.API}/me`, { withCredentials: true }).pipe(
             map((response) => {
-                console.log(response)
                 if (response && response) {
                     this.saveToken('response');
                     this.user$.next(response)

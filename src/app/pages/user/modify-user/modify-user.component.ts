@@ -35,7 +35,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.subscripcions.push(
-            this.loginSvc.readToken().pipe(
+            this.authSvc._user$.pipe(
                 tap((user: Usuario) => {
                     this.tokenUser = user;
                 }),
@@ -64,7 +64,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
                     switchMap((res) => {
                         console.log(res);
                         this.success = true;
-                        return this.loginSvc.readToken()
+                        return this.authSvc._user$
                     }),
                     // switchMap(() => this.loginSvc.readToken()),
                     switchMap((es) => {

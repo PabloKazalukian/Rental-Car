@@ -23,10 +23,11 @@ export class RentalService {
         return this.http.get<Response<Request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map(response => response.data));
     }
     getRequestByUserId(userId: string): Observable<RequestReceived[]> {
-        return this.http.get<Response<RequestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(map(response => response.data),
+        return this.http.get<Response<RequestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(
+            map(response => response.data),
             catchError(error => {
-                console.error("Error en la petición:", error); // Log del error
-                return throwError(() => new Error("Error al obtener las solicitudes. Intente nuevamente.")); // Lanza un error manejado
+                // console.error("Error en la petición:", error); // Log del error
+                return throwError(() => error.message);
             }))
     };
 

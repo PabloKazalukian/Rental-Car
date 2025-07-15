@@ -39,7 +39,6 @@ export class LoginService {
         return this.http.post<LoginResponde>(`${this.API}/login`, form, { withCredentials: true }).pipe(
             map((res: LoginResponde) => {
                 // Ya no guardamos el token, el backend lo guarda como cookie
-                console.log(res.accessToken)
                 this.authSvc.saveToken(res.accessToken);
                 this.authSvc.setLoggedInState(true);
                 return true;
@@ -50,49 +49,17 @@ export class LoginService {
     logout(): Observable<void> {
         return this.http.get<void>(`${this.API}/logout`, { withCredentials: true }).pipe(
             tap((res) => this.authSvc.clearSession()),
-            map(response => response));
+            map(response => response),
+            catchError(error => {
+                this.authSvc.clearSession()
+                console.error('Token inválido o expirado:', error);
+                return throwError(() => new Error('Token inválido o expirado'));
+            })
+        );
     }
 
-    // private checkToken(): void {
-    //     const userToken = localStorage.getItem('token');
-    //     if (userToken !== null) {
-    //         const isExpired = helper.isTokenExpired(userToken);
-    //         !isExpired ? this.loggetIn.next(true) : this.logout();
-    //     }
-    // }
-
-    readToken(): Observable<Usuario> {
-        return this.authSvc._user$
-    }
-
-    // private saveToken(token: string): void {
-    //     const decoded = helper.decodeToken(token);
-    //     const user: Usuario = {
-    //         username: decoded.username,
-    //         sub: decoded.sub,
-    //         role: decoded.role,
-    //     };
-
-    //     // Guardar user en localStorage encriptado
-    //     const encryptedUser = encrypt(JSON.stringify(user));
-    //     localStorage.setItem('user', encryptedUser);
-    //     localStorage.setItem('token', token);
-
-    //     this.user$.next(user);
-    //     this.loggetIn.next(true);
-    // }
-
-    // Nueva implementación para login con Google Identity Services
-
-    // getCredentials() {
-    //     return this.credentialSvc.getCredentials()
-    // }
-
-    // removeCredentials() {
-    //     this.credentialSvc.removeCredentials()
-    // }
-    // saveCredentials(credentials: credentialsUser) {
-    //     return this.credentialSvc.saveCredentials(credentials);
+    // readToken(): Observable<Usuario> {
+    //     return this.authSvc._user$
     // }
 
 }

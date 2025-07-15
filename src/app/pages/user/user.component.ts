@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subscription, switchMap, tap } from 'rxjs';
 import { RequestReceived } from 'src/app/core/models/request.interface';
 import { Usuario } from 'src/app/core/models/user.interface';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { isDateHigher } from 'src/app/shared/validators/date.validator';
@@ -15,42 +16,39 @@ export class UserComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
     user!: Usuario
+    user$ = this.authSvc._user$;
     show!: boolean
     private data = new BehaviorSubject<RequestReceived[]>([])
 
     requestAll!: RequestReceived[]
     dataSource!: RequestReceived[];
     dataSourcePast!: RequestReceived[];
-    constructor(private authSvc: LoginService, private requestSvc: RentalService) { }
+    constructor(private authSvc: AuthService, loginSvc: LoginService, private requestSvc: RentalService) { }
 
     ngOnInit(): void {
         this.subscripcions.push(
-            this.authSvc.readToken().subscribe(res => this.user = res)
-        );
-
-        if (this.user.sub) {
-            this.subscripcions.push(
-                this.requestSvc.getRequestByUserId(this.user.sub).pipe(
-                    // delay(1700)
-                ).subscribe((res) => {
+            this.user$.pipe(
+                tap(user => this.user = user),
+                switchMap(user => user.sub
+                    ? this.requestSvc.getRequestByUserId(user.sub)
+                    : of([])
+                )
+            ).subscribe({
+                next: (res) => {
+                    console.log(res);
                     this.requestAll = res;
-                    // this.dataSourcePast = this.getExpiredRequests(this.requestAll);
-                    // .filter(r => isDateHigher(r.finalDate, false, this.getDateTodayToString(), true));
-                    // this.dataSourcePast.forEach(r => {
-                    //     if (r.state === 'req') {
-                    //         this.completeRequest(r);
-                    //         r.state = 'con';
-                    //     }
-                    // });
                     this.data.next(this.requestAll);
                     this.dataSource = this.requestAll;
 
                     setTimeout(() => {
                         this.show = false;
                     }, 1700);
-                })
-            );
-        }
+                },
+                error: (err: any) => {
+                    console.error(err);
+                }
+            })
+        )
     };
 
     private getExpiredRequests(requests: any[]): any[] {

@@ -47,7 +47,6 @@ export class TableRentalComponent implements OnInit {
             this.subscripcions.push(
                 this.data.readData().subscribe(e => {
                     if (e !== undefined) {
-                        console.log(e)
                         const requestTable: RequestTableRow[] = e.map((r): RequestTableRow => ({
                             id: r.id,
                             initialDate: formatDateToLocale(r.initialDate),

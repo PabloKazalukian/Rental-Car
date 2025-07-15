@@ -24,7 +24,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
 
     arrRequest!: Request[]
     range!: FormGroup;
-    private subscripcions: Subscription[] = [];
+    private subscriptions: Subscription[] = [];
 
     userId!: string;
     username?: string;
@@ -40,18 +40,18 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
-        this.subscripcions.push(
-            this.authSvc.readToken().subscribe((res) => {
+        this.subscriptions.push(
+            this.authSvc._user$.subscribe((res) => {
                 this.userId = res.sub;
                 this.username = res.username;
             })
         )
-        this.range = this.initFormDates(null);
-        this.subscripcions.push(
+        this.range = this.initFormDates();
+        this.subscriptions.push(
             this.rentalSvc.getRequestById(this.idCar).subscribe((res) => {
                 setTimeout(() => this.loading = false, 1000)
                 this.arrRequest = res;
-                this.range = this.initFormDates(res);
+                this.range.patchValue({ total: res });
             })
         );
     }
@@ -99,22 +99,18 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
         }
     };
 
-    initFormDates(res: Request[] | null): FormGroup {
+    initFormDates(): FormGroup {
         return this.fb.group({
             start: new FormControl(null),
             end: new FormControl(null),
-            total: new FormControl(res),
+            total: new FormControl(null),
             amount: new FormControl(0),
-            days: new FormControl(0)
-        })
-        // {
-        //     validators:
-        //         ownValidation.dateCorrect
-        // });
-    };
+            days: new FormControl(0),
+        });
+    }
 
     ngOnDestroy(): void {
-        this.subscripcions.forEach((e) => e.unsubscribe())
+        this.subscriptions.forEach((e) => e.unsubscribe())
     };
 
 }
