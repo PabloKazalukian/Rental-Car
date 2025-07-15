@@ -4,7 +4,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { loadCar, orderBrandCar } from '../../../../store/cars/car.actions';
-import { LoginService } from 'src/app/core/services/login.service';
+import { LoginService } from 'src/app/core/services/auth/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogLoggedComponent } from './dialog-logged/dialog-logged.component';
 import { OverlayService } from '../../../../shared/services/ui/overlay.service';

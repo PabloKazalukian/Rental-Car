@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
 import { Request, RequestSend } from 'src/app/core/models/request.interface';
-import { LoginService } from 'src/app/core/services/login.service';
+import { LoginService } from 'src/app/core/services/auth/login.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';

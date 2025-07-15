@@ -1,4 +1,7 @@
 <div class="error-message">
     <img [src]="'assets/images/Error.webp'" class="error-message__icon__img" />
-    <h2 class="error-message__content__message">{{messageError}}</h2>
+    <div class="error-message__content">
+        <h2 class="error-message__content__message">{{ messageError }}</h2>
+        <span class="error-message__content__description">{{ descriptionError }}</span>
+    </div>
 </div>

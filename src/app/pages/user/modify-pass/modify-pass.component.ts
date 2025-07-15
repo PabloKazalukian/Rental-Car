@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoginService } from 'src/app/core/services/login.service';
+import { LoginService } from 'src/app/core/services/auth/login.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator'
 import { Usuario } from 'src/app/core/models/user.interface';
@@ -23,6 +23,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
     loading: boolean = true;
     success: boolean = false;
     error: boolean = false;
+    samePass: { show: boolean, msg: string } = { show: false, msg: '' }
 
 
     constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private userSvc: UserService, private router: Router) { }
@@ -37,6 +38,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
                 },
                 error: (err) => {
                     console.log(err);
+                    this.error = true;
                     this.success = false;
                 }
             })
@@ -48,14 +50,18 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
             this.subscripcions.push(
                 this.userSvc.modifyPass(this.modifyPass.value.password1, this.usuario.sub).subscribe({
                     next: (res) => {
-                        console.log(res);
                         this.success = true;
                         setTimeout(() => {
                             this.router.navigate(['/usuario']);
                         }, 2000);
                     },
                     error: (res) => {
-                        this.success = false
+                        this.samePass = {
+                            show: true,
+                            msg: res
+                        }
+                        this.error = true;
+                        this.success = false;
                     },
                 })
             );

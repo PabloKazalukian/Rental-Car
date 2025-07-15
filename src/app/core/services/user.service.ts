@@ -5,6 +5,7 @@ import { Observable, map, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User, Usuario } from '../models/user.interface';
 import { Response } from '../models/response.interface';
+import { HttpErrorHandlerService, ParsedHttpError } from './http-error-handler.service';
 
 interface newPass {
     newPass: string;
@@ -21,14 +22,19 @@ interface newUser {
 export class UserService {
     private readonly API = `${environment.api}/user`;
 
-    constructor(private readonly http: HttpClient) { }
+    constructor(private errorHandler: HttpErrorHandlerService, private readonly http: HttpClient) { }
 
     modifyPass(pass: string, idUser: string): Observable<boolean | void> {
         return this.http.put<newPass>(`${this.API}/modifyPass/${idUser}`, { password: pass }).pipe(
             map((res: any) => {
+                // console.log('res,res', res)
                 if (res) return true;
                 else return false;
             }),
+            catchError((err: ParsedHttpError) => {
+                console.log(err);
+                return throwError(() => err);
+            })
         );
     }
 
@@ -52,15 +58,6 @@ export class UserService {
                 console.log(err)
                 return throwError(() => err);
             })
-
         )
-    }
-
-    private handleError(err: any): Observable<never> {
-        let errorMessage = 'ocurrio un error';
-        if (err) {
-            errorMessage = `error code : ${err.message}`;
-        }
-        return err;
     }
 }

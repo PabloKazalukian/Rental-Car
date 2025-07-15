@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MessageErrorComponent implements OnInit {
 
     @Input() messageError: string = 'ocurrio un error';
+    @Input() descriptionError: string = '';
 
     constructor() { }
 

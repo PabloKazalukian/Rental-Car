@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CredentialsService } from 'src/app/core/services/auth/credential.service';
-import { LoginService } from 'src/app/core/services/login.service';
+import { LoginService } from 'src/app/core/services/auth/login.service';
 import { environment } from 'src/environments/environment';
 
 declare const google: any;

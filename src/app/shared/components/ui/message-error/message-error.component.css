@@ -20,6 +20,15 @@ h2 {
     border-radius: 1em;
 }
 
+.message__content {
+    display: flex;
+    flex-direction: column;
+}
+
 .error-message__icon {
     width: 120px;
+}
+
+.error-message__content__description {
+    color: var(--color-text--muted);
 }

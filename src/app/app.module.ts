@@ -68,9 +68,6 @@ import { ModalCarComponent } from './pages/cars/components/show-car/modal-car/mo
 import { AuthService } from './core/services/auth/auth.service';
 import { ModifyPassComponent } from './pages/user/modify-pass/modify-pass.component';
 
-export function initAuth(authSvc: AuthService): () => void {
-    return () => authSvc.init();
-}
 
 @NgModule({
     declarations: [
@@ -132,12 +129,6 @@ export function initAuth(authSvc: AuthService): () => void {
             useClass: TokenInterceptor,
             multi: true,
         },
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initAuth,
-            deps: [AuthService],
-            multi: true
-        }
     ],
     bootstrap: [AppComponent],
 })

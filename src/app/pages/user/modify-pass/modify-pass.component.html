@@ -7,42 +7,47 @@
         </ng-container>
 
         <ng-template #formModPass>
-            <div *ngIf="!this.error && !this.success">
-                <h2>Modificar constraseña</h2>
-            </div>
-            <form (ngSubmit)="onSubmit()" [formGroup]="modifyPass">
-                <div class="mb-4">
-                    <app-input
-                        [label]="'Ingrese una nueva contraseña'"
-                        [type]="'text'"
-                        [placeholder]="'*****'"
-                        [control]="password1Control"></app-input>
+            <div *ngIf="this.success === false" class="">
+                <div *ngIf="!this.error && !this.success">
+                    <h2>Modificar constraseña</h2>
                 </div>
-                <div class="mb-4">
-                    <app-input
-                        [label]="'Ingrese nuevamente la nueva contraseña'"
-                        [type]="'text'"
-                        [placeholder]="'*****'"
-                        [control]="password2Control"></app-input>
-                </div>
+                <form (ngSubmit)="onSubmit()" [formGroup]="modifyPass">
+                    <div class="mb-4">
+                        <app-input
+                            [label]="'Ingrese una nueva contraseña'"
+                            [type]="'text'"
+                            [placeholder]="'*****'"
+                            [control]="password1Control"></app-input>
+                    </div>
+                    <div class="mb-4">
+                        <app-input
+                            [label]="'Ingrese nuevamente la nueva contraseña'"
+                            [type]="'text'"
+                            [placeholder]="'*****'"
+                            [control]="password2Control"></app-input>
+                    </div>
 
-                <div class="mod-modifyPass__form-actions">
-                    <app-btn
-                        [text]="'Enviar'"
-                        [color]="'confirm'"
-                        [variant]="'raised'"
-                        [buttonType]="'submit'"
-                        [isDisabled]="modifyPass.invalid || modifyPass.pending"></app-btn>
-                </div>
-            </form>
+                    <div class="mod-modifyPass__form-actions">
+                        <app-btn
+                            [text]="'Enviar'"
+                            [color]="'confirm'"
+                            [variant]="'raised'"
+                            [buttonType]="'submit'"
+                            [isDisabled]="modifyPass.invalid || modifyPass.pending"></app-btn>
+                    </div>
+                </form>
+            </div>
         </ng-template>
 
         <!-- <div class="marginTop main contenedor_pass"> -->
-        <!-- <div *ngIf="this.success === true">
+        <div *ngIf="this.success === true">
             <app-success [text]="'Cambio de contraseña correcto!'"></app-success>
         </div>
         <div *ngIf="this.error === true && this.success == false" class="">
-            <app-message-error [messageError]="'Hubo un problema, su contraseña no pudo ser modifiada.'"></app-message-error>
-        </div> -->
+            <app-message-error
+                *ngIf="samePass.show"
+                [messageError]="'Hubo un problema, su contraseña no pudo ser modifiada.'"
+                [descriptionError]="this.samePass.show ? this.samePass.msg : ''"></app-message-error>
+        </div>
     </app-auth>
 </div>

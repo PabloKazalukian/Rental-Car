@@ -7,15 +7,16 @@ import {
 } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { LoginService } from '../services/login.service'
+import { LoginService } from '../services/auth/login.service'
 import { RentalService } from '../services/rental.service';
+import { HttpErrorHandlerService } from '../services/http-error-handler.service';
 
 
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-    constructor(private authSvc: LoginService, private rentalSvc: RentalService) { }
+    constructor(private authSvc: LoginService, private errorHandler: HttpErrorHandlerService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         request = request.clone({
@@ -24,10 +25,11 @@ export class TokenInterceptor implements HttpInterceptor {
 
         return next.handle(request).pipe(
             catchError((err) => {
-                if (err.status === 401) {
+                const parsed = this.errorHandler.parse(err);
+                if (parsed.status === 401) {
                     this.authSvc.logout();
                 }
-                return throwError(err.error.message || err.statusText);
+                return throwError(() => parsed);
             })
         );
     }

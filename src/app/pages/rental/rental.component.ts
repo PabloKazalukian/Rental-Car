@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CarService } from 'src/app/core/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
-import { LoginService } from 'src/app/core/services/login.service';
+import { LoginService } from 'src/app/core/services/auth/login.service';
 
 
 @Component({

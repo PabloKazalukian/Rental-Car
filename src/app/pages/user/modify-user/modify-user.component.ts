@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, map, of, switchMap, tap } from 'rxjs';
 import { User, Usuario } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { LoginService } from 'src/app/core/services/login.service';
+import { LoginService } from 'src/app/core/services/auth/login.service';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { mustBeDifferent } from 'src/app/shared/validators/equal.validator';

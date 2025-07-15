@@ -23,7 +23,9 @@ export class AuthService {
     public _user$ = this.user$.asObservable();
 
 
-    constructor(private readonly http: HttpClient) { }
+    constructor(private readonly http: HttpClient) {
+        this.init();
+    }
 
     init(): void {
         const token = localStorage.getItem('token');
