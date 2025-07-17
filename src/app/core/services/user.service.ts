@@ -2,16 +2,17 @@ import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, switchMap, take } from 'rxjs/operators';
 import { User, Usuario } from '../models/user.interface';
 import { Response } from '../models/response.interface';
 import { HttpErrorHandlerService, ParsedHttpError } from './http-error-handler.service';
+import { AuthService } from './auth/auth.service';
 
 interface newPass {
     newPass: string;
 }
 
-interface newUser {
+interface userSend {
     username: string;
     email: string;
 }
@@ -22,7 +23,7 @@ interface newUser {
 export class UserService {
     private readonly API = `${environment.api}/user`;
 
-    constructor(private errorHandler: HttpErrorHandlerService, private readonly http: HttpClient) { }
+    constructor(private authSvc: AuthService, private readonly http: HttpClient) { }
 
     modifyPass(pass: string, idUser: string): Observable<boolean | void> {
         return this.http.put<newPass>(`${this.API}/modifyPass/${idUser}`, { password: pass }).pipe(
@@ -38,14 +39,14 @@ export class UserService {
         );
     }
 
-    modifyUser(user: newUser, idUser: string): Observable<boolean | void> {
-        return this.http.put<newUser>(`${this.API}/${idUser}`, { username: user.username, email: user.email }).pipe(
-            map((res: any) => {
-                // this.saveToken(res.token)
-                console.log('enteoria', res);
-                if (res) return true;
-                else return false;
+    modifyUser(user: userSend, idUser: string): Observable<boolean | void> {
+        return this.http.put<userSend>(`${this.API}/${idUser}`, { username: user.username, email: user.email }).pipe(
+            take(1),
+            switchMap((user) => {
+                console.log('que pasa aca', user);
+                return this.authSvc.refreshCookie();
             }),
+            map((res) => { res === true })
         );
     };
 

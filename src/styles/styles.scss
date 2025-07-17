@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+// ✅ styles.scss (punto de entrada global)
+@import './variables';
+@import './theme';
+@import './mixins';
+@import './base';
+@import './utilities';
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+

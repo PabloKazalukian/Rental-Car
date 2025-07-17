@@ -12,7 +12,7 @@ interface contactForm {
 @Component({
     selector: 'app-form-contact',
     templateUrl: './form-contact.component.html',
-    styleUrls: ['./form-contact.component.css']
+    styleUrls: ['./form-contact.component.scss']
 })
 export class FormContactComponent implements OnInit, OnDestroy {
 
@@ -28,7 +28,7 @@ export class FormContactComponent implements OnInit, OnDestroy {
         message: ''
     }
 
-    constructor(private readonly fb: FormBuilder ,private emailSvc: EmailService) { }
+    constructor(private readonly fb: FormBuilder, private emailSvc: EmailService) { }
 
     ngOnInit(): void {
         this.contactForm = this.initForm();
@@ -54,9 +54,9 @@ export class FormContactComponent implements OnInit, OnDestroy {
 
     initForm(): FormGroup {
         return this.fb.group({
-            name: ['',[Validators.required, Validators.minLength(3)]],
-            email: ['',[Validators.required, Validators.minLength(3)]],
-            message: ['',[Validators.required, Validators.minLength(3)]],
+            name: ['', [Validators.required, Validators.minLength(3)]],
+            email: ['', [Validators.required, Validators.minLength(3)]],
+            message: ['', [Validators.required, Validators.minLength(3)]],
         });
     }
 

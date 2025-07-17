@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/core/services/auth/login.service';
 @Component({
     selector: 'app-landing-page',
     templateUrl: './landing-page.component.html',
-    styleUrls: ['./landing-page.component.css']
+    styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
 

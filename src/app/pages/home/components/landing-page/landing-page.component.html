@@ -1,9 +1,9 @@
 <section class="landing">
-    <picture class="landing__image">
+    <picture class="landing__media">
         <source srcset="assets/images/porsche-1851246_1920_cleanup.avif" type="image/avif" />
         <source srcset="assets/images/porsche-1851246_1920_cleanup.webp" type="image/webp" />
         <img
-            class="landing__image-img"
+            class="landing__media-img"
             src="assets/images/porsche-1851246_1920_cleanup.jpg"
             alt="Imagen portada Rental-Car"
             loading="eager"
@@ -12,11 +12,12 @@
 
     <div class="landing__content">
         <div class="landing__text">
-            <h3 class="landing__text-title" appScrollAnimate>Bienvenido a</h3>
-            <h3 class="landing__text-title landing__text-title--highlight" appScrollAnimate>Rental-Car</h3>
-            <p class="landing__text-paragraph">
+            <h3 class="landing__title" appScrollAnimate>Bienvenido a</h3>
+            <h3 class="landing__title landing__title--highlight" appScrollAnimate>Rental-Car</h3>
+
+            <p class="landing__paragraph">
                 Un lugar donde podrás alquilar el auto de tus
-                <span class="landing__text-highlight">sueños</span>
+                <span class="landing__highlight">sueños</span>
             </p>
 
             <app-btn
@@ -26,9 +27,9 @@
                 [color]="'primary'"
                 [variant]="'raised'"></app-btn>
 
-            <h4 class="landing__text-subtitle">Alquila ahora el auto de tus sueños</h4>
+            <h4 class="landing__subtitle">Alquila ahora el auto de tus sueños</h4>
 
-            <div *ngIf="!islogged" class="landing__text-actions">
+            <div *ngIf="!islogged" class="landing__actions">
                 <app-btn [routerLink]="'/auth/login'" [text]="'Iniciar sesión'" [color]="'primary'" [variant]="'stroked'"></app-btn>
                 <app-btn [routerLink]="'/auth/registro'" [text]="'Registrate'" [color]="'primary'" [variant]="'stroked'"></app-btn>
             </div>

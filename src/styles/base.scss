@@ -1,0 +1,37 @@
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100vw;
+  font-family: var(--font-body);
+  background: var(--color-background);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4, h5, h6,
+.mat-h1, .mat-h2, .mat-h3, .mat-title,
+.mat-subheading-1, .mat-subheading-2 {
+  font-family: var(--font-title) !important;
+}
+
+body, html, p, span, label, input, textarea, button,
+.mat-body, .mat-body-1 {
+  font-family: var(--font-body) !important;
+}

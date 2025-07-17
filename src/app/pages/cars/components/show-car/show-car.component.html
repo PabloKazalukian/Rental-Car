@@ -6,8 +6,8 @@
         <h2 *ngIf="cars.length < 1">No se han encontrado vehiculos</h2>
     </ng-template>
     <div *ngFor="let autos of cars" class="show-cars__card">
-        <div class="image-container show-cars__image">
-            <img src="{{ autos.image }}" class="card-img-top show-cars__image--photo" alt="..." />
+        <div class="image-container show-cars__card-image">
+            <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." />
         </div>
         <div class="show-cars__card-body">
             <div class="show-cars__card-fields">
@@ -22,11 +22,41 @@
                     [color]="'primary'"
                     [variant]="'raised'"
                     (click)="this.goWithCar(autos.id)"></app-btn>
-                <app-btn [text]="'Ver Más'" [color]="'text'" [variant]="'stroked'" (click)="abrirModalCar(autos)"></app-btn>
+                <app-btn
+                    [text]="'Ver Más'"
+                    [color]="'text'"
+                    [variant]="'stroked'"
+                    (click)="abrirModalCar(modalContent, contentActions, autos)"></app-btn>
                 <!-- data-bs-toggle="modal"
                     [attr.data-bs-target]="'#staticBackdrop' + autos.id" -->
             </div>
         </div>
         <!-- Scrollable modal -->
+        <ng-template #contentActions>
+            <app-btn [text]="'Solicitar Alquiler'" [color]="'primary'" [variant]="'raised'" (click)="this.goWithCar(autos.id)"></app-btn>
+        </ng-template>
+        <ng-template #modalContent>
+            <app-modal-car [car]="autos"></app-modal-car>
+        </ng-template>
     </div>
 </div>
+
+<ng-template #btnDialog>
+    <app-btn
+        [text]="'Iniciar sesión'"
+        [variant]="'raised'"
+        [color]="'confirm'"
+        [routerLink]="'/auth/login'"
+        [mat-dialog-close]="true"></app-btn>
+</ng-template>
+
+<ng-template #contentDialog>
+    <div class="loggedBody">
+        <h4>
+            Debe iniciar sesión para poder solicitad un vehiculo.
+            <hr />
+            Por favor ingresa con tu cuenta o
+            <a routerLink="/auth/registro" [mat-dialog-close]="true">crea una nueva cuenta</a>
+        </h4>
+    </div>
+</ng-template>

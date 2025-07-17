@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-textarea',
-  templateUrl: './textarea.component.html',
-  styleUrls: ['./textarea.component.css']
+    selector: 'app-textarea',
+    templateUrl: './textarea.component.html',
+    styleUrls: ['./textarea.component.css']
 })
 export class TaxtareaComponent implements OnInit {
 
@@ -13,13 +13,13 @@ export class TaxtareaComponent implements OnInit {
     @Input() placeholder: string = '';
 
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  get showError(): boolean {
-    return this.control?.touched && this.control?.invalid;
-  }
+    get showError(): boolean {
+        return this.control?.touched && this.control?.invalid;
+    }
 
 }

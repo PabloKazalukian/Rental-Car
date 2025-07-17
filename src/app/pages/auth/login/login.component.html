@@ -1,7 +1,7 @@
 <div class="container__login">
     <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
-        <form *ngIf="this.login !== true" class="formulario" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
-            <div class="text-center">
+        <form *ngIf="this.login !== true" class="form-layout" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+            <div class="text-center login-title">
                 <h2 class="text-2xl">Inicie sesión</h2>
             </div>
             <div class="login-form__field">
@@ -19,11 +19,11 @@
                     [control]="passwordControl"
                     [showTogglePassword]="true"></app-input>
             </div>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="contentCheckbox">
+            <div class="login-form__credentials">
+                <div class="login-form__credentials-checkbox">
                     <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordarme</mat-checkbox>
                 </div>
-                <div class="d-flex align-items-center">
+                <div class="login-form__credentials-link">
                     <a mat-link href="#" class="forgotPassword">Olvidé mi contraseña</a>
                 </div>
             </div>
@@ -45,10 +45,10 @@
                 Iniciar sesión con Google
             </button>
         </form>
-        <div *ngIf="this.login === true">
+        <div *ngIf="this.login === true" class="login__success">
             <app-success [text]="'Sesión iniciada con exito!'"></app-success>
         </div>
-        <div *ngIf="this.login === false">
+        <div *ngIf="this.login === false" class="login__success">
             <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
         </div>
     </app-auth>

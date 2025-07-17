@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subscription, catchError, map, of, switchMap, tap } from 'rxjs';
+import { Observable, Subscription, catchError, delay, finalize, map, of, switchMap, tap } from 'rxjs';
 import { User, Usuario } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { LoginService } from 'src/app/core/services/auth/login.service';
+// import { LoginService } from 'src/app/core/services/auth/login.service';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { mustBeDifferent } from 'src/app/shared/validators/equal.validator';
@@ -26,7 +26,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
 
     constructor(
         private readonly fb: FormBuilder,
-        private loginSvc: LoginService,
+        // private loginSvc: LoginService,
         private regiterSvc: RegisterService,
         private authSvc: AuthService,
         private userSvc: UserService,
@@ -55,41 +55,36 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
                 }
             })
         );
-    }
+    };
 
     onSubmit(): void {
         if (this.tokenUser.sub !== undefined) {
+            this.loading = true;
             this.subscripcions.push(
-                this.userSvc.modifyUser(this.modifyUser.value, this.tokenUser.sub).pipe(
-                    switchMap((res) => {
-                        console.log(res);
-                        this.success = true;
-                        return this.authSvc._user$
-                    }),
-                    // switchMap(() => this.loginSvc.readToken()),
-                    switchMap((es) => {
-                        console.log(es) //errorqui
-                        return this.authSvc.refreshCookie(es)
+                this.userSvc.modifyUser(this.modifyUser.value, this.tokenUser.sub)
+                    .pipe(
+                        delay(500),
+                        finalize(() => {
+                            this.loading = false; // Siempre lo ejecuta, éxito o error
+                        })
+                    ).subscribe({
+                        next: (user) => {
+                            this.success = true;
+                            console.log('que pasa aca', user);
+                            setTimeout(() => {
+                                this.router.navigate(['/usuario']);
+                            }, 2000);
+                        },
+                        error: (res) => {
+                            this.error = true;
+                        }
                     })
-                ).subscribe({
-                    next: (user) => {
-                        console.log(user)
-                        setTimeout(() => {
-                            this.router.navigate(['/usuario']);
-                        }, 2000);
-                    },
-                    error: (res) => {
-                        console.log(res)
-                        // this.success = false;
-                        this.error = true;
-                    }
-                })
             )
         }
     }
 
     initForm(user: User): FormGroup {
-        //declarar las propiedas que tendran nuestro formulario
+
         return this.fb.group({
             username: [user.username, [Validators.required, Validators.minLength(3)], this.validateUsername.bind(this)],
             email: [user.email, {

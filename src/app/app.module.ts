@@ -1,19 +1,13 @@
 // 🔹 Angular Core
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // 🔹 Angular Material Modules
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
 // 🔹 NgRx
@@ -43,7 +37,6 @@ import { ModifyUserComponent } from './pages/user/modify-user/modify-user.compon
 
 // 🔹 Components (dentro de páginas)
 import { ShowCarComponent } from './pages/cars/components/show-car/show-car.component';
-import { DialogLoggedComponent } from './pages/cars/components/show-car/dialog-logged/dialog-logged.component';
 import { FilterCarsComponent } from './pages/cars/components/car-filter/filter-cars.component';
 import { LandingPageComponent } from './pages/home/components/landing-page/landing-page.component';
 import { HowToUseComponent } from './pages/home/components/how-to-use/how-to-use.component';
@@ -53,7 +46,6 @@ import { FormContactComponent } from './pages/contact/components/form-contact/fo
 import { NavBarComponent } from './shared/components/layout/navbar/navbar.component';
 import { FooterComponent } from './shared/components/layout/footer/footer.component';
 import { FormInputComponent } from './shared/components/ui/input/input.component';
-import { FormButtonComponent } from './shared/components/ui/form-button/form-button.component';
 import { ScrollAnimateDirective } from './shared/directives/scroll-animate.directive';
 import { FormClassDirective } from './shared/directives/form-class.directive';
 import { SharedModule } from './shared/shared.module';
@@ -65,7 +57,6 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 // 🔹 Environment
 import { environment } from '../environments/environment';
 import { ModalCarComponent } from './pages/cars/components/show-car/modal-car/modal-car.component';
-import { AuthService } from './core/services/auth/auth.service';
 import { ModifyPassComponent } from './pages/user/modify-pass/modify-pass.component';
 
 
@@ -84,7 +75,6 @@ import { ModifyPassComponent } from './pages/user/modify-pass/modify-pass.compon
         LoginComponent,
         RegisterComponent,
         CarApplicationComponent,
-        DialogLoggedComponent,
         LandingPageComponent,
         HowToUseComponent,
         ModifyUserComponent,
@@ -94,7 +84,6 @@ import { ModifyPassComponent } from './pages/user/modify-pass/modify-pass.compon
         CallbackComponent,
         FormInputComponent,
         TaxtareaComponent,
-        FormButtonComponent,
         ScrollAnimateDirective,
         ModalCarComponent,
     ],
@@ -112,14 +101,8 @@ import { ModifyPassComponent } from './pages/user/modify-pass/modify-pass.compon
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatProgressSpinnerModule,
         MatDialogModule,
         MatCheckboxModule,
-        MatFormFieldModule,
-        MatInputModule,
         MatIconModule,
         SharedModule,
     ],

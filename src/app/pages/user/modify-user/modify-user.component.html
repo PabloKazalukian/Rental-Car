@@ -1,5 +1,5 @@
-<div class="mod-user">
-    <app-auth [imageBackground]="'assets/images/bugatti_optimized.jpg'">
+<app-auth [imageBackground]="'assets/images/bugatti_optimized.jpg'">
+    <div class="mod-user">
         <ng-container *ngIf="loading === true; else formModUser">
             <div class="mod-car__spinner-container">
                 <app-loading class="mod-car__spinner" [color]="'accent'"></app-loading>
@@ -35,12 +35,12 @@
             </form>
         </ng-template>
 
-        <div *ngIf="this.success === true" class="mod-user__success">
+        <div *ngIf="this.success === true && this.loading === false" class="mod-user__success">
             <app-success [text]="'Sesión iniciada con exito!'"></app-success>
         </div>
 
-        <div *ngIf="this.error === true && this.success == false" class="mod-user__error">
+        <div *ngIf="this.error === true && this.success == false && this.loading === false" class="mod-user__error">
             <app-message-error [messageError]="'Hubo un problema.'"></app-message-error>
         </div>
-    </app-auth>
-</div>
+    </div>
+</app-auth>

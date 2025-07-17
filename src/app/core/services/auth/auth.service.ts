@@ -60,11 +60,11 @@ export class AuthService {
     }
 
     checkCookie(): Observable<boolean> {
-        return this.http.get<Usuario>(`${this.API}/me`, { withCredentials: true }).pipe(
+        return this.http.get<string>(`${this.API}/me`, { withCredentials: true }).pipe(
             map((response) => {
+                console.log('Response from checkCookie:', response);
                 if (response && response) {
-                    this.saveToken('response');
-                    this.user$.next(response)
+                    this.saveToken(response);
                     return true;
                 }
                 return false;
@@ -79,18 +79,19 @@ export class AuthService {
         );
     };
 
-    refreshCookie(user: Usuario): Observable<boolean | void> {
-        console.log(user);
-        return this.http.post<LoginResponde>(`${this.API}/refresh`, { withCredentials: true, id: user.sub }).pipe(
+    refreshCookie(): Observable<boolean | void> {
+        return this.http.post(`${this.API}/refresh`, null, { withCredentials: true }).pipe(
             map((res: any) => {
-                console.log(res)
-                // Ya no guardamos el token, el backend lo guarda como cookie
-                this.saveToken(res.accessToken);
-                this.loggetIn$.next(true);
+                this.saveToken(res.accessToken); // decodea y hace .next(user)
                 return true;
+            }),
+            catchError((err) => {
+                return of(false);
             })
         )
     }
+
+
 
     readToken(): Observable<Usuario> {
         const encryptedUser = localStorage.getItem('user');

@@ -1,16 +1,16 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from 'src/app/core/models/car.interface';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { loadCar, orderBrandCar } from '../../../../store/cars/car.actions';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogLoggedComponent } from './dialog-logged/dialog-logged.component';
 import { OverlayService } from '../../../../shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { ModalCarComponent } from './modal-car/modal-car.component';
 import { AuthService } from '../../../../core/services/auth/auth.service';
+import { ModalComponent } from 'src/app/shared/components/ui/modal/modal.component';
 
 interface appState {
     loading: boolean,
@@ -21,10 +21,13 @@ interface appState {
 @Component({
     selector: 'app-show-car',
     templateUrl: './show-car.component.html',
-    styleUrls: ['./show-car.component.css']
+    styleUrls: ['./show-car.component.scss']
 
 })
 export class ShowCarComponent implements OnInit, OnDestroy {
+
+    @ViewChild('btnDialog') btnDialog!: TemplateRef<any>;
+    @ViewChild('contentDialog') contentDialog!: TemplateRef<any>;
 
     private subscripcions: Subscription[] = [];
 
@@ -37,7 +40,7 @@ export class ShowCarComponent implements OnInit, OnDestroy {
     loading: boolean = true;
     notLogged!: Observable<boolean>;
 
-    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private loginSvc: LoginService, private authSvc: AuthService, public dialog: MatDialog,
+    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private authSvc: AuthService, public dialog: MatDialog,
         private overlayService: OverlayService
     ) { }
 
@@ -60,11 +63,19 @@ export class ShowCarComponent implements OnInit, OnDestroy {
 
         this.subscripcions.push(
             this.authSvc._loggenIn$.subscribe(e => {
+                console.log('prueba de fuego', id)
+                this.overlayService.closeAll();
                 if (e) {
                     this.router.navigate(['alquiler'], { queryParams: { id } });
                 } else {
                     // this.notLogged.subscribe(e=>{e=true;console.log(e)});
-                    const dialogRef = this.dialog.open(DialogLoggedComponent);
+                    this.overlayService.closeAll();
+                    this.overlayService.open(DialogComponent, {
+                        actions: this.btnDialog,
+                        content: this.contentDialog,
+                        title: 'Iniciar sesion para poder continuar!',
+                    });
+                    // const dialogRef = this.dialog.open(DialogLoggedComponent);
                 }
             })
         );
@@ -81,6 +92,7 @@ export class ShowCarComponent implements OnInit, OnDestroy {
                 } else {
                     // console.log(e);
 
+
                     if (e.car.length !== 0 || this.loading === false) {
                         this.cars = e.car;
                         this.loading = false;
@@ -95,10 +107,22 @@ export class ShowCarComponent implements OnInit, OnDestroy {
     //    this.dialogService.open();
     // }
 
-    abrirModalCar(auto: Car): void {
-        this.overlayService.open(ModalCarComponent, {
-            data: auto
-        });
+
+    // this.overlayService.open(DialogComponent, {
+    //                     content: this.btnDialog,
+    //                     actions: this.contentDialog,
+    //                     title: 'Iniciar sesion para poder continuar!',
+    //                 });
+
+    abrirModalCar(template: TemplateRef<any>, contentActions: TemplateRef<any>, car: Car): void {
+        this.overlayService.open(ModalComponent, {
+            title: ` ${car.brand.toUpperCase()}-${car.model.toUpperCase()}`,
+            subtitle: '¿Estás seguro de continuar?',
+            content: template,
+            actions: contentActions,
+            showClose: true,
+            logo: 'assets/logo.svg'
+        })
     }
 
     ngOnDestroy(): void {

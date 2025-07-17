@@ -1,10 +1,32 @@
-<div class="dialog-backdrop" appClickOutside (clickOutside)="onCancel()">
-    <div class="dialog-box" (click)="$event.stopPropagation()">
-        <h2>{{ title }}</h2>
-        <p>¿Estás seguro de realizar esta acción?</p>
-        <div class="dialog-actions">
-            <button (click)="onCancel()">Cancelar</button>
-            <button (click)="onConfirm()">Aceptar</button>
+<div class="dialog">
+    <div class="dialog__backdrop"></div>
+
+    <div class="dialog__container">
+        <!-- Header -->
+        <div class="dialog__header">
+            <span class="title">Rental-Car</span>
+            <div class="dialog__titles">
+                <h2 class="dialog__title">{{ title }}</h2>
+            </div>
+            <button *ngIf="showClose" class="dialog__close" (click)="close()">✖</button>
+        </div>
+
+        <div class="dialog__divider"></div>
+
+        <!-- Cuerpo dinámico -->
+        <div class="dialog__body">
+            <ng-container *ngTemplateOutlet="data.content"></ng-container>
+        </div>
+
+        <!-- Footer -->
+        <div class="dialog__footer">
+            <div class="dialog__footer-left">
+                <!-- <app-btn  (click)="close()">Cerrar</app-btn> -->
+                <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'error'" (click)="close()"></app-btn>
+            </div>
+            <div class="dialog__footer-right" *ngIf="data.actions">
+                <ng-container *ngTemplateOutlet="data.actions"></ng-container>
+            </div>
         </div>
     </div>
 </div>

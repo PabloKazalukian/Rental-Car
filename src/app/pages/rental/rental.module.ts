@@ -6,11 +6,8 @@ import { FormReactivoComponent } from 'src/app/pages/rental/components/form/form
 import { CalendarComponent } from 'src/app/pages/rental/components/calendar/calendar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { PermissionsGuard } from 'src/app/core/guard/permissions.guard';
-import { DataResolverService } from 'src/app/core/resolvers/data.resolver.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogConfirmationComponent } from 'src/app/pages/rental/components/dialog-confirmation/dialog-confirmation.component';

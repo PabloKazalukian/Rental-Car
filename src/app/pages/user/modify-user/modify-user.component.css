@@ -1,9 +1,11 @@
 .mod-user {
     /* container principal si querés seguir extendiéndolo */
+    margin: var(--space-2xl) 0px;
 }
 .mod-car__spinner-container {
     display: flex;
     justify-content: center;
+    margin: var(--space-2xl) 0px;
 }
 .mod-car__spinner {
     height: 120px;
@@ -12,6 +14,7 @@
 
 .mod-user__form {
     width: 100%;
+    padding: 0px var(--space-lg);
 }
 
 .mod-user__title {

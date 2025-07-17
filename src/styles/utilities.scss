@@ -1,0 +1,68 @@
+.app-container {
+  max-width: var(--app-container-2xl);
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+  margin: 80px auto 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+  }
+}
+
+.main {
+  padding: 0px 5rem;
+  margin: 0px;
+
+ @media (max-width:576px) {
+    padding: 0px 2rem;
+  }
+}
+
+.background {
+  background: var(--color-background--2);
+}
+
+.marginTop {
+  margin-top: 80px;
+}
+
+input {
+  transition:
+    background-color 5000s ease-in-out 0s,
+    color 5000s ease-in-out 0s;
+}
+
+[appScrollAnimate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.image-container {
+  overflow: hidden;
+  position: relative;
+
+  img {
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+    .form-layout{
+        padding: 0px var(--space-lg);
+    }
+}

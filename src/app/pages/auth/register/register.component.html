@@ -1,6 +1,6 @@
 <div>
     <app-auth [imageBackground]="'assets/images/superdeportivo_optimized.jpg'">
-        <form *ngIf="!this.error && !this.success" class="register-form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+        <form *ngIf="!this.error && !this.success" class="register-form form-layout" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
             <div class="register-form__title">
                 <h2 class="register-form__title-text">Crea una cuenta</h2>
             </div>
@@ -36,8 +36,6 @@
                     [placeholder]="'Ingrese nuevamente password'"
                     [control]="password2Control"></app-input>
             </div>
-
-            <mat-error *ngIf="registerForm.errors?.['passNoRepeat']">Las contraseñas no coinciden</mat-error>
 
             <p class="register-form__link">
                 Ya tenés una cuenta?

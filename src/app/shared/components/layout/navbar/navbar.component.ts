@@ -33,7 +33,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
     accesstoken(): void {
         this.subscriptions.push(
-            this.user$.subscribe(res => { this.usuario = res; console.log(res) }) //errorqui
+            this.user$.subscribe(res => { this.usuario = res; }) //errorqui
         )
     }
 

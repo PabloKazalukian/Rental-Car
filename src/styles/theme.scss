@@ -1,0 +1,61 @@
+:root {
+  --font-title: 'Lora', serif;
+  --font-body: 'Inter', sans-serif;
+
+  --app-container-sm: 640px;
+  --app-container-md: 768px;
+  --app-container-lg: 1024px;
+  --app-container-xl: 1280px;
+  --app-container-2xl: 1600px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 3.75rem;
+
+  --border-radius: 0.5rem;
+
+  --color-primary: #d63a3a;
+  --color-confirm: #b02c55;
+  --color-secondary: #3a6ebf;
+  --color-accent: #ffb74d;
+  --color-success: #4caf50;
+  --color-error: #cc1e2c;
+
+  --color-text: #ffffff;
+  --color-text--muted: #b0b0b0;
+  --color-text--muted--hover: #e0e0e0;
+
+  --color-primary--hover: #b02a2a;
+  --color-secondary--hover: #305fa6;
+  --color-accent--hover: #ff9800;
+  --color-success--hover: #388e3c;
+  --color-error--hover: #99171f;
+  --color-confirm--hover: #9a2146;
+  --color-text--hover: #ffffff05;
+
+  --color-surface: #393939;
+  --color-background: #1e1e1e;
+  --color-background--2: #121212bb;
+  --color-background-black: #0f0f0f;
+
+  --color-primary--hover-faint: rgba(214, 58, 58, 0.05);
+  --color-confirm--hover-faint: rgba(176, 44, 85, 0.05);
+  --color-secondary--hover-faint: rgba(58, 110, 191, 0.05);
+  --color-accent--hover-faint: rgba(255, 183, 77, 0.05);
+  --color-success--hover-faint: rgba(76, 175, 80, 0.05);
+  --color-error--hover-faint: rgba(204, 30, 44, 0.05);
+}

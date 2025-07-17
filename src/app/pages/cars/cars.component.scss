@@ -1,0 +1,11 @@
+
+.cars {
+    margin-top: 3rem;
+
+    &__title {
+        font-size: var(--font-size-2xl);
+        /* font-weight: 600; */
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+}

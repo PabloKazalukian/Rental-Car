@@ -1,8 +1,21 @@
-.footer_home {
+.footer {
     /* margin-top: 22px; */
     top: 100%;
-    height: 250px;
+    min-height: 250px;
     background: rgb(24, 28, 35);
     color: #f1f1f1;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    items-align: center;
+}
+
+.footer__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    items-align: center;
 }

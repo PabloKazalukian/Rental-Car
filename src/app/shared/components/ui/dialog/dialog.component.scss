@@ -1,0 +1,90 @@
+@use 'src/styles/variables' as *;
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  &__container {
+    position: relative;
+    background: var(--color-background);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    max-width: var(--app-container-2xl);
+    margin: auto;
+    width: 90%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    box-sizing: border-box;
+    max-height: 90vh;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+  }
+
+  &__logo {
+    height: 2rem;
+    width: auto;
+  }
+
+  &__titles {
+    flex: 1;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: var(--font-size-xl);
+  }
+
+  &__subtitle {
+    margin: 0;
+    color: var(--color-text--muted);
+    font-size: var(--font-size-sm);
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  &__divider {
+    height: 1px;
+    width: 40%;
+    background: var(--color-text--hover);
+    align-self: center;
+    margin: 1rem 0;
+  }
+
+  &__body {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

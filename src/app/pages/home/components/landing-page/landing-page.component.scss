@@ -1,0 +1,115 @@
+.landing {
+  margin-top: 64px;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  min-height: 94vh;
+  overflow: hidden;
+
+  &__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    &-img {
+      width: 100%;
+      height: 94vh;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 10;
+    background: #21212142;
+    display: flex;
+    gap: 20rem;
+    width: 100%;
+    height: 94vh;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem clamp(1rem, 8vw, 10rem);
+    width: 50%;
+    gap: 20px;
+    background: #21212172;
+    backdrop-filter: saturate(80%) blur(2px);
+    -webkit-backdrop-filter: saturate(80%) blur(2px);
+    transition: background 0.3s;
+  }
+
+  &__title {
+    font-size: 3.4rem;
+    margin-bottom: 25px;
+
+    &--highlight {
+      color: var(--color-primary);
+    }
+  }
+
+  &__paragraph {
+    letter-spacing: 1px;
+    font: 2rem/2.3rem var(--font-body);
+  }
+
+  &__subtitle {
+    letter-spacing: 1px;
+    font: 1.5rem/1.8rem var(--font-body);
+    margin: 0;
+  }
+
+  &__highlight {
+    color: var(--color-primary);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: space-evenly;
+  }
+
+  // MEDIA QUERIES
+    @media (max-width:768px) {
+    &__text {
+      padding: 2rem;
+      width: 100%;
+    }
+  }
+
+    @media (max-width: 576px) {
+    &__text {
+      width: 100%;
+    }
+
+    &__paragraph {
+      font: 1.5rem/1.7rem var(--font-body);
+    }
+
+    &__subtitle {
+      font: 0.9rem/1rem var(--font-body);
+      margin: 0;
+    }
+
+    &__title {
+      font-size: 2.4rem;
+      margin-bottom: 5px;
+    }
+
+    &__extra {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .texto_bienvenida {
+      width: 320px;
+      left: 25%;
+    }
+  }
+}

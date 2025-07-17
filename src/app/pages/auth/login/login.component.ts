@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     showPas: boolean = false;
     remember: boolean = false;
     @ViewChild('MyRef') passwordInput!: ElementRef;
-    hide: boolean = true;
+    // hide: boolean = true;
     private readonly API = `${environment.api}/auth`;
 
 
@@ -73,7 +73,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         );
     }
     loginWithGoogle() {
-        window.location.href = `${this.API}/google?redirectUri=${window.location.origin}/auth/callback`
+        console.log('Iniciando sesión con Google...');
+        window.location.href = `${this.API}/google?redirectUri=${window.location.origin}/auth/callback`;
     }
 
     showPassword(event: boolean): void {
