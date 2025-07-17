@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, map, of, Subscription } from 'rxjs';
 import { RegisterService } from 'src/app/core/services/register.service';
@@ -12,7 +12,7 @@ import { repeatPass } from 'src/app/shared/validators/repeatPass.validator';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-    registerForm!: FormGroup;
+    registerForm!: UntypedFormGroup;
     success: boolean = false;
     error: boolean = false;
     private subscripcions: Subscription[] = [];
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     imageBackground: string = 'assets/images/superdeportivo_optimized.jpg';
     hide = true;
 
-    constructor(private readonly fb: FormBuilder, private authSvc: RegisterService, private router: Router) { };
+    constructor(private readonly fb: UntypedFormBuilder, private authSvc: RegisterService, private router: Router) { };
 
 
     ngOnInit(): void {
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         )
     };
 
-    initForm(): FormGroup {
+    initForm(): UntypedFormGroup {
         //declarar las propiedas que tendran nuestro formulario
         return this.fb.group({
             username: ['', [Validators.required, Validators.minLength(3)], this.validateUsername.bind(this)],
@@ -87,20 +87,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
             )
     }
 
-    get usernameControl(): FormControl {
-        return this.registerForm.get('username') as FormControl;
+    get usernameControl(): UntypedFormControl {
+        return this.registerForm.get('username') as UntypedFormControl;
     }
 
-    get emailControl(): FormControl {
-        return this.registerForm.get('email') as FormControl;
+    get emailControl(): UntypedFormControl {
+        return this.registerForm.get('email') as UntypedFormControl;
     }
 
-    get password1Control(): FormControl {
-        return this.registerForm.get('password1') as FormControl;
+    get password1Control(): UntypedFormControl {
+        return this.registerForm.get('password1') as UntypedFormControl;
     }
 
-    get password2Control(): FormControl {
-        return this.registerForm.get('password2') as FormControl;
+    get password2Control(): UntypedFormControl {
+        return this.registerForm.get('password2') as UntypedFormControl;
     }
 
 

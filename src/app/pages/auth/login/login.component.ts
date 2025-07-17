@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -16,7 +16,7 @@ declare const google: any;
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-    contactForm!: FormGroup;
+    contactForm!: UntypedFormGroup;
     login!: boolean;
     private subscriptions: Subscription[] = [];
     showPas: boolean = false;
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private readonly API = `${environment.api}/auth`;
 
 
-    constructor(private readonly fb: FormBuilder, private loginSvc: LoginService, private authSvc: AuthService, private credentialsSvc: CredentialsService, private router: Router) { }
+    constructor(private readonly fb: UntypedFormBuilder, private loginSvc: LoginService, private authSvc: AuthService, private credentialsSvc: CredentialsService, private router: Router) { }
 
     ngOnInit(): void {
         const credentials = this.credentialsSvc.getCredentials();
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
     }
 
-    initForm(): FormGroup {
+    initForm(): UntypedFormGroup {
         return this.fb.group({
             email: ['', [Validators.required, Validators.minLength(3)]],
             password: ['', [Validators.required, Validators.minLength(3)]],
@@ -85,12 +85,12 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.remember = event;
     }
 
-    get emailControl(): FormControl {
-        return this.contactForm.get('email') as FormControl;
+    get emailControl(): UntypedFormControl {
+        return this.contactForm.get('email') as UntypedFormControl;
     }
 
-    get passwordControl(): FormControl {
-        return this.contactForm.get('password') as FormControl;
+    get passwordControl(): UntypedFormControl {
+        return this.contactForm.get('password') as UntypedFormControl;
     }
 
     ngOnDestroy(): void {

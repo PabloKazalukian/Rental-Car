@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
 import { Request, RequestSend } from 'src/app/core/models/request.interface';
@@ -23,7 +23,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
 
 
     arrRequest!: Request[]
-    range!: FormGroup;
+    range!: UntypedFormGroup;
     private subscriptions: Subscription[] = [];
 
     userId!: string;
@@ -32,7 +32,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
     loading: boolean = true
 
     constructor(
-        private readonly fb: FormBuilder,
+        private readonly fb: UntypedFormBuilder,
         private authSvc: LoginService,
         private rentalSvc: RentalService,
         public dialog: MatDialog
@@ -99,13 +99,13 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
         }
     };
 
-    initFormDates(): FormGroup {
+    initFormDates(): UntypedFormGroup {
         return this.fb.group({
-            start: new FormControl(null),
-            end: new FormControl(null),
-            total: new FormControl(null),
-            amount: new FormControl(0),
-            days: new FormControl(0),
+            start: new UntypedFormControl(null),
+            end: new UntypedFormControl(null),
+            total: new UntypedFormControl(null),
+            amount: new UntypedFormControl(0),
+            days: new UntypedFormControl(0),
         });
     }
 

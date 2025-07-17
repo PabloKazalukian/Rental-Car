@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, delay, finalize, map, of, switchMap, tap } from 'rxjs';
 import { User, Usuario } from 'src/app/core/models/user.interface';
@@ -17,7 +17,7 @@ import { mustBeDifferent } from 'src/app/shared/validators/equal.validator';
 export class ModifyUserComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
-    modifyUser!: FormGroup;
+    modifyUser!: UntypedFormGroup;
     tokenUser!: Usuario;
     user!: User;
     loading: boolean = true;
@@ -25,7 +25,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     error: boolean = false;
 
     constructor(
-        private readonly fb: FormBuilder,
+        private readonly fb: UntypedFormBuilder,
         // private loginSvc: LoginService,
         private regiterSvc: RegisterService,
         private authSvc: AuthService,
@@ -83,7 +83,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
         }
     }
 
-    initForm(user: User): FormGroup {
+    initForm(user: User): UntypedFormGroup {
 
         return this.fb.group({
             username: [user.username, [Validators.required, Validators.minLength(3)], this.validateUsername.bind(this)],
@@ -136,12 +136,12 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
         }
     }
 
-    get usernameControl(): FormControl {
-        return this.modifyUser.get('username') as FormControl;
+    get usernameControl(): UntypedFormControl {
+        return this.modifyUser.get('username') as UntypedFormControl;
     }
 
-    get emailControl(): FormControl {
-        return this.modifyUser.get('email') as FormControl;
+    get emailControl(): UntypedFormControl {
+        return this.modifyUser.get('email') as UntypedFormControl;
     }
 
     ngOnDestroy(): void {

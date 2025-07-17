@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
 
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { Request } from 'src/app/core/models/request.interface';
 import { MatDateRangePicker } from '@angular/material/datepicker';
@@ -20,7 +20,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @ViewChild(MatDateRangePicker) datepicker!: MatDateRangePicker<Date>;
 
-    @Input() range!: FormGroup
+    @Input() range!: UntypedFormGroup
     @Input() idCar!: string;
     @Input() cars?: Car;
 
@@ -30,7 +30,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
     blockedDates: Set<string> = new Set();
 
 
-    constructor(private readonly fb: FormBuilder, private rentalSvc: RentalService) { }
+    constructor(private readonly fb: UntypedFormBuilder, private rentalSvc: RentalService) { }
     ngAfterViewInit() {
         this.resubscribe();
     };

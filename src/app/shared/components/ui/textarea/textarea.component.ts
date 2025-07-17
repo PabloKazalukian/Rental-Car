@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-textarea',
@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class TaxtareaComponent implements OnInit {
 
-    @Input() control!: FormControl;
+    @Input() control!: UntypedFormControl;
     @Input() label!: string;
     @Input() placeholder: string = '';
 

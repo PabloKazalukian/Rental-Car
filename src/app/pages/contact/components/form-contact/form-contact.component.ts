@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Email } from 'src/app/core/models/email.interface';
 import { EmailService } from 'src/app/core/services/email.service';
@@ -16,7 +16,7 @@ interface contactForm {
 })
 export class FormContactComponent implements OnInit, OnDestroy {
 
-    contactForm!: FormGroup;
+    contactForm!: UntypedFormGroup;
     success: boolean = false;
     error: boolean = false;
 
@@ -28,7 +28,7 @@ export class FormContactComponent implements OnInit, OnDestroy {
         message: ''
     }
 
-    constructor(private readonly fb: FormBuilder, private emailSvc: EmailService) { }
+    constructor(private readonly fb: UntypedFormBuilder, private emailSvc: EmailService) { }
 
     ngOnInit(): void {
         this.contactForm = this.initForm();
@@ -52,7 +52,7 @@ export class FormContactComponent implements OnInit, OnDestroy {
         )
     };
 
-    initForm(): FormGroup {
+    initForm(): UntypedFormGroup {
         return this.fb.group({
             name: ['', [Validators.required, Validators.minLength(3)]],
             email: ['', [Validators.required, Validators.minLength(3)]],
@@ -60,16 +60,16 @@ export class FormContactComponent implements OnInit, OnDestroy {
         });
     }
 
-    get nameControl(): FormControl {
-        return this.contactForm.get('name') as FormControl;
+    get nameControl(): UntypedFormControl {
+        return this.contactForm.get('name') as UntypedFormControl;
     }
 
-    get emailControl(): FormControl {
-        return this.contactForm.get('email') as FormControl;
+    get emailControl(): UntypedFormControl {
+        return this.contactForm.get('email') as UntypedFormControl;
     }
 
-    get messageControl(): FormControl {
-        return this.contactForm.get('message') as FormControl;
+    get messageControl(): UntypedFormControl {
+        return this.contactForm.get('message') as UntypedFormControl;
     }
 
 

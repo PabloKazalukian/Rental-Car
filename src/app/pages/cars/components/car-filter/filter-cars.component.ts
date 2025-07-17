@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Car } from 'src/app/core/models/car.interface';
 import { Store, select } from '@ngrx/store';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 
 interface appState {
@@ -23,7 +23,7 @@ interface text {
 })
 
 export class FilterCarsComponent implements OnInit {
-    registerForm!: FormGroup;
+    registerForm!: UntypedFormGroup;
     btnSelected: string = '';
 
     @Input() orderPrice: any;
@@ -36,7 +36,7 @@ export class FilterCarsComponent implements OnInit {
     @Output() newSearchEvent = new EventEmitter<text>();
     @Output() newOrderEvent = new EventEmitter<string>();
 
-    constructor(private readonly fb: FormBuilder, private store: Store<{ autos: appState }>) {}
+    constructor(private readonly fb: UntypedFormBuilder, private store: Store<{ autos: appState }>) {}
 
     ngOnInit(): void {
         this.registerForm = this.initForm();
@@ -51,19 +51,19 @@ export class FilterCarsComponent implements OnInit {
         this.registerForm.valueChanges.subscribe(() => this.searchFilter());
     }
 
-    initForm(): FormGroup {
+    initForm(): UntypedFormGroup {
         return this.fb.group({
             model: [''],
             brand: ['']
         });
     }
 
-    get textModelControl(): FormControl {
-        return this.registerForm.get('model') as FormControl;
+    get textModelControl(): UntypedFormControl {
+        return this.registerForm.get('model') as UntypedFormControl;
     }
 
-    get textBrandControl(): FormControl {
-        return this.registerForm.get('brand') as FormControl;
+    get textBrandControl(): UntypedFormControl {
+        return this.registerForm.get('brand') as UntypedFormControl;
     }
 
     public searchFilter(): void {
