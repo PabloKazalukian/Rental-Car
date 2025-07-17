@@ -6,7 +6,7 @@ import { Request, RequestSend } from 'src/app/core/models/request.interface';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { DatePipe } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component';
 
 

@@ -9,7 +9,7 @@ import { OverlayService } from '../../../../shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { ModalComponent } from 'src/app/shared/components/ui/modal/modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 interface appState {
     loading: boolean,
