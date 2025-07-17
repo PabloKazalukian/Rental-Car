@@ -46,6 +46,8 @@ const routes: Routes = [
     declarations: [
         UserComponent,
         TableRentalComponent,
+        ModifyUserComponent,
+        ModifyPassComponent,
         // ModifyPassComponent,
     ],
     imports: [

@@ -1,8 +1,0 @@
-@import './variables';
-
-// _mixins.scss
-@mixin respond-to($breakpoint) {
-  @media (max-width: map-get($breakpoints, $breakpoint)) {
-    @content;
-  }
-}

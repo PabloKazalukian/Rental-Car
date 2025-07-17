@@ -42,12 +42,7 @@
 </div>
 
 <ng-template #btnDialog>
-    <app-btn
-        [text]="'Iniciar sesión'"
-        [variant]="'raised'"
-        [color]="'confirm'"
-        [routerLink]="'/auth/login'"
-        [mat-dialog-close]="true"></app-btn>
+    <app-btn [text]="'Iniciar sesión'" [variant]="'raised'" [color]="'confirm'" [routerLink]="'/auth/login'"></app-btn>
 </ng-template>
 
 <ng-template #contentDialog>
@@ -56,7 +51,8 @@
             Debe iniciar sesión para poder solicitad un vehiculo.
             <hr />
             Por favor ingresa con tu cuenta o
-            <a routerLink="/auth/registro" [mat-dialog-close]="true">crea una nueva cuenta</a>
+            <!-- <a routerLink="/auth/registro" [mat-dialog-close]="true">crea una nueva cuenta</a> -->
+            <app-btn [text]="'crea una nueva cuenta'" [variant]="'raised'" [color]="'primary'" [routerLink]="'/auth/registro'"></app-btn>
         </h4>
     </div>
 </ng-template>

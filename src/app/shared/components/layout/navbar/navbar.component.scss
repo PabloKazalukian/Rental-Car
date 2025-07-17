@@ -1,0 +1,84 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-bar {
+  position: fixed;
+  z-index: 100;
+  background: var(--color-background--2);
+  transition: background 0.3s;
+  backdrop-filter: blur(4px);
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 64px;
+  color: var(--color-text);
+  font: 500 var(--font-size-xl) / 32px var(--font-title);
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: var(--app-container-2xl);
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 clamp(1rem, 4vw, 3.1rem);
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    a,
+    app-btn {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  &__toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+  }
+
+  &:hover {
+    background: var(--color-background-black);
+  }
+
+  // 📱 Mobile
+  @media (max-width: 768px) {
+    &__toggle {
+      display: block;
+      backdrop-filter: blur(0px);
+
+    }
+
+    &__links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      background: var(--color-background-black-faint);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      z-index: 99;
+
+      &.is-open {
+        display: flex;
+      }
+    }
+  }
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0px 3px;
+}

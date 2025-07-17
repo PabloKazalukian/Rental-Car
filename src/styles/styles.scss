@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 // ✅ styles.scss (punto de entrada global)
-@import './variables';
+// @import './variables';
 @import './theme';
-@import './mixins';
 @import './base';
 @import './utilities';
 

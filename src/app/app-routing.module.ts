@@ -1,44 +1,44 @@
-import { PermissionsGuard } from './core/guard/permissions.guard';
-import { Error404Component } from './pages/error/error404.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactComponent } from './pages/contact/contact.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/auth/login/login.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
-import { CarApplicationComponent } from './pages/request-car/car-application.component';
-import { CallbackComponent } from './pages/auth/callback/callback.component';
+import { PermissionsGuard } from './core/guard/permissions.guard';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'contacto', component: ContactComponent },
+    // Redirección explícita desde '/'
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+    // Página principal
+    { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
+
+    // Otras rutas válidas
+    { path: 'contacto', loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule) },
     {
         path: 'alquiler',
         loadChildren: () => import('./pages/rental/rental.module').then(m => m.RentalModule),
         canActivate: [PermissionsGuard],
-        // canDeactivate:[WithoutSaveGuard],
-        // resolve:{car:DataResolverService}
     },
-    { path: 'auth/login', component: LoginComponent },
-    { path: 'auth/callback', component: CallbackComponent },
-    { path: 'auth/registro', component: RegisterComponent },
+    { path: 'auth', loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule) },
     {
         path: 'usuario',
         loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
     },
     {
-        path: 'solicitar-auto', component: CarApplicationComponent,
-        canActivate: [PermissionsGuard],
+        path: 'solicitar-auto',
+        loadChildren: () => import('./pages/cars/cars.module').then(m => m.CarsModule),
     },
-    { path: '**', component: Error404Component },
+
+    // Ruta comodín
+    { path: '**', loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorModule) },
 ];
 
+
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {
-        scrollPositionRestoration: 'enabled',
-        anchorScrolling: 'enabled',
-    })],
+    imports: [
+        RouterModule.forRoot(routes, {
+            scrollPositionRestoration: 'enabled',
+            anchorScrolling: 'enabled',
+        })
+    ],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

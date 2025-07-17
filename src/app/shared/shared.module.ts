@@ -11,6 +11,15 @@ import { MaterialModule } from './material.module';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { ModalComponent } from './components/ui/modal/modal.component';
 import { DialogComponent } from './components/ui/dialog/dialog.component';
+import { AuthComponent } from './components/layout/auth/auth.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TaxtareaComponent } from './components/ui/textarea/textarea.component';
+import { FormInputComponent } from './components/ui/input/input.component';
+import { ScrollAnimateDirective } from './directives/scroll-animate.directive';
+import { ModalCarComponent } from '../pages/cars/components/show-car/modal-car/modal-car.component';
+import { ShowCarComponent } from '../pages/cars/components/show-car/show-car.component';
+import { FilterCarsComponent } from '../pages/cars/components/car-filter/filter-cars.component';
+import { CarsComponent } from '../pages/cars/cars.component';
 
 
 @NgModule({
@@ -24,10 +33,20 @@ import { DialogComponent } from './components/ui/dialog/dialog.component';
         ClickOutsideDirective,
         ModalComponent,
         DialogComponent,
+        AuthComponent,
+        TaxtareaComponent,
+        FormInputComponent,
+        ScrollAnimateDirective,
+        CarsComponent,
+        FilterCarsComponent,
+        ShowCarComponent,
+        ModalCarComponent
     ],
     imports: [
         CommonModule,
         RouterModule,
+        ReactiveFormsModule,
+        FormsModule,
         MaterialModule // Assuming you have a MaterialModule for Angular Material components
     ],
     exports: [
@@ -36,9 +55,22 @@ import { DialogComponent } from './components/ui/dialog/dialog.component';
         LoadingComponent,
         StepperComponent,
         TableComponent,
-        RouterModule,
         BtnComponent,
-        MaterialModule
+        ClickOutsideDirective,
+        DialogComponent,
+        AuthComponent,
+        ModalComponent,
+        TaxtareaComponent,
+        FormInputComponent,
+        CarsComponent,
+        FilterCarsComponent,
+        ShowCarComponent,
+        ModalCarComponent,
+        ScrollAnimateDirective,
+        CarsComponent,
+        FilterCarsComponent,
+        ShowCarComponent,
+        ModalCarComponent
     ]
 })
 export class SharedModule { }

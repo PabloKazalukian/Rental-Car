@@ -16,3 +16,4 @@ export class AuthComponent implements OnInit {
     }
 
 }
+1

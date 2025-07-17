@@ -4,13 +4,12 @@ import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@an
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { loadCar, orderBrandCar } from '../../../../store/cars/car.actions';
-import { LoginService } from 'src/app/core/services/auth/login.service';
-import { MatDialog } from '@angular/material/dialog';
+// import { MatDialog } from '@angular/material/dialog';
 import { OverlayService } from '../../../../shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
-import { ModalCarComponent } from './modal-car/modal-car.component';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { ModalComponent } from 'src/app/shared/components/ui/modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 interface appState {
     loading: boolean,
