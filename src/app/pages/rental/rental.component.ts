@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { filter, Subscription, switchMap, take, tap } from 'rxjs';
 import { CarService } from 'src/app/core/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
 import { LoginService } from 'src/app/core/services/auth/login.service';
@@ -29,22 +29,28 @@ export class RentalComponent implements OnInit, OnDestroy {
 
         this.imageLoaded = false;
 
-        this.subscripcions.push(
-            this.route.queryParams.subscribe(
-                (params) => this.idCar = params['id']
-            )
-        );
+
+        this.authSvc._user$.pipe(
+            take(1),
+            filter(user => !!user),
+            tap(user => this.idUser = user.sub)
+        ).subscribe();
+
 
         this.subscripcions.push(
-            this.authSvc._user$.subscribe(res => {
-                this.idUser = res.sub;
-            })
-        );
 
-        this.subscripcions.push(
-            this.carSvc.getCarById(this.idCar).subscribe(
-                car => this.cars = car
-            )
+            this.route.queryParams.pipe(
+                switchMap(params => {
+                    this.idCar = params['id'];
+
+                    return this.carSvc.getCarById(this.idCar);
+                })).subscribe({
+                    next: (car) => {
+                        this.cars = car;
+                        console.log('Carro seleccionado:', this.cars);
+                    },
+                    error: (err) => console.error('Error al obtener el carro:', err)
+                })
         );
     };
 

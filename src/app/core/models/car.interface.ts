@@ -9,12 +9,12 @@ export interface Car {
     created_at: string
 }
 
-export interface SpecificationsCar{
-        acceleration: string,
-        consumption: string,
-        max_speed: string,
-        engine: string,
-        power: string,
-        torque: string,
-        weight: string,
-    }
+export interface SpecificationsCar {
+    acceleration: string,
+    consumption: string,
+    max_speed: string,
+    engine: string,
+    power: string,
+    torque: string,
+    weight: string,
+}

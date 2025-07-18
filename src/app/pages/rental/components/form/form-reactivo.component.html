@@ -1,21 +1,28 @@
-<h4>Por favor, ingrese las fechas de solicitud</h4>
-<h4>Solicitud de {{ this.username }} por renta de {{ this.cars?.brand }} {{ this.cars?.model }}</h4>
-<form (ngSubmit)="onSubmit()" [formGroup]="range" class="container_form">
-    <div class="mb-4">
-        <!-- <mat-spinner *ngIf="loading;else viewCalendar"></mat-spinner> -->
-        <div *ngIf="loading; else viewCalendar" class="spinner">
-            <app-loading color="confirm"></app-loading>
-        </div>
-        <ng-template #viewCalendar>
-            <div class="d-flex flex-wrap justify-content-start gap-sm-5 gap-1 align-items-center">
-                <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
-                <h2 *ngIf="range.invalid && range.touched" class="date_invalid">Fecha invalida</h2>
-                <h2 *ngIf="!range.invalid && range.touched" class="date_correct">Fecha correcta!</h2>
-            </div>
-        </ng-template>
+<div *ngIf="cars" class="rental__form">
+    <div class="rental__form-title">
+        <h1>Alquile un vehiculo</h1>
     </div>
-    <h4>Monto a Pagar por dia: {{ this.cars?.price }}</h4>
-    <h4>Cantidad de días: {{ this.range.value.days }}</h4>
-    <h4>Monto total: {{ this.range.value?.amount }} Usd</h4>
-    <app-btn [text]="'Enviar'" [color]="'primary'" [variant]="'raised'" [buttonType]="'submit'" [isDisabled]="range.invalid"></app-btn>
-</form>
+    <h4 class="rental__form-text">Por favor, ingrese las fechas de solicitud</h4>
+    <h4>
+        Solicitud de {{ this.username }} por renta de
+        <span class="rental__form-text--car">{{ this.cars.brand }} {{ this.cars.model }}</span>
+    </h4>
+    <form (ngSubmit)="onSubmit()" [formGroup]="range" class="container_form">
+        <div class="rental__form-actions">
+            <div *ngIf="loading; else viewCalendar" class="spinner">
+                <app-loading color="confirm"></app-loading>
+            </div>
+            <ng-template #viewCalendar>
+                <div class="rental__form-calendar">
+                    <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
+                    <h2 *ngIf="range.invalid && range.touched" class="date_invalid">Fecha invalida</h2>
+                    <h2 *ngIf="!range.invalid && range.touched" class="date_correct">Fecha correcta!</h2>
+                </div>
+            </ng-template>
+        </div>
+        <h4 class="rental__form-text">Monto a Pagar por dia: {{ this.cars.price }}</h4>
+        <h4 class="rental__form-text">Cantidad de días: {{ this.range.value.days }}</h4>
+        <h4 class="rental__form-text">Monto total: {{ this.range.value.amount }} Usd</h4>
+        <app-btn [text]="'Enviar'" [color]="'primary'" [variant]="'raised'" [buttonType]="'submit'" [isDisabled]="range.invalid"></app-btn>
+    </form>
+</div>

@@ -14,6 +14,7 @@ import { DialogConfirmationComponent } from 'src/app/pages/rental/components/dia
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 const routes: Routes = [
@@ -34,16 +35,12 @@ const routes: Routes = [
     ],
     imports: [
         RouterModule.forChild(routes),
+        FlatpickrModule.forRoot(),
         CommonModule,
         SharedModule,
         MatDatepickerModule,
         ReactiveFormsModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatProgressSpinnerModule,
-        MatNativeDateModule,
         MatDialogModule,
-        MatInputModule,
     ]
 })
 export class RentalModule { }

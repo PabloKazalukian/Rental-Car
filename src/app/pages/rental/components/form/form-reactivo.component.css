@@ -1,5 +1,41 @@
-.container_form {
-    /* margin-right: 7.5rem; */
+.rental__form {
+    grid-area: form;
+    background: #353535;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow:
+        rgba(0, 0, 9, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.rental__form-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.2rem 0px;
+    margin: 0.2rem 0px;
+}
+
+.rental__form-text {
+    margin: 0.6rem 0;
+}
+.rental__form-text--car {
+    color: var(--color-accent);
+}
+
+.rental__form-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.6rem 0;
+}
+
+.rental__form-calendar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
 .spinner {
@@ -9,4 +45,10 @@
 
 .date_invalid {
     color: #c2185b;
+}
+
+@media (max-width: 768px) {
+    .rental__form-calendar {
+        gap: 5rem;
+    }
 }

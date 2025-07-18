@@ -42,6 +42,7 @@ export class FormReactivoComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subscriptions.push(
             this.authSvc._user$.subscribe((res) => {
+                console.log('Usuario autenticado:', res);
                 this.userId = res.sub;
                 this.username = res.username;
             })

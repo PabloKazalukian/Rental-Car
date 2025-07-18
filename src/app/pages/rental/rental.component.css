@@ -18,17 +18,6 @@
     grid-area: stepper;
 }
 
-.rental__form {
-    grid-area: form;
-    background: #353535;
-    border-radius: 15px;
-    backdrop-filter: blur(3px);
-    padding: 2rem;
-    box-shadow:
-        rgba(0, 0, 9, 0.25) 0px 6px 12px -2px,
-        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
-
 .rental__card {
     grid-area: card;
     display: flex;
@@ -37,6 +26,7 @@
     justify-content: center;
     height: auto;
 }
+
 .rental__card__content {
     display: grid;
     width: 100%;
@@ -59,13 +49,6 @@
 .rental__card-image__car {
     width: 100%;
     height: 17rem;
-}
-
-.rental__form-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0px;
 }
 
 .rental__card__content::after {
@@ -227,17 +210,3 @@
 .rental__image__car.hidden {
     display: none;
 }
-
-/* @keyframes slideUpFadeIn {
-    0% {
-        transform: translateY(100px);
-        opacity: 0;
-        background-color: #d1d1d1;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-        background-color: var(--color-background-black);
-    }
-} */

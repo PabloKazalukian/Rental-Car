@@ -16,7 +16,7 @@
             [text]="'Enviar'"
             [color]="'secondary'"
             [variant]="'raised'"
-            [isDisabled]="contactForm?.invalid ?? true"></app-btn>
+            [isDisabled]="contactForm.invalid"></app-btn>
     </form>
     <div *ngIf="this.success === true && this.error === false">
         <app-success

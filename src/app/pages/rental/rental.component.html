@@ -3,19 +3,14 @@
         <div class="rental__stepper">
             <app-stepper [steps]="['Seleccionar auto', 'Elegir fechas', 'Confirmación']" [currentStep]="step"></app-stepper>
         </div>
-        <div class="rental__form">
-            <div class="rental__form-title">
-                <h1>Alquile un vehiculo</h1>
-            </div>
 
-            <app-form-reactivo (stepChanged)="step = $event" [idCar]="idCar" [cars]="cars"></app-form-reactivo>
-        </div>
-        <div class="rental__card">
+        <app-form-reactivo (stepChanged)="step = $event" [idCar]="idCar" [cars]="cars"></app-form-reactivo>
+        <div *ngIf="cars" class="rental__card">
             <aside class="rental__card__content">
                 <div class="rental__card-image__wrapper">
                     <div *ngIf="!imageLoaded" class="skeleton-image"></div>
                     <img
-                        [src]="cars?.image"
+                        [src]="cars.image"
                         alt="Car image"
                         class="rental__image__car"
                         (load)="onImageLoad()"
@@ -24,22 +19,24 @@
                 <div class="rental__card-info__model">
                     <div class="rental__card-info__name">
                         <label>Modelo:</label>
-                        <h2>{{ cars?.brand }} {{ cars?.model }}</h2>
+                        <h2>{{ cars.brand }} {{ cars.model }}</h2>
                     </div>
                     <div class="rental__card-info__price">
                         <label>Precio por día:</label>
-                        <h2>{{ cars?.price }}</h2>
+                        <h2>{{ cars.price }}</h2>
                     </div>
                     <div class="rental__card-info__year">
                         <label>año:</label>
-                        <h2>{{ cars?.year }}</h2>
+                        <h2>{{ cars.year }}</h2>
                     </div>
                 </div>
                 <div class="rental__card-info__button">
                     <div>
-                        <a mat-raised-button color="warn" routerLink="/solicitar-auto" class="rental__card-button__change-car">
-                            Solicitar otro vehiculo
-                        </a>
+                        <app-btn
+                            [text]="'Solicitar otro vehiculo'"
+                            [color]="'primary'"
+                            [variant]="'raised'"
+                            [routerLink]="'/solicitar-auto'"></app-btn>
                     </div>
                 </div>
             </aside>

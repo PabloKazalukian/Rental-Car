@@ -1,10 +1,15 @@
-<mat-form-field appearance="fill" class="form-calendar">
-    <mat-label>Ingrese el rango de fechas</mat-label>
-    <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [dateFilter]="myFilter">
-        <input matStartDate formControlName="start" placeholder="Fecha inicial" #startDate>
-        <input matEndDate formControlName="end" placeholder="Fecha final" #endDate
-            (dateChange)="onDate(startDate,endDate)">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-</mat-form-field>
+<div class="form-calendar">
+    <label>Ingrese el rango de fechas</label>
+    <input
+        type="text"
+        mwlFlatpickr
+        [altInput]="true"
+        [formControl]="startControl"
+        [minDate]="'today'"
+        [mode]="'range'"
+        [dateFormat]="'Y-m-d'"
+        [disable]="disabledDates"
+        (onClose)="handleDateClose()"
+        placeholder="Seleccioná el rango de fechas"
+        class="calendar-input" />
+</div>
