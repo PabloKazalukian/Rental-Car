@@ -35,7 +35,7 @@ export class RentalComponent implements OnInit, OnDestroy {
         this.authSvc._user$.pipe(
             take(1),
             filter(user => !!user),
-            tap(user => { this.idUser = user.sub; this.user = user; console.log('Usuario autenticado:', user) }),
+            tap(user => { this.idUser = user.sub; this.user = user }),
         ).subscribe();
 
 

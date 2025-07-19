@@ -5,6 +5,10 @@ import { Car } from 'src/app/core/models/car.interface';
 import { Request, RequestSend } from 'src/app/core/models/request.interface';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { DatePipe } from '@angular/common';
+import { changeDateFormat, ownValidation } from 'src/app/shared/validators/date.validator';
+import { Router } from '@angular/router';
+import { OverlayService } from 'src/app/shared/services/ui/overlay.service';
+import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 
 type FormDatesGroup = FormGroup<{
     start: FormControl<Date | null>;
@@ -33,11 +37,13 @@ export class FormCarComponent implements OnInit, OnDestroy {
     @Input() user?: { username: string, sub: string, role: string } | undefined;
     @Output() stepChanged = new EventEmitter<number>();
 
+    private subscripcions: Subscription[] = [];
+
 
     arrRequest!: Request[]
     // range!: UntypedFormGroup;
     showDialog: boolean = false;
-    dialogData!: RequestSend & { onConfirm: () => void }
+    data!: RequestSend
     range!: FormDatesGroup;
     private subscriptions: Subscription[] = [];
 
@@ -46,9 +52,16 @@ export class FormCarComponent implements OnInit, OnDestroy {
     success!: boolean
     loading: boolean = true
 
+    //dialog
+    successDialog: boolean = false;
+    loadingDialog: boolean = false;
+    timeout: number = 1800; // tiempo de espera para cerrar el dialogo y redirigir al usuario
+
     constructor(
         private readonly fb: UntypedFormBuilder,
         private rentalSvc: RentalService,
+        private overlayService: OverlayService,
+        private router: Router,
     ) { }
 
 
@@ -65,44 +78,37 @@ export class FormCarComponent implements OnInit, OnDestroy {
     }
 
     onSubmit(): void {
-        let start = new DatePipe('en').transform(this.range.value.start, 'yyyy-MM-dd');
-        let end = new DatePipe('en').transform(this.range.value.end, 'yyyy-MM-dd');
+        // console.log('Submitting form with values:', this.range.value);
+        let start = this.range.value.start
+        let end = this.range.value.end
 
-        if (start && end) {
+
+        if (start && end && this.user) {
+
             let result: RequestSend = {
                 amount: this.range.value?.amount,
-                initialDate: this.range.value.start ?? undefined,
-                finalDate: this.range.value.end ?? undefined,
-                user_id: this.userId,
+                initialDate: new Date(changeDateFormat(start)),
+                finalDate: new Date(changeDateFormat(end)),
+                user_id: this.user?.sub,
                 car_id: this.idCar,
                 state: 'req'
             }
+            this.data = result
+
+            this.overlayService.closeAll();
+            this.overlayService.open(DialogComponent, {
+                actions: this.btnDialog,
+                content: this.contentDialog,
+                title: 'Confirme su alquiler!',
+                data: result
+            });
             if (this.range.valid) {
                 // Marca paso 2 como completo
                 this.stepChanged.emit(2); // Paso 3 (confirmación)
+            } else {
+
+                this.stepChanged.emit(3);
             }
-            this.dialogData = {
-                ...result,
-                onConfirm: () => {
-                    this.stepChanged.emit(3);
-                }
-            };
-
-            this.showDialog = true;
-
-            // dialogRef.afterClosed().subscribe((result) => {
-            //     console.log('El diálogo se cerró con el resultado:', result);
-
-            //     if (result === true) {
-            //         // Confirmado
-            //     } else if (result === 'cancelled') {
-            //         // Cancelación con botón
-            //         this.stepChanged.emit(1);
-            //     } else {
-            //         this.stepChanged.emit(1);
-            //         // Cierre fuera del diálogo
-            //     }
-            // });
         }
     };
 
@@ -113,8 +119,55 @@ export class FormCarComponent implements OnInit, OnDestroy {
             total: new FormControl<Request[] | null>(null),
             amount: new FormControl<number>(0),
             days: new FormControl<number>(0),
-        });
-    }
+        })
+    };
+
+    request(): void {
+        this.loading = true;
+        this.data.state = 'req';
+        this.subscripcions.push(
+            this.rentalSvc.sendRequest(this.data).subscribe({
+                next: (res) => {
+                    this.loadingDialog = false;
+                    this.successDialog = true;
+                    // this.data.onConfirm();
+                    setTimeout(() => {
+                        // this.dialogRef.close();
+                        this.router.navigate(['/usuario']);
+                    }, this.timeout);
+                },
+                error: (res) => {
+                    this.loadingDialog = false;
+                    this.successDialog = false
+                    alert('error');
+                }
+            })
+        );
+    };
+
+    confirm(): void {
+        this.loadingDialog = true;
+        this.data.state = 'con';
+        this.subscripcions.push(
+            this.rentalSvc.sendRequest(this.data).subscribe({
+                next: (res) => {
+                    this.loadingDialog = false;
+                    this.successDialog = true;
+                    // this.data.onConfirm();
+
+                    setTimeout(() => {
+                        // this.dialogRef.close();
+                        this.router.navigate(['/usuario']);
+                    }, this.timeout);
+                },
+                error: (res) => {
+                    this.loadingDialog = false;
+                    this.successDialog = false;
+                    alert('error');
+                }
+            })
+        )
+    };
 
     ngOnDestroy(): void {
         this.subscriptions.forEach((e) => e.unsubscribe())

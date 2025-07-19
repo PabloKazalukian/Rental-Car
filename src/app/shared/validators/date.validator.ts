@@ -10,6 +10,7 @@ dayjs.extend(customParseFormat);
 
 export class ownValidation {
     static dateCorrect(control: AbstractControl): ValidationErrors | null {
+        // console.log('Validating date range:', control.value);
         const start = new DatePipe('en').transform(control.value.start, 'dd-MM-yyyy');
         const end = new DatePipe('en').transform(control.value.end, 'dd-MM-yyyy');
 
@@ -61,6 +62,7 @@ export const containDateDouble = (
  * Obtiene diferencia de días entre dos fechas en formato 'D/M/YYYY'
  */
 export const getDays = (f1: string, f2: string): number => {
+    console.log('Calculating days between:', f1, f2);
     const date1 = dayjs(f1, 'D/M/YYYY', true);
     const date2 = dayjs(f2, 'D/M/YYYY', true);
 
@@ -71,14 +73,31 @@ export const getDays = (f1: string, f2: string): number => {
 };
 
 export const getDaysDate = (f1: Date, f2: Date): number => {
-    const date1 = dayjs(f1, 'D/M/YYYY', true);
-    const date2 = dayjs(f2, 'D/M/YYYY', true);
+    // const date1 = dayjs(f1, 'D/M/YYYY', true);
+    const date1 = dayjs(f1)
+    const date2 = dayjs(f2)
+    console.log('Calculating days between Date objects:', date2.diff(date1, 'day'));
+    // console.log('Calculating days between Date objects:', f1.diff(f2, 'day'));
 
-    if (!date1.isValid() || !date2.isValid()) return 0;
+    // if (!date1.isValid() || !date2.isValid()) return 0;
 
     // Diferencia en días + 1 (como original)
-    return date2.diff(date1, 'day') + 1;
+    return date2.diff(date1, 'day');
 };
+
+export const changeDateFormat = (date: string | Date): string => {
+    if (typeof date === 'string') {
+        const parts = date.split('-');
+        if (parts.length === 3) {
+            console.log('Changing date format from YYYY-MM-DD to DD/MM/YYYY:', date);
+            return `${parts[2]}/${parts[1]}/${parts[0]}`; // Cambia de 'YYYY-MM-DD' a 'DD/MM/YYYY'
+        }
+    } else if (date instanceof Date) {
+        console.log('por aca anda rarao:')
+        return new DatePipe('en').transform(date, 'yyyy/MM/dd') || '';
+    }
+    return '';
+}
 
 /**
  * Formatea fecha a formato local en DD/MM/YYYY o similar según navegador

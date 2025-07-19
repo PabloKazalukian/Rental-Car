@@ -68,7 +68,6 @@ export class OverlayService {
     }
 
     closeAll(): void {
-        console.log('clos', this.activeOverlays.length)
         while (this.activeOverlays.length > 0) {
             this.activeOverlays.pop()?.close();
         }

@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject, OnDestroy, Output, EventEmitter, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, Output, EventEmitter, Input, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RequestSend } from 'src/app/core/models/request.interface';
 import { RentalService } from 'src/app/core/services/rental.service';
+import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { OverlayService } from 'src/app/shared/services/ui/overlay.service';
 
 @Component({
@@ -13,9 +14,9 @@ import { OverlayService } from 'src/app/shared/services/ui/overlay.service';
 
 export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
-    @ViewChild('btnDialog') btnDialog!: TemplateRef<any>;
-    @ViewChild('contentDialog') contentDialog!: TemplateRef<any>;
 
+    @Input() actions!: TemplateRef<any>;
+    @Input() content!: TemplateRef<any>;
     @Input() open: boolean = false;
     @Input() data!: RequestSend & { onConfirm: () => void };
     @Output() closed = new EventEmitter<void>()
@@ -31,10 +32,17 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
     constructor(
         private rentalSvc: RentalService,
         private router: Router,
-        private OverlayService: OverlayService,
+        private overlayService: OverlayService,
     ) { };
 
     ngOnInit(): void {
+        console.log('DialogConfirmationComponent initialized with data:', this.data);
+        console.log('Open state:', this.open);
+        console.log(this.actions, this.content);
+        if (this.open) {
+
+
+        }
     };
 
     cancel(): void {

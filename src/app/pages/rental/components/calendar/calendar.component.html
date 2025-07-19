@@ -4,10 +4,13 @@
         type="text"
         mwlFlatpickr
         [altInput]="true"
-        [formControl]="startControl"
         [minDate]="'today'"
         [mode]="'range'"
         [dateFormat]="'d-m-Y'"
+        [disable]="disabledDates"
+        (onChange)="handleDateChange($event)"
         placeholder="Seleccioná el rango de fechas"
+        (input)="onInputChange(miInput.value)"
+        #miInput
         class="calendar-input" />
 </div>

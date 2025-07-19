@@ -4,12 +4,10 @@ import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@an
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { loadCar, orderBrandCar } from '../../../../store/cars/car.actions';
-// import { MatDialog } from '@angular/material/dialog';
 import { OverlayService } from '../../../../shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { ModalComponent } from 'src/app/shared/components/ui/modal/modal.component';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 
 interface appState {
     loading: boolean,
@@ -39,7 +37,7 @@ export class ShowCarComponent implements OnInit, OnDestroy {
     loading: boolean = true;
     notLogged!: Observable<boolean>;
 
-    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private authSvc: AuthService, public dialog: MatDialog,
+    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly router: Router, private authSvc: AuthService,
         private overlayService: OverlayService
     ) { }
 
@@ -101,17 +99,6 @@ export class ShowCarComponent implements OnInit, OnDestroy {
         );
 
     };
-
-    // abrirDialog(): void {
-    //    this.dialogService.open();
-    // }
-
-
-    // this.overlayService.open(DialogComponent, {
-    //                     content: this.btnDialog,
-    //                     actions: this.contentDialog,
-    //                     title: 'Iniciar sesion para poder continuar!',
-    //                 });
 
     abrirModalCar(template: TemplateRef<any>, contentActions: TemplateRef<any>, car: Car): void {
         this.overlayService.open(ModalComponent, {
