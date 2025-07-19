@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { Component, OnInit, Inject, OnDestroy, Output, EventEmitter, Input, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RequestSend } from 'src/app/core/models/request.interface';
 import { RentalService } from 'src/app/core/services/rental.service';
+import { OverlayService } from 'src/app/shared/services/ui/overlay.service';
 
 @Component({
     selector: 'app-dialog-confirmation',
@@ -12,6 +12,13 @@ import { RentalService } from 'src/app/core/services/rental.service';
 })
 
 export class DialogConfirmationComponent implements OnInit, OnDestroy {
+
+    @ViewChild('btnDialog') btnDialog!: TemplateRef<any>;
+    @ViewChild('contentDialog') contentDialog!: TemplateRef<any>;
+
+    @Input() open: boolean = false;
+    @Input() data!: RequestSend & { onConfirm: () => void };
+    @Output() closed = new EventEmitter<void>()
 
     private subscripcions: Subscription[] = [];
 
@@ -22,17 +29,17 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
 
 
     constructor(
-        public dialogRef: MatDialogRef<DialogConfirmationComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: RequestSend & { onConfirm: () => void },
         private rentalSvc: RentalService,
-        private router: Router
+        private router: Router,
+        private OverlayService: OverlayService,
     ) { };
 
     ngOnInit(): void {
     };
 
     cancel(): void {
-        this.dialogRef.close('cancelled'); // <- le avisamos al padre que se canceló
+        // this.dialogRef.close('cancelled'); // <- le avisamos al padre que se canceló
+
     }
 
 
@@ -46,7 +53,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
                     this.success = true;
                     this.data.onConfirm();
                     setTimeout(() => {
-                        this.dialogRef.close();
+                        // this.dialogRef.close();
                         this.router.navigate(['/usuario']);
                     }, this.timeout);
                 },
@@ -70,7 +77,7 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
                     this.data.onConfirm();
 
                     setTimeout(() => {
-                        this.dialogRef.close();
+                        // this.dialogRef.close();
                         this.router.navigate(['/usuario']);
                     }, this.timeout);
                 },
@@ -82,6 +89,9 @@ export class DialogConfirmationComponent implements OnInit, OnDestroy {
             })
         )
     };
+    close(): void {
+        this.closed.emit();
+    }
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe());

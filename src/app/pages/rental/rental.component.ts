@@ -5,6 +5,7 @@ import { CarService } from 'src/app/core/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { Usuario } from 'src/app/core/models/user.interface';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class RentalComponent implements OnInit, OnDestroy {
     step = 1;
     idCar!: string;
     idUser?: string;
+    user: Usuario = { username: '', sub: '', role: '' };
     cars!: Car;
     autos!: Car[];
     imageLoaded = false;
@@ -33,7 +35,7 @@ export class RentalComponent implements OnInit, OnDestroy {
         this.authSvc._user$.pipe(
             take(1),
             filter(user => !!user),
-            tap(user => this.idUser = user.sub)
+            tap(user => { this.idUser = user.sub; this.user = user; console.log('Usuario autenticado:', user) }),
         ).subscribe();
 
 
@@ -47,7 +49,7 @@ export class RentalComponent implements OnInit, OnDestroy {
                 })).subscribe({
                     next: (car) => {
                         this.cars = car;
-                        console.log('Carro seleccionado:', this.cars);
+                        // console.log('Carro seleccionado:', this.cars);
                     },
                     error: (err) => console.error('Error al obtener el carro:', err)
                 })

@@ -21,7 +21,7 @@
     max-width: var(--app-container-2xl);
     margin: auto;
     width: 90%;
-    max-width: 420px;
+    max-width: 640px;
     display: flex;
     flex-direction: column;
     z-index: 1;
@@ -48,7 +48,7 @@
 
   &__title {
     margin: 0;
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
 
   &__subtitle {

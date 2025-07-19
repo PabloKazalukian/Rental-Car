@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Car } from 'src/app/core/models/car.interface';
 import { Store, select } from '@ngrx/store';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 
 interface appState {
@@ -19,7 +19,7 @@ interface text {
 @Component({
     selector: 'app-filter-cars',
     templateUrl: './filter-cars.component.html',
-    styleUrls: ['./filter-cars.component.css']
+    styleUrls: ['./filter-cars.component.scss']
 })
 
 export class FilterCarsComponent implements OnInit {
@@ -36,7 +36,7 @@ export class FilterCarsComponent implements OnInit {
     @Output() newSearchEvent = new EventEmitter<text>();
     @Output() newOrderEvent = new EventEmitter<string>();
 
-    constructor(private readonly fb: UntypedFormBuilder, private store: Store<{ autos: appState }>) {}
+    constructor(private readonly fb: UntypedFormBuilder, private store: Store<{ autos: appState }>) { }
 
     ngOnInit(): void {
         this.registerForm = this.initForm();

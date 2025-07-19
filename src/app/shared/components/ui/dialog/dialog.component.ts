@@ -7,22 +7,27 @@ import { OVERLAY_DATA } from 'src/app/shared/services/ui/overlay.token';
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent {
+export class DialogComponent implements OnInit {
 
-    @Input() title: string = '';
-    @Input() subtitle?: string;
-    @Input() logo: string = 'assets/logo.svg'; // Logo default
+
+    logo: string = 'assets/logo.svg'; // Logo default
     @Input() showClose: boolean = true;
 
 
     constructor(
         @Inject(OVERLAY_DATA) public data: {
             content: TemplateRef<any>,
-            actions?: TemplateRef<any>
+            actions?: TemplateRef<any>,
+            title?: string,
+            data?: any,
         },
         private overlayRef: OverlayRef
     ) { }
 
+    ngOnInit(): void {
+        // Initialization logic if needed
+        console.log('Dialog initialized with data:', this.data);
+    }
     close(): void {
         this.overlayRef.close();
     }

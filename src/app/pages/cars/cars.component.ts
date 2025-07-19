@@ -1,10 +1,9 @@
 import { Car } from 'src/app/core/models/car.interface';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { loadCar, searchCar, orderPriceCar, orderBrandCar, orderYearCar } from '../../store/cars/car.actions';
+import { Store } from '@ngrx/store';
+import { searchCar, orderPriceCar, orderBrandCar, orderYearCar } from '../../store/cars/car.actions';
 import { CarService } from '../../core/services/car.service';
-import * as carSelector from '../../store/cars/car.selector';
 import { ActivatedRoute } from '@angular/router';
 
 

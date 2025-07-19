@@ -1,7 +1,5 @@
-import { Component, Inject, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Car } from "src/app/core/models/car.interface";
-import { OverlayRef } from "src/app/shared/services/ui/overlay-ref";
-import { OVERLAY_DATA } from "src/app/shared/services/ui/overlay.token";
 
 @Component({
     selector: 'app-modal-car',

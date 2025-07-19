@@ -4,7 +4,7 @@
             <app-stepper [steps]="['Seleccionar auto', 'Elegir fechas', 'Confirmación']" [currentStep]="step"></app-stepper>
         </div>
 
-        <app-form-reactivo (stepChanged)="step = $event" [idCar]="idCar" [cars]="cars"></app-form-reactivo>
+        <app-form-car (stepChanged)="step = $event" [idCar]="idCar" [cars]="cars" [user]="user"></app-form-car>
         <div *ngIf="cars" class="rental__card">
             <aside class="rental__card__content">
                 <div class="rental__card-image__wrapper">

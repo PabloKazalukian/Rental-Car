@@ -1,0 +1,42 @@
+.filter-cars {
+    background: var(--color-surface);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__title {
+        font-size: var(--font-size-xl);
+        font-family: var(--font-title);
+        margin: 0;
+    }
+
+    &__inputs {
+        display: flex;
+        gap: 1rem;
+        padding-right: 0;
+        flex-wrap: wrap;
+    }
+
+    &__input {
+        flex: 1 1 250px;
+        min-width: 200px;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.75rem;
+        padding-right: 1rem;
+    }
+
+    &__label {
+        margin: 0;
+        padding: 0;
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+}
+}

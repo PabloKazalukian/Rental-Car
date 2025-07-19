@@ -24,7 +24,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     flatpickrOptions = {
         mode: 'range',
-        dateFormat: 'Y-m-d',
+        dateFormat: 'd-m-Y',
         disable: [] as string[],
         minDate: 'today',
         onClose: this.handleDateSelection.bind(this),
@@ -44,6 +44,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     arrRequest!: Request[];
     blockedDates: Set<string> = new Set();
+    disabledDates: string[] = []; // 🟡 usado en [disable]
+
 
 
     constructor(private readonly fb: UntypedFormBuilder, private rentalSvc: RentalService) { }
@@ -107,6 +109,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
 
     handleDateClose() {
         const selectedDates = this.range.value.start;
+        console.log('Selected dates on close:', selectedDates);
         if (Array.isArray(selectedDates) && selectedDates.length === 2) {
             const [start, end] = selectedDates;
             const days = getDaysDate(start, end);
@@ -120,7 +123,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
             this.range.patchValue({ days: 0, amount: 0 });
         }
     }
-
 
 
     formatDate(date: Date): string {
@@ -151,16 +153,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     };
 
-    get startControl(): UntypedFormControl {
-        return this.range.get('start') as UntypedFormControl;
-    }
-
-    disabledDates: string[] = []; // 🟡 usado en [disable]
 
     handleDateSelection(selectedDates: Date[]) {
         if (selectedDates.length === 2) {
             const [start, end] = selectedDates;
             const days = getDaysDate(start, end);
+            console.log(this.range.value);
             this.range.patchValue({
                 start,
                 end,
@@ -172,7 +170,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-
+    get startControl(): UntypedFormControl {
+        return this.range.get('start') as UntypedFormControl;
+    }
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())

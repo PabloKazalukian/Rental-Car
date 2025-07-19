@@ -26,3 +26,4 @@
         <app-btn [text]="'Enviar'" [color]="'primary'" [variant]="'raised'" [buttonType]="'submit'" [isDisabled]="range.invalid"></app-btn>
     </form>
 </div>
+<app-dialog-confirmation *ngIf="showDialog" [open]="showDialog" [data]="dialogData"></app-dialog-confirmation>

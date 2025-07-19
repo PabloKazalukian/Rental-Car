@@ -1,4 +1,4 @@
-<mat-dialog-content class="loggedBody">
+<ng-template #contentDialog class="loggedBody">
     <div *ngIf="!success && !loading">
         <h2 mat-dialog-title>Confirmación de solicitud</h2>
         <h4>
@@ -10,11 +10,6 @@
                 <strong>No podra cancelar la solicitud</strong>
             </h4>
         </h4>
-        <div class="d-flex justify-content-between flex-wrap">
-            <app-btn [text]="'Cancelar'" [color]="'surface'" [variant]="'stroked'" (click)="cancel()"></app-btn>
-            <app-btn [text]="'Solicitar'" [color]="'primary'" [variant]="'raised'" (click)="request()"></app-btn>
-            <app-btn [text]="'Solicitar y confirmar'" [color]="'confirm'" [variant]="'raised'" (click)="confirm()"></app-btn>
-        </div>
     </div>
     <div *ngIf="loading && !success">
         <h2>Procesando solicitud...</h2>
@@ -23,4 +18,9 @@
     <div *ngIf="!loading && success">
         <app-success [text]="'Se a completado el pedido con exito!'"></app-success>
     </div>
-</mat-dialog-content>
+</ng-template>
+<ng-template class="d-flex justify-content-between flex-wrap" #btnDialog>
+    <app-btn [text]="'Cancelar'" [color]="'surface'" [variant]="'stroked'" (click)="close()"></app-btn>
+    <app-btn [text]="'Solicitar'" [color]="'primary'" [variant]="'raised'" (click)="request()"></app-btn>
+    <app-btn [text]="'Solicitar y confirmar'" [color]="'confirm'" [variant]="'raised'" (click)="confirm()"></app-btn>
+</ng-template>

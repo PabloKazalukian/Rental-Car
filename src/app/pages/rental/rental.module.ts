@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RentalComponent } from 'src/app/pages/rental/rental.component';
-import { FormReactivoComponent } from 'src/app/pages/rental/components/form/form-reactivo.component';
+import { FormCarComponent } from 'src/app/pages/rental/components/form-car/form-car.component';
 import { CalendarComponent } from 'src/app/pages/rental/components/calendar/calendar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -29,7 +29,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         RentalComponent,
-        FormReactivoComponent,
+        FormCarComponent,
         CalendarComponent,
         DialogConfirmationComponent,
     ],
