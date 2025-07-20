@@ -1,0 +1,25 @@
+<aside class="rental__card__content">
+    <div class="rental__card-image__wrapper">
+        <div *ngIf="!imageLoaded" class="skeleton-image"></div>
+        <img [src]="car.image" alt="Car image" class="rental__image__car" (load)="onImageLoad()" [class.hidden]="!imageLoaded" />
+    </div>
+    <div class="rental__card-info__model">
+        <div class="rental__card-info__name">
+            <label>Modelo:</label>
+            <h2>{{ car.brand }} {{ car.model }}</h2>
+        </div>
+        <div class="rental__card-info__price">
+            <label>Precio por día:</label>
+            <h2>{{ car.price }}</h2>
+        </div>
+        <div class="rental__card-info__year">
+            <label>año:</label>
+            <h2>{{ car.year }}</h2>
+        </div>
+    </div>
+    <div class="rental__card-info__button">
+        <div>
+            <app-btn [text]="'Solicitar otro vehiculo'" [color]="'primary'" [variant]="'raised'" [routerLink]="'/solicitar-auto'"></app-btn>
+        </div>
+    </div>
+</aside>

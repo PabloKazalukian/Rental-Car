@@ -8,7 +8,7 @@
             <div class="dialog__titles">
                 <h2 class="dialog__title">{{ data.title }}</h2>
             </div>
-            <button *ngIf="showClose" class="dialog__close" (click)="close()">✖</button>
+            <button *ngIf="showClose" class="dialog__close" (click)="close('cancel')">✖</button>
         </div>
 
         <div class="dialog__divider"></div>
@@ -22,7 +22,7 @@
         <div class="dialog__footer">
             <div class="dialog__footer-left">
                 <!-- <app-btn  (click)="close()">Cerrar</app-btn> -->
-                <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'error'" (click)="close()"></app-btn>
+                <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'error'" (click)="close('cancel')"></app-btn>
             </div>
             <div class="dialog__footer-right" *ngIf="data.actions">
                 <ng-container *ngTemplateOutlet="data.actions"></ng-container>

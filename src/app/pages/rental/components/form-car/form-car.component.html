@@ -34,7 +34,7 @@
 </div>
 
 <ng-template #contentDialog>
-    <div *ngIf="!success && !loading">
+    <div *ngIf="!successDialog && !loadingDialog">
         <h2 mat-dialog-title>Confirmación de solicitud</h2>
         <h4>
             Usted a solicitado para las fechas: desde {{ this.data.initialDate | date: 'dd/MM/yyyy' }} hasta
@@ -46,18 +46,22 @@
             </h4>
         </h4>
     </div>
-    <div *ngIf="loading && !success">
+    <div *ngIf="loadingDialog && !successDialog">
         <h2>Procesando solicitud...</h2>
         <h5>Aguarde un instante.</h5>
     </div>
-    <div *ngIf="!loading && success">
-        <app-success [text]="'Se a completado el pedido con exito!'"></app-success>
+    <div *ngIf="!loadingDialog && successDialog">
+        <div class="form-car__dialog__success">
+            <app-success [text]="'Se a completado el pedido con exito!'"></app-success>
+        </div>
     </div>
 </ng-template>
 <ng-template #btnDialog>
-    <!-- <app-btn [text]="'Cancelar'" [color]="'surface'" [variant]="'stroked'" (click)="close()"></app-btn> -->
-    <div class="rental__form-btns">
-        <app-btn [text]="'Solicitar'" [color]="'primary'" [variant]="'raised'" (click)="request()"></app-btn>
-        <app-btn [text]="'Solicitar y confirmar'" [color]="'confirm'" [variant]="'raised'" (click)="confirm()"></app-btn>
+    <div *ngIf="loadingDialog && !successDialog" class="rental__form-bts--loading">
+        <app-loading></app-loading>
+    </div>
+    <div *ngIf="!loadingDialog && !successDialog" class="rental__form-btns">
+        <app-btn [text]="'Solicitar'" [color]="'primary'" [variant]="'raised'" (click)="confirmRequest('req')"></app-btn>
+        <app-btn [text]="'Solicitar y confirmar'" [color]="'confirm'" [variant]="'raised'" (click)="confirmRequest('con')"></app-btn>
     </div>
 </ng-template>

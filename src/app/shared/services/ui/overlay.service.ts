@@ -47,6 +47,7 @@ export class OverlayService {
 
         const factory = this.cfr.resolveComponentFactory(OverlayComponent);
         const overlayComponentRef = factory.create(overlayInjector);
+
         this.appRef.attachView(overlayComponentRef.hostView);
         const domElem = (overlayComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0];
         document.body.appendChild(domElem);

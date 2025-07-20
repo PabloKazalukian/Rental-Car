@@ -26,10 +26,9 @@ export class DialogComponent implements OnInit {
 
     ngOnInit(): void {
         // Initialization logic if needed
-        console.log('Dialog initialized with data:', this.data);
     }
-    close(): void {
-        this.overlayRef.close();
+    close(result?: 'cancel' | 'confirm'): void {
+        this.overlayRef.close(result);
     }
 
 }

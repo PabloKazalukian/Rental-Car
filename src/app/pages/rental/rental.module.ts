@@ -15,6 +15,7 @@ import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/lega
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { CardCarComponent } from './components/card-car/card-car.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
         FormCarComponent,
         CalendarComponent,
         DialogConfirmationComponent,
+        CardCarComponent
     ],
     imports: [
         RouterModule.forChild(routes),

@@ -1,7 +1,18 @@
-export class OverlayRef<T = any> {
-  constructor(private closeFn: () => void) {}
+import { Subject, Observable } from 'rxjs';
 
-  close(): void {
-    this.closeFn();
-  }
+export class OverlayRef<T = any> {
+    private readonly _afterClosed = new Subject<T | undefined>();
+
+    constructor(private closeFn: () => void) { }
+
+    close(result?: T): void {
+        this._afterClosed.next(result);
+        this._afterClosed.complete();
+        this.closeFn(); // llama a cleanup
+    }
+
+    afterClosed(): Observable<T | undefined> {
+        return this._afterClosed.asObservable();
+    }
 }
+

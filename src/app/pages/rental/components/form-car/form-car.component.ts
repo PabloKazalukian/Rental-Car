@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder } from '@angular/forms';
-import { Subscription, } from 'rxjs';
+import { delay, Subscription, } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
 import { Request, RequestSend } from 'src/app/core/models/request.interface';
 import { RentalService } from 'src/app/core/services/rental.service';
@@ -43,7 +43,6 @@ export class FormCarComponent implements OnInit, OnDestroy {
 
     arrRequest!: Request[]
     // range!: UntypedFormGroup;
-    showDialog: boolean = false;
     data!: RequestSend
     range!: FormDatesGroup;
     private subscriptions: Subscription[] = [];
@@ -69,13 +68,8 @@ export class FormCarComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
 
         this.range = this.initFormDates();
-        // this.subscriptions.push(
-        //     this.rentalSvc.getRequestById(this.idCar).subscribe((res) => {
-        setTimeout(() => this.loading = false, 1000)
-        //         this.arrRequest = res;
-        //         this.range.patchValue({ total: res });
-        //     })
-        // );
+        this.loading = false;
+
     }
 
     onSubmit(): void {
@@ -84,7 +78,6 @@ export class FormCarComponent implements OnInit, OnDestroy {
         let end = this.range.value.end
 
 
-        console.log('Selected dates:', start, end, this.user);
         if (start && end && this.user) {
 
             let result: RequestSend = {
@@ -98,12 +91,20 @@ export class FormCarComponent implements OnInit, OnDestroy {
             this.data = result
 
             this.overlayService.closeAll();
-            this.overlayService.open(DialogComponent, {
+            const dialogRef = this.overlayService.open(DialogComponent, {
                 actions: this.btnDialog,
                 content: this.contentDialog,
                 title: 'Confirme su alquiler!',
                 data: result
             });
+
+            dialogRef.afterClosed().subscribe((result) => {
+                if (result === 'cancel') {
+                    this.stepChanged.emit(1);
+
+                }
+            });
+            console.log(this.range.valid)
             if (this.range.valid) {
                 // Marca paso 2 como completo
                 this.stepChanged.emit(2); // Paso 3 (confirmación)
@@ -123,39 +124,19 @@ export class FormCarComponent implements OnInit, OnDestroy {
             days: new FormControl<number>(0),
         }, { validators: dateRangeValidator })
     };
-
-    request(): void {
-        this.loading = true;
-        this.data.state = 'req';
-        this.subscripcions.push(
-            this.rentalSvc.sendRequest(this.data).subscribe({
-                next: (res) => {
-                    this.loadingDialog = false;
-                    this.successDialog = true;
-                    // this.data.onConfirm();
-                    setTimeout(() => {
-                        // this.dialogRef.close();
-                        this.router.navigate(['/usuario']);
-                    }, this.timeout);
-                },
-                error: (res) => {
-                    this.loadingDialog = false;
-                    this.successDialog = false
-                    alert('error');
-                }
-            })
-        );
-    };
-
-    confirm(): void {
+    confirmRequest(state: 'con' | 'req'): void {
         this.loadingDialog = true;
-        this.data.state = 'con';
+        this.data.state = state;
         this.subscripcions.push(
-            this.rentalSvc.sendRequest(this.data).subscribe({
+            this.rentalSvc.sendRequest(this.data).pipe(
+                delay(1000)
+            ).subscribe({
                 next: (res) => {
+                    this.stepChanged.emit(3);
+
                     this.loadingDialog = false;
                     this.successDialog = true;
-                    // this.data.onConfirm();
+                    console.log(res);
 
                     setTimeout(() => {
                         // this.dialogRef.close();

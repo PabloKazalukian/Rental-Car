@@ -1,7 +1,7 @@
 .rental__form {
     grid-area: form;
     background: #353535;
-    border-radius: 15px;
+    border-radius: var(--border-radius);
     padding: 2rem;
     box-shadow:
         rgba(0, 0, 9, 0.25) 0px 6px 12px -2px,
@@ -45,6 +45,7 @@
     flex-direction: row;
     gap: 1rem;
 }
+
 .date_correct {
     margin: 0px;
     font-size: var(--font-size-lg);
@@ -57,6 +58,15 @@
 .rental__form-text--confirmation {
     display: flex;
     align-items: flex-end;
+}
+
+.form-car__dialog__success {
+    margin-top: 4rem;
+}
+
+.rental__form-bts--loading {
+    height: 36px;
+    width: 36px;
 }
 
 @media (max-width: 768px) {

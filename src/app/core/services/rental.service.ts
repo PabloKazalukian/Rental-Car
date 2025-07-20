@@ -33,7 +33,7 @@ export class RentalService {
 
     sendRequest(form: RequestSend): Observable<boolean | void> {
         // console.log(form)
-        console.log(form)
+        // console.log(form)
         return this.http.post<RequestSend>(this.API, form)
             .pipe(
                 map((res) => {

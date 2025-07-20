@@ -56,12 +56,6 @@ export class RentalComponent implements OnInit, OnDestroy {
         );
     };
 
-    onImageLoad(): void {
-        // Forzar 2 segundos antes de mostrar la imagen
-        setTimeout(() => {
-            this.imageLoaded = true;
-        }, 1000);
-    }
 
     ngOnDestroy(): void {
         this.subscripcions.forEach(sub => sub.unsubscribe());
