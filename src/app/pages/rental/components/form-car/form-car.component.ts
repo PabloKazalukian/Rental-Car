@@ -9,6 +9,7 @@ import { changeDateFormat, ownValidation } from 'src/app/shared/validators/date.
 import { Router } from '@angular/router';
 import { OverlayService } from 'src/app/shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
+import { dateRangeValidator } from 'src/app/shared/validators/range.validator';
 
 type FormDatesGroup = FormGroup<{
     start: FormControl<Date | null>;
@@ -50,7 +51,7 @@ export class FormCarComponent implements OnInit, OnDestroy {
     userId!: string;
     username?: string;
     success!: boolean
-    loading: boolean = true
+    loading: boolean = true;
 
     //dialog
     successDialog: boolean = false;
@@ -68,13 +69,13 @@ export class FormCarComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
 
         this.range = this.initFormDates();
-        this.subscriptions.push(
-            this.rentalSvc.getRequestById(this.idCar).subscribe((res) => {
-                setTimeout(() => this.loading = false, 1000)
-                this.arrRequest = res;
-                this.range.patchValue({ total: res });
-            })
-        );
+        // this.subscriptions.push(
+        //     this.rentalSvc.getRequestById(this.idCar).subscribe((res) => {
+        setTimeout(() => this.loading = false, 1000)
+        //         this.arrRequest = res;
+        //         this.range.patchValue({ total: res });
+        //     })
+        // );
     }
 
     onSubmit(): void {
@@ -83,6 +84,7 @@ export class FormCarComponent implements OnInit, OnDestroy {
         let end = this.range.value.end
 
 
+        console.log('Selected dates:', start, end, this.user);
         if (start && end && this.user) {
 
             let result: RequestSend = {
@@ -119,7 +121,7 @@ export class FormCarComponent implements OnInit, OnDestroy {
             total: new FormControl<Request[] | null>(null),
             amount: new FormControl<number>(0),
             days: new FormControl<number>(0),
-        })
+        }, { validators: dateRangeValidator })
     };
 
     request(): void {

@@ -76,12 +76,7 @@ export const getDaysDate = (f1: Date, f2: Date): number => {
     // const date1 = dayjs(f1, 'D/M/YYYY', true);
     const date1 = dayjs(f1)
     const date2 = dayjs(f2)
-    console.log('Calculating days between Date objects:', date2.diff(date1, 'day'));
-    // console.log('Calculating days between Date objects:', f1.diff(f2, 'day'));
 
-    // if (!date1.isValid() || !date2.isValid()) return 0;
-
-    // Diferencia en días + 1 (como original)
     return date2.diff(date1, 'day');
 };
 
@@ -89,11 +84,10 @@ export const changeDateFormat = (date: string | Date): string => {
     if (typeof date === 'string') {
         const parts = date.split('-');
         if (parts.length === 3) {
-            console.log('Changing date format from YYYY-MM-DD to DD/MM/YYYY:', date);
+            // console.log('Changing date format from YYYY-MM-DD to DD/MM/YYYY:', date);
             return `${parts[2]}/${parts[1]}/${parts[0]}`; // Cambia de 'YYYY-MM-DD' a 'DD/MM/YYYY'
         }
     } else if (date instanceof Date) {
-        console.log('por aca anda rarao:')
         return new DatePipe('en').transform(date, 'yyyy/MM/dd') || '';
     }
     return '';

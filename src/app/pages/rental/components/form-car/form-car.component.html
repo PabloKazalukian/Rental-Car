@@ -13,10 +13,16 @@
                 <app-loading color="confirm"></app-loading>
             </div>
             <ng-template #viewCalendar>
-                <div class="rental__form-calendar">
-                    <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
-                    <h2 *ngIf="range.invalid && range.touched" class="date_invalid">Fecha invalida</h2>
-                    <h2 *ngIf="!range.invalid && range.touched" class="date_correct">Fecha correcta!</h2>
+                <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
+                <!-- <h2 *ngIf="range.invalid && " class="date_invalid">Fecha invalida</h2> -->
+                <div class="rental__form-text--confirmation">
+                    <p *ngIf="range.errors?.['incompleteRange'] && range.touched" class="date_invalid">Fecha inválida</p>
+
+                    <p
+                        *ngIf="!range.invalid && range.get('start')?.value !== null && range.get('end')?.value !== null"
+                        class="date_correct">
+                        Fecha correcta!
+                    </p>
                 </div>
             </ng-template>
         </div>
@@ -50,6 +56,8 @@
 </ng-template>
 <ng-template #btnDialog>
     <!-- <app-btn [text]="'Cancelar'" [color]="'surface'" [variant]="'stroked'" (click)="close()"></app-btn> -->
-    <app-btn [text]="'Solicitar'" [color]="'primary'" [variant]="'raised'" (click)="request()"></app-btn>
-    <app-btn [text]="'Solicitar y confirmar'" [color]="'confirm'" [variant]="'raised'" (click)="confirm()"></app-btn>
+    <div class="rental__form-btns">
+        <app-btn [text]="'Solicitar'" [color]="'primary'" [variant]="'raised'" (click)="request()"></app-btn>
+        <app-btn [text]="'Solicitar y confirmar'" [color]="'confirm'" [variant]="'raised'" (click)="confirm()"></app-btn>
+    </div>
 </ng-template>
