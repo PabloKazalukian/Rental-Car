@@ -54,7 +54,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
                     this.router.navigate(['/home']);
                 },
                 error: (res: any) => {
-                    console.log(res);
+                    this.router.navigate(['/home']);
                 }
             })
         );

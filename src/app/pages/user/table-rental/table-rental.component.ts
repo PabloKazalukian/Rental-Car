@@ -80,8 +80,7 @@ export class TableRentalComponent implements OnInit {
     // }
 
     cancelRequest(element: any): void {
-        // element.state = 'cancel';
-        console.log(element)
+
         this.subscripcions.push(
             this.requestSvc.cancelRequestByIdRequest(element.id).subscribe({
                 next: (res) => {
@@ -96,9 +95,7 @@ export class TableRentalComponent implements OnInit {
     };
 
     confirmRequest(element: any): void {
-        // confirmRequestByIdRequest
-        // element.state = 'can'
-        console.log(element.id)
+
         this.subscripcions.push(
             this.requestSvc.confirmRequestByIdRequest(element.id).subscribe({
                 next: (res) => {

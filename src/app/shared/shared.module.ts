@@ -20,6 +20,8 @@ import { ModalCarComponent } from '../pages/cars/components/show-car/modal-car/m
 import { ShowCarComponent } from '../pages/cars/components/show-car/show-car.component';
 import { FilterCarsComponent } from '../pages/cars/components/car-filter/filter-cars.component';
 import { CarsComponent } from '../pages/cars/cars.component';
+import { TextLinkComponent } from './components/ui/text-link/text-link.component';
+import { CheckboxComponent } from './components/ui/checkbox/checkbox.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { CarsComponent } from '../pages/cars/cars.component';
         CarsComponent,
         FilterCarsComponent,
         ShowCarComponent,
-        ModalCarComponent
+        ModalCarComponent,
+        TextLinkComponent,
+        CheckboxComponent
     ],
     imports: [
         CommonModule,
@@ -70,7 +74,9 @@ import { CarsComponent } from '../pages/cars/cars.component';
         CarsComponent,
         FilterCarsComponent,
         ShowCarComponent,
-        ModalCarComponent
+        TextLinkComponent,
+        ModalCarComponent,
+        CheckboxComponent
     ]
 })
 export class SharedModule { }

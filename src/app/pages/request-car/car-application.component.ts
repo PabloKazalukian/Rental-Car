@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './car-application.component.html',
     styleUrls: ['./car-application.component.css']
 })
-export class CarApplicationComponent implements OnInit {
-
-    constructor() { }
-
-    ngOnInit(): void {
-    }
-
-}
+export class CarApplicationComponent { }

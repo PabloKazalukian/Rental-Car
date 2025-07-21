@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-input',
@@ -7,7 +7,7 @@ import { AbstractControl, UntypedFormControl } from '@angular/forms';
     styleUrls: ['./input.component.scss']
 })
 export class FormInputComponent implements OnInit {
-    @Input() control!: UntypedFormControl;
+    @Input() control!: FormControl<string | null>;
     @Input() label!: string;
     @Input() type: 'text' | 'email' | 'password' = 'text';
     @Input() placeholder: string = '';

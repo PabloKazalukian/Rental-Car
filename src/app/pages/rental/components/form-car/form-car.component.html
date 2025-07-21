@@ -35,7 +35,7 @@
 
 <ng-template #contentDialog>
     <div *ngIf="!successDialog && !loadingDialog">
-        <h2 mat-dialog-title>Confirmación de solicitud</h2>
+        <h2>Confirmación de solicitud</h2>
         <h4>
             Usted a solicitado para las fechas: desde {{ this.data.initialDate | date: 'dd/MM/yyyy' }} hasta
             {{ this.data.finalDate | date: 'dd/MM/yyyy' }}

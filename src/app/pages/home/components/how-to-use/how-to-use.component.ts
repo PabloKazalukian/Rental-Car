@@ -32,7 +32,7 @@ export class HowToUseComponent implements OnInit {
         {
             tittle: "Rental-Car es una Demo",
             text: `No tiene metodos de pago, ni se utiliza para ningun otro proposito la información dada.
-    <a mat-raised-button color="warn" href='/contacto' >Dejanos un mensaje</a>`}
+    <a href='/contacto' >Dejanos un mensaje</a>`}
     ]
 
 

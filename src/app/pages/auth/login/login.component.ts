@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -9,20 +9,27 @@ import { environment } from 'src/environments/environment';
 
 declare const google: any;
 
+interface LoginForm {
+    email: FormControl<string>;
+    password: FormControl<string>;
+    remember: FormControl<boolean>;
+}
+
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.css'],
 })
+
 export class LoginComponent implements OnInit, OnDestroy {
 
-    contactForm!: UntypedFormGroup;
+    contactForm!: FormGroup<LoginForm>;
     login!: boolean;
     private subscriptions: Subscription[] = [];
     showPas: boolean = false;
-    remember: boolean = false;
     @ViewChild('MyRef') passwordInput!: ElementRef;
-    // hide: boolean = true;
+
     private readonly API = `${environment.api}/auth`;
 
 
@@ -31,34 +38,40 @@ export class LoginComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         const credentials = this.credentialsSvc.getCredentials();
         this.contactForm = this.initForm();
-        // console.log( typeof this.contactForm.get('password') )
-        this.remember = credentials.remember;
 
-        if (this.remember) {
+        console.log(credentials)
+        if (credentials.remember) {
             this.contactForm.patchValue({
-                email: credentials.username,
-                password: credentials.password
+                email: credentials.username ?? '',
+                password: credentials.password ?? '',
+                remember: credentials.remember
             });
         }
     }
 
-    initForm(): UntypedFormGroup {
-        return this.fb.group({
-            email: ['', [Validators.required, Validators.minLength(3)]],
-            password: ['', [Validators.required, Validators.minLength(3)]],
+
+    initForm(): FormGroup<LoginForm> {
+        return new FormGroup<LoginForm>({
+            email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+            password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+            remember: new FormControl(false, { nonNullable: true })
         });
     }
 
+
     onSubmit(): void {
         this.subscriptions.push(
-            this.loginSvc.login(this.contactForm.value).subscribe({
+            this.loginSvc.login({
+                email: this.contactForm.get('email')?.value ?? '',
+                password: this.contactForm.get('password')?.value ?? '',
+            }).subscribe({
                 next: (res) => {
                     console.log(res);
-                    if (this.remember) {
+                    if (this.contactForm.get('remember')?.value) {
                         this.credentialsSvc.saveCredentials({
-                            remember: this.remember,
-                            username: this.contactForm.get('email')?.value,
-                            password: this.contactForm.get('password')?.value
+                            remember: this.contactForm.get('remember')?.value ?? false,
+                            username: this.contactForm.get('email')?.value ?? '',
+                            password: this.contactForm.get('password')?.value ?? ''
                         });
                     } else {
                         this.credentialsSvc.removeCredentials();
@@ -81,17 +94,18 @@ export class LoginComponent implements OnInit, OnDestroy {
         event ? this.passwordInput.nativeElement.type = "text" : this.passwordInput.nativeElement.type = "password";
     }
 
-    rememberMe(event: boolean): void {
-        this.remember = event;
+    get emailControl(): FormControl<string> {
+        return this.contactForm.get('email')! as FormControl;
     }
 
-    get emailControl(): UntypedFormControl {
-        return this.contactForm.get('email') as UntypedFormControl;
+    get passwordControl(): FormControl<string> {
+        return this.contactForm.get('password')! as FormControl;
     }
 
-    get passwordControl(): UntypedFormControl {
-        return this.contactForm.get('password') as UntypedFormControl;
+    get rememberControl(): FormControl<boolean> {
+        return this.contactForm.get('remember')! as FormControl;
     }
+
 
     ngOnDestroy(): void {
         this.subscriptions.forEach((sub) => sub.unsubscribe());

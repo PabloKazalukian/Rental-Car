@@ -35,7 +35,6 @@ export class UserComponent implements OnInit, OnDestroy {
                 )
             ).subscribe({
                 next: (res) => {
-                    console.log(res);
                     this.requestAll = res;
                     this.data.next(this.requestAll);
                     this.dataSource = this.requestAll;

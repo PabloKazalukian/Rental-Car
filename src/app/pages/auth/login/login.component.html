@@ -21,10 +21,10 @@
             </div>
             <div class="login-form__credentials">
                 <div class="login-form__credentials-checkbox">
-                    <!-- <mat-checkbox class="mt-2" [checked]="remember" (change)="rememberMe($event.checked)">Recordarme</mat-checkbox> -->
+                    <app-checkbox [text]="'Recordarme'" [control]="rememberControl"></app-checkbox>
                 </div>
                 <div class="login-form__credentials-link">
-                    <a mat-link href="#" class="forgotPassword">Olvidé mi contraseña</a>
+                    <app-text-link [text]="'Olvidé mi contraseña'" [routerLink]="''" [color]="'primary'"></app-text-link>
                 </div>
             </div>
 

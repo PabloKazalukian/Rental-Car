@@ -69,11 +69,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
         return new Date(year, month - 1, day);
     };
 
-    // reverseDateFormat(date: string): Date {
-    //     const [day, month, year] = date.split('-').map(Number);
-    //     return new Date(day, month - 1, year);
-    // }
-
     calculateBlockedDates(): void {
 
         const dates: string[] = [];

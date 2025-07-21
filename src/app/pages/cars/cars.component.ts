@@ -73,7 +73,6 @@ export class CarsComponent implements OnInit, OnDestroy {
             })
         );
 
-        // this.chargeData();
     };
 
     public search(text?: text): void {

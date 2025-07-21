@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, delay, finalize, map, of, switchMap, tap } from 'rxjs';
 import { User, Usuario } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-// import { LoginService } from 'src/app/core/services/auth/login.service';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { mustBeDifferent } from 'src/app/shared/validators/equal.validator';
@@ -20,13 +19,13 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     modifyUser!: UntypedFormGroup;
     tokenUser!: Usuario;
     user!: User;
+
     loading: boolean = true;
     success: boolean = false;
     error: boolean = false;
 
     constructor(
         private readonly fb: UntypedFormBuilder,
-        // private loginSvc: LoginService,
         private regiterSvc: RegisterService,
         private authSvc: AuthService,
         private userSvc: UserService,
@@ -69,8 +68,8 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
                         })
                     ).subscribe({
                         next: (user) => {
+
                             this.success = true;
-                            console.log('que pasa aca', user);
                             setTimeout(() => {
                                 this.router.navigate(['/usuario']);
                             }, 2000);

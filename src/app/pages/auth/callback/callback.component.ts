@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { LoginService } from 'src/app/core/services/auth/login.service';
 
 @Component({
     selector: 'app-callback',
@@ -26,12 +25,10 @@ export class CallbackComponent implements OnInit {
                     }, 2000);
                 } else {
                     this.success = false;
-                    // this.router.navigate(['/login']);
                 }
             },
             error(err: any): void {
                 console.error('errorcin', err);
-                // this.router.navigate(['/login']);
             }
         });
     }

@@ -43,7 +43,7 @@
 .rental__form-btns {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 6.5rem;
 }
 
 .date_correct {

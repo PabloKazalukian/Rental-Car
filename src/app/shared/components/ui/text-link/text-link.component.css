@@ -1,0 +1,22 @@
+.textLink {
+}
+
+.textLink.primary {
+    color: var(--color-primary);
+}
+
+.textLink.secondary {
+    color: var(--color-secondary);
+}
+
+.textLink.success {
+    color: var(--color-success);
+}
+
+.textLink.error {
+    color: var(--color-error);
+}
+
+.textLink.confirm {
+    color: var(--color-confirm);
+}

@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from 'src/app/core/models/car.interface';
-import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { loadCar, orderBrandCar } from '../../../../store/cars/car.actions';
@@ -49,7 +49,6 @@ export class ShowCarComponent implements OnInit, OnDestroy {
                     this.searchModel = params['model'];
                     this.searchBrand = params['brand'];
                     this.searchBoolean = true;
-                    // this.search({ model: this.searchModel || '', brand: this.searchBrand || '' });
                 }
             )
         );
@@ -65,14 +64,13 @@ export class ShowCarComponent implements OnInit, OnDestroy {
                 if (e) {
                     this.router.navigate(['alquiler'], { queryParams: { id } });
                 } else {
-                    // this.notLogged.subscribe(e=>{e=true;console.log(e)});
+
                     this.overlayService.closeAll();
                     this.overlayService.open(DialogComponent, {
                         actions: this.btnDialog,
                         content: this.contentDialog,
                         title: 'Iniciar sesion para poder continuar!',
                     });
-                    // const dialogRef = this.dialog.open(DialogLoggedComponent);
                 }
             })
         );
@@ -80,8 +78,7 @@ export class ShowCarComponent implements OnInit, OnDestroy {
 
     chargeData(): void {
         this.store.dispatch(orderBrandCar({ asc: true }));
-        // console.log(this.searchModel)
-        // this.store.dispatch(searchCar({ brand: this.searchBrand || '', model: this.searchModel || '' }));
+
         this.subscripcions.push(
             this.store.select('autos').subscribe((e) => {
                 if (e.loading === false) {
