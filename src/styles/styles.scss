@@ -1,10 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also use other style files */
 // ✅ styles.scss (punto de entrada global)
-// @import './variables';
-@import './theme';
-@import './base';
-@import './utilities';
+// @use './variables';
+@use 'theme';
+@use 'typography';
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@use 'base';
+@use 'utilities';
+@use 'reset.scss';
+// @use 'base/typography'; // ✅
+
+
+
+// Variables y temas
+@use 'variables' as *;
+
+// Utilidades tipo Tailwind hechas a mano
+@use 'helpers';
+
+// Mixins si los usás (no generan CSS directamente)
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@200;300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 

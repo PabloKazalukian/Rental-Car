@@ -2,7 +2,6 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as CarActions from './car.actions';
 
 import { Car } from '../../core/models/car.interface';
-import listaCars from 'src/assets/json/db.json';
 
 export interface State {
     loading: boolean,

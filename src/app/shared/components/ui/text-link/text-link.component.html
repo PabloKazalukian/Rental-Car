@@ -1,3 +1,9 @@
-<a class="textLink" [ngClass]="[color]" [routerLink]="routerLink">
+<a class="textLink" [ngClass]="[color]" *ngIf="isExternal; else internalLink" [href]="routerLink" target="_blank" rel="noopener noreferrer">
     {{ text }}
 </a>
+
+<ng-template #internalLink>
+    <a class="textLink" [ngClass]="[color]" [routerLink]="routerLink">
+        {{ text }}
+    </a>
+</ng-template>

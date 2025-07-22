@@ -4,10 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// 🔹 Angular Material Modules
-import { MatLegacyCheckboxModule as MatCheckboxModule } from '@angular/material/legacy-checkbox';
-import { MatIconModule } from '@angular/material/icon';
-
 // 🔹 NgRx
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -47,17 +43,10 @@ import { NavBarComponent } from './shared/components/layout/navbar/navbar.compon
         BrowserModule,
         AppRoutingModule,
         StoreModule.forRoot({ autos: carReducer }),
-        StoreDevtoolsModule.instrument({
-            maxAge: 25, // Retains last 5 states
-            logOnly: environment.production, // Restrict extension to log-only mode
-            autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-        }),
+        environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 25 }),
         EffectsModule.forRoot([carEffects]), //agregar Effects
         HttpClientModule,
         BrowserAnimationsModule,
-        // MatDialogModule,
-        MatCheckboxModule,
-        MatIconModule,
         CoreModule,
         SharedModule
     ],

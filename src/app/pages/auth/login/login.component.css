@@ -6,6 +6,7 @@
 
 .login-title {
     margin-bottom: var(--space-xl);
+    text-align: center;
     width: 100%;
     color: var(--color-text);
 }
@@ -67,6 +68,6 @@
 .login__success {
     margin-top: 4rem;
 }
-.text-2xl {
+.text-x2l {
     font-size: var(--font-size-2xl);
 }

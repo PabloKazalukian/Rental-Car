@@ -9,7 +9,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModifyPassComponent } from 'src/app/pages/user/modify-pass/modify-pass.component';
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 import { ModifyUserComponent } from 'src/app/pages/user/modify-user/modify-user.component';
-import { MatSortModule } from '@angular/material/sort';
 import { SharedModule } from '../../shared/shared.module';
 
 
@@ -49,7 +48,6 @@ const routes: Routes = [
         CommonModule,
         SharedModule,
         ReactiveFormsModule,
-        MatSortModule,
 
     ],
     providers: [

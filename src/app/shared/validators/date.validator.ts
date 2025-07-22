@@ -1,16 +1,10 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms";
 import { DatePipe } from '@angular/common';
 import { Request } from 'src/app/core/models/request.interface';
-import dayjs from 'dayjs';
-import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-
-dayjs.extend(isSameOrAfter);
-dayjs.extend(customParseFormat);
+import { parse, isAfter, isEqual, isValid, differenceInDays } from 'date-fns';
 
 export class ownValidation {
     static dateCorrect(control: AbstractControl): ValidationErrors | null {
-        // console.log('Validating date range:', control.value);
         const start = new DatePipe('en').transform(control.value.start, 'dd-MM-yyyy');
         const end = new DatePipe('en').transform(control.value.end, 'dd-MM-yyyy');
 
@@ -28,17 +22,16 @@ export class ownValidation {
 
 /**
  * Compara dos fechas (string o Date).
- * includ: si true, incluye igualdad (>=), sino solo mayor (>).
+ * includ: si true, incluye igualdad (>=), sino solo mayor.
  */
 export const isDateHigher = (date1: string | Date, date2: string | Date, includ: boolean): boolean => {
-    const dayjsDate1 = dayjs(date1, 'D/M/YYYY', true);
-    const dayjsDate2 = dayjs(date2, 'D/M/YYYY', true);
+    const format = 'd/M/yyyy';
+    const d1 = typeof date1 === 'string' ? parse(date1, format, new Date()) : date1;
+    const d2 = typeof date2 === 'string' ? parse(date2, format, new Date()) : date2;
 
-    if (includ) {
-        return dayjsDate1.isSameOrAfter(dayjsDate2);
-    } else {
-        return dayjsDate1.isAfter(dayjsDate2);
-    }
+    if (!isValid(d1) || !isValid(d2)) return false;
+
+    return includ ? isAfter(d1, d2) || isEqual(d1, d2) : isAfter(d1, d2);
 };
 
 /**
@@ -62,40 +55,33 @@ export const containDateDouble = (
  * Obtiene diferencia de días entre dos fechas en formato 'D/M/YYYY'
  */
 export const getDays = (f1: string, f2: string): number => {
-    console.log('Calculating days between:', f1, f2);
-    const date1 = dayjs(f1, 'D/M/YYYY', true);
-    const date2 = dayjs(f2, 'D/M/YYYY', true);
+    const format = 'd/M/yyyy';
+    const d1 = parse(f1, format, new Date());
+    const d2 = parse(f2, format, new Date());
 
-    if (!date1.isValid() || !date2.isValid()) return 0;
+    if (!isValid(d1) || !isValid(d2)) return 0;
 
-    // Diferencia en días + 1 (como original)
-    return date2.diff(date1, 'day') + 1;
+    return differenceInDays(d2, d1) + 1;
 };
 
 export const getDaysDate = (f1: Date, f2: Date): number => {
-    // const date1 = dayjs(f1, 'D/M/YYYY', true);
-    const date1 = dayjs(f1)
-    const date2 = dayjs(f2)
+    if (!isValid(f1) || !isValid(f2)) return 0;
 
-    return date2.diff(date1, 'day');
+    return differenceInDays(f2, f1);
 };
 
 export const changeDateFormat = (date: string | Date): string => {
     if (typeof date === 'string') {
         const parts = date.split('-');
         if (parts.length === 3) {
-            // console.log('Changing date format from YYYY-MM-DD to DD/MM/YYYY:', date);
-            return `${parts[2]}/${parts[1]}/${parts[0]}`; // Cambia de 'YYYY-MM-DD' a 'DD/MM/YYYY'
+            return `${parts[2]}/${parts[1]}/${parts[0]}`; // YYYY-MM-DD → DD/MM/YYYY
         }
     } else if (date instanceof Date) {
         return new DatePipe('en').transform(date, 'yyyy/MM/dd') || '';
     }
     return '';
-}
+};
 
-/**
- * Formatea fecha a formato local en DD/MM/YYYY o similar según navegador
- */
 export const formatDateToLocale = (date: string | Date): string => {
     const fecha = new Date(date);
     return new Intl.DateTimeFormat(navigator.language, {
@@ -104,4 +90,5 @@ export const formatDateToLocale = (date: string | Date): string => {
         day: '2-digit'
     }).format(fecha);
 };
+
 

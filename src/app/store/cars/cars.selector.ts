@@ -1,6 +1,5 @@
 import { Car } from './../../../../../Api-Rental-Car/src/interfaces/car.interface';
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import * as carReducer from './cars.reducers';
 
 export interface initialState {
     loading: boolean,
