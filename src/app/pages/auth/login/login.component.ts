@@ -2,7 +2,6 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CredentialsService } from 'src/app/core/services/auth/credential.service';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { environment } from 'src/environments/environment';
@@ -25,7 +24,7 @@ interface LoginForm {
 export class LoginComponent implements OnInit, OnDestroy {
 
     contactForm!: FormGroup<LoginForm>;
-    login!: boolean;
+    login: boolean = false;
     private subscriptions: Subscription[] = [];
     showPas: boolean = false;
     @ViewChild('MyRef') passwordInput!: ElementRef;
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private readonly API = `${environment.api}/auth`;
 
 
-    constructor(private readonly fb: UntypedFormBuilder, private loginSvc: LoginService, private authSvc: AuthService, private credentialsSvc: CredentialsService, private router: Router) { }
+    constructor(private loginSvc: LoginService, private credentialsSvc: CredentialsService, private router: Router) { }
 
     ngOnInit(): void {
         const credentials = this.credentialsSvc.getCredentials();

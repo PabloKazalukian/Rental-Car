@@ -1,13 +1,14 @@
-<div class="modal-car__body">
-    <img [src]="car.image" class="modal-car__body-image" alt="imagen auto" style="height: 30rem" />
-    <h5 class="card-title">{{ car.brand.toUpperCase() }} {{ car.model }} {{ car.year }}</h5>
-    <p>
+<div class="modal-car__body flex-center flex-col bg-background-2 pb-12">
+    <img [src]="car.image" class="modal-car__body-image mt-12" alt="imagen auto" />
+    <h5 class="card-title text-accent mt-12">{{ car.brand.toUpperCase() }} {{ car.model }} {{ car.year }}</h5>
+    <p class="text-accent mb-12">
         <strong>Precio:</strong>
         {{ car.price }} us$
     </p>
 
-    <div>
-        <h2>Especificaciones:</h2>
+    <div class="modal-car__content bg-background p-12 rounded-md mb-8 flex-col">
+        <h2 class="font-x2l">Especificaciones:</h2>
+        <hr class="mt-2 mb-2" />
         <p>
             <strong>Motor:</strong>
             {{ car.specificationsCar.engine }}

@@ -1,7 +1,7 @@
-<div class="error-message">
+<div class="error-message flex-center mt-4 rounded-lg">
     <img [src]="'assets/images/Error.webp'" class="error-message__icon__img" />
-    <div class="error-message__content">
-        <h2 class="error-message__content__message">{{ messageError }}</h2>
-        <span class="error-message__content__description">{{ descriptionError }}</span>
+    <div class="error-message__content flex-col">
+        <h2 class="error-message__content__message font-lg">{{ messageError }}</h2>
+        <span class="error-message__content__description text-muted">{{ descriptionError }}</span>
     </div>
 </div>

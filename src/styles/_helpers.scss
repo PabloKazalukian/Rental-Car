@@ -17,7 +17,7 @@
 // ---------- HOVER BACKGROUND FAINT ----------
 @each $name, $color in v.$colors-hover-faint {
   .hover\:bg-#{$name}-faint:hover {
-    background-color: #{$color};
+    background: #{$color};
   }
 }
 
@@ -84,9 +84,15 @@
 
 // ---------- BORDER RADIUS ----------
 .rounded        { border-radius: v.$radius; }
+.rounded-100    { border-radius: 100%; }
 .rounded-none   { border-radius: 0; }
 .rounded-sm     { border-radius: calc(v.$radius * 0.5); }
 .rounded-md     { border-radius: calc(v.$radius * 0.8); }
 .rounded-lg     { border-radius: calc(v.$radius * 1.5); }
 
 
+@mixin media-up($breakpoint) {
+  @media (min-width: map-get(v.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}

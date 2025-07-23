@@ -45,7 +45,7 @@
                 Iniciar sesión con Google
             </button>
         </form>
-        <div *ngIf="this.login === true" class="login__success">
+        <div *ngIf="this.login === true" class="login__success mt-12">
             <app-success [text]="'Sesión iniciada con exito!'"></app-success>
         </div>
         <div *ngIf="this.login === false" class="login__success">

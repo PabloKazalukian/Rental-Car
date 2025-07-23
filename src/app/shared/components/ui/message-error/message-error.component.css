@@ -5,30 +5,16 @@ img {
     height: auto;
 }
 
-h2 {
-    margin: 0px;
-}
-
 .error-message {
-    margin-top: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 0.5em;
     padding: 2px;
     border: 2px solid var(--color-error);
-    border-radius: 1em;
 }
 
 .message__content {
     display: flex;
-    flex-direction: column;
 }
 
 .error-message__icon {
     width: 120px;
-}
-
-.error-message__content__description {
-    color: var(--color-text--muted);
 }

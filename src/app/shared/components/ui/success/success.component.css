@@ -7,18 +7,12 @@ img {
 
 .success-message {
     background-color: var(--color-background);
-    position: relative;
-    border-radius: 0.5rem;
     height: 100%;
     z-index: 1;
     min-width: 200px;
-    /* overflow: hidden; */
 }
 
 .success-underline {
-    /* position: absolute; */
-    /* bottom: -10%; */
-    /* left: 50%; */
     transform: translateX(13%);
     width: 80%;
     min-width: 207px;
@@ -33,12 +27,9 @@ img {
 .success-message__icon {
     position: absolute;
     top: -6vh;
-    /* más flexible */
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
-    background: var(--color-background);
-    border-radius: 100%;
 }
 
 .success-message__content {
@@ -57,21 +48,11 @@ img {
     background: var(--color-success);
     width: 100%;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 40px;
-}
-
-.success-message__message_under h4 {
-    color: var(--color-text--muted);
 }
 
 .success-message__content__message h4 {
     line-height: 1.2;
-    font-size: 1.1rem;
-    margin: 0px;
-    padding: 0.5rem 1rem;
 }
 
 .dot-loader::after {
@@ -83,9 +64,7 @@ img {
 }
 
 .success-message__title {
-    font-size: 2rem;
     line-height: 1.2;
-    margin: 0px;
 }
 
 .success-message__icon__img {

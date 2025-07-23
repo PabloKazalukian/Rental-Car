@@ -1,41 +1,34 @@
+@use 'helpers' as v;
 
 .modal-car {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
 
     &__content {
-        background: var(--color-background);
-        border-radius: 12px;
-        padding: 2rem;
         max-width: 800px;
         width: 100%;
         max-height: 90vh;
         overflow-y: auto;
-    }
-
-    &__header {
         display: flex;
-        justify-content: flex-end;
-        padding: 0px;
+        justify-content: flex-start;
+        gap: .7rem;
     }
 
     &__body {
-        margin-top: 0px;
 
         &-image {
             width: 100%;
-            object-fit: cover;
-        }
-    }
+            object-fit: contain;
+            height: 8rem;
+            @include v.media-up(sm) {
+                    height: 14rem;
+            }
+            @include v.media-up(xl){
+                height: 20rem;
+            }
+            @include v.media-up(lg) {
+                    height: 30rem;
+            }
 
-    &__footer {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 1rem;
+        }
+
     }
 }

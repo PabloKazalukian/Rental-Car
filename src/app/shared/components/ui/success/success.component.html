@@ -1,14 +1,14 @@
-<div class="success-message">
-    <div class="success-message__icon">
+<div class="success-message relative rounded-md">
+    <div class="success-message__icon bg-background rounded-100">
         <img [src]="'assets/images/success.webp'" class="success-message__icon__img" />
     </div>
-    <div class="success-message__content">
-        <h3 class="success-message__title">¡La operación fue exitosa!</h3>
-        <div class="success-message__content__message">
-            <h4>{{ text }}</h4>
+    <div class="success-message__content flex-center">
+        <h3 class="success-message__title font-x2l pt-8">¡La operación fue exitosa!</h3>
+        <div class="success-message__content__message flex-center">
+            <h4 class="font-lg">{{ text }}</h4>
         </div>
-        <div class="success-message__message_under">
-            <h4>
+        <div class="success-message__message_under pl-6 pr-6">
+            <h4 class="text-muted">
                 Serás redirigido en un momento
                 <span class="dot-loader"></span>
             </h4>

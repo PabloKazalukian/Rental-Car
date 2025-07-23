@@ -61,8 +61,8 @@ $colors: (
   success: #4caf50,
   error: #cc1e2c,
   text: #ffffff,
-  text-muted: #b0b0b0,
-  text-muted-hover: #e0e0e0,
+  muted: #b0b0b0,
+  muted-hover: #e0e0e0,
   black:#0f0f0f
 );
 
@@ -93,6 +93,6 @@ $bg: (
   surface: #393939,
   background: #1e1e1e,
   background-2: #121212bb,
-  background-black: #0f0f0f,
-  background-black-faint: #0f0f0f94
+  black: #0f0f0f,
+  black-faint: #0f0f0f94
 );
