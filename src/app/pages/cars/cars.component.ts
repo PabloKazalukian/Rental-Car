@@ -28,8 +28,6 @@ export class CarsComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    // carsTotal!: appState;
-    // cars!: Array<Car>;
     estado!: boolean;
     car$!: Observable<Car>;
     searchModel!: string;

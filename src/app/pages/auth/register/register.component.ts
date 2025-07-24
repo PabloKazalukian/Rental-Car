@@ -1,9 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, map, of, Subscription } from 'rxjs';
+import { userRegister } from 'src/app/core/models/user.interface';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator';
+
+interface RegisterType {
+    username: FormControl<string>;
+    email: FormControl<string>;
+    password1: FormControl<string>;
+    password2: FormControl<string>;
+}
 
 @Component({
     selector: 'app-register',
@@ -12,7 +20,7 @@ import { repeatPass } from 'src/app/shared/validators/repeatPass.validator';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-    registerForm!: UntypedFormGroup;
+    registerForm!: FormGroup<RegisterType>;
     success: boolean = false;
     error: boolean = false;
     private subscripcions: Subscription[] = [];
@@ -20,16 +28,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
     imageBackground: string = 'assets/images/superdeportivo_optimized.jpg';
     hide = true;
 
-    constructor(private readonly fb: UntypedFormBuilder, private authSvc: RegisterService, private router: Router) { };
-
+    constructor(private authSvc: RegisterService, private router: Router) { };
 
     ngOnInit(): void {
         this.registerForm = this.initForm();
     };
 
     onSubmit(): void {
+        const userRegister: userRegister = {
+            username: this.registerForm.controls.username.value,
+            email: this.registerForm.controls.email.value,
+            password: this.registerForm.controls.password1.value,
+            confirmPassword: this.registerForm.controls.password2.value
+        };
+
         this.subscripcions.push(
-            this.authSvc.registerUser(this.registerForm.value).subscribe({
+            this.authSvc.registerUser(userRegister).subscribe({
                 next: (res) => {
                     this.success = true;
                     setTimeout(() => this.router.navigate(['auth/login']), 1700)
@@ -42,13 +56,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
         )
     };
 
-    initForm(): UntypedFormGroup {
+    initForm(): FormGroup<RegisterType> {
         //declarar las propiedas que tendran nuestro formulario
-        return this.fb.group({
-            username: ['', [Validators.required, Validators.minLength(3)], this.validateUsername.bind(this)],
-            email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")], this.validateEmail.bind(this)],
-            password1: ['', [Validators.required, Validators.minLength(3)]],
-            password2: ['', [Validators.required, Validators.minLength(3)]],
+        return new FormGroup<RegisterType>({
+            username: new FormControl('', {
+                nonNullable: true,
+                validators: [Validators.required, Validators.minLength(3)],
+                asyncValidators: [this.validateUsername.bind(this)]
+            }),
+            email: new FormControl('', {
+                nonNullable: true,
+                validators: [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")],
+                asyncValidators: [this.validateEmail.bind(this)]
+            }),
+            password1: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+            password2: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+
         }, {
             validators: repeatPass.dateCorrect,
         })
@@ -59,11 +82,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         return this.authSvc.verifyEmail(control.value)
             .pipe(
                 map(data => {
-                    if (data) {
-                        return { emailExist: true }
-                    } else {
-                        return null
-                    }
+                    return data ? { emailExist: true } : null
                 }),
                 catchError(error => {
                     return of(null)
@@ -75,11 +94,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         return this.authSvc.verifyUsername(control.value)
             .pipe(
                 map(data => {
-                    if (data) {
-                        return { usernameExist: true }
-                    } else {
-                        return null
-                    }
+                    return data ? { usernameExist: true } : null
                 }),
                 catchError(error => {
                     return of(null)
@@ -87,22 +102,21 @@ export class RegisterComponent implements OnInit, OnDestroy {
             )
     }
 
-    get usernameControl(): UntypedFormControl {
-        return this.registerForm.get('username') as UntypedFormControl;
+    get usernameControl(): FormControl<string> {
+        return this.registerForm.get('username') as FormControl<string>;
     }
 
-    get emailControl(): UntypedFormControl {
-        return this.registerForm.get('email') as UntypedFormControl;
+    get emailControl(): FormControl<string> {
+        return this.registerForm.get('email') as FormControl<string>;
     }
 
-    get password1Control(): UntypedFormControl {
-        return this.registerForm.get('password1') as UntypedFormControl;
+    get password1Control(): FormControl<string> {
+        return this.registerForm.get('password1') as FormControl<string>;
     }
 
-    get password2Control(): UntypedFormControl {
-        return this.registerForm.get('password2') as UntypedFormControl;
+    get password2Control(): FormControl<string> {
+        return this.registerForm.get('password2') as FormControl<string>;
     }
-
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())

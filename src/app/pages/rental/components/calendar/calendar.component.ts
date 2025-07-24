@@ -1,15 +1,10 @@
-import { Component, Input, OnInit, ViewChild, OnDestroy, EventEmitter, } from '@angular/core';
-// import { FlatpickrOptions } from 'ngx-flatpickr-wrapper'
-import { Options } from 'flatpickr/dist/types/options';
-
-// Removed FlatpickrOptions type import as it does not exist in 'angularx-flatpickr'
-
-import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
+import { Component, Input, OnInit, OnDestroy, } from '@angular/core';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { Request } from 'src/app/core/models/request.interface';
-import { isDateHigher, getDaysDate } from '../../../../shared/validators/date.validator';
+import { getDaysDate } from '../../../../shared/validators/date.validator';
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
+import { FormDatesGroup } from '../form-car/form-car.component';
 
 
 interface requsitio { initial_date: string, final_date: string }
@@ -23,7 +18,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
     // onClose?: EventEmitter<Event>
 
-    @Input() range!: UntypedFormGroup
+    @Input() range!: FormDatesGroup
     @Input() idCar!: string;
     @Input() cars?: Car;
 

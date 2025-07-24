@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CredentialsService } from 'src/app/core/services/auth/credential.service';
@@ -18,13 +18,14 @@ interface LoginForm {
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
+    styleUrls: ['./login.component.scss'],
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
 
     contactForm!: FormGroup<LoginForm>;
-    login: boolean = false;
+    login!: boolean;
+    loading: boolean = false;
     private subscriptions: Subscription[] = [];
     showPas: boolean = false;
     @ViewChild('MyRef') passwordInput!: ElementRef;
@@ -59,6 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
     onSubmit(): void {
+        this.loading = true;
         this.subscriptions.push(
             this.loginSvc.login({
                 email: this.contactForm.get('email')?.value ?? '',
@@ -75,10 +77,12 @@ export class LoginComponent implements OnInit, OnDestroy {
                     } else {
                         this.credentialsSvc.removeCredentials();
                     }
+                    this.loading = false;
                     this.login = true;
                     setTimeout(() => this.router.navigate(['/']), 2000);
                 },
                 error: (res) => {
+                    this.loading = false;
                     this.login = false;
                 },
             })
@@ -94,15 +98,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     get emailControl(): FormControl<string> {
-        return this.contactForm.get('email')! as FormControl;
+        return this.contactForm.get('email')! as FormControl<string>;
     }
 
     get passwordControl(): FormControl<string> {
-        return this.contactForm.get('password')! as FormControl;
+        return this.contactForm.get('password')! as FormControl<string>;
     }
 
     get rememberControl(): FormControl<boolean> {
-        return this.contactForm.get('remember')! as FormControl;
+        return this.contactForm.get('remember')! as FormControl<boolean>;
     }
 
 

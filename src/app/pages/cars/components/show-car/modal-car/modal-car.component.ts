@@ -6,13 +6,9 @@ import { Car } from "src/app/core/models/car.interface";
     templateUrl: './modal-car.component.html',
     styleUrls: ['./modal-car.component.scss']
 })
-export class ModalCarComponent implements OnInit {
+export class ModalCarComponent {
 
     @Input() car!: Car
-    constructor(
-    ) { }
 
-    ngOnInit(): void {
-    }
 }
 

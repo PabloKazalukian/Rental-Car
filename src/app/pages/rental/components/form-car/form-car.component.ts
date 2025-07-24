@@ -4,14 +4,13 @@ import { delay, Subscription, } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
 import { Request, RequestSend } from 'src/app/core/models/request.interface';
 import { RentalService } from 'src/app/core/services/rental.service';
-import { DatePipe } from '@angular/common';
-import { changeDateFormat, ownValidation } from 'src/app/shared/validators/date.validator';
+import { changeDateFormat } from 'src/app/shared/validators/date.validator';
 import { Router } from '@angular/router';
 import { OverlayService } from 'src/app/shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { dateRangeValidator } from 'src/app/shared/validators/range.validator';
 
-type FormDatesGroup = FormGroup<{
+export type FormDatesGroup = FormGroup<{
     start: FormControl<Date | null>;
     end: FormControl<Date | null>;
     total: FormControl<Request[] | null>;
@@ -22,11 +21,8 @@ type FormDatesGroup = FormGroup<{
 @Component({
     selector: 'app-form-car',
     templateUrl: './form-car.component.html',
-    styleUrls: ['./form-car.component.css']
+    styleUrls: ['./form-car.component.scss']
 })
-
-
-
 
 export class FormCarComponent implements OnInit, OnDestroy {
 
@@ -124,6 +120,7 @@ export class FormCarComponent implements OnInit, OnDestroy {
             days: new FormControl<number>(0),
         }, { validators: dateRangeValidator })
     };
+
     confirmRequest(state: 'con' | 'req'): void {
         this.loadingDialog = true;
         this.data.state = state;

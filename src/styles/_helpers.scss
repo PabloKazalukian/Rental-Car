@@ -28,6 +28,16 @@
   }
 }
 
+@each $bp-name, $bp-size in v.$breakpoints {
+  @media (min-width: #{$bp-size}) {
+    @each $fs-name, $fs-size in v.$font-sizes {
+      .#{$bp-name}\:font-#{$fs-name} {
+        font-size: $fs-size;
+      }
+    }
+  }
+}
+
 // Responsive font-size helpers
 @each $bp-name, $bp-size in v.$breakpoints {
   @media (min-width: #{$bp-size}) {
@@ -90,9 +100,3 @@
 .rounded-md     { border-radius: calc(v.$radius * 0.8); }
 .rounded-lg     { border-radius: calc(v.$radius * 1.5); }
 
-
-@mixin media-up($breakpoint) {
-  @media (min-width: map-get(v.$breakpoints, $breakpoint)) {
-    @content;
-  }
-}

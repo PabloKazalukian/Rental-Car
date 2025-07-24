@@ -3,15 +3,12 @@
     gap: 1rem;
 
     &__title {
-        font-size: var(--font-size-xl);
         font-family: var(--font-title);
-        margin: 0;
     }
 
     &__inputs {
         display: flex;
         gap: 1rem;
-        padding-right: 0;
         flex-wrap: wrap;
     }
 
@@ -26,10 +23,5 @@
         justify-content: flex-end;
         align-items: center;
         gap: 0.75rem;
-        padding-right: 1rem;
     }
-
-    &__label {
-        font-weight: 500;
-}
 }

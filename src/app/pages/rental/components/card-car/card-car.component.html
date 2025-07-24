@@ -1,24 +1,24 @@
-<aside class="rental__card__content">
-    <div class="rental__card-image__wrapper">
+<aside class="rental__card__content relative">
+    <div class="rental__card-image__wrapper pb-3">
         <div *ngIf="!imageLoaded" class="skeleton-image"></div>
-        <img [src]="car.image" alt="Car image" class="rental__image__car" (load)="onImageLoad()" [class.hidden]="!imageLoaded" />
+        <img [src]="car.image" alt="Car image" class="rental__card-image__car" (load)="onImageLoad()" [class.hidden]="!imageLoaded" />
     </div>
     <div class="rental__card-info__model">
-        <div class="rental__card-info__name">
+        <div class="rental__card-info__name flex-center flex-col pb-2">
             <label>Modelo:</label>
-            <h2>{{ car.brand }} {{ car.model }}</h2>
+            <p>{{ car.brand }} {{ car.model }}</p>
         </div>
-        <div class="rental__card-info__price">
+        <div class="rental__card-info__price flex-center flex-col pb-2 pt-2">
             <label>Precio por día:</label>
-            <h2>{{ car.price }}</h2>
+            <p>{{ car.price }}</p>
         </div>
-        <div class="rental__card-info__year">
+        <div class="rental__card-info__year flex-center flex-col pb-2 pt-2">
             <label>año:</label>
-            <h2>{{ car.year }}</h2>
+            <p>{{ car.year }}</p>
         </div>
     </div>
-    <div class="rental__card-info__button">
-        <div>
+    <div class="rental__card-info__button flex-center relative pt-3 pb-3">
+        <div class="rental__card-info__button-actions">
             <app-btn [text]="'Solicitar otro vehiculo'" [color]="'primary'" [variant]="'raised'" [routerLink]="'/solicitar-auto'"></app-btn>
         </div>
     </div>

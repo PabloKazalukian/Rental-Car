@@ -1,18 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Car } from 'src/app/core/models/car.interface';
-import { Store, select } from '@ngrx/store';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-
-
-interface appState {
-    loading: boolean,
-    cars: Array<Car>
-    car: Array<Car>
-}
+import { FormControl, FormGroup } from '@angular/forms';
 
 interface text {
     model: string | '',
     brand: string | ''
+}
+
+interface FilterCarType {
+    brand: FormControl<string>,
+    model: FormControl<string>
 }
 
 
@@ -23,7 +19,7 @@ interface text {
 })
 
 export class FilterCarsComponent implements OnInit {
-    registerForm!: UntypedFormGroup;
+    filterCarForm!: FormGroup<FilterCarType>;
     btnSelected: string = '';
 
     @Input() orderPrice: any;
@@ -36,10 +32,10 @@ export class FilterCarsComponent implements OnInit {
     @Output() newSearchEvent = new EventEmitter<text>();
     @Output() newOrderEvent = new EventEmitter<string>();
 
-    constructor(private readonly fb: UntypedFormBuilder, private store: Store<{ autos: appState }>) { }
+    constructor() { }
 
     ngOnInit(): void {
-        this.registerForm = this.initForm();
+        this.filterCarForm = this.initForm();
 
         // set default values if present
         if (this.searchModel || this.searchBrand) {
@@ -48,22 +44,22 @@ export class FilterCarsComponent implements OnInit {
         }
 
         // opcional: emit automáticamente en cambios
-        this.registerForm.valueChanges.subscribe(() => this.searchFilter());
+        this.filterCarForm.valueChanges.subscribe(() => this.searchFilter());
     }
 
-    initForm(): UntypedFormGroup {
-        return this.fb.group({
-            model: [''],
-            brand: ['']
+    initForm(): FormGroup<FilterCarType> {
+        return new FormGroup<FilterCarType>({
+            model: new FormControl('', { nonNullable: true }),
+            brand: new FormControl('', { nonNullable: true })
         });
     }
 
-    get textModelControl(): UntypedFormControl {
-        return this.registerForm.get('model') as UntypedFormControl;
+    get textModelControl(): FormControl<string> {
+        return this.filterCarForm.get('model')! as FormControl<string>;
     }
 
-    get textBrandControl(): UntypedFormControl {
-        return this.registerForm.get('brand') as UntypedFormControl;
+    get textBrandControl(): FormControl<string> {
+        return this.filterCarForm.get('brand')! as FormControl<string>;
     }
 
     public searchFilter(): void {
@@ -78,7 +74,10 @@ export class FilterCarsComponent implements OnInit {
     }
 
     public reset(): void {
-        this.registerForm.reset(); // limpia ambos
+        this.filterCarForm.patchValue({
+            brand: '',
+            model: ''
+        }); // limpia ambos
         this.order('');
         this.newSearchEvent.emit({ model: '', brand: '' });
     }

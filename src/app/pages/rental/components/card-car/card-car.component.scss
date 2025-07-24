@@ -1,0 +1,102 @@
+@use '/src/styles/components/skeleton.scss';
+@use 'animations';
+
+.rental__card {
+  &__content {
+    display: grid;
+    width: 100%;
+    min-height: 458px;
+    background: #d1d1d1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      rgba(0, 0, 0, 0.25) 0px 14px 28px,
+      rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    grid-template-areas:
+      'wrapper'
+      'model'
+      'button';
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background-color: var(--color-background-black);
+      z-index: 0;
+      animation: fillBackgroundUp 1.5s ease-out forwards;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+
+  }
+
+  &-image {
+    &__wrapper {
+      grid-area: wrapper;
+      height: 19rem;
+      width: 19rem;
+      box-shadow: 0 0 88px 0 rgba(0, 0, 0, 0.16);
+    }
+    &__car {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    //   max-height: 17rem;
+        &.hidden {
+        display: none;
+      }
+
+    }
+
+
+  }
+
+  &-info {
+    z-index: 1000;
+    &__model {
+      grid-area: model;
+      display: grid;
+      grid-template-areas:
+        'name name'
+        'price year';
+    //   border-bottom: 2px solid #353535;
+
+      label {
+        color: var(--color-text--muted);
+      }
+    }
+
+    &__name {
+      grid-area: name;
+    }
+
+    &__price {
+      grid-area: price;
+      background: var(--color-background);
+    }
+
+    &__year {
+      grid-area: year;
+      background: var(--color-primary);
+
+      label {
+        color: var(--color-text);
+      }
+    }
+
+    &__button {
+      position: relative;
+      z-index: 1;
+
+      grid-area: button;
+
+    }
+  }
+}
+
