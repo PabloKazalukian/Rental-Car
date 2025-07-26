@@ -1,0 +1,12 @@
+.mod-user {
+  /* container principal si querés seguir extendiéndolo */
+
+  &__spinner-container {
+    display: flex;
+    justify-content: center;
+  }
+  &__spinner {
+    height: 120px;
+    width: 120px;
+  }
+}

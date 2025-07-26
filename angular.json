@@ -26,11 +26,15 @@
               "src/favicon.ico",
               "src/assets"
             ],
-                "stylePreprocessorOptions": {
-                    "includePaths": [
-                        "src/styles"
-                    ]
-                },
+            "stylePreprocessorOptions": {
+                "includePaths": [
+                    "src/styles",
+                    "src/styles/animations",
+                    "src/styles/utilities",
+                    "src/styles/base",
+                    "src/styles/theme"
+                ]
+            },
             "styles": [
               "node_modules/flatpickr/dist/flatpickr.min.css",
               "src/styles/styles.scss"

@@ -1,6 +1,7 @@
 {
-    "printWidth": 140,
-    "singleQuote": true,
-    "htmlWhitespaceSensitivity": "ignore",
-    "bracketSameLine": true
+  "printWidth": 100,
+  "singleQuote": true,
+  "htmlWhitespaceSensitivity": "ignore",
+  "bracketSameLine": false,
+  "arrowParens": "always"
 }

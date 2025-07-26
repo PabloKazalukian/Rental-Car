@@ -2,16 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, map, of, Subscription } from 'rxjs';
-import { userRegister } from 'src/app/core/models/user.interface';
+import { ModifyUser, PassDouble, userRegister } from 'src/app/core/models/user.interface';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator';
+import { FormControlsOf } from '../../../shared/utils/form-types.util';
 
-interface RegisterType {
-    username: FormControl<string>;
-    email: FormControl<string>;
-    password1: FormControl<string>;
-    password2: FormControl<string>;
-}
+
+type RegisterType = FormControlsOf<userRegister>;
 
 @Component({
     selector: 'app-register',
@@ -38,8 +35,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
         const userRegister: userRegister = {
             username: this.registerForm.controls.username.value,
             email: this.registerForm.controls.email.value,
-            password: this.registerForm.controls.password1.value,
-            confirmPassword: this.registerForm.controls.password2.value
+            password: this.registerForm.controls.password.value,
+            confirmPassword: this.registerForm.controls.confirmPassword.value
         };
 
         this.subscripcions.push(
@@ -69,12 +66,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 validators: [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")],
                 asyncValidators: [this.validateEmail.bind(this)]
             }),
-            password1: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
-            password2: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+            password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+            confirmPassword: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
 
         }, {
-            validators: repeatPass.dateCorrect,
-        })
+            validators: repeatPass.samePassword,
+        });
     };
 
     validateEmail(control: AbstractControl) {
@@ -110,12 +107,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
         return this.registerForm.get('email') as FormControl<string>;
     }
 
-    get password1Control(): FormControl<string> {
-        return this.registerForm.get('password1') as FormControl<string>;
+    get passwordControl(): FormControl<string> {
+        return this.registerForm.get('password') as FormControl<string>;
     }
 
-    get password2Control(): FormControl<string> {
-        return this.registerForm.get('password2') as FormControl<string>;
+    get confirmPasswordControl(): FormControl<string> {
+        return this.registerForm.get('confirmPassword') as FormControl<string>;
     }
 
     ngOnDestroy(): void {

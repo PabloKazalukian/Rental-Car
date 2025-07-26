@@ -1,22 +1,27 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, ValidationErrors, Validators, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, delay, finalize, map, of, switchMap, tap } from 'rxjs';
-import { User, Usuario } from 'src/app/core/models/user.interface';
+import { ModifyUser, User, Usuario } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
 import { mustBeDifferent } from 'src/app/shared/validators/equal.validator';
+
+
+type ModifyUserType = FormControlsOf<ModifyUser>;
 
 @Component({
     selector: 'app-modify-user',
     templateUrl: './modify-user.component.html',
-    styleUrls: ['./modify-user.component.css'],
+    styleUrls: ['./modify-user.component.scss'],
 })
+
 export class ModifyUserComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
-    modifyUser!: UntypedFormGroup;
+    modifyUser!: FormGroup<ModifyUserType>;
     tokenUser!: Usuario;
     user!: User;
 
@@ -25,7 +30,6 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     error: boolean = false;
 
     constructor(
-        private readonly fb: UntypedFormBuilder,
         private regiterSvc: RegisterService,
         private authSvc: AuthService,
         private userSvc: UserService,
@@ -60,7 +64,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
         if (this.tokenUser.sub !== undefined) {
             this.loading = true;
             this.subscripcions.push(
-                this.userSvc.modifyUser(this.modifyUser.value, this.tokenUser.sub)
+                this.userSvc.modifyUser(this.modifyUser.getRawValue(), this.tokenUser.sub)
                     .pipe(
                         delay(500),
                         finalize(() => {
@@ -82,15 +86,20 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
         }
     }
 
-    initForm(user: User): UntypedFormGroup {
+    initForm(user: User): FormGroup<ModifyUserType> {
 
-        return this.fb.group({
-            username: [user.username, [Validators.required, Validators.minLength(3)], this.validateUsername.bind(this)],
-            email: [user.email, {
-                validators: [Validators.required, Validators.email],
+        return new FormGroup<ModifyUserType>({
+            username: new FormControl(user.username, {
+                nonNullable: true,
+                validators: [Validators.required, Validators.minLength(3)],
+                asyncValidators: [this.validateUsername.bind(this)]
+            }),
+            email: new FormControl(user.email, {
+                nonNullable: true,
+                validators: [Validators.required, Validators.minLength(3), Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$")],
                 asyncValidators: [this.validateEmail.bind(this)],
                 updateOn: 'blur'
-            }]
+            })
         }, {
             validators: [mustBeDifferent('username', 'email', user)]
         });
@@ -135,12 +144,12 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
         }
     }
 
-    get usernameControl(): UntypedFormControl {
-        return this.modifyUser.get('username') as UntypedFormControl;
+    get usernameControl(): FormControl<string> {
+        return this.modifyUser.get('username') as FormControl<string>;
     }
 
-    get emailControl(): UntypedFormControl {
-        return this.modifyUser.get('email') as UntypedFormControl;
+    get emailControl(): FormControl<string> {
+        return this.modifyUser.get('email') as FormControl<string>;
     }
 
     ngOnDestroy(): void {

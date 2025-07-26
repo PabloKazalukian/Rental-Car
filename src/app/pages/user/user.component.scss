@@ -1,0 +1,39 @@
+@use 'theme/mixins' as m;
+
+.user {
+  min-height: 70vh;
+  box-sizing: content-box;
+
+  &__dashboard {
+    display: grid;
+    // grid-template-columns: 1fr;
+    grid-template-columns: repeat(12, 1fr);
+    align-content: center;
+    gap: 1rem;
+    &-welcome {
+      grid-column: 1 / span 4;
+    }
+
+    &-actions {
+      grid-column: 5 / span 8;
+
+      gap: 1rem;
+
+      @include m.media-up(lg) {
+        flex-direction: row;
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+    overflow-x: auto; /* solo aparece la barra si se pasa el contenido */
+    overflow-y: hidden;
+  }
+
+  @include m.media-up(md) {
+    & {
+      padding: 0;
+    }
+  }
+}

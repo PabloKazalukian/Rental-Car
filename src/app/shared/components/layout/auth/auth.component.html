@@ -1,13 +1,13 @@
 <div class="login-container">
-    <div class="login-layout">
-        <div class="login-layout__image">
-            <img [src]="imageBackground" alt="image" class="login-layout__image-img" />
-        </div>
-        <div class="login-layout__form">
-            <ng-content></ng-content>
-            <div class="login-layout__form-img-container">
-                <img [src]="imageUrl" alt="image Car" class="login-layout__form-img" />
-            </div>
-        </div>
+  <div class="login-layout">
+    <div class="login-layout__image">
+      <img [src]="imageBackground" alt="image" class="login-layout__image-img" />
     </div>
+    <div class="login-layout__form">
+      <ng-content></ng-content>
+      <div class="login-layout__form-img-container">
+        <img [src]="imageUrl" alt="image Car" class="login-layout__form-img" appScrollAnimate />
+      </div>
+    </div>
+  </div>
 </div>

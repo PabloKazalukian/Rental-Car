@@ -1,16 +1,27 @@
-import { Component, Input, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+
+interface FilterSearch { search: string };
+type FilterRequestType = FormControlsOf<FilterSearch>;
 
 @Component({
     selector: 'app-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnChanges {
+
+
+export class TableComponent implements OnInit, OnChanges {
+
     @Input() data: any[] = [];
     @Input() columns: { key: string; label: string, link?: (value: string) => string }[] = [];
     @Input() loading: boolean = false;
     @Input() pageSizeOptions: number[] = [5, 10, 15, 20];
     @Input() actionsTemplate?: TemplateRef<any>;
+
+    filterRequest!: FormGroup<FilterRequestType>;
+
 
     currentPage: number = 0;
     pageSize: number = 5;
@@ -20,6 +31,16 @@ export class TableComponent implements OnChanges {
         if (changes['data']) {
             console.log('🟢 TableComponent received new data:', this.data);
         }
+    }
+
+    ngOnInit(): void {
+        this.filterRequest = this.initForm();
+    }
+
+    initForm(): FormGroup<FilterRequestType> {
+        return new FormGroup<FilterRequestType>({
+            search: new FormControl('', { nonNullable: true })
+        })
     }
 
     getQueryParams(col: any, row: any): { [key: string]: string } {
@@ -64,9 +85,14 @@ export class TableComponent implements OnChanges {
     }
 
     applyFilter(event: Event) {
+        console.log(event)
         const input = event.target as HTMLInputElement;
         this.filterValue = input.value;
         this.currentPage = 0;
+    }
+
+    get filterControl(): FormControl<string> {
+        return this.filterRequest.get('search') as FormControl<string>;
     }
 
     // 🔧 Para manejar claves anidadas como 'car_id.brand'

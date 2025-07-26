@@ -1,15 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { FormControlsOf } from '../../../../shared/utils/form-types.util';
 
-interface text {
-    model: string | '',
-    brand: string | ''
+interface FilterSearch {
+    model: string,
+    brand: string
 }
 
-interface FilterCarType {
-    brand: FormControl<string>,
-    model: FormControl<string>
-}
+type FilterCarType = FormControlsOf<FilterSearch>
+
 
 
 @Component({
@@ -29,7 +28,7 @@ export class FilterCarsComponent implements OnInit {
     @Input() searchBrand!: string;
     @Input() searchModel!: string;
 
-    @Output() newSearchEvent = new EventEmitter<text>();
+    @Output() newSearchEvent = new EventEmitter<FilterSearch>();
     @Output() newOrderEvent = new EventEmitter<string>();
 
     constructor() { }

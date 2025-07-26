@@ -1,31 +1,37 @@
 <div class="form-input">
-    <label class="form-input__label">{{ label }}</label>
+  <label class="form-input__label">{{ label }}</label>
 
-    <div class="form-input__field">
-        <input
-            [type]="type === 'password' && hidePassword ? 'password' : 'text'"
-            [formControl]="control"
-            [placeholder]="placeholder"
-            [class.input-error]="showError" />
+  <div class="form-input__field">
+    <input
+      [type]="type === 'password' && hidePassword ? 'password' : 'text'"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [class.input-error]="showError"
+    />
 
-        <button *ngIf="showTogglePassword" type="button" class="form-input__toggle" (click)="togglePassword()">
-            {{ hidePassword ? '🙈' : '🐵' }}
-        </button>
-    </div>
+    <button
+      *ngIf="showTogglePassword"
+      type="button"
+      class="form-input__toggle"
+      (click)="togglePassword()"
+    >
+      {{ hidePassword ? '🙈' : '🐵' }}
+    </button>
+  </div>
 
-    <div *ngIf="showError; else blankError" class="form-input__error">
-        <span *ngIf="control.errors?.['required']">Este campo es obligatorio</span>
-        <span *ngIf="control.errors?.['minlength']">
-            Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres.
-        </span>
-        <span *ngIf="control.errors?.['email']">Formato de email inválido.</span>
-        <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe.</span>
-        <span *ngIf="control.errors?.['emailExist']">El email es invalido.</span>
-        <span *ngIf="control.errors?.['passNoRepeat']">Las contraseñas no coinciden.</span>
-        <span *ngIf="control.errors?.['mustBeDifferent']">Uno de los campos debe cambiar.</span>
-    </div>
+  <div *ngIf="showError; else blankError" class="form-input__error">
+    <span *ngIf="control.errors?.['required']">Este campo es obligatorio</span>
+    <span *ngIf="control.errors?.['minlength']">
+      Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres.
+    </span>
+    <span *ngIf="control.errors?.['email']">Formato de email inválido.</span>
+    <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe.</span>
+    <span *ngIf="control.errors?.['emailExist']">El email es invalido.</span>
+    <span *ngIf="control.errors?.['passNoRepeat']">Las contraseñas no coinciden.</span>
+    <span *ngIf="control.errors?.['mustBeDifferent']">Modifica algún campo para guardar.</span>
+  </div>
 
-    <ng-template #blankError>
-        <span class="form-input__error-placeholder"></span>
-    </ng-template>
+  <ng-template #blankError>
+    <span class="form-input__error-placeholder"></span>
+  </ng-template>
 </div>

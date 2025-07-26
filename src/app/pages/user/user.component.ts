@@ -3,15 +3,15 @@ import { BehaviorSubject, Observable, of, Subscription, switchMap, tap } from 'r
 import { RequestReceived } from 'src/app/core/models/request.interface';
 import { Usuario } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { LoginService } from 'src/app/core/services/auth/login.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { isDateHigher } from 'src/app/shared/validators/date.validator';
 
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
-    styleUrls: ['./user.component.css']
+    styleUrls: ['./user.component.scss']
 })
+
 export class UserComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
@@ -23,7 +23,7 @@ export class UserComponent implements OnInit, OnDestroy {
     requestAll!: RequestReceived[]
     dataSource!: RequestReceived[];
     dataSourcePast!: RequestReceived[];
-    constructor(private authSvc: AuthService, loginSvc: LoginService, private requestSvc: RentalService) { }
+    constructor(private authSvc: AuthService, private requestSvc: RentalService) { }
 
     ngOnInit(): void {
         this.subscripcions.push(

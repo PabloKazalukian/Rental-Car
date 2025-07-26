@@ -1,66 +1,85 @@
 <div>
-    <app-auth [imageBackground]="'assets/images/superdeportivo_optimized.jpg'">
-        <form *ngIf="!this.error && !this.success" class="register-form form-layout" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
-            <div class="register-form__title">
-                <h2 class="register-form__title-text">Crea una cuenta</h2>
-            </div>
+  <app-auth [imageBackground]="'assets/images/superdeportivo_optimized.jpg'">
+    <form
+      *ngIf="!this.error && !this.success"
+      class="register-form form-layout"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="registerForm"
+    >
+      <div class="register-form__title">
+        <h2 class="register-form__title-text">Crea una cuenta</h2>
+      </div>
 
-            <div class="register-form__field">
-                <app-input
-                    [label]="'Ingrese un usuario'"
-                    [type]="'text'"
-                    [placeholder]="'ingrese un nombre de usuario'"
-                    [control]="usernameControl"></app-input>
-            </div>
+      <div class="register-form__field">
+        <app-input
+          [label]="'Ingrese un usuario'"
+          [type]="'text'"
+          [placeholder]="'ingrese un nombre de usuario'"
+          [control]="usernameControl"
+        ></app-input>
+      </div>
 
-            <div class="register-form__field">
-                <app-input
-                    [label]="'Ingrese un email'"
-                    [type]="'email'"
-                    [placeholder]="'pat@example.com'"
-                    [control]="emailControl"></app-input>
-            </div>
+      <div class="register-form__field">
+        <app-input
+          [label]="'Ingrese un email'"
+          [type]="'email'"
+          [placeholder]="'pat@example.com'"
+          [control]="emailControl"
+        ></app-input>
+      </div>
 
-            <div class="register-form__field">
-                <app-input
-                    [label]="'Ingrese una contraseña'"
-                    [type]="'password'"
-                    [placeholder]="'Ingrese su contraseña'"
-                    [control]="password1Control"></app-input>
-            </div>
+      <div class="register-form__field">
+        <app-input
+          [label]="'Ingrese una contraseña'"
+          [type]="'password'"
+          [placeholder]="'Ingrese su contraseña'"
+          [control]="passwordControl"
+        ></app-input>
+      </div>
 
-            <div class="register-form__field">
-                <app-input
-                    [label]="'Repita la contraseña'"
-                    [type]="'password'"
-                    [placeholder]="'Ingrese nuevamente password'"
-                    [control]="password2Control"></app-input>
-            </div>
+      <div class="register-form__field">
+        <app-input
+          [label]="'Repita la contraseña'"
+          [type]="'password'"
+          [placeholder]="'Ingrese nuevamente password'"
+          [control]="confirmPasswordControl"
+        ></app-input>
+      </div>
 
-            <p class="register-form__link">
-                Ya tenés una cuenta?
-                <app-text-link [text]="'Iniciar sesión'" [routerLink]="'/auth/login'" [color]="'primary'"></app-text-link>
-            </p>
+      <p class="register-form__link">
+        Ya tenés una cuenta?
+        <app-text-link
+          [text]="'Iniciar sesión'"
+          [routerLink]="'/auth/login'"
+          [color]="'primary'"
+        ></app-text-link>
+      </p>
 
-            <div class="register-form__action">
-                <app-btn
-                    [text]="'Enviar'"
-                    [color]="'primary'"
-                    [variant]="'raised'"
-                    [buttonType]="'submit'"
-                    [isDisabled]="registerForm.invalid || registerForm.pending"></app-btn>
-            </div>
-        </form>
+      <div class="register-form__action">
+        <app-btn
+          [text]="'Enviar'"
+          [color]="'primary'"
+          [variant]="'raised'"
+          [buttonType]="'submit'"
+          [isDisabled]="registerForm.invalid || registerForm.pending"
+        ></app-btn>
+      </div>
+    </form>
 
-        <div *ngIf="this.success" class="register-form__success">
-            <app-success [text]="'Sesión iniciada con éxito!'"></app-success>
-        </div>
+    <div *ngIf="this.success" class="register-form__success">
+      <app-success [text]="'Sesión iniciada con éxito!'"></app-success>
+    </div>
 
-        <div *ngIf="this.error" class="register-form__error">
-            <div class="register-form__error-content">
-                <h1>Ocurrió un error inesperado</h1>
-                <app-btn [text]="'Volver al inicio'" [color]="'error'" [variant]="'raised'" [routerLink]="'/'"></app-btn>
-            </div>
-        </div>
-    </app-auth>
+    <div *ngIf="this.error" class="register-form__error">
+      <div class="register-form__error-content">
+        <h1>Ocurrió un error inesperado</h1>
+        <app-btn
+          [text]="'Volver al inicio'"
+          [color]="'error'"
+          [variant]="'raised'"
+          [routerLink]="'/'"
+        ></app-btn>
+      </div>
+    </div>
+  </app-auth>
 </div>

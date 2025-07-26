@@ -1,21 +1,40 @@
-<div class="app-container marginTop user">
-    <h2 class="user__title">Bienvenido {{ this.user.username }}</h2>
-
-    <div class="user__actions">
-        <app-btn
-            [routerLink]="'/usuario/modificar-usuario'"
-            [text]="'Modificar Usuario'"
-            [color]="'secondary'"
-            [variant]="'raised'"></app-btn>
-
-        <app-btn [routerLink]="'/usuario/modificar-pass'" [text]="'Modificar contraseña'" [color]="'error'" [variant]="'raised'"></app-btn>
-
-        <app-btn [routerLink]="'/solicitar-auto'" [text]="'Solicitar auto'" [color]="'primary'" [variant]="'raised'"></app-btn>
+<div class="app-container marginTop user mb-16">
+  <div class="user__dashboard mt-12 pt-10 pb-12 pl-4 rounded-md">
+    <div class="user__dashboard-welcome flex-center p-4 bg-black rounded-md">
+      <h3 class="user__title">
+        Bienvenido
+        <span class="text-accent">
+          {{ this.user.username }}
+        </span>
+      </h3>
     </div>
+    <div class="user__dashboard-actions bg-black p-4 rounded-md flex-center flex-col p-1">
+      <app-btn
+        [routerLink]="'/usuario/modificar-usuario'"
+        [text]="'Modificar Usuario'"
+        [color]="'confirm'"
+        [variant]="'raised'"
+      ></app-btn>
 
-    <h2 class="user__subtitle">Información de todas las solicitudes :</h2>
+      <app-btn
+        [routerLink]="'/usuario/modificar-pass'"
+        [text]="'Modificar contraseña'"
+        [color]="'confirm'"
+        [variant]="'raised'"
+      ></app-btn>
 
-    <div class="user__table">
-        <app-table-rental [user]="this.user"></app-table-rental>
+      <app-btn
+        [routerLink]="'/solicitar-auto'"
+        [text]="'Solicitar auto'"
+        [color]="'primary'"
+        [variant]="'raised'"
+      ></app-btn>
     </div>
+  </div>
+
+  <h5 class="user__subtitle pl-2 mb-10">Información de todas las solicitudes :</h5>
+
+  <div class="user__table">
+    <app-table-rental [user]="this.user"></app-table-rental>
+  </div>
 </div>

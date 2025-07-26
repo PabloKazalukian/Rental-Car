@@ -21,6 +21,9 @@ import { FilterCarsComponent } from '../pages/cars/components/car-filter/filter-
 import { CarsComponent } from '../pages/cars/cars.component';
 import { TextLinkComponent } from './components/ui/text-link/text-link.component';
 import { CheckboxComponent } from './components/ui/checkbox/checkbox.component';
+import { TablePaginationComponent } from './components/ui/table-pagination/table-pagination.component';
+import { TableFilterComponent } from './components/ui/table-filter/table-filter.component';
+import { SelectComponent } from './components/ui/select/select.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { CheckboxComponent } from './components/ui/checkbox/checkbox.component';
         ShowCarComponent,
         ModalCarComponent,
         TextLinkComponent,
-        CheckboxComponent
+        CheckboxComponent,
+        TablePaginationComponent,
+        TableFilterComponent,
+        SelectComponent
     ],
     imports: [
         CommonModule,

@@ -1,0 +1,15 @@
+.mod-pass {
+  &__spinner {
+    height: 120px;
+    width: 120px;
+
+    &-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__form {
+    width: 100%;
+  }
+}

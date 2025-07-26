@@ -1,17 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator'
-import { Usuario } from 'src/app/core/models/user.interface';
+import { Usuario, PassDouble } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { FormControlsOf } from '../../../shared/utils/form-types.util';
+
+type ModifyPassType = FormControlsOf<PassDouble>
 
 @Component({
     selector: 'app-modify-pass',
     templateUrl: './modify-pass.component.html',
-    styleUrls: ['./modify-pass.component.css']
+    styleUrls: ['./modify-pass.component.scss']
 })
 
 export class ModifyPassComponent implements OnInit, OnDestroy {
@@ -19,7 +22,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
 
-    modifyPass!: UntypedFormGroup;
+    modifyPass!: FormGroup<ModifyPassType>;
     usuario!: Usuario;
     loading: boolean = true;
     success: boolean = false;
@@ -49,7 +52,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
     onSubmit(): void {
         if (this.usuario.sub !== undefined) {
             this.subscripcions.push(
-                this.userSvc.modifyPass(this.modifyPass.value.password1, this.usuario.sub).subscribe({
+                this.userSvc.modifyPass(this.modifyPass.get('password1')!.value, this.usuario.sub).subscribe({
                     next: (res) => {
                         this.success = true;
                         setTimeout(() => {
@@ -69,22 +72,28 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
         };
     };
 
-    initForm(): UntypedFormGroup {
+    initForm(): FormGroup<ModifyPassType> {
         //declarar las propiedas que tendran nuestro formulario
-        return this.fb.group({
-            password1: ['', [Validators.required, Validators.minLength(3)]],
-            password2: ['', [Validators.required, Validators.minLength(3)]],
+        return new FormGroup<ModifyPassType>({
+            password1: new FormControl('', {
+                nonNullable: true,
+                validators: [Validators.required, Validators.minLength(3)]
+            }),
+            password2: new FormControl('', {
+                nonNullable: true,
+                validators: [Validators.required, Validators.minLength(3)]
+            })
         }, {
-            validators: repeatPass.dateCorrect
-        })
+            validators: repeatPass.samePassword
+        });
     };
 
-    get password1Control(): UntypedFormControl {
-        return this.modifyPass.get('password1') as UntypedFormControl;
+    get password1Control(): FormControl<string> {
+        return this.modifyPass.get('password1') as FormControl<string>;
     }
 
-    get password2Control(): UntypedFormControl {
-        return this.modifyPass.get('password2') as UntypedFormControl;
+    get password2Control(): FormControl<string> {
+        return this.modifyPass.get('password2') as FormControl<string>;
     }
 
     ngOnDestroy(): void {

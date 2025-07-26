@@ -1,48 +1,39 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Email } from 'src/app/core/models/email.interface';
+import { ContactMessage } from 'src/app/core/models/email.interface';
 import { EmailService } from 'src/app/core/services/email.service';
-interface contactForm {
-    name: string,
-    select: string,
-    message: string,
-}
+import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+
+type ContactFormType = FormControlsOf<ContactMessage>;
 
 @Component({
     selector: 'app-form-contact',
     templateUrl: './form-contact.component.html',
     styleUrls: ['./form-contact.component.scss']
 })
+
 export class FormContactComponent implements OnInit, OnDestroy {
 
-    contactForm!: UntypedFormGroup;
+    contactForm!: FormGroup<ContactFormType>;
     success: boolean = false;
     error: boolean = false;
 
     private subscripcions: Subscription[] = [];
 
-    model: Email = {
-        name: '',
-        email: '',
-        message: ''
-    }
-
-    constructor(private readonly fb: UntypedFormBuilder, private emailSvc: EmailService) { }
+    constructor(private emailSvc: EmailService) { }
 
     ngOnInit(): void {
         this.contactForm = this.initForm();
 
     }
 
-    public onSubmit(form: Email): void {
-        // console.log('formolario validado,',form);
+    onSubmit(): void {
         this.subscripcions.push(
 
-            this.emailSvc.sendEmail(form).subscribe({
+            this.emailSvc.sendEmail(this.contactForm.getRawValue()).subscribe({
                 next: (res) => {
                     this.success = true
-                    // setTimeout( ()=> this.router.navigate(['login']),1700)
                 },
                 error: (res) => {
                     this.success = false
@@ -52,27 +43,25 @@ export class FormContactComponent implements OnInit, OnDestroy {
         )
     };
 
-    initForm(): UntypedFormGroup {
-        return this.fb.group({
-            name: ['', [Validators.required, Validators.minLength(3)]],
-            email: ['', [Validators.required, Validators.minLength(3)]],
-            message: ['', [Validators.required, Validators.minLength(3)]],
+    initForm(): FormGroup<ContactFormType> {
+        return new FormGroup<ContactFormType>({
+            name: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+            email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+            message: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
         });
     }
 
-    get nameControl(): UntypedFormControl {
-        return this.contactForm.get('name') as UntypedFormControl;
+    get nameControl(): FormControl<string> {
+        return this.contactForm.get('name') as FormControl<string>;
     }
 
-    get emailControl(): UntypedFormControl {
-        return this.contactForm.get('email') as UntypedFormControl;
+    get emailControl(): FormControl<string> {
+        return this.contactForm.get('email') as FormControl<string>;
     }
 
-    get messageControl(): UntypedFormControl {
-        return this.contactForm.get('message') as UntypedFormControl;
+    get messageControl(): FormControl<string> {
+        return this.contactForm.get('message') as FormControl<string>;
     }
-
-
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())

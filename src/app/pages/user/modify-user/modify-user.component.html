@@ -1,46 +1,61 @@
 <app-auth [imageBackground]="'assets/images/bugatti_optimized.jpg'">
-    <div class="mod-user">
-        <ng-container *ngIf="loading === true; else formModUser">
-            <div class="mod-car__spinner-container">
-                <app-loading class="mod-car__spinner" [color]="'accent'"></app-loading>
-            </div>
-        </ng-container>
+  <div class="mod-user">
+    <ng-container *ngIf="loading === true; else formModUser">
+      <div class="mod-user__spinner-container mt-20">
+        <app-loading class="mod-user__spinner" [color]="'accent'"></app-loading>
+      </div>
+    </ng-container>
 
-        <ng-template #formModUser>
-            <form *ngIf="this.success === false" class="mod-user__form" (ngSubmit)="onSubmit()" [formGroup]="modifyUser">
-                <div class="mod-user__title">
-                    <h2>Modifique su usuario</h2>
-                </div>
-
-                <div class="mod-user__form-field">
-                    <app-input [label]="'Email: '" [type]="'text'" [placeholder]="'pat@example.com'" [control]="emailControl"></app-input>
-                </div>
-
-                <div class="mod-user__form-field">
-                    <app-input
-                        [label]="'Usuario:'"
-                        [type]="'text'"
-                        [placeholder]="'Ingrese su nuevo usuario'"
-                        [control]="usernameControl"></app-input>
-                </div>
-
-                <div class="mod-user__form-actions">
-                    <app-btn
-                        [text]="'Enviar'"
-                        [color]="'primary'"
-                        [variant]="'raised'"
-                        [buttonType]="'submit'"
-                        [isDisabled]="modifyUser.invalid || modifyUser.pending"></app-btn>
-                </div>
-            </form>
-        </ng-template>
-
-        <div *ngIf="this.success === true && this.loading === false" class="mod-user__success">
-            <app-success [text]="'Sesión iniciada con exito!'"></app-success>
+    <ng-template #formModUser>
+      <form
+        *ngIf="this.success === false"
+        class="mod-user__form"
+        (ngSubmit)="onSubmit()"
+        [formGroup]="modifyUser"
+      >
+        <div class="mod-user__form-title mb-8">
+          <h3>Modificar usuario</h3>
         </div>
 
-        <div *ngIf="this.error === true && this.success == false && this.loading === false" class="mod-user__error">
-            <app-message-error [messageError]="'Hubo un problema.'"></app-message-error>
+        <div class="mod-user__form-field mb-4">
+          <app-input
+            [label]="'Email: '"
+            [type]="'email'"
+            [placeholder]="'pat@example.com'"
+            [control]="emailControl"
+          ></app-input>
         </div>
+
+        <div class="mod-user__form-field mb-12">
+          <app-input
+            [label]="'Usuario:'"
+            [type]="'text'"
+            [placeholder]="'Ingrese su nuevo usuario'"
+            [control]="usernameControl"
+          ></app-input>
+        </div>
+
+        <div class="mod-user__form-actions mb-4">
+          <app-btn
+            [text]="'Modificar Datos'"
+            [color]="'primary'"
+            [variant]="'raised'"
+            [buttonType]="'submit'"
+            [isDisabled]="modifyUser.invalid || modifyUser.pending"
+          ></app-btn>
+        </div>
+      </form>
+    </ng-template>
+
+    <div *ngIf="this.success === true && this.loading === false" class="mod-user__success">
+      <app-success [text]="'Sesión iniciada con exito!'"></app-success>
     </div>
+
+    <div
+      *ngIf="this.error === true && this.success == false && this.loading === false"
+      class="mod-user__error"
+    >
+      <app-message-error [messageError]="'Hubo un problema.'"></app-message-error>
+    </div>
+  </div>
 </app-auth>

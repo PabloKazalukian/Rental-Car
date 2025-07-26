@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, of, throwError } from 'rxjs';
 import { catchError, switchMap, take } from 'rxjs/operators';
-import { User, Usuario } from '../models/user.interface';
+import { ModifyUser, User, Usuario } from '../models/user.interface';
 import { Response } from '../models/response.interface';
 import { HttpErrorHandlerService, ParsedHttpError } from './http-error-handler.service';
 import { AuthService } from './auth/auth.service';
@@ -12,10 +12,6 @@ interface newPass {
     newPass: string;
 }
 
-interface userSend {
-    username: string;
-    email: string;
-}
 
 @Injectable({
     providedIn: 'root',
@@ -39,8 +35,9 @@ export class UserService {
         );
     }
 
-    modifyUser(user: userSend, idUser: string): Observable<boolean | void> {
-        return this.http.put<userSend>(`${this.API}/${idUser}`, { username: user.username, email: user.email }).pipe(
+    modifyUser(user: ModifyUser, idUser: string): Observable<boolean | void> {
+        console.log(user);
+        return this.http.put<ModifyUser>(`${this.API}/${idUser}`, { username: user.username, email: user.email }).pipe(
             take(1),
             switchMap((user) => {
                 console.log('que pasa aca', user);

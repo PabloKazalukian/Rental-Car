@@ -2,10 +2,15 @@
 
 // Fuentes
 $fonts: (
-  title: ('Lora', serif),
-  body: ('Inter', sans-serif)
+  title: (
+    'Lora',
+    serif,
+  ),
+  body: (
+    'Inter',
+    sans-serif,
+  ),
 );
-
 
 // Containers (breakpoints o max-widths)
 $breakpoints: (
@@ -13,7 +18,7 @@ $breakpoints: (
   md: 768px,
   lg: 1024px,
   xl: 1280px,
-  x2l: 1600px
+  x2l: 1600px,
 );
 
 // Spacing (margin, padding)
@@ -31,9 +36,10 @@ $spacing: (
   13: 3.5rem,
   14: 4rem,
   15: 5rem,
-  16: 6rem
+  16: 6rem,
+  18: 8rem,
+  20: 10rem,
 );
-
 
 // Font sizes
 $font-sizes: (
@@ -46,7 +52,7 @@ $font-sizes: (
   x2l: 2rem,
   x3l: 2.5rem,
   x4l: 3rem,
-  x5l: 3.75rem
+  x5l: 3.75rem,
 );
 
 // Border radius
@@ -63,7 +69,7 @@ $colors: (
   text: #ffffff,
   muted: #b0b0b0,
   muted-hover: #e0e0e0,
-  black:#0f0f0f
+  'black': #0f0f0f,
 );
 
 // Colores hover (opacos)
@@ -74,7 +80,7 @@ $colors-hover: (
   accent: #ff9800,
   success: #388e3c,
   error: #99171f,
-  text: #ffffff05
+  text: #ffffff05,
 );
 
 // Colores hover faint
@@ -84,15 +90,15 @@ $colors-hover-faint: (
   secondary: rgba(58, 110, 191, 0.05),
   accent: rgba(255, 183, 77, 0.05),
   success: rgba(76, 175, 80, 0.05),
-  error: rgba(204, 30, 44, 0.05)
+  error: rgba(204, 30, 44, 0.05),
 );
 
 // Fondos y superficies
 $bg: (
-  white: #ffffff,
+  'white': #ffffff,
   surface: #393939,
   background: #1e1e1e,
   background-2: #121212bb,
-  black: #0f0f0f,
-  black-faint: #0f0f0f94
+  'black': #0f0f0f,
+  black-faint: #0f0f0f94,
 );

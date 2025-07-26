@@ -2,24 +2,20 @@
 // ✅ styles.scss (punto de entrada global)
 // @use './variables';
 @use 'theme';
-@use 'typography';
+@use 'base/typography';
 
-@use 'base';
-@use 'utilities';
-@use 'reset.scss';
+@use 'base/base';
+@use 'utilities/utilities';
+@use 'base/reset.scss';
 
 // @use 'base/typography'; // ✅
 
-
-
 // Variables y temas
-@use 'variables' as *;
+@use 'theme/variables' as *;
 
 // Utilidades tipo Tailwind hechas a mano
-@use 'helpers';
+@use 'utilities/helpers';
 
 // Mixins si los usás (no generan CSS directamente)
 
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@200;300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-
-

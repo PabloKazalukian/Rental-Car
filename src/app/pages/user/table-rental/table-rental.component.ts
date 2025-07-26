@@ -9,7 +9,7 @@ import { formatDateToLocale } from 'src/app/shared/validators/date.validator';
 @Component({
     selector: 'app-table-rental',
     templateUrl: './table-rental.component.html',
-    styleUrls: ['./table-rental.component.css']
+    styleUrls: ['./table-rental.component.scss']
 })
 
 export class TableRentalComponent implements OnInit {

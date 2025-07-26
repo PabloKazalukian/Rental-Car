@@ -6,13 +6,11 @@ import { CredentialsService } from 'src/app/core/services/auth/credential.servic
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { environment } from 'src/environments/environment';
 
-declare const google: any;
-
 interface LoginForm {
     email: FormControl<string>;
     password: FormControl<string>;
     remember: FormControl<boolean>;
-}
+};
 
 
 @Component({
