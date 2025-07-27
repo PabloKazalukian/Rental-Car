@@ -1,64 +1,42 @@
-<div class="table-wrapper">
-  <div *ngIf="loading; else content" class="loading-container">
-    <div class="loading">
-      <app-loading></app-loading>
-    </div>
-  </div>
+<div class="table-wrapper relative">
+  <!-- <div class="table-controls">
+      <div class="table-controls">
+        <app-table-pagination
+          [data]="data"
+          [pageSizeOptions]="pageSizeOptions"
+          (pageData)="onPageData($event)"
+        ></app-table-pagination>
+      </div>
+    </div> -->
 
-  <ng-template #content>
-    <div class="table-controls">
-      <!-- <input [type]="'text'" [placeholder]="'Buscar'" /> -->
-      <app-input
-        [label]="'Ingrese un usuario'"
-        [type]="'text'"
-        [placeholder]="'Filtro de solicitudes'"
-        [control]="filterControl"
-        (input)="applyFilter($event)"
-      ></app-input>
-      <select (change)="onPageSizeChange($event)">
-        <option *ngFor="let opt of pageSizeOptions" [value]="opt">{{ opt }}</option>
-      </select>
-    </div>
-
-    <table class="styled-table">
-      <thead *ngIf="paginatedData.length > 0">
-        <tr>
-          <th *ngFor="let col of columns">{{ col.label }}</th>
-          <th *ngIf="actionsTemplate">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of paginatedData">
-          <td *ngFor="let col of columns">
-            <ng-container *ngIf="col.link; else plainText">
-              <a [routerLink]="['/solicitar-auto']" [queryParams]="getQueryParams(col, row)">
-                {{ row[col.key] }}
-              </a>
-            </ng-container>
-            <ng-template #plainText>
+  <table *ngIf="data !== null" class="styled-table">
+    <thead *ngIf="data.length > 0">
+      <tr>
+        <th *ngFor="let col of columns">{{ col.label }}</th>
+        <th *ngIf="actionsTemplate">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td *ngFor="let col of columns">
+          <ng-container *ngIf="col.link; else plainText">
+            <a [routerLink]="['/solicitar-auto']" [queryParams]="getQueryParams(col, row)">
               {{ row[col.key] }}
-            </ng-template>
-          </td>
-          <td *ngIf="actionsTemplate">
-            <ng-container
-              *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"
-            ></ng-container>
-          </td>
-        </tr>
-        <tr *ngIf="paginatedData.length === 0">
-          <td [attr.colspan]="columns.length + (actionsTemplate ? 1 : 0)">No hay datos</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="pagination">
-      <button
-        *ngFor="let page of totalPagesArray; let i = index"
-        (click)="goToPage(i)"
-        [class.active]="i === currentPage"
-      >
-        {{ i + 1 }}
-      </button>
-    </div>
-  </ng-template>
+            </a>
+          </ng-container>
+          <ng-template #plainText>
+            {{ row[col.key] }}
+          </ng-template>
+        </td>
+        <td *ngIf="actionsTemplate">
+          <ng-container
+            *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"
+          ></ng-container>
+        </td>
+      </tr>
+      <tr *ngIf="data.length === 0">
+        <td [attr.colspan]="columns.length + (actionsTemplate ? 1 : 0)">No hay datos</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

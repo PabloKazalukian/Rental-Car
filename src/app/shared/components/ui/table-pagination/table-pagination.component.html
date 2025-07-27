@@ -1,1 +1,12 @@
-<p>table-pagination works!</p>
+<div class="pagination-container">
+  <div class="pagination-buttons">
+    <button *ngFor="let p of pages" [class.active]="p === currentPage" (click)="goToPage(p)">
+      {{ p + 1 }}
+    </button>
+  </div>
+  <select (change)="onPageSizeChange($event)">
+    <option *ngFor="let size of pageSizeOptions" [value]="size">
+      {{ size }}
+    </option>
+  </select>
+</div>

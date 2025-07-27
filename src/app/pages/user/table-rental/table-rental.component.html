@@ -1,10 +1,28 @@
-<app-table
-  [data]="dataSource"
-  [columns]="columns"
-  [loading]="show"
-  [actionsTemplate]="actionButtons"
-></app-table>
+<div *ngIf="show; else content" class="loading flex-center bg-background mb-2 rounded-md">
+  <div class="loading-container">
+    <app-loading></app-loading>
+  </div>
+</div>
 
+<ng-template #content>
+  <div class="table-controls">
+    <app-table-filter
+      [label]="'Buscar usuario'"
+      [placeholder]="'Filtro de solicitudes...'"
+      [data]="rawData"
+      [columns]="columns"
+      (filteredData)="onFilteredData($event)"
+    ></app-table-filter>
+
+    <app-table-pagination
+      [data]="filteredData"
+      [pageSizeOptions]="pageSizeOptions"
+      (pageData)="onPageData($event)"
+    ></app-table-pagination>
+  </div>
+
+  <app-table [data]="pagedData" [columns]="columns" [actionsTemplate]="actionButtons"></app-table>
+</ng-template>
 <ng-template #actionButtons let-row>
   <div class="actions flex-center">
     <app-btn

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,8 @@ import { FormControl } from '@angular/forms';
     templateUrl: './input.component.html',
     styleUrls: ['./input.component.scss']
 })
-export class FormInputComponent implements OnInit {
+export class FormInputComponent {
+
     @Input() control!: FormControl<string | null>;
     @Input() label!: string;
     @Input() type: 'text' | 'email' | 'password' = 'text';
@@ -14,10 +15,6 @@ export class FormInputComponent implements OnInit {
     @Input() showTogglePassword: boolean = false;
 
     hidePassword: boolean = true;
-
-    constructor() { }
-
-    ngOnInit(): void { }
 
     get showError(): boolean {
         return this.control?.touched && this.control?.invalid;

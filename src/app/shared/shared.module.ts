@@ -80,7 +80,10 @@ import { SelectComponent } from './components/ui/select/select.component';
         ShowCarComponent,
         TextLinkComponent,
         ModalCarComponent,
-        CheckboxComponent
+        CheckboxComponent,
+        TablePaginationComponent,
+        TableFilterComponent,
+        SelectComponent
     ]
 })
 export class SharedModule { }

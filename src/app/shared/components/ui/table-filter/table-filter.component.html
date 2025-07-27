@@ -1,1 +1,9 @@
-<p>table-filter works!</p>
+<div class="filter-container">
+  <app-input
+    [label]="'Ingrese un usuario'"
+    [type]="'text'"
+    [placeholder]="'Filtro de solicitudes'"
+    [control]="filterControl"
+    (input)="applyFilter($event)"
+  ></app-input>
+</div>

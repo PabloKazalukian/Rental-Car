@@ -17,31 +17,19 @@ export class UserComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
     user!: Usuario
     user$ = this.authSvc._user$;
-    show!: boolean
     private data = new BehaviorSubject<RequestReceived[]>([])
 
     requestAll!: RequestReceived[]
     dataSource!: RequestReceived[];
     dataSourcePast!: RequestReceived[];
+
     constructor(private authSvc: AuthService, private requestSvc: RentalService) { }
 
     ngOnInit(): void {
         this.subscripcions.push(
-            this.user$.pipe(
-                tap(user => this.user = user),
-                switchMap(user => user.sub
-                    ? this.requestSvc.getRequestByUserId(user.sub)
-                    : of([])
-                )
-            ).subscribe({
+            this.user$.subscribe({
                 next: (res) => {
-                    this.requestAll = res;
-                    this.data.next(this.requestAll);
-                    this.dataSource = this.requestAll;
-
-                    setTimeout(() => {
-                        this.show = false;
-                    }, 1700);
+                    this.user = res;
                 },
                 error: (err: any) => {
                     console.error(err);
