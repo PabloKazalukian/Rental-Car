@@ -1,1 +1,13 @@
-<p>select works!</p>
+<div>
+  <label class="form-input__label">{{ label }}</label>
+  <select
+    class="btn pl-4 pr-4 rounded-md flex-center"
+    [formControl]="control"
+    [disabled]="isDisabled"
+  >
+    <option value="" disabled selected hidden>{{ text }}</option>
+    <option *ngFor="let opt of options" [value]="opt">
+      {{ opt }}
+    </option>
+  </select>
+</div>

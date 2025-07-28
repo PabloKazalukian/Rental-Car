@@ -1,14 +1,22 @@
-import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+
+interface FilterSearch { option: string };
+type selectFormType = FormControlsOf<FilterSearch>;
 
 @Component({
     selector: 'app-table-pagination',
     templateUrl: './table-pagination.component.html',
     styleUrls: ['./table-pagination.component.scss']
 })
-export class TablePaginationComponent implements OnChanges {
+export class TablePaginationComponent implements OnChanges, OnInit {
     @Input() data: any[] = [];
     @Input() pageSizeOptions: number[] = [5, 10, 15];
     @Output() pageData = new EventEmitter<any[]>();
+    @Output() pageSizeChange = new EventEmitter<any>();
+
+    selectForm!: FormGroup<selectFormType>;
 
     currentPage = 0;
     pageSize = 5;
@@ -20,6 +28,26 @@ export class TablePaginationComponent implements OnChanges {
             this.updatePages();
             this.emitPageData();
         }
+    }
+
+    ngOnInit(): void {
+        this.selectForm = this.initForm();
+
+        this.selectControl.valueChanges.subscribe((newValue) => {
+            // Por ejemplo, si el valor es un número y lo usás como nuevo pageSize:
+            this.pageSize = Number(newValue);
+            this.pageSizeChange.emit(this.pageSize);
+
+            this.currentPage = 0;
+            this.updatePages();
+            this.emitPageData();
+        });
+    }
+
+    initForm(): FormGroup<selectFormType> {
+        return new FormGroup<selectFormType>({
+            option: new FormControl('', { nonNullable: true })
+        })
     }
 
     updatePages() {
@@ -35,6 +63,7 @@ export class TablePaginationComponent implements OnChanges {
 
     onPageSizeChange(event: Event) {
         this.pageSize = Number((event.target as HTMLSelectElement).value);
+        this.pageSizeChange.emit(this.pageSize);
         this.currentPage = 0;
         this.updatePages();
         this.emitPageData();
@@ -43,6 +72,10 @@ export class TablePaginationComponent implements OnChanges {
     goToPage(page: number) {
         this.currentPage = page;
         this.emitPageData();
+    }
+
+    get selectControl(): FormControl<string> {
+        return this.selectForm.get('option') as FormControl<string>;
     }
 }
 

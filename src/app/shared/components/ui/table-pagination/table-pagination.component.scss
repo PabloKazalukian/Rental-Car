@@ -1,31 +1,19 @@
 .pagination {
   &-container {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-end;
     gap: 16px;
   }
-
-  &-container select {
-    padding: 6px 8px;
-    font-size: 14px;
-    border: 1px solid var(--color-surface);
-    border-radius: 4px;
-    background-color: var(--color-background);
-    color: var(--color-text);
-  }
-
   &-buttons {
     display: flex;
   }
 
   &-buttons button {
     background-color: transparent;
-    border: 1px solid var(--color-secondary);
-    color: var(--color-secondary);
+    border: 1px solid var(--color-surface);
     padding: 8px 12px;
     margin: 0 4px;
-    border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
     transition:
@@ -35,7 +23,7 @@
 
   &-buttons button:hover,
   &-buttons button.active {
-    background-color: var(--color-secondary);
+    background-color: var(--color-surface);
     color: #ffffff;
     font-weight: bold;
   }

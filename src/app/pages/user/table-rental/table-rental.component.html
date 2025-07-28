@@ -5,9 +5,9 @@
 </div>
 
 <ng-template #content>
-  <div class="table-controls">
+  <div class="table-controls bg-black rounded-md pl-4 pr-4 pt-4">
     <app-table-filter
-      [label]="'Buscar usuario'"
+      [label]="'Buscar:'"
       [placeholder]="'Filtro de solicitudes...'"
       [data]="rawData"
       [columns]="columns"
@@ -18,11 +18,18 @@
       [data]="filteredData"
       [pageSizeOptions]="pageSizeOptions"
       (pageData)="onPageData($event)"
+      (pageSizeChange)="onPageSizeChanged($event)"
     ></app-table-pagination>
   </div>
 
-  <app-table [data]="pagedData" [columns]="columns" [actionsTemplate]="actionButtons"></app-table>
+  <app-table
+    [data]="pagedData"
+    [columns]="columns"
+    [actionsTemplate]="actionButtons"
+    (sendOrder)="onOrderBy($event)"
+  ></app-table>
 </ng-template>
+
 <ng-template #actionButtons let-row>
   <div class="actions flex-center">
     <app-btn

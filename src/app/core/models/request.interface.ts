@@ -31,3 +31,13 @@ export interface RequestReceived {
     price: number,
     state: string
 }
+
+export interface RequestTableRow {
+    id: string;
+    initialDate: string;
+    finalDate: string;
+    brand: string;
+    model: string;
+    amount: number;
+    state: string; // Para los botones condicionales
+};

@@ -1,22 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-btn',
     templateUrl: './btn.component.html',
-    styleUrls: ['./btn.component.css']
+    styleUrls: ['./btn.component.scss']
 })
-export class BtnComponent implements OnInit {
+export class BtnComponent {
 
     @Input() text: string = '';
     @Input() isDisabled: boolean = false;
-    @Input() variant: 'basic' | 'raised' | 'stroked' | 'outline' |'ghost'  = 'basic';
-    @Input() color: 'primary' | 'secondary'| 'surface' | 'success' | 'error' | 'text' | 'confirm' = 'primary';
+    @Input() variant: 'basic' | 'raised' | 'stroked' | 'outline' | 'ghost' = 'basic';
+    @Input() color: 'primary' | 'secondary' | 'surface' | 'success' | 'error' | 'text' | 'confirm' = 'primary';
     @Input() routerLink?: string = '';
     @Input() buttonType: 'button' | 'submit' | 'reset' = 'button';
-
-    constructor() { }
-
-    ngOnInit(): void {
-    }
 
 }

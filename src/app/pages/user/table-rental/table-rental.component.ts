@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { RequestReceived } from 'src/app/core/models/request.interface';
-import { delay, Observable, of, Subscription, switchMap, tap } from 'rxjs';
+import { delay, Observable, of, Subscription, switchMap } from 'rxjs';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { formatDateToLocale } from 'src/app/shared/validators/date.validator';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { RequestTableRow } from 'src/app/core/models/request.interface';
 
 @Component({
     selector: 'app-table-rental',
@@ -35,7 +35,6 @@ export class TableRentalComponent implements OnInit {
     ];
     pageSizeOptions: number[] = [5, 10, 15, 20];
     request$!: Observable<RequestTableRow[]>;
-
 
     constructor(private requestSvc: RentalService, private authSvc: AuthService, private cdRef: ChangeDetectorRef) { }
 
@@ -84,18 +83,32 @@ export class TableRentalComponent implements OnInit {
 
     updatePagination(data: RequestTableRow[]) {
         this.pagedData = data.slice(0, this.pageSize);
+    };
+
+    onPageSizeChanged(newSize: number) {
+        this.pageSize = newSize;
     }
 
 
     onFilteredData(filtered: RequestTableRow[]) {
         this.filteredData = filtered;
         this.updatePagination(filtered); // page 0
-    }
+    };
 
     onPageData(pageSlice: RequestTableRow[]) {
         this.pagedData = pageSlice;
-    }
+    };
 
+    onOrderBy(by: { column: 'initialDate' | 'finalDate' | 'brand' | 'model' | 'amount', isAscending: boolean }) {
+        const result = this.filteredData.sort((a, b) => {
+            const { column } = by;
+            if (a[column] > b[column]) return by.isAscending ? 1 : -1;
+            if (a[column] < b[column]) return by.isAscending ? -1 : 1;
+            return 0;
+        });
+
+        this.onFilteredData(result)
+    }
 
     cancelRequest(element: any): void {
 
@@ -131,12 +144,3 @@ export class TableRentalComponent implements OnInit {
     };
 }
 
-export interface RequestTableRow {
-    id: string;
-    initialDate: string;
-    finalDate: string;
-    brand: string;
-    model: string;
-    amount: number;
-    state: string; // Para los botones condicionales
-}

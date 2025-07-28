@@ -1,0 +1,97 @@
+@use 'theme/variables' as *;
+
+/* ---------------- BASE ---------------- */
+.btn {
+  width: 100%;
+  height: 36px;
+  border: none;
+  font-family: nth(map-get($fonts, body), 1);
+  font-size: map-get($font-sizes, sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: map-get($colors, text);
+
+  &:disabled {
+    background-color: map-get($bg, surface);
+    color: map-get($colors, muted);
+    cursor: not-allowed;
+    border: none;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px transparent;
+  }
+}
+
+/* ---------------- VARIANTS ---------------- */
+.btn.basic {
+  background-color: transparent;
+  border: none;
+}
+
+.btn.raised {
+  color: map-get($colors, text);
+  box-shadow:
+    0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.btn.outline {
+  background-color: transparent;
+  border: 2px solid;
+}
+
+.btn.ghost {
+  background-color: transparent;
+  border: none;
+  color: map-get($colors, muted);
+  font-weight: 400;
+}
+
+.btn.stroked {
+  background-color: transparent;
+  border: 1px solid map-get($bg, surface);
+}
+
+/* ---------------- COLORES ---------------- */
+@each $name, $value in $colors {
+  .btn.#{$name} {
+    color: $value;
+  }
+
+  .btn.raised.#{$name} {
+    background-color: $value;
+    color: map-get($colors, text);
+  }
+
+  .btn.outline.#{$name} {
+    border-color: $value;
+  }
+
+  .btn.stroked.#{$name} {
+    color: $value;
+  }
+}
+
+/* ---------------- HOVERS ---------------- */
+@each $name, $value in $colors-hover {
+  .btn.basic.#{$name}:hover,
+  .btn.outline.#{$name}:hover,
+  .btn.raised.#{$name}:hover {
+    background-color: $value;
+    color: map-get($colors, text);
+  }
+}
+
+@each $name, $value in $colors-hover-faint {
+  .btn.stroked.#{$name}:hover {
+    background-color: $value;
+  }
+}
+
+.btn.ghost:hover {
+  background-color: map-get($bg, black-faint);
+  color: map-get($colors, text);
+}

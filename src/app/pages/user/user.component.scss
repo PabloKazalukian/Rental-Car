@@ -2,7 +2,6 @@
 
 .user {
   min-height: 70vh;
-  box-sizing: content-box;
 
   &__dashboard {
     display: grid;
@@ -29,11 +28,5 @@
     width: 100%;
     overflow-x: auto; /* solo aparece la barra si se pasa el contenido */
     overflow-y: hidden;
-  }
-
-  @include m.media-up(md) {
-    & {
-      padding: 0;
-    }
   }
 }

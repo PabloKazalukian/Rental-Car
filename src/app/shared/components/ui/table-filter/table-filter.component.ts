@@ -13,6 +13,7 @@ type FilterRequestType = FormControlsOf<FilterSearch>;
     styleUrls: ['./table-filter.component.scss']
 })
 export class TableFilterComponent implements OnInit {
+
     @Input() label: string = '';
     @Input() placeholder: string = '';
     @Input() data: any[] = [];
@@ -55,24 +56,6 @@ export class TableFilterComponent implements OnInit {
             this.filteredData.emit(result);
         }
     }
-
-    // private applyFilter(value: string): void {
-    //     console.log(value)
-    //     const search = value?.trim().toLowerCase() || '';
-    //     if (!search) {
-    //         this.filteredData.emit(this.data);
-    //         return;
-    //     }
-
-    //     const result = this.data.filter(row =>
-    //         this.columns.some(col =>
-    //             String(this.getValue(row, col.key)).toLowerCase().includes(search)
-    //         )
-    //     );
-
-    //     this.filteredData.emit(result);
-    // }
-
 
     get filterControl(): FormControl<string> {
         return this.filterRequest.get('search') as FormControl<string>;

@@ -1,18 +1,12 @@
 <div class="table-wrapper relative">
-  <!-- <div class="table-controls">
-      <div class="table-controls">
-        <app-table-pagination
-          [data]="data"
-          [pageSizeOptions]="pageSizeOptions"
-          (pageData)="onPageData($event)"
-        ></app-table-pagination>
-      </div>
-    </div> -->
-
   <table *ngIf="data !== null" class="styled-table">
     <thead *ngIf="data.length > 0">
       <tr>
-        <th *ngFor="let col of columns">{{ col.label }}</th>
+        <th *ngFor="let col of columns">
+          <button (click)="orderBy(col.key)">
+            {{ col.label }}
+          </button>
+        </th>
         <th *ngIf="actionsTemplate">Acciones</th>
       </tr>
     </thead>

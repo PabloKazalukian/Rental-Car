@@ -1,6 +1,18 @@
-<a *ngIf="routerLink && !isDisabled; else btn" class="btn" [ngClass]="[color, variant]" [routerLink]="routerLink">
-    {{ text }}
+<a
+  *ngIf="routerLink && !isDisabled; else btn"
+  class="btn pl-4 pr-4 rounded-md flex-center"
+  [ngClass]="[color, variant]"
+  [routerLink]="routerLink"
+>
+  {{ text }}
 </a>
 <ng-template #btn>
-    <button class="btn" [ngClass]="[variant, color]" [type]="buttonType" [disabled]="isDisabled">{{ text }}</button>
+  <button
+    class="btn pl-4 pr-4 rounded-md flex-center"
+    [ngClass]="[variant, color]"
+    [type]="buttonType"
+    [disabled]="isDisabled"
+  >
+    {{ text }}
+  </button>
 </ng-template>
