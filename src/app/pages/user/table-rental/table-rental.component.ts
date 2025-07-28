@@ -17,6 +17,7 @@ export class TableRentalComponent implements OnInit {
 
     user$ = this.authSvc._user$;
     show!: boolean
+    isEmpty: boolean = false;
     displayedColumns: string[] = ['initial_date', 'final_date', 'brand', 'model', 'amount', 'modify'];
     columns = [
         { key: 'initialDate', label: 'Fecha Inicial' },
@@ -57,6 +58,7 @@ export class TableRentalComponent implements OnInit {
                 )
             ).subscribe({
                 next: (res) => {
+                    console.log(res);
                     const requestTable: RequestTableRow[] = res.map((r): RequestTableRow => ({
                         id: r.id,
                         initialDate: formatDateToLocale(r.initialDate),
@@ -75,7 +77,10 @@ export class TableRentalComponent implements OnInit {
 
                 },
                 error: (err: any) => {
-                    console.error(err);
+                    console.error('yo me equivokque', err);
+                    this.show = false;
+                    this.isEmpty = true;
+
                 }
             })
         )

@@ -5,7 +5,7 @@
 </div>
 
 <ng-template #content>
-  <div class="table-controls bg-black rounded-md pl-4 pr-4 pt-4">
+  <div *ngIf="!isEmpty" class="table-controls bg-black rounded-md pl-4 pr-4 pt-4">
     <app-table-filter
       [label]="'Buscar:'"
       [placeholder]="'Filtro de solicitudes...'"
