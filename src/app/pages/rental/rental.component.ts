@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { filter, Subscription, switchMap, take, tap } from 'rxjs';
+import { delay, filter, Subscription, switchMap, take, tap } from 'rxjs';
 import { CarService } from 'src/app/core/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
 import { LoginService } from 'src/app/core/services/auth/login.service';
@@ -36,6 +36,7 @@ export class RentalComponent implements OnInit, OnDestroy {
             take(1),
             filter(user => !!user),
             tap(user => { this.idUser = user.sub; this.user = user }),
+            delay(2000)
         ).subscribe();
 
 

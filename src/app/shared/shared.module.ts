@@ -24,6 +24,7 @@ import { CheckboxComponent } from './components/ui/checkbox/checkbox.component';
 import { TablePaginationComponent } from './components/ui/table-pagination/table-pagination.component';
 import { TableFilterComponent } from './components/ui/table-filter/table-filter.component';
 import { SelectComponent } from './components/ui/select/select.component';
+import { SkeletonComponent } from './components/ui/skeleton/skeleton.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { SelectComponent } from './components/ui/select/select.component';
         CheckboxComponent,
         TablePaginationComponent,
         TableFilterComponent,
-        SelectComponent
+        SelectComponent,
+        SkeletonComponent
     ],
     imports: [
         CommonModule,
@@ -83,7 +85,8 @@ import { SelectComponent } from './components/ui/select/select.component';
         CheckboxComponent,
         TablePaginationComponent,
         TableFilterComponent,
-        SelectComponent
+        SelectComponent,
+        SkeletonComponent
     ]
 })
 export class SharedModule { }

@@ -1,12 +1,20 @@
 <div class="app-container marginTop rental mb-16" color="primary">
-    <div class="rental__container">
-        <div class="rental__stepper mt-12">
-            <app-stepper [steps]="['Seleccionar auto', 'Elegir fechas', 'Confirmación']" [currentStep]="step"></app-stepper>
-        </div>
-
-        <app-form-car (stepChanged)="step = $event" [idCar]="idCar" [cars]="cars" [user]="user"></app-form-car>
-        <div *ngIf="cars" class="rental__card flex-center flex-col">
-            <app-card-car [car]="cars"></app-card-car>
-        </div>
+  <div class="rental__container">
+    <div class="rental__stepper mt-12">
+      <app-stepper
+        [steps]="['Seleccionar auto', 'Elegir fechas', 'Confirmación']"
+        [currentStep]="step"
+      ></app-stepper>
     </div>
+
+    <app-form-car
+      (stepChanged)="step = $event"
+      [idCar]="idCar"
+      [cars]="cars"
+      [user]="user"
+    ></app-form-car>
+    <div *ngIf="cars" class="rental__card flex-center flex-col">
+      <app-card-car [car]="cars"></app-card-car>
+    </div>
+  </div>
 </div>
