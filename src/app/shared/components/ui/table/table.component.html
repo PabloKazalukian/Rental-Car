@@ -3,13 +3,42 @@
     <thead *ngIf="data.length > 0">
       <tr>
         <th *ngFor="let col of columns">
-          <button (click)="orderBy(col.key)">
-            {{ col.label }}
+          <button
+            (click)="orderBy(col.key)"
+            class="sort-button"
+            [ngClass]="{ 'active-sort': isColumnSorted(col.key) }"
+          >
+            <span class="label">{{ col.label }}</span>
+
+            <span class="arrow-group">
+              <svg
+                class="arrow-icon up"
+                viewBox="0 0 24 24"
+                [ngClass]="{
+                  active: isColumnSorted(col.key) && isAscending,
+                  inactive: !isColumnSorted(col.key) || !isAscending,
+                }"
+              >
+                <path d="M7 14l5-5 5 5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+
+              <svg
+                class="arrow-icon down"
+                viewBox="0 0 24 24"
+                [ngClass]="{
+                  active: isColumnSorted(col.key) && isAscending === false,
+                  inactive: !isColumnSorted(col.key) || isAscending === true,
+                }"
+              >
+                <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
           </button>
         </th>
         <th *ngIf="actionsTemplate">Acciones</th>
       </tr>
     </thead>
+
     <tbody>
       <tr *ngFor="let row of data">
         <td *ngFor="let col of columns">

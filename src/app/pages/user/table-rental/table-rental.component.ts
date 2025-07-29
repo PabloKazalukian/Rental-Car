@@ -4,6 +4,7 @@ import { RentalService } from 'src/app/core/services/rental.service';
 import { formatDateToLocale } from 'src/app/shared/validators/date.validator';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RequestTableRow } from 'src/app/core/models/request.interface';
+import { on } from '@ngrx/store';
 
 @Component({
     selector: 'app-table-rental',
@@ -58,7 +59,6 @@ export class TableRentalComponent implements OnInit {
                 )
             ).subscribe({
                 next: (res) => {
-                    console.log(res);
                     const requestTable: RequestTableRow[] = res.map((r): RequestTableRow => ({
                         id: r.id,
                         initialDate: formatDateToLocale(r.initialDate),
@@ -92,8 +92,7 @@ export class TableRentalComponent implements OnInit {
 
     onPageSizeChanged(newSize: number) {
         this.pageSize = newSize;
-    }
-
+    };
 
     onFilteredData(filtered: RequestTableRow[]) {
         this.filteredData = filtered;
@@ -113,7 +112,23 @@ export class TableRentalComponent implements OnInit {
         });
 
         this.onFilteredData(result)
+    };
+
+    onFilterStatus(state: string | null) {
+        if (!this.rawData) return;
+
+        if (state === '!can') {
+            this.filteredData = this.rawData.filter(e => e.state !== 'can');
+        } else if (state !== '') {
+            this.filteredData = this.rawData.filter(e => e.state === state);
+        } else if (state === '') {
+            console.log(state)
+            this.filteredData = this.rawData;
+        }
+
+        this.cdRef.detectChanges();
     }
+
 
     cancelRequest(element: any): void {
 
@@ -124,7 +139,6 @@ export class TableRentalComponent implements OnInit {
                 },
                 error: (res) => {
                     console.log(res)
-                    // this.login=false
                 },
             })
         )
@@ -138,11 +152,12 @@ export class TableRentalComponent implements OnInit {
                     element.state = 'con';
                 },
                 error: (res) => {
-                    // this.login=false
                 },
             })
         )
     };
+
+
 
     ngOnDestroy(): void {
         this.subscripcions.forEach((e) => e.unsubscribe())

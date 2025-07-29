@@ -49,7 +49,6 @@ export class RentalComponent implements OnInit, OnDestroy {
                 })).subscribe({
                     next: (car) => {
                         this.cars = car;
-                        // console.log('Carro seleccionado:', this.cars);
                     },
                     error: (err) => console.error('Error al obtener el carro:', err)
                 })

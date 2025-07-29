@@ -5,11 +5,9 @@ import { FormControlsOf } from '../../../../shared/utils/form-types.util';
 interface FilterSearch {
     model: string,
     brand: string
-}
+};
 
-type FilterCarType = FormControlsOf<FilterSearch>
-
-
+type FilterCarType = FormControlsOf<FilterSearch>;
 
 @Component({
     selector: 'app-filter-cars',

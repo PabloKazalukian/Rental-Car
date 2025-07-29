@@ -17,6 +17,8 @@ export class TableComponent {
     @Output() sendOrder = new EventEmitter();
 
     isAscending!: boolean;
+    sortedColumn: string | null = null;
+
 
     getQueryParams(col: any, row: any): { [key: string]: string } {
         return { [col.key]: row[col.key] };
@@ -26,14 +28,28 @@ export class TableComponent {
         return key.split('.').reduce((acc, part) => acc?.[part], row);
     }
 
-    orderBy(string: string): void {
 
-        if (this.isAscending === null) {
-            this.isAscending = true;
+    orderBy(columnKey: string): void {
+        if (this.sortedColumn === columnKey) {
+            this.isAscending = !this.isAscending;
         } else {
-            this.isAscending = !this.isAscending
+            this.sortedColumn = columnKey;
+            this.isAscending = true;
         }
 
-        this.sendOrder.emit({ column: string, isAscending: this.isAscending })
+        this.sendOrder.emit({
+            column: this.sortedColumn,
+            isAscending: this.isAscending
+        });
     }
+
+    isColumnSorted(colKey: string): boolean {
+        return this.sortedColumn === colKey;
+    }
+
+    getSortIcon(colKey: string): string {
+        if (this.sortedColumn !== colKey) return '↕'; // flechas grises por defecto
+        return this.isAscending ? '↑' : '↓';
+    }
+
 }

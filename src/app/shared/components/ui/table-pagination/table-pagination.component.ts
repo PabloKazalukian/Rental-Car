@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+import { SelectType } from '../select/select.component';
 
 interface FilterSearch { option: string };
 type selectFormType = FormControlsOf<FilterSearch>;
@@ -18,6 +19,9 @@ export class TablePaginationComponent implements OnChanges, OnInit {
 
     selectForm!: FormGroup<selectFormType>;
 
+
+    options: SelectType[] = [];
+
     currentPage = 0;
     pageSize = 5;
     pages: number[] = [];
@@ -32,6 +36,8 @@ export class TablePaginationComponent implements OnChanges, OnInit {
 
     ngOnInit(): void {
         this.selectForm = this.initForm();
+
+        this.options = this.pageSizeOptions.map((page): SelectType => { return { name: page.toString(), value: page } });
 
         this.selectControl.valueChanges.subscribe((newValue) => {
             // Por ejemplo, si el valor es un número y lo usás como nuevo pageSize:

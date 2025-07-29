@@ -13,6 +13,7 @@
       [columns]="columns"
       (filteredData)="onFilteredData($event)"
     ></app-table-filter>
+    <app-rental-status-filter (statusSelected)="onFilterStatus($event)"></app-rental-status-filter>
 
     <app-table-pagination
       [data]="filteredData"

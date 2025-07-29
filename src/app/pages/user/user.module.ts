@@ -10,6 +10,7 @@ import { ModifyPassComponent } from 'src/app/pages/user/modify-pass/modify-pass.
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 import { ModifyUserComponent } from 'src/app/pages/user/modify-user/modify-user.component';
 import { SharedModule } from '../../shared/shared.module';
+import { RentalStatusFilterComponent } from './rental-status-filter/rental-status-filter.component';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
         TableRentalComponent,
         ModifyUserComponent,
         ModifyPassComponent,
+        RentalStatusFilterComponent,
         // ModifyPassComponent,
     ],
     imports: [
