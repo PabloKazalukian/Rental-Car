@@ -31,5 +31,4 @@ export class CredentialsService {
         localStorage.removeItem('username');
         localStorage.removeItem('password');
     }
-
 }

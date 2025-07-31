@@ -1,43 +1,48 @@
-<div class="filter-cars bg-surface p-6 rounded-md flex-col">
-    <h5 class="filter-cars__title">¡Encontrá tu vehículo!</h5>
+<div class="filter-cars bg-background-2 p-6 rounded-md flex-col">
+  <h5 class="filter-cars__title">¡Encontrá tu vehículo!</h5>
 
-    <div class="filter-cars__inputs">
-        <app-input
-            class="filter-cars__input"
-            [label]="'Seleccione una marca:'"
-            [type]="'text'"
-            [placeholder]="'Ingrese marca buscada'"
-            [control]="textBrandControl"></app-input>
+  <div class="filter-cars__inputs">
+    <app-input
+      class="filter-cars__input"
+      [label]="'Seleccione una marca:'"
+      [type]="'text'"
+      [placeholder]="'Ingrese marca buscada'"
+      [control]="textBrandControl"
+    ></app-input>
 
-        <app-input
-            class="filter-cars__input"
-            [label]="'Seleccione un modelo:'"
-            [type]="'text'"
-            [placeholder]="'Ingrese modelo buscado'"
-            [control]="textModelControl"></app-input>
-    </div>
+    <app-input
+      class="filter-cars__input"
+      [label]="'Seleccione un modelo:'"
+      [type]="'text'"
+      [placeholder]="'Ingrese modelo buscado'"
+      [control]="textModelControl"
+    ></app-input>
+  </div>
 
-    <div class="filter-cars__actions">
-        <p class="filter-cars__label p-0 m-0 font-sm">Ordenamientos:</p>
+  <div class="filter-cars__actions">
+    <p class="filter-cars__label p-0 m-0 font-sm">Ordenamientos:</p>
 
-        <app-btn
-            [text]="'Ordenar por Precio'"
-            [variant]="btnSelected === 'price' ? 'stroked' : 'ghost'"
-            [color]="'primary'"
-            (click)="order('price')"></app-btn>
+    <app-btn
+      [text]="'Ordenar por Precio'"
+      [variant]="btnSelected === 'price' ? 'stroked' : 'ghost'"
+      [color]="'primary'"
+      (click)="order('price')"
+    ></app-btn>
 
-        <app-btn
-            [text]="'Ordenar por Marca'"
-            [variant]="btnSelected === 'brand' ? 'stroked' : 'ghost'"
-            [color]="'primary'"
-            (click)="order('brand')"></app-btn>
+    <app-btn
+      [text]="'Ordenar por Marca'"
+      [variant]="btnSelected === 'brand' ? 'stroked' : 'ghost'"
+      [color]="'primary'"
+      (click)="order('brand')"
+    ></app-btn>
 
-        <app-btn
-            [text]="'Ordenar por Año'"
-            [variant]="btnSelected === 'year' ? 'stroked' : 'ghost'"
-            [color]="'primary'"
-            (click)="order('year')"></app-btn>
+    <app-btn
+      [text]="'Ordenar por Año'"
+      [variant]="btnSelected === 'year' ? 'stroked' : 'ghost'"
+      [color]="'primary'"
+      (click)="order('year')"
+    ></app-btn>
 
-        <app-btn [text]="'Borrar'" [variant]="'raised'" [color]="'confirm'" (click)="reset()"></app-btn>
-    </div>
+    <app-btn [text]="'Borrar'" [variant]="'raised'" [color]="'confirm'" (click)="reset()"></app-btn>
+  </div>
 </div>

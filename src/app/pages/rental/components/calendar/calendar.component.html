@@ -1,15 +1,16 @@
 <div class="form-calendar">
-    <label class="font-lg">Ingrese el rango de fechas:</label>
-    <input
-        type="text"
-        mwlFlatpickr
-        [altInput]="true"
-        [minDate]="'today'"
-        [mode]="'range'"
-        [dateFormat]="'d-m-Y'"
-        [disable]="disabledDates"
-        placeholder="Seleccioná el rango de fechas"
-        (input)="onInputChange(miInput.value)"
-        #miInput
-        class="calendar-input bg-background p-2 rounded-md" />
+  <label class="font-lg">Ingrese el rango de fechas:</label>
+  <input
+    type="text"
+    mwlFlatpickr
+    [altInput]="true"
+    [minDate]="'today'"
+    [mode]="'range'"
+    [dateFormat]="'d-m-Y'"
+    [disable]="disabledDates"
+    placeholder="Seleccioná el rango de fechas"
+    (input)="onInputChange(miInput.value)"
+    #miInput
+    class="calendar-input bg-background-2 p-2 rounded-md"
+  />
 </div>

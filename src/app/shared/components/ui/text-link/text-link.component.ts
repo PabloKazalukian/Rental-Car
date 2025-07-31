@@ -2,14 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-text-link',
-    templateUrl: './text-link.component.html',
-    styleUrls: ['./text-link.component.css']
+    templateUrl: './text-link.component.html'
 })
 export class TextLinkComponent implements OnInit {
     @Input() isExternal: boolean = false;
     @Input() text: string = '';
     @Input() routerLink: string = '';
-    @Input() color: 'primary' | 'secondary' | 'surface' | 'success' | 'error' | 'text' | 'confirm' = 'primary';
+    @Input() color: 'primary' | 'secondary' | 'accent' | 'surface' | 'success' | 'error' | 'text' | 'confirm' = 'primary';
 
     ngOnInit(): void {
         console.log(this.isExternal)

@@ -18,10 +18,7 @@
       width: 100%;
       padding: 0.5rem 0.75rem;
       font-size: var(--font-size-base);
-      border: 1px solid transparent;
-      border-radius: 0.5rem;
-      background: var(--color-background);
-      color: var(--color-text);
+      // border: 1px solid transparent;
       transition: border 0.2s ease;
 
       &:focus {

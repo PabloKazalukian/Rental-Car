@@ -14,6 +14,8 @@ $fonts: (
 
 // Containers (breakpoints o max-widths)
 $breakpoints: (
+  x2s: 360px,
+  xs: 414px,
   sm: 640px,
   md: 768px,
   lg: 1024px,
@@ -70,6 +72,12 @@ $colors: (
   muted: #b0b0b0,
   muted-hover: #e0e0e0,
   'black': #0f0f0f,
+  'background': #1e1e1e,
+  'background-2': #121212bb,
+  'background-3': #0a0a0a,
+  'surface': #393939,
+  'surface-2': #2e2e2e,
+  'surface-3': #242424,
 );
 
 // Colores hover (opacos)
@@ -96,9 +104,26 @@ $colors-hover-faint: (
 // Fondos y superficies
 $bg: (
   'white': #ffffff,
-  surface: #393939,
-  background: #1e1e1e,
-  background-2: #121212bb,
+
+  // Surface (para cards, modales, inputs, contenedores intermedios)
+  'surface': #393939,
+  'surface-2': #2e2e2e,
+  'surface-3': #242424,
+
+  // Background general (app, secciones principales)
+  'background': #121212bb,
+  'background-2': #1e1e1e,
+  'background-3': #0a0a0a,
+
+  // Tonos negros
   'black': #0f0f0f,
-  black-faint: #0f0f0f94,
+
+  // Faint (opacidades para hover, overlays, borders suaves)
+  'surface-faint': rgba(#393939, 0.6),
+  'surface-2-faint': rgba(#2e2e2e, 0.6),
+  'surface-3-faint': rgba(#242424, 0.6),
+  'background-faint': rgba(#1e1e1e, 0.6),
+  'background-2-faint': rgba(#121212, 0.6),
+  'background-3-faint': rgba(#0a0a0a, 0.6),
+  'black-faint': rgba(#0f0f0f, 0.6),
 );

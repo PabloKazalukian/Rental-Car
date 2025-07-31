@@ -6,8 +6,6 @@
     display: grid;
     width: 100%;
     min-height: 458px;
-    background: #d1d1d1;
-    border-radius: 12px;
     overflow: hidden;
     box-shadow:
       rgba(0, 0, 0, 0.25) 0px 14px 28px,
@@ -24,7 +22,6 @@
       left: 0;
       width: 100%;
       height: 0;
-      background-color: var(--color-background-black);
       z-index: 0;
       animation: fillBackgroundUp 1.5s ease-out forwards;
     }
@@ -33,13 +30,12 @@
       position: relative;
       z-index: 1;
     }
-
   }
 
   &-image {
     &__wrapper {
       grid-area: wrapper;
-      height: 19rem;
+      height: 18rem;
       width: 19rem;
       box-shadow: 0 0 88px 0 rgba(0, 0, 0, 0.16);
     }
@@ -47,14 +43,11 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-    //   max-height: 17rem;
-        &.hidden {
+      //   max-height: 17rem;
+      &.hidden {
         display: none;
       }
-
     }
-
-
   }
 
   &-info {
@@ -65,38 +58,38 @@
       grid-template-areas:
         'name name'
         'price year';
-    //   border-bottom: 2px solid #353535;
-
-      label {
-        color: var(--color-text--muted);
-      }
+      // grid-gap: 1rem;
+      border-left: 0px;
+      // border-radius: 1rem 1rem 0rem 0rem;
     }
 
     &__name {
       grid-area: name;
+      border-left: 0px;
+      border-right: 0px;
+      // border-radius: 1rem 1rem 0rem 0rem;
+      // border-radius: 1rem 1rem 0rem 0rem;
     }
 
     &__price {
       grid-area: price;
-      background: var(--color-background);
+      border-left: 0px;
     }
 
     &__year {
       grid-area: year;
-      background: var(--color-primary);
-
-      label {
-        color: var(--color-text);
-      }
+      border-left: 0px;
+      border-right: 0px;
     }
 
     &__button {
-      position: relative;
       z-index: 1;
-
       grid-area: button;
+      border-left: 0px;
+      border-right: 0px;
 
+      border-top: 0px;
+      // border-radius: 0rem 0rem 1rem 1rem;
     }
   }
 }
-

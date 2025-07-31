@@ -1,7 +1,7 @@
 <div class="table-wrapper relative">
-  <table *ngIf="data !== null" class="styled-table">
-    <thead *ngIf="data.length > 0">
-      <tr>
+  <table *ngIf="data !== null" class="styled-table border-surface" appScrollAnimate>
+    <thead *ngIf="data.length > 0" class="border-surface-3 bg-background-2 rounded-sm">
+      <tr class="font-bold">
         <th *ngFor="let col of columns">
           <button
             (click)="orderBy(col.key)"
@@ -43,9 +43,12 @@
       <tr *ngFor="let row of data">
         <td *ngFor="let col of columns">
           <ng-container *ngIf="col.link; else plainText">
-            <a [routerLink]="['/solicitar-auto']" [queryParams]="getQueryParams(col, row)">
-              {{ row[col.key] }}
-            </a>
+            <app-text-link
+              [text]="row[col.key]"
+              [routerLink]="'/solicitar-auto'"
+              [color]="'primary'"
+              [queryParams]="getQueryParams(col, row)"
+            ></app-text-link>
           </ng-container>
           <ng-template #plainText>
             {{ row[col.key] }}

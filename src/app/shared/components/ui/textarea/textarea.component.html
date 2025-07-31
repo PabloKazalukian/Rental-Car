@@ -1,21 +1,27 @@
 <div class="form-textarea">
-    <label class="form-textarea__label">{{ label }}</label>
+  <label class="form-textarea__label">{{ label }}</label>
 
-    <textarea [formControl]="control" [placeholder]="placeholder" [class.textarea-error]="showError" class="textarea" rows="4"></textarea>
+  <textarea
+    [formControl]="control"
+    [placeholder]="placeholder"
+    [class.textarea-error]="showError"
+    class="textarea font-md font-semibold bg-surface-2 text-white border-surface rounded-md"
+    rows="4"
+  ></textarea>
 
-    <div *ngIf="showError" class="form-textarea__error">
-        <span *ngIf="control.errors?.['required']">Este campo es obligatorio</span>
-        <span *ngIf="control.errors?.['minlength']">
-            Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres
-        </span>
+  <div *ngIf="showError" class="form-textarea__error">
+    <span *ngIf="control.errors?.['required']">Este campo es obligatorio</span>
+    <span *ngIf="control.errors?.['minlength']">
+      Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres
+    </span>
 
-        <span *ngIf="control.errors?.['email']">Formato de email inválido</span>
+    <span *ngIf="control.errors?.['email']">Formato de email inválido</span>
 
-        <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe</span>
-        <span *ngIf="control.errors?.['emailExist']">El email es invalido</span>
-        <span *ngIf="control.errors?.['passNoRepeat']">Las contraseñas no coinciden</span>
-        <!-- <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe</span> -->
+    <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe</span>
+    <span *ngIf="control.errors?.['emailExist']">El email es invalido</span>
+    <span *ngIf="control.errors?.['passNoRepeat']">Las contraseñas no coinciden</span>
+    <!-- <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe</span> -->
 
-        <!-- Otros errores posibles -->
-    </div>
+    <!-- Otros errores posibles -->
+  </div>
 </div>

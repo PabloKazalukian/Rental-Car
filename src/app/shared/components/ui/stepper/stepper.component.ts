@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
     selector: 'app-stepper',
@@ -6,16 +6,13 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
     styleUrls: ['./stepper.component.css']
 })
 
-export class StepperComponent implements OnInit, OnChanges {
+export class StepperComponent implements OnChanges {
 
     @Input() steps: string[] = [];
     @Input() currentStep: number = 0;
     completedSteps: boolean[] = [];
 
     constructor() { }
-
-    ngOnInit(): void {
-    }
 
     ngOnChanges() {
         this.completedSteps = this.steps.map((_, index) => index < this.currentStep);

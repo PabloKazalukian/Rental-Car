@@ -1,11 +1,11 @@
-<div *ngIf="show; else content" class="loading flex-center bg-background mb-2 rounded-md">
+<div *ngIf="show; else content" class="loading flex-center bg-surface-3 mb-2 rounded-md">
   <div class="loading-container">
     <app-loading></app-loading>
   </div>
 </div>
 
 <ng-template #content>
-  <div *ngIf="!isEmpty" class="table-controls bg-black rounded-md pl-4 pr-4 pt-4">
+  <div *ngIf="!isEmpty" class="table-controls bg-surface-3 mb-4 rounded-md pl-4 pr-4 pt-4">
     <app-table-filter
       [label]="'Buscar:'"
       [placeholder]="'Filtro de solicitudes...'"

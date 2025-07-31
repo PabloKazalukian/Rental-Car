@@ -8,7 +8,7 @@
   <ng-template #viewNoFount>
     <h2 *ngIf="cars.length < 1">No se han encontrado vehiculos</h2>
   </ng-template>
-  <div *ngFor="let autos of cars" class="show-cars__card bg-surface rounded-md" appScrollAnimate>
+  <div *ngFor="let autos of cars" class="show-cars__card bg-surface-3 rounded-md" appScrollAnimate>
     <div class="image-container show-cars__card-image">
       <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." />
     </div>

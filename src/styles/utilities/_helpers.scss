@@ -161,3 +161,9 @@
 .rounded-lg {
   border-radius: calc(v.$radius * 1.5);
 }
+
+@each $name, $color in v.$colors {
+  .border-#{$name} {
+    border: 1px solid #{$color};
+  }
+}

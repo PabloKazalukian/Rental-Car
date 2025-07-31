@@ -1,4 +1,4 @@
-<div *ngIf="cars; else loadingRentalForm" class="rental__form bg-surface rounded-md">
+<div *ngIf="cars; else loadingRentalForm" class="rental__form bg-background-2 rounded-md">
   <div class="rental__form-title mb-4">
     <h4>Alquile un vehiculo</h4>
   </div>
@@ -56,7 +56,7 @@
 </div>
 
 <ng-template #loadingRentalForm>
-  <div class="rental__form bg-surface rounded-md">
+  <div class="rental__form bg-background-2 rounded-md">
     <app-skeleton variant="text" width="50%" height="24px"></app-skeleton>
     <app-skeleton variant="text" width="80%" class="mb-2"></app-skeleton>
     <app-skeleton variant="text" width="60%" class="mb-2"></app-skeleton>

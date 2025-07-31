@@ -107,7 +107,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         return this.contactForm.get('remember')! as FormControl<boolean>;
     }
 
-
     ngOnDestroy(): void {
         this.subscriptions.forEach((sub) => sub.unsubscribe());
     }

@@ -5,7 +5,8 @@
 .nav-bar {
   position: fixed;
   z-index: 100;
-  background: var(--color-background--2);
+  background: var(--color-background--3-faint);
+  border-bottom: 1px solid var(--color-surface-2);
   transition: background 0.3s;
   backdrop-filter: blur(4px);
   width: 100%;
@@ -48,6 +49,7 @@
 
   &:hover {
     background: var(--color-background-black);
+    border-bottom: 1px solid var(--color-background-black);
   }
 
   // 📱 Mobile
@@ -55,7 +57,6 @@
     &__toggle {
       display: block;
       backdrop-filter: blur(0px);
-
     }
 
     &__links {
@@ -78,7 +79,7 @@
 }
 
 a {
-    text-decoration: none;
-    color: #fff;
-    margin: 0px 3px;
+  text-decoration: none;
+  color: #fff;
+  margin: 0px 3px;
 }
