@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, map, of, Subscription } from 'rxjs';
-import { ModifyUser, PassDouble, userRegister } from 'src/app/core/models/user.interface';
+import { userRegister } from 'src/app/core/models/user.interface';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator';
 import { FormControlsOf } from '../../../shared/utils/form-types.util';

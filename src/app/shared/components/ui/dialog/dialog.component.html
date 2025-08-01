@@ -1,32 +1,42 @@
-<div class="dialog">
-    <div class="dialog__backdrop"></div>
+<div class="dialog flex-center">
+  <div class="dialog__backdrop"></div>
 
-    <div class="dialog__container">
-        <!-- Header -->
-        <div class="dialog__header">
-            <span class="title">Rental-Car</span>
-            <div class="dialog__titles">
-                <h2 class="dialog__title">{{ data.title }}</h2>
-            </div>
-            <button *ngIf="showClose" class="dialog__close" (click)="close('cancel')">✖</button>
-        </div>
-
-        <div class="dialog__divider"></div>
-
-        <!-- Cuerpo dinámico -->
-        <div class="dialog__body">
-            <ng-container *ngTemplateOutlet="data.content"></ng-container>
-        </div>
-
-        <!-- Footer -->
-        <div class="dialog__footer">
-            <div class="dialog__footer-left">
-                <!-- <app-btn  (click)="close()">Cerrar</app-btn> -->
-                <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'error'" (click)="close('cancel')"></app-btn>
-            </div>
-            <div class="dialog__footer-right" *ngIf="data.actions">
-                <ng-container *ngTemplateOutlet="data.actions"></ng-container>
-            </div>
-        </div>
+  <div class="dialog__container bg-background-2 rounded-md flex-col p-8">
+    <!-- Header -->
+    <div class="dialog__header relative">
+      <span class="title">Rental-Car</span>
+      <div class="dialog__titles">
+        <h2 class="dialog__title font-lg">{{ data.title }}</h2>
+      </div>
+      <button
+        *ngIf="showClose"
+        class="dialog__close font-xl hover:text-error"
+        (click)="close('cancel')"
+      >
+        ✖
+      </button>
     </div>
+
+    <div class="dialog__divider mt-4 mb-4"></div>
+
+    <!-- Cuerpo dinámico -->
+    <div class="dialog__body pb-4">
+      <ng-container *ngTemplateOutlet="data.content"></ng-container>
+    </div>
+
+    <!-- Footer -->
+    <div class="dialog__footer mt-4">
+      <div class="dialog__footer-left">
+        <app-btn
+          [text]="'Cerrar'"
+          [variant]="'raised'"
+          [color]="'error'"
+          (click)="close('cancel')"
+        ></app-btn>
+      </div>
+      <div class="dialog__footer-right" *ngIf="data.actions">
+        <ng-container *ngTemplateOutlet="data.actions"></ng-container>
+      </div>
+    </div>
+  </div>
 </div>

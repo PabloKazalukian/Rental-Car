@@ -1,12 +1,16 @@
-<div>
-  <label class="form-input__label">{{ label }}</label>
+<div class="form flex-col">
+  <label class="form-select__label pb-1">{{ label }}</label>
   <select
-    class="btn pl-4 pr-4 rounded-md flex-center"
+    class="form__select btn pl-4 pr-4 rounded-md flex-center font-base pt-2 pb-2 pl-3 pr-3 text-white bg-background border-surface"
     [formControl]="control"
     [disabled]="isDisabled"
   >
-    <option value="" disabled selected hidden>{{ text }}</option>
-    <option *ngFor="let opt of options" [value]="opt.value">
+    <option value="" disabled selected hidden class="form__select-option">{{ text }}</option>
+    <option
+      *ngFor="let opt of options"
+      [value]="opt.value"
+      class="form__select-option rounded-full"
+    >
       {{ opt.name }}
     </option>
   </select>

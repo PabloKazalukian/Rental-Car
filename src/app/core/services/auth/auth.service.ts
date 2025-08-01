@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
-import { Login } from '../../models/login.interface';
-import { LoginResponde, Usuario } from '../../models/user.interface';
+import { AuthenticatedUser, Login } from '../../models/login.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { decrypt, encrypt } from 'src/app/shared/utils/encryption.util';
@@ -19,7 +18,7 @@ export class AuthService {
     private loggetIn$ = new BehaviorSubject<boolean>(false);
     public _loggenIn$ = this.loggetIn$.asObservable();
 
-    private user$ = new BehaviorSubject<Usuario>({ username: '', sub: '', role: '' });
+    private user$ = new BehaviorSubject<AuthenticatedUser>({ username: '', sub: '', role: '' });
     public _user$ = this.user$.asObservable();
 
 
@@ -41,7 +40,7 @@ export class AuthService {
         }
 
         const decoded = helper.decodeToken(token);
-        const user: Usuario = {
+        const user: AuthenticatedUser = {
             username: decoded.username,
             sub: decoded.sub,
             role: decoded.role
@@ -93,7 +92,7 @@ export class AuthService {
 
 
 
-    readToken(): Observable<Usuario> {
+    readToken(): Observable<AuthenticatedUser> {
         const encryptedUser = localStorage.getItem('user');
 
         if (encryptedUser) {
@@ -107,7 +106,7 @@ export class AuthService {
 
     saveToken(token: string): void {
         const decoded = helper.decodeToken(token);
-        const user: Usuario = {
+        const user: AuthenticatedUser = {
             username: decoded.username,
             sub: decoded.sub,
             role: decoded.role,
@@ -126,7 +125,7 @@ export class AuthService {
         this.loggetIn$.next(state);
     }
 
-    setUserInState(state: Usuario) {
+    setUserInState(state: AuthenticatedUser) {
         this.user$.next(state)
     }
 

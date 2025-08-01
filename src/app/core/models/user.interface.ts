@@ -5,17 +5,6 @@ export interface userRegister {
     confirmPassword: string,
 }
 
-export interface LoginResponde {
-    message: string,
-    token: string
-
-}
-export interface Usuario {
-    username: string,
-    sub: string,
-    role: string
-}
-
 export type PassDouble = {
     password1: string,
     password2: string
@@ -28,13 +17,7 @@ export type ModifyUser = {
 
 export interface User {
     username: string,
-    password?: string,
     email: string,
+    password?: string,
     role: string
-}
-
-export interface credentialsUser {
-    remember: boolean,
-    username: string,
-    password: string
 }

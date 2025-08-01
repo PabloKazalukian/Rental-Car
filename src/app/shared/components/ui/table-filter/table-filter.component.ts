@@ -10,7 +10,6 @@ type FilterRequestType = FormControlsOf<FilterSearch>;
 @Component({
     selector: 'app-table-filter',
     templateUrl: './table-filter.component.html',
-    styleUrls: ['./table-filter.component.scss']
 })
 export class TableFilterComponent implements OnInit {
 
@@ -26,9 +25,6 @@ export class TableFilterComponent implements OnInit {
 
     ngOnInit(): void {
         this.filterRequest = this.initForm();
-
-
-        // Emit all initially
         this.filteredData.emit(this.data);
     }
 
@@ -42,7 +38,6 @@ export class TableFilterComponent implements OnInit {
     applyFilter(event: Event) {
         const input = event.target as HTMLInputElement;
         const value = input.value.trim().toLowerCase();
-        // this.filterValue = value;
 
         let result;
         if (!value) {

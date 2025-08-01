@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, Inject, Input, TemplateRef } from '@angular/core';
 import { OverlayRef } from 'src/app/shared/services/ui/overlay-ref';
 import { OVERLAY_DATA } from 'src/app/shared/services/ui/overlay.token';
 
@@ -7,7 +7,7 @@ import { OVERLAY_DATA } from 'src/app/shared/services/ui/overlay.token';
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent {
 
 
     logo: string = 'assets/logo.svg'; // Logo default
@@ -23,10 +23,6 @@ export class DialogComponent implements OnInit {
         },
         private overlayRef: OverlayRef
     ) { }
-
-    ngOnInit(): void {
-        // Initialization logic if needed
-    }
     close(result?: 'cancel' | 'confirm'): void {
         this.overlayRef.close(result);
     }

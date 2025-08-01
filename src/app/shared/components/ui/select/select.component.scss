@@ -1,8 +1,35 @@
-select {
-  padding: 6px 8px;
-  font-size: 14px;
-  border: 1px solid var(--color-surface);
-  border-radius: 4px;
-  background-color: var(--color-background);
-  color: var(--color-text);
+@use 'theme/variables' as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  &__select {
+    // appearance: none; // quita el estilo nativo
+    border-radius: 6px; // redondeo del input
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+
+    &:hover {
+      background-color: map-get($colors, surface-hover);
+    }
+
+    &-option {
+      background-color: map-get($colors, surface);
+      color: map-get($colors, muted);
+      display: grid;
+      grid-template-columns: 2rem auto;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      transition-duration: 0.25s;
+
+      &:hover,
+      &:focus-visible {
+        background: #eaeaea;
+      }
+    }
+  }
 }

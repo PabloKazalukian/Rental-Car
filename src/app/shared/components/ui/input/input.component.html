@@ -1,13 +1,13 @@
-<div class="form-input">
-  <label class="form-input__label">{{ label }}</label>
+<div class="form-input flex-col">
+  <label class="form-input__label text-white font-sm">{{ label }}</label>
 
-  <div class="form-input__field">
+  <div class="form-input__field relative">
     <input
       [type]="type === 'password' && hidePassword ? 'password' : 'text'"
       [formControl]="control"
       [placeholder]="placeholder"
       [class.input-error]="showError"
-      class="bg-surface-2 text-white border-surface rounded-md"
+      class="bg-surface-2 text-white border-surface rounded-md font-base pt-2 pb-2 pl-3 pr-3"
     />
 
     <button

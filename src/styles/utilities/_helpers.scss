@@ -15,9 +15,16 @@
 }
 
 // ---------- HOVER BACKGROUND FAINT ----------
-@each $name, $color in v.$colors-hover-faint {
-  .hover\:bg-#{$name}-faint:hover {
+@each $name, $color in v.$colors-hover {
+  .hover\:bg-#{$name}:hover {
     background: #{$color};
+  }
+}
+
+// ---------- HOVER color FAINT ----------
+@each $name, $color in v.$colors-hover {
+  .hover\:text-#{$name}:hover {
+    color: #{$color};
   }
 }
 

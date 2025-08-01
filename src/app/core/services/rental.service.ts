@@ -26,7 +26,6 @@ export class RentalService {
         return this.http.get<Response<RequestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(
             map(response => response.data),
             catchError(error => {
-                // console.error("Error en la petición:", error); // Log del error
                 return throwError(() => error.message);
             }))
     };

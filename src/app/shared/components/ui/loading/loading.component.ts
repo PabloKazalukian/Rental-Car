@@ -1,17 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { COLOR_VALUES } from 'src/app/shared/utils/color.type';
 
 @Component({
     selector: 'app-loading',
     templateUrl: './loading.component.html',
-    styleUrls: ['./loading.component.css']
+    styleUrls: ['./loading.component.scss']
 })
-export class LoadingComponent implements OnInit {
+export class LoadingComponent {
 
-    @Input() color: 'primary' | 'secondary' | 'accent' | 'error' | 'success' | 'surface' | 'confirm' = 'primary';
-
-    constructor() { }
-
-    ngOnInit(): void {
-    }
+    @Input() color: COLOR_VALUES = 'primary';
 
 }

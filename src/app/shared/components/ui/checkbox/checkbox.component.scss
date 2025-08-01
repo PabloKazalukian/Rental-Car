@@ -1,27 +1,31 @@
+@use 'theme/variables' as v;
+
 .checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    user-select: none;
-    font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Inter', sans-serif;
 
-    input[type='checkbox'] {
-        display: none;
-    }
+  input[type='checkbox'] {
+    display: none;
+  }
 
-    .checkmark {
-        height: 20px;
-        width: 20px;
-        background-color: var(--color-primary);
-        position: relative;
-        transition: background-color 0.2s ease;
-    }
+  .checkmark {
+    height: 20px;
+    width: 20px;
+    transition: background-color 0.2s ease;
+  }
 
-    input:checked + .checkmark::after {
-        content: '✓';
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-    }
+  .checkmark:checked {
+    background-color: map-get(v.$colors, primary);
+  }
+
+  input:checked + .checkmark::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
 }

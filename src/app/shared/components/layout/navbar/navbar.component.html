@@ -1,43 +1,70 @@
-<nav class="nav-bar">
-    <div class="nav-bar__container">
-        <a routerLink="/" class="title">
-            <span class="title">Rental-Car</span>
-        </a>
+<nav class="nav-bar bg-background-3-faint border-surface-2 font-medium font-xl border-black">
+  <div class="nav-bar__container">
+    <a routerLink="/" class="title">
+      <span class="title">Rental-Car</span>
+    </a>
 
-        <span class="spacer"></span>
+    <span class="spacer"></span>
 
-        <!-- Botón hamburguesa solo visible en mobile -->
-        <button class="nav-bar__toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
+    <!-- Botón hamburguesa solo visible en mobile -->
+    <button
+      class="nav-bar__toggle bg-background-3 font-x2l"
+      (click)="toggleMenu()"
+      aria-label="Abrir menú"
+    >
+      ☰
+    </button>
 
-        <!-- Menú -->
-        <div class="nav-bar__links" [class.is-open]="menuOpen">
-            <app-btn [routerLink]="'/contacto'" [text]="'Contáctanos'" [color]="'text'" [variant]="'basic'" (click)="closeMenu()"></app-btn>
+    <!-- Menú -->
+    <div class="nav-bar__links bg-none" [class.is-open]="menuOpen">
+      <app-btn
+        [routerLink]="'/contacto'"
+        [text]="'Contáctanos'"
+        [color]="'text'"
+        [variant]="'basic'"
+        (click)="closeMenu()"
+      ></app-btn>
 
-            <app-btn
-                *ngIf="islogged"
-                [routerLink]="'/usuario'"
-                [text]="usuario.username"
-                [color]="'primary'"
-                [variant]="'stroked'"
-                (click)="closeMenu()"></app-btn>
-            <app-btn *ngIf="islogged" [text]="'Cerrar sesión'" [color]="'confirm'" [variant]="'stroked'" (click)="logout()"></app-btn>
+      <app-btn
+        *ngIf="islogged"
+        [routerLink]="'/usuario'"
+        [text]="usuario.username"
+        [color]="'primary'"
+        [variant]="'stroked'"
+        (click)="closeMenu()"
+      ></app-btn>
+      <app-btn
+        *ngIf="islogged"
+        [text]="'Cerrar sesión'"
+        [color]="'confirm'"
+        [variant]="'stroked'"
+        (click)="logout()"
+      ></app-btn>
 
-            <app-btn
-                *ngIf="!islogged"
-                [routerLink]="'/auth/registro'"
-                [text]="'Registrarse'"
-                [color]="'text'"
-                [variant]="'basic'"
-                (click)="closeMenu()"></app-btn>
-            <app-btn
-                *ngIf="!islogged"
-                [routerLink]="'/auth/login'"
-                [text]="'Iniciar sesión'"
-                [color]="'text'"
-                [variant]="'basic'"
-                (click)="closeMenu()"></app-btn>
+      <app-btn
+        *ngIf="!islogged"
+        [routerLink]="'/auth/registro'"
+        [text]="'Registrarse'"
+        [color]="'text'"
+        [variant]="'basic'"
+        (click)="closeMenu()"
+      ></app-btn>
+      <app-btn
+        *ngIf="!islogged"
+        [routerLink]="'/auth/login'"
+        [text]="'Iniciar sesión'"
+        [color]="'text'"
+        [variant]="'basic'"
+        (click)="closeMenu()"
+      ></app-btn>
 
-            <app-btn [routerLink]="'/'" [text]="'Inicio'" [color]="'text'" [variant]="'basic'" (click)="closeMenu()"></app-btn>
-        </div>
+      <app-btn
+        [routerLink]="'/'"
+        [text]="'Inicio'"
+        [color]="'text'"
+        [variant]="'basic'"
+        (click)="closeMenu()"
+      ></app-btn>
     </div>
+  </div>
 </nav>

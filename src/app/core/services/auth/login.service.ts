@@ -2,8 +2,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } from 'rxjs';
-import { Login, LoginResponde } from '../../models/login.interface';
-import { Usuario } from '../../models/user.interface';
+import { AuthenticatedUser, Login, LoginResponde } from '../../models/login.interface';
 import { CredentialsService } from './credential.service';
 import { AuthService } from './auth.service';
 
@@ -19,7 +18,7 @@ declare global {
 })
 export class LoginService {
     // private loggetIn = new BehaviorSubject<boolean>(false);
-    private user$ = new BehaviorSubject<Usuario>({ username: '', sub: '', role: '' });
+    private user$ = new BehaviorSubject<AuthenticatedUser>({ username: '', sub: '', role: '' });
     public _user$ = this.user$.asObservable();
 
     private userGoogle = new BehaviorSubject<any>({});  // Replace SocialUser with any, since we're dealing with raw data now.

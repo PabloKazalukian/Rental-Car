@@ -1,0 +1,27 @@
+.form-textarea {
+  display: flex;
+  gap: 0.4rem;
+
+  &__label {
+    font-weight: 600;
+  }
+
+  &__error {
+    color: var(--color-error);
+    font-size: 0.8rem;
+  }
+}
+
+textarea {
+  width: 100%;
+  transition: border 0.2s ease;
+  resize: none;
+  S &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  &.textarea-error {
+    border-color: var(--color-error);
+  }
+}

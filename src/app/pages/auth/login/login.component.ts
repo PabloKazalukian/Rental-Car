@@ -2,15 +2,14 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LoginWithCredentials } from 'src/app/core/models/login.interface';
 import { CredentialsService } from 'src/app/core/services/auth/credential.service';
 import { LoginService } from 'src/app/core/services/auth/login.service';
+import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
 import { environment } from 'src/environments/environment';
 
-interface LoginForm {
-    email: FormControl<string>;
-    password: FormControl<string>;
-    remember: FormControl<boolean>;
-};
+
+type LoginFormType = FormControlsOf<LoginWithCredentials>;
 
 
 @Component({
@@ -21,8 +20,8 @@ interface LoginForm {
 
 export class LoginComponent implements OnInit, OnDestroy {
 
-    contactForm!: FormGroup<LoginForm>;
-    login!: boolean;
+    contactForm!: FormGroup<LoginFormType>;
+    login!: boolean | null;
     loading: boolean = false;
     private subscriptions: Subscription[] = [];
     showPas: boolean = false;
@@ -37,31 +36,30 @@ export class LoginComponent implements OnInit, OnDestroy {
         const credentials = this.credentialsSvc.getCredentials();
         this.contactForm = this.initForm();
 
-        console.log(credentials)
         if (credentials.remember) {
             this.contactForm.patchValue({
-                email: credentials.username ?? '',
+                identifier: credentials.identifier ?? '',
                 password: credentials.password ?? '',
                 remember: credentials.remember
             });
         }
-    }
+    };
 
-
-    initForm(): FormGroup<LoginForm> {
-        return new FormGroup<LoginForm>({
-            email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
+    initForm(): FormGroup<LoginFormType> {
+        return new FormGroup<LoginFormType>({
+            identifier: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
             password: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(3)] }),
             remember: new FormControl(false, { nonNullable: true })
         });
-    }
-
+    };
 
     onSubmit(): void {
         this.loading = true;
+        this.login = null;
+
         this.subscriptions.push(
             this.loginSvc.login({
-                email: this.contactForm.get('email')?.value ?? '',
+                identifier: this.contactForm.get('identifier')?.value ?? '',
                 password: this.contactForm.get('password')?.value ?? '',
             }).subscribe({
                 next: (res) => {
@@ -69,7 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                     if (this.contactForm.get('remember')?.value) {
                         this.credentialsSvc.saveCredentials({
                             remember: this.contactForm.get('remember')?.value ?? false,
-                            username: this.contactForm.get('email')?.value ?? '',
+                            identifier: this.contactForm.get('identifier')?.value ?? '',
                             password: this.contactForm.get('password')?.value ?? ''
                         });
                     } else {
@@ -87,7 +85,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         );
     }
     loginWithGoogle() {
-        console.log('Iniciando sesión con Google...');
         window.location.href = `${this.API}/google?redirectUri=${window.location.origin}/auth/callback`;
     }
 
@@ -95,8 +92,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         event ? this.passwordInput.nativeElement.type = "text" : this.passwordInput.nativeElement.type = "password";
     }
 
-    get emailControl(): FormControl<string> {
-        return this.contactForm.get('email')! as FormControl<string>;
+    get identifierControl(): FormControl<string> {
+        return this.contactForm.get('identifier')! as FormControl<string>;
     }
 
     get passwordControl(): FormControl<string> {

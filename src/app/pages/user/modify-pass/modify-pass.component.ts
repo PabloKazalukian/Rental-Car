@@ -5,9 +5,10 @@ import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator'
-import { Usuario, PassDouble } from 'src/app/core/models/user.interface';
+import { PassDouble } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { FormControlsOf } from '../../../shared/utils/form-types.util';
+import { AuthenticatedUser } from 'src/app/core/models/login.interface';
 
 type ModifyPassType = FormControlsOf<PassDouble>
 
@@ -23,7 +24,7 @@ export class ModifyPassComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
     modifyPass!: FormGroup<ModifyPassType>;
-    usuario!: Usuario;
+    usuario!: AuthenticatedUser;
     loading: boolean = true;
     success: boolean = false;
     error: boolean = false;

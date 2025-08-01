@@ -6,10 +6,6 @@ export interface Request {
     finalDate: string,
 
 }
-export interface Requests {
-    initialDate: string,
-    finalDate: string,
-}
 
 export interface RequestSend {
     amount?: number,

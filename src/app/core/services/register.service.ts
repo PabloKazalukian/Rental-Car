@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { userRegister } from '../models/user.interface';
 import { map, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { catchError } from 'rxjs/operators';
 
 
 @Injectable({

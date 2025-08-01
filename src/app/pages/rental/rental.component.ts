@@ -5,7 +5,7 @@ import { CarService } from 'src/app/core/services/car.service';
 import { Car } from 'src/app/core/models/car.interface';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { Usuario } from 'src/app/core/models/user.interface';
+import { AuthenticatedUser } from 'src/app/core/models/login.interface';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class RentalComponent implements OnInit, OnDestroy {
     step = 1;
     idCar!: string;
     idUser?: string;
-    user: Usuario = { username: '', sub: '', role: '' };
+    user: AuthenticatedUser = { username: '', sub: '', role: '' };
     cars!: Car;
     autos!: Car[];
     imageLoaded = false;

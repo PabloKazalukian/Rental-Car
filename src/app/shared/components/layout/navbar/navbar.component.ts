@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { Subscription } from 'rxjs';
-import { Usuario } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { AuthenticatedUser } from 'src/app/core/models/login.interface';
 
 
 
@@ -17,9 +17,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[] = [];
 
     islogged: boolean = true;
-    token: Usuario = { username: '', sub: '', role: '' };
+    token: AuthenticatedUser = { username: '', sub: '', role: '' };
     user$ = this.authSvc._user$;
-    usuario!: Usuario | { username: '', sub: '', role: '' };
+    usuario!: AuthenticatedUser | { username: '', sub: '', role: '' };
     menuOpen: boolean = false;
 
 

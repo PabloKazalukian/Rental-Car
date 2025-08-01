@@ -5,16 +5,12 @@
 .nav-bar {
   position: fixed;
   z-index: 100;
-  background: var(--color-background--3-faint);
-  border-bottom: 1px solid var(--color-surface-2);
   transition: background 0.3s;
   backdrop-filter: blur(4px);
   width: 100%;
   top: 0;
   left: 0;
   height: 64px;
-  color: var(--color-text);
-  font: 500 var(--font-size-xl) / 32px var(--font-title);
 
   &__container {
     display: flex;
@@ -41,10 +37,10 @@
   &__toggle {
     display: none;
     font-size: 1.8rem;
-    background: transparent;
     border: none;
     cursor: pointer;
     color: var(--color-text);
+    border-bottom: 1px solid var(--color-background-black);
   }
 
   &:hover {
@@ -66,7 +62,8 @@
       top: 64px;
       left: 0;
       width: 100%;
-      background: var(--color-background-black-faint);
+      background: var(--color-background--2);
+      border-bottom: 1px solid var(--color-surface);
       backdrop-filter: blur(10px);
       padding: 1rem;
       z-index: 99;

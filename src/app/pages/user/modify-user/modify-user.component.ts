@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, ValidationErrors, Validators, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, delay, finalize, map, of, switchMap, tap } from 'rxjs';
-import { ModifyUser, User, Usuario } from 'src/app/core/models/user.interface';
+import { AuthenticatedUser } from 'src/app/core/models/login.interface';
+import { ModifyUser, User } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -22,7 +23,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
     modifyUser!: FormGroup<ModifyUserType>;
-    tokenUser!: Usuario;
+    tokenUser!: AuthenticatedUser;
     user!: User;
 
     loading: boolean = true;
@@ -39,7 +40,7 @@ export class ModifyUserComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subscripcions.push(
             this.authSvc._user$.pipe(
-                tap((user: Usuario) => {
+                tap((user: AuthenticatedUser) => {
                     this.tokenUser = user;
                 }),
                 map((user) => user.sub),

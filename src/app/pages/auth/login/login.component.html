@@ -14,7 +14,7 @@
           [label]="'Email o nombre de usuario'"
           [type]="'text'"
           [placeholder]="'pat@example.com'"
-          [control]="emailControl"
+          [control]="identifierControl"
         ></app-input>
       </div>
       <div class="login-form__field mb-12">
@@ -57,7 +57,7 @@
         <button
           type="button"
           (click)="loginWithGoogle()"
-          class="login-form__google-btn flex-center"
+          class="login-form__google-btn flex-center bg-white font-md text-surface rounded-md"
         >
           <img src="assets/images/Google__G__logo.svg" alt="Google logo" class="google-logo" />
           Iniciar sesión con Google

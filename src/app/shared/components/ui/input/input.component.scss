@@ -1,33 +1,27 @@
+@use 'theme/variables' as v;
+
 .form-input {
   display: flex;
-  flex-direction: column;
   gap: 0.4rem;
 
   &__label {
     font-weight: 600;
-    font-size: var(--font-size-sm);
-    color: var(--color-text);
   }
 
   &__field {
-    position: relative;
     display: flex;
     align-items: center;
 
     input {
       width: 100%;
-      padding: 0.5rem 0.75rem;
-      font-size: var(--font-size-base);
-      // border: 1px solid transparent;
       transition: border 0.2s ease;
 
       &:focus {
         outline: none;
-        border-color: var(--color-primary);
+        border-color: map-get(v.$colors, primary);
       }
-
       &.input-error {
-        border-color: var(--color-error);
+        border-color: map-get(v.$colors, error);
       }
     }
 
@@ -44,7 +38,7 @@
 
   &__error,
   &__error-placeholder {
-    color: var(--color-error);
+    color: map-get(v.$colors, error);
     font-size: 0.8rem;
     min-height: 1.3rem;
   }

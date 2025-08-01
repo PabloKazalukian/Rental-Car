@@ -1,0 +1,17 @@
+.error-message {
+  gap: 0.5em;
+
+  &__content {
+    display: flex;
+  }
+
+  &__icon {
+    width: 120px;
+    &__img {
+      width: 4em;
+      max-width: 60px;
+      min-width: 30px;
+      height: auto;
+    }
+  }
+}

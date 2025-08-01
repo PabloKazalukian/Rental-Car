@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, of, throwError } from 'rxjs';
 import { catchError, switchMap, take } from 'rxjs/operators';
-import { ModifyUser, User, Usuario } from '../models/user.interface';
+import { ModifyUser, User } from '../models/user.interface';
 import { Response } from '../models/response.interface';
-import { HttpErrorHandlerService, ParsedHttpError } from './http-error-handler.service';
+import { ParsedHttpError } from './http-error-handler.service';
 import { AuthService } from './auth/auth.service';
 
 interface newPass {

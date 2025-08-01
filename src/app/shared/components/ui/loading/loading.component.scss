@@ -1,0 +1,44 @@
+@use 'theme/variables' as *;
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  border: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  border-width: 0.25em;
+
+  &.primary {
+    border-top-color: map-get($colors, primary);
+  }
+
+  &.secondary {
+    border-top-color: map-get($colors, secondary);
+  }
+
+  &.accent {
+    border-top-color: map-get($colors, accent);
+  }
+
+  &.error {
+    border-top-color: map-get($colors, error);
+  }
+
+  &.success {
+    border-top-color: map-get($colors, success);
+  }
+
+  &.surface {
+    border-top-color: map-get($colors, surface);
+  }
+
+  &.confirm {
+    border-top-color: map-get($colors, confirm);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

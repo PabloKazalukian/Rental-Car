@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subscription, switchMap, tap } from 'rxjs';
+import { AuthenticatedUser } from 'src/app/core/models/login.interface';
 import { RequestReceived } from 'src/app/core/models/request.interface';
-import { Usuario } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { isDateHigher } from 'src/app/shared/validators/date.validator';
@@ -15,7 +15,7 @@ import { isDateHigher } from 'src/app/shared/validators/date.validator';
 export class UserComponent implements OnInit, OnDestroy {
 
     private subscripcions: Subscription[] = [];
-    user!: Usuario
+    user!: AuthenticatedUser
     user$ = this.authSvc._user$;
     private data = new BehaviorSubject<RequestReceived[]>([])
 
