@@ -1,8 +1,0 @@
-.main {
-  background: var(--color-background-2);
-}
-
-.relative {
-  position: relative;
-  z-index: 1;
-}
