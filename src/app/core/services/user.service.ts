@@ -5,8 +5,8 @@ import { Observable, map, of, throwError } from 'rxjs';
 import { catchError, switchMap, take } from 'rxjs/operators';
 import { ModifyUser, User } from '../models/user.interface';
 import { Response } from '../models/response.interface';
-import { ParsedHttpError } from './http-error-handler.service';
 import { AuthService } from './auth/auth.service';
+import { ParsedHttpError } from './http/http-error-handler.service';
 
 interface newPass {
     newPass: string;

@@ -17,13 +17,6 @@ import { AppRoutingModule } from './app-routing.module';
 // 🔹 App Root
 import { AppComponent } from './app.component';
 
-// 🔹 Components (dentro de páginas)
-
-// 🔹 Shared Components / Directives
-import { FormClassDirective } from './shared/directives/form-class.directive';
-
-// 🔹 Interceptors
-
 // 🔹 Environment
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
@@ -35,7 +28,6 @@ import { NavBarComponent } from './shared/components/layout/navbar/navbar.compon
 @NgModule({
     declarations: [
         AppComponent,
-        FormClassDirective,
         NavBarComponent,
         FooterComponent,
     ],

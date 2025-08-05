@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit, OnDestroy {
                 password: this.contactForm.get('password')?.value ?? '',
             }).subscribe({
                 next: (res) => {
-                    console.log(res);
                     if (this.contactForm.get('remember')?.value) {
                         this.credentialsSvc.saveCredentials({
                             remember: this.contactForm.get('remember')?.value ?? false,
@@ -83,8 +82,10 @@ export class LoginComponent implements OnInit, OnDestroy {
                 },
             })
         );
-    }
+    };
+
     loginWithGoogle() {
+        this.loading = true;
         window.location.href = `${this.API}/google?redirectUri=${window.location.origin}/auth/callback`;
     }
 

@@ -6,7 +6,7 @@ export interface ParsedHttpError {
     status: number;
     statusMsg: string;
     message: string;
-    raw: HttpErrorResponse; // opcional, por si querés el error completo
+    raw: HttpErrorResponse;
 }
 
 @Injectable({

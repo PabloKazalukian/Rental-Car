@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { userRegister } from '../models/user.interface';
-import { map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ParsedHttpError } from './http/http-error-handler.service';
 
 
 @Injectable({
@@ -21,8 +22,12 @@ export class RegisterService {
                     // this.saveToken(res.token)
                     if (res) return true
                     else return false
-                }
-                )
+                }),
+                catchError((err: ParsedHttpError) => {
+                    console.log(err)
+                    return throwError(() => err);
+
+                })
             );
     }
 

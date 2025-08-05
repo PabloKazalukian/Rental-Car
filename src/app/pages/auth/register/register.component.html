@@ -1,4 +1,4 @@
-<div>
+<div class="register">
   <app-auth [imageBackground]="'assets/images/superdeportivo_optimized.jpg'">
     <form
       *ngIf="!this.error && !this.success"
@@ -6,11 +6,11 @@
       (ngSubmit)="onSubmit()"
       [formGroup]="registerForm"
     >
-      <div class="register-form__title">
-        <h2 class="register-form__title-text">Crea una cuenta</h2>
+      <div class="register-form__title text-center">
+        <h3 class="register-form__title-text mb-8">Crea una cuenta</h3>
       </div>
 
-      <div class="register-form__field">
+      <div class="register-form__field mb-3">
         <app-input
           [label]="'Ingrese un usuario'"
           [type]="'text'"
@@ -19,7 +19,7 @@
         ></app-input>
       </div>
 
-      <div class="register-form__field">
+      <div class="register-form__field mb-3">
         <app-input
           [label]="'Ingrese un email'"
           [type]="'email'"
@@ -28,7 +28,7 @@
         ></app-input>
       </div>
 
-      <div class="register-form__field">
+      <div class="register-form__field mb-3">
         <app-input
           [label]="'Ingrese una contraseña'"
           [type]="'password'"
@@ -37,7 +37,7 @@
         ></app-input>
       </div>
 
-      <div class="register-form__field">
+      <div class="register-form__field mb-3">
         <app-input
           [label]="'Repita la contraseña'"
           [type]="'password'"
@@ -49,7 +49,7 @@
       <p class="register-form__link mb-3">
         Ya tenés una cuenta?
         <app-text-link
-          [text]="'Iniciar sesión'"
+          [text]="'Inicia sesión'"
           [routerLink]="'/auth/login'"
           [color]="'primary'"
         ></app-text-link>
@@ -66,12 +66,12 @@
       </div>
     </form>
 
-    <div *ngIf="this.success" class="register-form__success">
+    <div *ngIf="this.success" class="register-form__success mt-12">
       <app-success [text]="'Sesión iniciada con éxito!'"></app-success>
     </div>
 
-    <div *ngIf="this.error" class="register-form__error">
-      <div class="register-form__error-content">
+    <div *ngIf="this.error" class="register-form__error mt-12">
+      <div class="register-form__error-content flex-col">
         <h1>Ocurrió un error inesperado</h1>
         <app-btn
           [text]="'Volver al inicio'"

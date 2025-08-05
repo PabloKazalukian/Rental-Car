@@ -8,8 +8,7 @@ import {
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { LoginService } from '../services/auth/login.service'
-import { RentalService } from '../services/rental.service';
-import { HttpErrorHandlerService } from '../services/http-error-handler.service';
+import { HttpErrorHandlerService, ParsedHttpError } from '../services/http/http-error-handler.service';
 
 
 
@@ -29,7 +28,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 if (parsed.status === 401) {
                     this.authSvc.logout();
                 }
-                return throwError(() => parsed);
+                return throwError(() => parsed as ParsedHttpError);
             })
         );
     }

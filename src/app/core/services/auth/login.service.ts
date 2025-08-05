@@ -21,8 +21,6 @@ export class LoginService {
     private user$ = new BehaviorSubject<AuthenticatedUser>({ username: '', sub: '', role: '' });
     public _user$ = this.user$.asObservable();
 
-    private userGoogle = new BehaviorSubject<any>({});  // Replace SocialUser with any, since we're dealing with raw data now.
-
     private readonly API = `${environment.api}/auth`;
     token?: string;
 
@@ -35,6 +33,12 @@ export class LoginService {
                 this.authSvc.saveToken(res.accessToken);
                 this.authSvc.setLoggedInState(true);
                 return true;
+            }),
+            catchError(error => {
+                console.log('tp', typeof error)
+                this.authSvc.clearSession()
+                console.error('Token inválido o expirado:', error);
+                return throwError(() => new Error('Token inválido o expirado'));
             })
         );
     }

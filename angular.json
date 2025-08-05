@@ -105,8 +105,19 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss"
+              "src/styles/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+            "includePaths": [
+                "src/styles",
+                "src/styles/animations",
+                "src/styles/utilities",
+                "src/styles/base",
+                "src/styles/theme"
+            ]
+            },
+            "include": [
+                "**/*.spec.ts"
             ],
             "scripts": []
           }

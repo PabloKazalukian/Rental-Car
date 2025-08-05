@@ -1,0 +1,8 @@
+.register-form {
+  &__error {
+    &-content {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
