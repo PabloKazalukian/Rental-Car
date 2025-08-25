@@ -1,8 +1,5 @@
 <div class="show-cars flex-center mb-14">
-  <div
-    class="show-cars__spinner bg-surface rounded-100 p-4"
-    *ngIf="this.loading === true; else viewNoFount"
-  >
+  <div class="show-cars__spinner bg-surface rounded-100 p-4" *ngIf="this.loading === true; else viewNoFount">
     <app-loading></app-loading>
   </div>
   <ng-template #viewNoFount>
@@ -10,7 +7,10 @@
   </ng-template>
   <div *ngFor="let autos of cars" class="show-cars__card bg-surface-3 rounded-md" appScrollAnimate>
     <div class="image-container show-cars__card-image">
-      <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." />
+      <a href="/auth/login">
+        <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." />
+
+      </a>
     </div>
     <div class="show-cars__card-body">
       <div class="show-cars__card-fields pl-2 pr-2 pb-2">
@@ -22,28 +22,16 @@
         <p class="show-cars__card-text--year">{{ autos.year }}</p>
       </div>
       <div class="show-cars__card-actions p-2">
-        <app-btn
-          [text]="'Solicitar alquiler'"
-          [color]="'primary'"
-          [variant]="'raised'"
-          (click)="this.goWithCar(autos.id)"
-        ></app-btn>
-        <app-btn
-          [text]="'Ver Más'"
-          [color]="'text'"
-          [variant]="'stroked'"
-          (click)="abrirModalCar(modalContent, contentActions, autos)"
-        ></app-btn>
+        <app-btn [text]="'Solicitar alquiler'" [color]="'primary'" [variant]="'raised'"
+          (click)="this.goWithCar(autos.id)"></app-btn>
+        <app-btn [text]="'Ver Más'" [color]="'text'" [variant]="'stroked'"
+          (click)="abrirModalCar(modalContent, contentActions, autos)"></app-btn>
       </div>
     </div>
     <!-- Scrollable modal -->
     <ng-template #contentActions>
-      <app-btn
-        [text]="'Solicitar Alquiler'"
-        [color]="'primary'"
-        [variant]="'raised'"
-        (click)="this.goWithCar(autos.id)"
-      ></app-btn>
+      <app-btn [text]="'Solicitar Alquiler'" [color]="'primary'" [variant]="'raised'"
+        (click)="this.goWithCar(autos.id)"></app-btn>
     </ng-template>
     <ng-template #modalContent>
       <app-modal-car [car]="autos"></app-modal-car>
@@ -52,12 +40,7 @@
 </div>
 
 <ng-template #btnDialog>
-  <app-btn
-    [text]="'Iniciar sesión'"
-    [variant]="'raised'"
-    [color]="'confirm'"
-    [routerLink]="'/auth/login'"
-  ></app-btn>
+  <app-btn [text]="'Iniciar sesión'" [variant]="'raised'" [color]="'confirm'" [routerLink]="'/auth/login'"></app-btn>
 </ng-template>
 
 <ng-template #contentDialog>
@@ -66,11 +49,8 @@
       Debe iniciar sesión para poder solicitad un vehiculo.
       <hr class="mt-4 mb-4" />
       Por favor ingresa con tu cuenta o
-      <app-text-link
-        [text]="'Crea una nueva cuenta'"
-        [color]="'primary'"
-        [routerLink]="'/auth/registro'"
-      ></app-text-link>
+      <app-text-link [text]="'Crea una nueva cuenta'" [color]="'primary'"
+        [routerLink]="'/auth/registro'"></app-text-link>
     </h4>
   </div>
 </ng-template>

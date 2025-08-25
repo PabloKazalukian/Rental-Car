@@ -1,14 +1,23 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
+export interface DescriptionOfStep {
+    text: string,
+    routerLink?: string
+}
+export interface StepWithDescription {
+    step: string,
+    description?: DescriptionOfStep
+}
+
 @Component({
     selector: 'app-stepper',
     templateUrl: './stepper.component.html',
-    styleUrls: ['./stepper.component.css']
+    styleUrls: ['./stepper.component.scss']
 })
 
 export class StepperComponent implements OnChanges {
 
-    @Input() steps: string[] = [];
+    @Input() steps: StepWithDescription[] = [];
     @Input() currentStep: number = 0;
     completedSteps: boolean[] = [];
 

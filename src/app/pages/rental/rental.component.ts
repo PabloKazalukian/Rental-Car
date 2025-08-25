@@ -6,6 +6,7 @@ import { Car } from 'src/app/core/models/car.interface';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { AuthenticatedUser } from 'src/app/core/models/login.interface';
+import { StepWithDescription } from 'src/app/shared/components/ui/stepper/stepper.component';
 
 
 @Component({
@@ -18,6 +19,12 @@ export class RentalComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];
 
     step = 1;
+    stepsDescription: StepWithDescription[] = [
+        { step: 'Seleccionar auto', description: { routerLink: '/solicitar-auto', text: 'Solicitar otro vehiculo' } },
+        { step: 'Elegir fechas' },
+        { step: 'Confirmación' }
+    ];
+
     idCar!: string;
     idUser?: string;
     user: AuthenticatedUser = { username: '', sub: '', role: '' };

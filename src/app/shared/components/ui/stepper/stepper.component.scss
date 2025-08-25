@@ -1,0 +1,119 @@
+@use 'theme/mixins' as m;
+
+.stepper {
+    // Base: vertical (mobile first)
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow-y: auto;
+
+    &__step {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        position: relative;
+        min-height: 84px;
+        margin-bottom: 0px;
+
+        .stepper__line {
+            position: absolute;
+            margin-bottom: 1.5rem;
+            width: 2px;
+            height: calc(100% - 36px);
+            background-color: var(--color-confirm);
+            left: 18px;
+            top: 36px;
+            z-index: 0;
+        }
+    }
+
+    &__circle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid var(--color-surface);
+        background-color: white;
+        color: var(--color-surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        transition: all 0.4s ease;
+        z-index: 1;
+        position: relative;
+
+        &--completed {
+            background-color: var(--color-confirm);
+            border-color: var(--color-confirm);
+            color: white;
+            animation: fade-in 0.3s ease-in-out;
+        }
+
+        &--current {
+            border: 3px solid var(--color-confirm);
+        }
+    }
+
+    &__label {
+        margin-left: 0.75rem;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+        text-align: left;
+
+        &--completed {
+            color: var(--color-text--muted);
+        }
+
+        &--incomplete {
+            color: var(--color-text);
+        }
+    }
+
+    &__checkmark {
+        animation: fade-in 0.2s ease-out;
+    }
+
+    // sm+: horizontal
+    @include m.media-up(sm) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        &__step {
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            margin-bottom: 0;
+
+            .stepper__line {
+                width: auto;
+                height: 2px;
+                top: 18px;
+                left: 50%;
+                right: -50%;
+            }
+        }
+
+        &__label {
+            margin-top: 0.5rem;
+            margin-left: 0;
+            text-align: center;
+        }
+    }
+}
+
+@keyframes fade-in {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
