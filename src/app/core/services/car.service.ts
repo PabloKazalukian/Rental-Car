@@ -6,18 +6,20 @@ import { Car } from '../models/car.interface';
 import { Response } from '../models/response.interface';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class CarService {
     private readonly API = `${environment.api}/car`;
 
-    constructor(private readonly http: HttpClient) { }
+    constructor(private readonly http: HttpClient) {}
 
     getAllCars(): Observable<Car[]> {
-        return this.http.get<Response<Car[]>>(this.API).pipe(map(response => response.data));
+        return this.http.get<Response<Car[]>>(this.API).pipe(map((response) => response.data));
     }
 
     getCarById(id: string): Observable<Car> {
-        return this.http.get<Response<Car>>(`${this.API}/${id}`).pipe(map(response => response.data));
+        return this.http
+            .get<Response<Car>>(`${this.API}/${id}`)
+            .pipe(map((response) => response.data));
     }
 }

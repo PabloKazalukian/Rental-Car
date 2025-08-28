@@ -4,26 +4,19 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ContactMessage } from '../models/email.interface';
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class EmailService {
-
-
     private readonly API = `${environment.api}/email`;
 
-
-    constructor(private readonly http: HttpClient) { }
+    constructor(private readonly http: HttpClient) {}
 
     sendEmail(form: ContactMessage): Observable<boolean | void> {
-
-        return this.http.post<ContactMessage>(this.API, form)
-            .pipe(
-                map((res: ContactMessage) => {
-                    if (res) return true
-                    else return false
-                }
-                )
-            );
+        return this.http.post<ContactMessage>(this.API, form).pipe(
+            map((res: ContactMessage) => {
+                if (res) return true;
+                else return false;
+            }),
+        );
     }
-
 }

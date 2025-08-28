@@ -7,10 +7,8 @@
   </ng-template>
   <div *ngFor="let autos of cars" class="show-cars__card bg-surface-3 rounded-md" appScrollAnimate>
     <div class="image-container show-cars__card-image">
-      <a href="/auth/login">
-        <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." />
+        <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." (click)="this.goWithCar(autos.id)"/>
 
-      </a>
     </div>
     <div class="show-cars__card-body">
       <div class="show-cars__card-fields pl-2 pr-2 pb-2">

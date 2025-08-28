@@ -1,0 +1,25 @@
+@use 'theme/variables' as *;
+
+.form-calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    color: map-get($colors, text);
+}
+
+.calendar-input {
+    color: #253;
+}
+
+.form-calendar .flatpickr-input[readonly] {
+  background-color: map-get($colors, surface);
+  padding: map-get($spacing , 3 );
+  font-size: map-get($font-sizes , base );
+  border-radius: 8px;
+  
+  &::placeholder{
+      color: map-get($colors, muted);
+
+  }
+}
+

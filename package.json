@@ -31,6 +31,7 @@
     "date-fns": "^2.30.0",
     "flatpickr": "^4.6.13",
     "rxjs": "~7.5.0",
+    "socket.io-client": "^4.8.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },

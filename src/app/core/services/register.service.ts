@@ -4,46 +4,49 @@ import { userRegister } from '../models/user.interface';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ParsedHttpError } from './http/http-error-handler.service';
-
+import { SocketService } from './socket.service';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class RegisterService {
-
     private readonly API = `${environment.api}/user`;
 
-    constructor(private readonly http: HttpClient) { }
+    constructor(
+        private readonly http: HttpClient,
+        private socketIo: SocketService,
+    ) {}
 
     registerUser(form: userRegister): Observable<boolean | void> {
-        return this.http.post<userRegister>(this.API, form)
-            .pipe(
-                map((res: userRegister) => {
-                    // this.saveToken(res.token)
-                    if (res) return true
-                    else return false
-                }),
-                catchError((err: ParsedHttpError) => {
-                    console.log(err)
-                    return throwError(() => err);
-
-                })
-            );
+        return this.http.post<userRegister>(this.API, form).pipe(
+            map((res: userRegister) => {
+                // this.saveToken(res.token)
+                this.socketIo.listenMessage((msg: string) => {
+                    console.log(msg);
+                });
+                if (res) return true;
+                else return false;
+            }),
+            catchError((err: ParsedHttpError) => {
+                console.log(err);
+                return throwError(() => err);
+            }),
+        );
     }
 
     verifyEmail(email: string): Observable<any> {
-        return this.http.post<any>(`${this.API}/verifyEmail`, { email })
+        return this.http.post<any>(`${this.API}/verifyEmail`, { email });
     }
 
     verifyUsername(username: string): Observable<any> {
-        return this.http.post<any>(`${this.API}/verifyUsername`, { username })
+        return this.http.post<any>(`${this.API}/verifyUsername`, { username });
     }
 
     private handleError(err: any): Observable<never> {
-        let errorMessage = 'ocurrio un error'
+        let errorMessage = 'ocurrio un error';
         if (err) {
-            errorMessage = `error code : ${err.message}`
+            errorMessage = `error code : ${err.message}`;
         }
-        return err
+        return err;
     }
 }

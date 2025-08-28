@@ -12,14 +12,16 @@ interface newPass {
     newPass: string;
 }
 
-
 @Injectable({
     providedIn: 'root',
 })
 export class UserService {
     private readonly API = `${environment.api}/user`;
 
-    constructor(private authSvc: AuthService, private readonly http: HttpClient) { }
+    constructor(
+        private authSvc: AuthService,
+        private readonly http: HttpClient,
+    ) {}
 
     modifyPass(pass: string, idUser: string): Observable<boolean | void> {
         return this.http.put<newPass>(`${this.API}/modifyPass/${idUser}`, { password: pass }).pipe(
@@ -31,31 +33,38 @@ export class UserService {
             catchError((err: ParsedHttpError) => {
                 console.log(err);
                 return throwError(() => err);
-            })
+            }),
         );
     }
 
     modifyUser(user: ModifyUser, idUser: string): Observable<boolean | void> {
         console.log(user);
-        return this.http.put<ModifyUser>(`${this.API}/${idUser}`, { username: user.username, email: user.email }).pipe(
-            take(1),
-            switchMap((user) => {
-                console.log('que pasa aca', user);
-                return this.authSvc.refreshCookie();
-            }),
-            map((res) => { res === true })
-        );
-    };
+        return this.http
+            .put<ModifyUser>(`${this.API}/${idUser}`, {
+                username: user.username,
+                email: user.email,
+            })
+            .pipe(
+                take(1),
+                switchMap((user) => {
+                    console.log('que pasa aca', user);
+                    return this.authSvc.refreshCookie();
+                }),
+                map((res) => {
+                    res === true;
+                }),
+            );
+    }
 
     findUSerById(idUser: string): Observable<User> {
         return this.http.get<Response<User>>(`${this.API}/${idUser}`).pipe(
             map((res: Response<User>): User => {
-                return res.data
+                return res.data;
             }),
             catchError((err) => {
-                console.log(err)
+                console.log(err);
                 return throwError(() => err);
-            })
-        )
+            }),
+        );
     }
 }

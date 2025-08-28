@@ -1,3 +1,5 @@
+@use 'theme/mixins' as m;
+
 .rental {
     &__form {
         grid-area: form;
@@ -14,11 +16,29 @@
 
         &-actions {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column; // base: mobile
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 1rem;
             padding: 0.6rem 0;
+
+            
+
+            // desde md en adelante (768px+)
+            @include m.media-up(md) {
+                flex-direction: row; // cambia a row
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+            &--date_correct{
+                min-width: 257px;
+                @include m.media-up(md) {
+                    min-width: auto;
+                }
+            }
         }
+
+
 
         &-btns {
             display: flex;
@@ -48,13 +68,3 @@
     height: 80px;
     width: 80px;
 }
-
-.date_invalid {
-    color: #c2185b;
-}
-
-.date_correct {
-    border: 1px solid var(--color-success);
-    border-radius: var(--border-radius);
-}
-

@@ -3,5 +3,15 @@
   "singleQuote": true,
   "htmlWhitespaceSensitivity": "ignore",
   "bracketSameLine": false,
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "overrides": [
+    {
+      "files": [
+        "*.html"
+      ],
+      "options": {
+        "printWidth": 80
+      }
+    }
+  ]
 }

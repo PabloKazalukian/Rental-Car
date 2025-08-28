@@ -8,14 +8,14 @@
     <span class="rental__form-text--car text-accent">{{ cars.brand }} {{ cars.model }}</span>
   </p>
   <form (ngSubmit)="onSubmit()" [formGroup]="range" class="container_form text-muted">
-    <hr class="mt-4 mb-4" />
+    <hr class="mt-4 mb-4 border-surface" />
     <div class="rental__form-actions">
       <div *ngIf="loading; else viewCalendar" class="spinner">
         <app-loading color="confirm"></app-loading>
       </div>
       <ng-template #viewCalendar>
         <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
-        <div class="rental__form-text--confirmation">
+        <div class="rental__form-actions--confirmation">
           <p *ngIf="range.errors?.['incompleteRange'] && range.touched" class="date_invalid">
             Fecha inválida
           </p>
@@ -25,14 +25,14 @@
               range.get('start')?.value !== null &&
               range.get('end')?.value !== null
             "
-            class="date_correct text-success p-3 font-xl"
+            class="rental__form-actions--date_correct border-success rounded text-success p-3 lg:font-lg md:font-md font-sm"
           >
             Fecha correcta!
           </p>
         </div>
       </ng-template>
     </div>
-    <hr class="mt-4 mb-4" />
+    <hr class="mt-4 mb-4 border-surface" />
     <p class="font-md rental__form-text">
       Monto a Pagar por dia:
       <span class="text-accent">{{ this.cars.price }}</span>
@@ -75,7 +75,7 @@
       <span class="text-accent">{{ this.data.initialDate | date: 'dd/MM/yyyy' }}</span>
       hasta
       <span class="text-accent">{{ this.data.finalDate | date: 'dd/MM/yyyy' }}</span>
-      <hr class="mt-2 mb-2" />
+      <hr class="mt-2 mb-2 border-surface"  />
       Por favor, indique si quiere solicitar o confirmar la solicitud, en caso de confirmar.
       <p>
         <strong class="text-error font-sm">No podra cancelar la solicitud</strong>
