@@ -1,0 +1,13 @@
+<div class="toast bg-background rounded-md flex items-center justify-between p-4 shadow"
+         [@toastAnimation]>
+      <div class="flex items-center gap-2">
+        <div class="toast__icon w-6 h-6 flex items-center justify-center rounded-full"
+             [ngClass]="toast.type === 'success' ? 'bg-success text-white' : 'bg-error text-white'">
+          ✔
+        </div>
+        <div class="toast__message text-sm">{{ toast.text }}</div>
+      </div>
+      <button class="toast__close text-muted hover:text-error ml-4"
+              (click)="close()">✖</button>
+    </div>
+  

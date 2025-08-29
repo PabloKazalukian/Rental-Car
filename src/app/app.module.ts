@@ -24,13 +24,8 @@ import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './shared/components/layout/footer/footer.component';
 import { NavBarComponent } from './shared/components/layout/navbar/navbar.component';
 
-
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavBarComponent,
-        FooterComponent,
-    ],
+    declarations: [AppComponent, NavBarComponent, FooterComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -40,8 +35,8 @@ import { NavBarComponent } from './shared/components/layout/navbar/navbar.compon
         HttpClientModule,
         BrowserAnimationsModule,
         CoreModule,
-        SharedModule
+        SharedModule,
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

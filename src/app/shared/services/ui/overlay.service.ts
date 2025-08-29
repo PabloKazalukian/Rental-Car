@@ -19,7 +19,7 @@ export class OverlayService {
         private appRef: ApplicationRef,
         private injector: Injector,
         private cfr: ComponentFactoryResolver,
-        private router: Router
+        private router: Router,
     ) {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationStart) {
@@ -29,7 +29,6 @@ export class OverlayService {
     }
 
     open<T>(component: Type<T>, data?: any): OverlayRef {
-
         const overlayRef = new OverlayRef(() => {
             this.appRef.detachView(overlayComponentRef.hostView);
             this.removeOverlay(overlayRef);

@@ -16,7 +16,6 @@ export class SocketService {
             console.log('Conectado con id:', 'prueba');
         });
 
-        console.log('ásta');
         this.socket.emit('message', 'seg');
     }
 

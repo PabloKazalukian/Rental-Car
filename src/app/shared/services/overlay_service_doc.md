@@ -1,146 +1,62 @@
-# 🧩 OverlayService en Angular - Documentación Técnica
+# Documentación: Sistema de Overlays en Angular
 
-Servicio que permite crear e insertar dinámicamente componentes como modales o diálogos dentro de un contenedor neutro (`OverlayComponent`).
+Este módulo implementa un sistema **dinámico de overlays** en Angular, similar a un servicio global de modales o popups.  
+El flujo se compone de cuatro piezas principales:
 
-## 📁 Archivo: `overlay.service.ts`
-
-### 📌 Propósito
-
-- Inyecta componentes dinámicos (modales, diálogos, etc.).
-- Controla su ciclo de vida.
-- Permite cerrar todos los overlays activos.
-- Limpia recursos automáticamente en navegación o cierre manual.
+- `OverlayService` → Orquestador que abre, cierra y limpia overlays.
+- `OverlayRef` → Referencia a una instancia abierta (controlador del ciclo de vida).
+- `overlay.token.ts` → Tokens de inyección de dependencias para comunicar datos y referencias.
+- `OverlayComponent` → Contenedor genérico que hospeda dinámicamente el contenido del overlay.
 
 ---
 
-## 🧠 Propiedades internas
+## 1. `overlay.service.ts`
 
-```ts
-private activeOverlays: OverlayRef[] = [];
-```
+Servicio global que gestiona los overlays.
 
-- **activeOverlays**: Guarda todas las instancias activas de `OverlayRef`.
-- Sirve para cerrar múltiples overlays con `closeAll()` o limpiar uno puntual.
+### Funcionalidades principales:
 
----
+- **Abrir un overlay** con cualquier componente Angular dinámicamente.
+- **Inyectar datos** en el componente cargado mediante `InjectionToken`.
+- **Mantener un registro** de overlays activos.
+- **Cerrar todos los overlays** cuando se produce una navegación (`NavigationStart`).
 
-## 🧩 Inyección de dependencias
+### Flujo de `open<T>()`
 
-```ts
-constructor(
-  private appRef: ApplicationRef,
-  private injector: Injector,
-  private cfr: ComponentFactoryResolver,
-  private router: Router
-)
-```
+1. Se crea un `OverlayRef` que expone el método `close()`.
+2. Se construye un `Injector` con:
+    - `OVERLAY_REF`: referencia al overlay actual.
+    - `OVERLAY_DATA`: datos opcionales a inyectar en el componente.
+3. Se instancia `OverlayComponent` como **contenedor**.
+4. Se adjunta al `document.body`.
+5. Dentro del `OverlayComponent`, se inserta dinámicamente el componente solicitado (`component`).
+6. Se agrega la instancia a `activeOverlays` para permitir gestión global.
 
-| Inyectado                  | Propósito                                                   |
-| -------------------------- | ----------------------------------------------------------- |
-| `ApplicationRef`           | Adjunta o remueve manualmente componentes del DOM.          |
-| `Injector`                 | Crea un inyector jerárquico para el overlay y su contenido. |
-| `ComponentFactoryResolver` | Crea instancias de componentes dinámicamente.               |
-| `Router`                   | Escucha cambios de URL para cerrar overlays al navegar.     |
+### Método `closeAll()`
+
+Cierra todos los overlays activos en orden LIFO, invocando su `close()`.
 
 ---
 
-## 🛰 Navegación: cierre automático
+## 2. `overlay-ref.ts`
+
+Clase que encapsula la **referencia a un overlay abierto**.  
+Permite comunicación y control de su ciclo de vida.
+
+### Métodos:
+
+- **`close(result?: T)`**
+    - Emite un valor opcional (`result`) cuando se cierra.
+    - Llama al callback de cleanup (`closeFn`) provisto por `OverlayService`.
+- **`afterClosed(): Observable<T | undefined>`**
+    - Permite suscribirse al evento de cierre para obtener el valor de retorno.
+
+Ejemplo de uso:
 
 ```ts
-this.router.events.subscribe((event) => {
-  if (event instanceof NavigationStart) {
-    this.closeAll();
-  }
+const ref = overlayService.open(MyModalComponent, { userId: 123 });
+
+ref.afterClosed().subscribe((result) => {
+    console.log('El modal se cerró con:', result);
 });
 ```
-
-- Escucha `NavigationStart` y cierra todos los overlays si se cambia la URL.
-
----
-
-## 🎬 Método principal: `open<T>()`
-
-```ts
-open<T>(component: Type<T>, data?: any): OverlayRef
-```
-
-### Fases del proceso:
-
-#### 1. Crear `OverlayRef`
-
-```ts
-const overlayRef = new OverlayRef(() => {
-  this.appRef.detachView(overlayComponentRef.hostView);
-  this.removeOverlay(overlayRef);
-  overlayComponentRef.destroy();
-});
-```
-
-- Define cómo se cerrará el overlay.
-- Limpia visual y lógicamente la instancia.
-
-#### 2. Crear inyector local
-
-```ts
-const overlayInjector = Injector.create({ ... });
-```
-
-- Inyecta datos (`OVERLAY_DATA`) y control (`OverlayRef`) al componente hijo.
-
-#### 3. Crear `OverlayComponent`
-
-```ts
-const factory = this.cfr.resolveComponentFactory(OverlayComponent);
-const overlayComponentRef = factory.create(overlayInjector);
-```
-
-#### 4. Insertar en el DOM
-
-```ts
-this.appRef.attachView(overlayComponentRef.hostView);
-const domElem = ...;
-document.body.appendChild(domElem);
-```
-
-#### 5. Insertar el componente real dentro del overlay
-
-```ts
-setTimeout(() => {
-  vcRef.createComponent(contentFactory, undefined, overlayInjector);
-});
-```
-
-#### 6. Track de overlays abiertos
-
-```ts
-this.activeOverlays.push(overlayRef);
-```
-
----
-
-## 🧹 Métodos auxiliares
-
-### `removeOverlay(ref: OverlayRef)`
-
-Elimina un overlay específico del array activo.
-
-### `closeAll()`
-
-Cierra todos los overlays activos, llamando `.close()` a cada uno.
-
----
-
-## 🧾 Resumen por etapas
-
-| Fase           | Acción                                                                |
-| -------------- | --------------------------------------------------------------------- |
-| Inicialización | Crea el contenedor `OverlayComponent`.                                |
-| Inyección      | Pasa `OverlayRef` y `OVERLAY_DATA` al componente real.                |
-| Inserción DOM  | Monta el overlay en el `<body>`.                                      |
-| Renderizado    | Inserta dinámicamente el componente real dentro del overlay.          |
-| Limpieza       | `.close()` ejecuta `detach`, `destroy` y elimina del array.           |
-| Navegación     | `NavigationStart` cierra todos los overlays abiertos automáticamente. |
-
----
-
-

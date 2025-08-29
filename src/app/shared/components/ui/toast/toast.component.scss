@@ -1,0 +1,21 @@
+.toast{
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    right: 0;
+    gap:2rem;
+    opacity: 9;
+    
+    &__icon{
+
+
+    }
+
+    &__message{
+
+    }
+
+    &__close{
+
+    }
+}

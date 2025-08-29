@@ -25,7 +25,8 @@ import { TablePaginationComponent } from './components/ui/table-pagination/table
 import { TableFilterComponent } from './components/ui/table-filter/table-filter.component';
 import { SelectComponent } from './components/ui/select/select.component';
 import { SkeletonComponent } from './components/ui/skeleton/skeleton.component';
-
+import { ToastComponent } from './components/ui/toast/toast.component';
+import { ContainerToastComponent } from './components/ui/container-toast/container-toast.component';
 
 @NgModule({
     declarations: [
@@ -51,14 +52,11 @@ import { SkeletonComponent } from './components/ui/skeleton/skeleton.component';
         TablePaginationComponent,
         TableFilterComponent,
         SelectComponent,
-        SkeletonComponent
+        SkeletonComponent,
+        ToastComponent,
+        ContainerToastComponent,
     ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        ReactiveFormsModule,
-        FormsModule,
-    ],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
     exports: [
         SuccessComponent,
         MessageErrorComponent,
@@ -86,7 +84,9 @@ import { SkeletonComponent } from './components/ui/skeleton/skeleton.component';
         TablePaginationComponent,
         TableFilterComponent,
         SelectComponent,
-        SkeletonComponent
-    ]
+        SkeletonComponent,
+        ToastComponent,
+        ContainerToastComponent,
+    ],
 })
-export class SharedModule { }
+export class SharedModule {}
