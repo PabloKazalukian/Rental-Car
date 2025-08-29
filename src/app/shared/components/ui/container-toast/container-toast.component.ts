@@ -4,7 +4,7 @@ import { ToastService } from 'src/app/core/services/notifications/toast.service'
 @Component({
     selector: 'app-container-toast',
     templateUrl: './container-toast.component.html',
-    styleUrl: './container-toast.component.css',
+    styleUrl: './container-toast.component.scss',
 })
 export class ContainerToastComponent implements OnInit {
     toasts: any[] = [];
