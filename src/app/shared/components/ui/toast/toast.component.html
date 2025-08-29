@@ -1,13 +1,14 @@
-<div class="toast bg-background rounded-md flex items-center justify-between p-4 shadow"
-         [@toastAnimation]>
-      <div class="flex items-center gap-2">
-        <div class="toast__icon w-6 h-6 flex items-center justify-center rounded-full"
-             [ngClass]="toast.type === 'success' ? 'bg-success text-white' : 'bg-error text-white'">
-          ✔
-        </div>
-        <div class="toast__message text-sm">{{ toast.text }}</div>
-      </div>
-      <button class="toast__close text-muted hover:text-error ml-4"
-              (click)="close()">✖</button>
-    </div>
-  
+<div
+  class="toast bg-background flex-center rounded-md p-4"
+  [@toastAnimation]="closing ? 'closing' : 'open'"
+  (@toastAnimation.done)="onAnimationDone($event)"
+>
+  <span
+    class="toast__icon flex flex-center rounded-100"
+    [ngClass]="toast.type === 'success' ? 'bg-success text-white' : 'bg-error text-white'"
+  >
+    {{ toast.type === 'success' ? '✔' : '⚠' }}
+  </span>
+  <div class="toast__message font-sm pl-4">{{ toast.text }}</div>
+  <button class="toast__close text-muted font-md pr-2 hover:text-error ml-4" (click)="startClosing()">✖</button>
+</div>

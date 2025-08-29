@@ -5,6 +5,7 @@ import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } fro
 import { AuthenticatedUser, Login, LoginResponde } from '../../models/login.interface';
 import { AuthService } from './auth.service';
 import { SocketService } from '../socket.service';
+import { NotificationService } from '../notifications/notification.service';
 
 declare global {
     interface Window {
@@ -27,33 +28,36 @@ export class LoginService {
         private readonly http: HttpClient,
         private authSvc: AuthService,
         private socketIo: SocketService,
+        private notiSvc: NotificationService,
     ) {}
 
     login(form: Login): Observable<boolean | void> {
-        return this.http
-            .post<LoginResponde>(`${this.API}/login`, form, { withCredentials: true })
-            .pipe(
-                map((res: LoginResponde) => {
-                    this.socketIo.listenMessage((msg: string) => {
-                        console.log(msg);
-                    });
-                    this.authSvc.saveToken(res.accessToken);
-                    this.authSvc.setLoggedInState(true);
-                    return true;
-                }),
-                catchError((error) => {
-                    console.log('error', typeof error);
-                    this.authSvc.clearSession();
-                    console.error('Token inválido o expirado:', error);
-                    return throwError(() => new Error('Token inválido o expirado'));
-                }),
-            );
+        return this.http.post<LoginResponde>(`${this.API}/login`, form, { withCredentials: true }).pipe(
+            map((res: LoginResponde) => {
+                this.socketIo.listenMessage((msg: string) => {
+                    console.log(msg);
+                });
+                this.authSvc.saveToken(res.accessToken);
+                this.authSvc.setLoggedInState(true);
+                this.notiSvc.emit({ text: 'Se loggeo correctamente!', type: 'success' });
+                return true;
+            }),
+            catchError((error) => {
+                console.log('error', typeof error);
+                this.authSvc.clearSession();
+                console.error('Token inválido o expirado:', error);
+                return throwError(() => new Error('Token inválido o expirado'));
+            }),
+        );
     }
 
     logout(): Observable<void> {
         return this.http.get<void>(`${this.API}/logout`, { withCredentials: true }).pipe(
             tap((res) => this.authSvc.clearSession()),
-            map((response) => response),
+            map((response) => {
+                response;
+                this.notiSvc.emit({ text: 'Cerro sesion correctamente!', type: 'success' });
+            }),
             catchError((error) => {
                 this.authSvc.clearSession();
                 console.error('Token inválido o expirado:', error);

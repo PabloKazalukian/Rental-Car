@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastService } from 'src/app/core/services/notifications/toast.service';
+import { Subscription } from 'rxjs';
+import { ToastMessage } from 'src/app/core/models/notification.interface';
+import { NotificationService } from 'src/app/core/services/notifications/notification.service';
 
 @Component({
     selector: 'app-container-toast',
@@ -7,13 +9,35 @@ import { ToastService } from 'src/app/core/services/notifications/toast.service'
     styleUrl: './container-toast.component.scss',
 })
 export class ContainerToastComponent implements OnInit {
-    toasts: any[] = [];
+    toasts: ToastMessage[] = [];
+    private subscriptions: Subscription[] = [];
 
-    constructor(private toastService: ToastService) {}
+    constructor(private notiService: NotificationService) {}
 
     ngOnInit() {
-        this.toastService.messages$.subscribe((msg) => {
-            this.toasts.push(msg);
-        });
+        this.subscriptions.push(
+            this.notiService.messages$.subscribe((msg) => {
+                this.toasts.push(msg);
+                setTimeout(() => this.removeToast(0), 4000); // autodescarta el primero
+            }),
+        );
+    }
+    removeToast(index: number) {}
+
+    finalRemoveToast(index: number) {
+        console.log(index);
+        this.toasts.splice(index, 1);
+    }
+
+    get visibleToasts() {
+        return this.toasts.slice(0, 3);
+    }
+
+    get hiddenCount() {
+        return this.toasts.length > 3 ? this.toasts.length - 3 : 0;
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach((sub) => sub.unsubscribe());
     }
 }

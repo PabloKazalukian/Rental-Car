@@ -5,27 +5,25 @@ import { Store } from '@ngrx/store';
 import { searchCar, orderPriceCar, orderBrandCar, orderYearCar } from '../../store/cars/car.actions';
 import { CarService } from '../../core/services/car.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { NotificationService } from 'src/app/core/services/notifications/notification.service';
 
 interface appState {
-    loading: boolean,
-    cars: Array<Car>
-    car: Array<Car>
+    loading: boolean;
+    cars: Array<Car>;
+    car: Array<Car>;
 }
 
 interface text {
-    model: string | '',
-    brand: string | ''
+    model: string | '';
+    brand: string | '';
 }
 
 @Component({
     selector: 'app-cars',
     templateUrl: './cars.component.html',
-    styleUrls: ['./cars.component.scss']
+    styleUrls: ['./cars.component.scss'],
 })
-
 export class CarsComponent implements OnInit, OnDestroy {
-
     private subscripcions: Subscription[] = [];
 
     estado!: boolean;
@@ -42,40 +40,39 @@ export class CarsComponent implements OnInit, OnDestroy {
     autos?: any = [];
     carObservable: Subject<any> = new Subject();
 
-    constructor(private store: Store<{ autos: appState }>, readonly route: ActivatedRoute, private readonly carSvc: CarService) { }
+    constructor(
+        private store: Store<{ autos: appState }>,
+        readonly route: ActivatedRoute,
+        private readonly carSvc: CarService,
+    ) {}
 
     ngOnInit(): void {
         this.estado = false;
 
         this.subscripcions.push(
-            this.carSvc.getAllCars().subscribe(
-                car => {
-                    this.autos = car
-                    this.estado = true;
-                }
-            )
+            this.carSvc.getAllCars().subscribe((car) => {
+                this.autos = car;
+                this.estado = true;
+            }),
         );
 
-        this.route.queryParams.subscribe(
-            (params) => {
-                this.searchModel = params['model'];
-                this.searchBrand = params['brand'];
-            }
-        )
+        this.route.queryParams.subscribe((params) => {
+            this.searchModel = params['model'];
+            this.searchBrand = params['brand'];
+        });
         this.subscripcions.push(
             this.store.select('autos').subscribe((state: appState): void => {
                 if (this.searchParams === false && state.loading !== false) {
                     this.store.dispatch(searchCar({ brand: this.searchBrand || '', model: this.searchModel || '' }));
                     this.searchParams = true;
                 }
-            })
+            }),
         );
-
-    };
+    }
 
     public search(text?: text): void {
         this.store.dispatch(searchCar({ brand: text?.brand || '', model: text?.model || '' }));
-    };
+    }
 
     public order(order: string): void {
         switch (order) {
@@ -90,30 +87,29 @@ export class CarsComponent implements OnInit, OnDestroy {
                 break;
             default:
         }
-
-    };
+    }
 
     public orderPrice(): void {
         this.ascPrice = !this.ascPrice;
         this.store.dispatch(orderPriceCar({ asc: this.ascPrice }));
         this.ascBrand = !this.ascBrand;
-    };
+    }
 
     public orderBrand(): void {
         this.ascBrand = !this.ascBrand;
         this.ascPrice = !this.ascPrice;
 
         this.store.dispatch(orderBrandCar({ asc: this.ascBrand }));
-    };
+    }
 
     public orderYear(): void {
         this.ascYear = !this.ascYear;
         this.ascPrice = !this.ascPrice;
 
         this.store.dispatch(orderYearCar({ asc: this.ascYear }));
-    };
+    }
 
     ngOnDestroy(): void {
-        this.subscripcions.forEach(sub => sub.unsubscribe());
-    };
+        this.subscripcions.forEach((sub) => sub.unsubscribe());
+    }
 }

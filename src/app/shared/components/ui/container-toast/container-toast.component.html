@@ -1,3 +1,10 @@
-<div class="toast-container relative fixed top-4 right-4 flex flex-col gap-2 ">
-
+<div class="toast relative">
+  <div class="toast__container flex flex-col mt-14">
+    <div *ngIf="hiddenCount > 0" class="toast__badge">
+      <span class="toast__badge-span bg-primary text-white rounded-100 pl-1 pr-2 pt-1 pb-1">+{{ hiddenCount }}</span>
+    </div>
+    <div *ngFor="let toast of visibleToasts; let i = index" class="flex flex-col">
+      <app-toast [toast]="toast" (afterClosed)="finalRemoveToast($event)"></app-toast>
+    </div>
+  </div>
 </div>
