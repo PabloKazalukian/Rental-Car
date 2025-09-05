@@ -3,11 +3,10 @@ import { decrypt, encrypt } from 'src/app/shared/utils/encryption.util';
 import { LoginWithCredentials } from '../../models/login.interface';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class CredentialsService {
-
-    constructor() { }
+    constructor() {}
 
     getCredentials(): LoginWithCredentials {
         const remember = localStorage.getItem('remember') === 'true';

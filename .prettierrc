@@ -4,13 +4,20 @@
   "htmlWhitespaceSensitivity": "ignore",
   "bracketSameLine": false,
   "arrowParens": "always",
+  "tabWidth": 4,
+  "useTabs": false,
   "overrides": [
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "options": {
-        "printWidth": 140
+        "printWidth": 140,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.css", "*.scss"],
+      "options": {
+        "tabWidth": 2
       }
     }
   ]

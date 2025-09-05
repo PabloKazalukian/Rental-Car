@@ -25,6 +25,8 @@ const routes: Routes = [
         path: 'solicitar-auto',
         loadChildren: () => import('./pages/cars/cars.module').then(m => m.CarsModule),
     },
+    { path: 'payment', loadChildren: () => import('./pages/payment/payment.module').then(m => m.PaymentModule) },
+    { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
 
     // Ruta comodín
     { path: '**', loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorModule) },

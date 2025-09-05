@@ -5,6 +5,7 @@ import { Observable, map, throwError } from 'rxjs';
 import { Request, RequestReceived, RequestSend } from '../models/request.interface';
 import { catchError } from 'rxjs/operators';
 import { Response } from '../models/response.interface';
+import { CheckoutService } from './payment/checkout.service';
 
 interface idRequest {
     idRequest: string;
@@ -15,13 +16,15 @@ interface idRequest {
 export class RentalService {
     private readonly API = `${environment.api}/request`;
 
-    constructor(private readonly http: HttpClient) {}
+    constructor(
+        private readonly http: HttpClient,
+        private checkoutSvc: CheckoutService,
+    ) {}
 
     getRequestById(idCar: string): Observable<Request[]> {
-        return this.http
-            .get<Response<Request[]>>(`${this.API}/allOfCarId/${idCar}`)
-            .pipe(map((response) => response.data));
+        return this.http.get<Response<Request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map((response) => response.data));
     }
+
     getRequestByUserId(userId: string): Observable<RequestReceived[]> {
         return this.http.get<Response<RequestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(
             map((response) => response.data),
@@ -54,6 +57,10 @@ export class RentalService {
                 else return false;
             }),
         );
+    }
+
+    addCheckoutRequest(requestId: string): Observable<boolean | void> {
+        return this.checkoutSvc.saveRental(requestId);
     }
 
     confirmRequestByIdRequest(requestId: string): Observable<boolean | void> {

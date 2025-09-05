@@ -1,11 +1,6 @@
 <div class="container__login">
   <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
-    <form
-      *ngIf="this.login !== true"
-      class="form-layout"
-      (ngSubmit)="onSubmit()"
-      [formGroup]="contactForm"
-    >
+    <form *ngIf="this.login !== true" class="form-layout" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
       <div class="text-center login-title">
         <h3 class="mb-8">Inicie sesión</h3>
       </div>
@@ -33,11 +28,7 @@
             <app-checkbox [text]="'Recordarme'" [control]="rememberControl"></app-checkbox>
           </div>
           <div class="login-form__credentials-link">
-            <app-text-link
-              [text]="'Olvidé mi contraseña'"
-              [routerLink]="''"
-              [color]="'primary'"
-            ></app-text-link>
+            <app-text-link [text]="'Olvidé mi contraseña'" [routerLink]="''" [color]="'primary'"></app-text-link>
           </div>
         </div>
 
@@ -76,9 +67,7 @@
       <app-success [text]="'Sesión iniciada con exito!'"></app-success>
     </div>
     <div *ngIf="this.login === false" class="login__success">
-      <app-message-error
-        [messageError]="'Hubo un problema con su inicio de sesión.'"
-      ></app-message-error>
+      <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
     </div>
   </app-auth>
 </div>

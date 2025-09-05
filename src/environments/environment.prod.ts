@@ -4,4 +4,5 @@ export const environment = {
     api: 'https://api-rental-car-9niy.onrender.com/api',
     socket: 'https://api-rental-car-9niy.onrender.com',
     googleClientId: '921923361549-msk10ulmksa5uqkrjhne7n4roj7a7hkc.apps.googleusercontent.com',
+    public_key: 'TEST-25eb0e12-9832-4523-b4c1-6165b016628c',
 };
