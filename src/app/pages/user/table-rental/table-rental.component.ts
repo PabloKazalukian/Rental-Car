@@ -60,7 +60,6 @@ export class TableRentalComponent implements OnInit {
                     delay(1000),
                     switchMap((user) => (user.sub ? this.requestSvc.getRequestByUserId(user.sub) : of([]))),
                 )
-                .pipe()
                 .subscribe({
                     next: (res) => {
                         const checkoutRequests = this.checkouSvc.getRequest();

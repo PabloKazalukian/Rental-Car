@@ -27,6 +27,7 @@ import { SelectComponent } from './components/ui/select/select.component';
 import { SkeletonComponent } from './components/ui/skeleton/skeleton.component';
 import { ToastComponent } from './components/ui/toast/toast.component';
 import { ContainerToastComponent } from './components/ui/container-toast/container-toast.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { ContainerToastComponent } from './components/ui/container-toast/contain
         SkeletonComponent,
         ToastComponent,
         ContainerToastComponent,
+        CapitalizePipe,
     ],
     imports: [CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
     exports: [
@@ -87,6 +89,7 @@ import { ContainerToastComponent } from './components/ui/container-toast/contain
         SkeletonComponent,
         ToastComponent,
         ContainerToastComponent,
+        CapitalizePipe,
     ],
 })
 export class SharedModule {}

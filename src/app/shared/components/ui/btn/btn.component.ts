@@ -4,10 +4,9 @@ import { COLOR_VALUES } from 'src/app/shared/utils/color.type';
 @Component({
     selector: 'app-btn',
     templateUrl: './btn.component.html',
-    styleUrls: ['./btn.component.scss']
+    styleUrls: ['./btn.component.scss'],
 })
 export class BtnComponent {
-
     @Input() text: string = '';
     @Input() isDisabled: boolean = false;
     @Input() variant: 'basic' | 'raised' | 'stroked' | 'outline' | 'ghost' = 'basic';
@@ -48,6 +47,4 @@ export class BtnComponent {
         if (this.variant === 'raised') return 'white';
         return this.color;
     }
-
-
 }

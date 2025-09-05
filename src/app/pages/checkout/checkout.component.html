@@ -7,11 +7,9 @@
       <div class="checkout__form-info">
         <p>Info de primer nivel</p>
       </div>
-      <div class="checkout__form-content">
-        <p>class</p>
-        <p>class</p>
-        <p>class</p>
-        <p>class</p>
+      <div *ngFor="let r of request" class="checkout__form-content">
+        <p>{{ r }}</p>
+        <app-btn [variant]="'raised'" [color]="'accent'" [text]="'Quitar del carrito'"></app-btn>
       </div>
     </div>
     <div class="checkout__slide">

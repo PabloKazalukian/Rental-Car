@@ -40,7 +40,13 @@
 
     <app-btn *ngIf="row.state === 'con'" [variant]="'basic'" [color]="'confirm'" [text]="'Confirmado'"></app-btn>
 
-    <app-btn *ngIf="row.state === 'add'" [variant]="'basic'" [color]="'accent'" [text]="'Agregado al carrito'"></app-btn>
+    <app-btn
+      *ngIf="row.state === 'add'"
+      [routerLink]="'/checkout'"
+      [variant]="'basic'"
+      [color]="'accent'"
+      [text]="'Agregado al carrito'"
+    ></app-btn>
 
     <app-btn *ngIf="row.state === 'can'" [variant]="'outline'" [color]="'error'" [text]="'Cancelado'"></app-btn>
 

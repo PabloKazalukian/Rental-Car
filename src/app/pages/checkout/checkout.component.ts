@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
+import { RentalService } from 'src/app/core/services/rental.service';
 import { StepWithDescription } from 'src/app/shared/components/ui/stepper/stepper.component';
 
 @Component({
@@ -15,9 +16,20 @@ export class CheckoutComponent implements OnInit {
         { step: 'Elegir metodo de pago' },
         { step: 'Confirmación de pago' },
     ];
-    constructor(private checkoutSvc: CheckoutService) {}
+    constructor(
+        private checkoutSvc: CheckoutService,
+        private rentalSvc: RentalService,
+    ) {}
 
     ngOnInit(): void {
         this.request = this.checkoutSvc.getRequest();
+        this.rentalSvc.getRequestsByIds(this.request).subscribe({
+            next: (res) => {
+                console.log(res);
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
 }

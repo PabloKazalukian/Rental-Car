@@ -25,6 +25,10 @@ export class RentalService {
         return this.http.get<Response<Request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map((response) => response.data));
     }
 
+    getRequestsByIds(requests: string[]): Observable<Request[]> {
+        return this.http.post<Response<Request[]>>(`${this.API}/bulk`, { idsRequest: requests }).pipe(map((response) => response.data));
+    }
+
     getRequestByUserId(userId: string): Observable<RequestReceived[]> {
         return this.http.get<Response<RequestReceived[]>>(`${this.API}/allOfUserId/${userId}`).pipe(
             map((response) => response.data),
