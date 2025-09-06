@@ -38,7 +38,6 @@ export class UserService {
     }
 
     modifyUser(user: ModifyUser, idUser: string): Observable<boolean | void> {
-        console.log(user);
         return this.http
             .put<ModifyUser>(`${this.API}/${idUser}`, {
                 username: user.username,
@@ -47,7 +46,6 @@ export class UserService {
             .pipe(
                 take(1),
                 switchMap((user) => {
-                    console.log('que pasa aca', user);
                     return this.authSvc.refreshCookie();
                 }),
                 map((res) => {

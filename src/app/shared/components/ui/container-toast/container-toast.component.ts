@@ -25,7 +25,6 @@ export class ContainerToastComponent implements OnInit {
     removeToast(index: number) {}
 
     finalRemoveToast(index: number) {
-        console.log(index);
         this.toasts.splice(index, 1);
     }
 

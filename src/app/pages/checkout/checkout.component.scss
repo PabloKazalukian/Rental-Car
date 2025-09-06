@@ -6,9 +6,12 @@
   &__container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: 'form form' 'slide slide';
+    grid-template-areas:
+      'form'
+      'slide';
     max-width: 1280px;
     gap: 1rem;
+
     @include m.media-up(md) {
       grid-template-columns: 8fr 1fr 3fr;
       grid-template-areas:
@@ -26,12 +29,59 @@
       'info'
       'content';
 
+    &-icon {
+      height: 10px;
+      width: 10px;
+    }
+
     &-stepper {
       grid-area: stepper;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
   }
 
   &__slide {
-    grid-area: slide;
+    // grid-area: slide;
+    position: sticky; // ✅ queda fijo
+    top: 2rem; // margen desde arriba
+    align-self: start;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &-header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .info-circle {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      &__contain {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+    }
+
+    &-footer {
+      margin-top: 1rem;
+
+      .btn {
+        width: 100%;
+        background: #3483fa;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
   }
 }

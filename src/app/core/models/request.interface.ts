@@ -1,31 +1,30 @@
-import { Car } from "./car.interface"
+import { Car } from './car.interface';
 
 export interface Request {
-    id_request: number,
-    initialDate: string,
-    finalDate: string,
-
+    id_request: number;
+    initialDate: string;
+    finalDate: string;
 }
 
 export interface RequestSend {
-    amount?: number,
-    initialDate: Date,
-    finalDate: Date,
-    user_id: string,
-    car_id: string,
-    state: string,
+    amount?: number;
+    initialDate: Date;
+    finalDate: Date;
+    user_id: string;
+    car_id: string;
+    state: string;
 }
 
 export interface RequestReceived {
-    amount: number,
-    brand: string,
-    finalDate: string,
-    car_id: Car,
-    id: string,
-    initialDate: string,
-    model: string,
-    price: number,
-    state: string
+    amount: number;
+    brand: string;
+    finalDate: string;
+    car_id: Car;
+    id: string;
+    initialDate: string;
+    model: string;
+    price: number;
+    state: string;
 }
 
 export interface RequestTableRow {
@@ -36,4 +35,13 @@ export interface RequestTableRow {
     model: string;
     amount: number;
     state: string; // Para los botones condicionales
-};
+}
+
+export interface RequestToPayment {
+    amount: number;
+    finalDate: string;
+    initialDate: string;
+    id: string;
+    state: string;
+    car_id: Car;
+}

@@ -2,7 +2,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, throwError } from 'rxjs';
-import { Request, RequestReceived, RequestSend } from '../models/request.interface';
+import { Request, RequestReceived, RequestSend, RequestToPayment } from '../models/request.interface';
 import { catchError } from 'rxjs/operators';
 import { Response } from '../models/response.interface';
 import { CheckoutService } from './payment/checkout.service';
@@ -25,8 +25,10 @@ export class RentalService {
         return this.http.get<Response<Request[]>>(`${this.API}/allOfCarId/${idCar}`).pipe(map((response) => response.data));
     }
 
-    getRequestsByIds(requests: string[]): Observable<Request[]> {
-        return this.http.post<Response<Request[]>>(`${this.API}/bulk`, { idsRequest: requests }).pipe(map((response) => response.data));
+    getRequestsByIds(requests: string[]): Observable<RequestToPayment[]> {
+        return this.http
+            .post<Response<RequestToPayment[]>>(`${this.API}/bulk`, { idsRequest: requests })
+            .pipe(map((response) => response.data));
     }
 
     getRequestByUserId(userId: string): Observable<RequestReceived[]> {

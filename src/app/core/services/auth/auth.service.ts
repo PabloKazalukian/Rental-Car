@@ -5,13 +5,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { decrypt, encrypt } from 'src/app/shared/utils/encryption.util';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NotificationService } from '../notifications/notification.service';
 
 const helper = new JwtHelperService();
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class AuthService {
     private readonly API = `${environment.api}/auth`;
 
@@ -21,8 +21,10 @@ export class AuthService {
     private user$ = new BehaviorSubject<AuthenticatedUser>({ username: '', sub: '', role: '' });
     public _user$ = this.user$.asObservable();
 
-
-    constructor(private readonly http: HttpClient) {
+    constructor(
+        private readonly http: HttpClient,
+        private notiSvc: NotificationService,
+    ) {
         this.init();
     }
 
@@ -35,6 +37,7 @@ export class AuthService {
 
         const isExpired = helper.isTokenExpired(token);
         if (isExpired) {
+            this.notiSvc.emit({ text: 'sesion expirada!', type: 'error' });
             this.clearSession();
             return;
         }
@@ -43,7 +46,7 @@ export class AuthService {
         const user: AuthenticatedUser = {
             username: decoded.username,
             sub: decoded.sub,
-            role: decoded.role
+            role: decoded.role,
         };
 
         // Guardar estado reactivo
@@ -68,15 +71,16 @@ export class AuthService {
                 }
                 return false;
             }),
-            catchError(error => {
+            catchError((error) => {
                 console.error('Token inválido o expirado:', error);
                 // this.logout();
+                this.notiSvc.emit({ text: 'Sesión expirada', type: 'error' });
                 this.loggetIn$.next(false);
-                return this._loggenIn$
+                return this._loggenIn$;
                 // return of(false);
-            })
+            }),
         );
-    };
+    }
 
     refreshCookie(): Observable<boolean | void> {
         return this.http.post(`${this.API}/refresh`, null, { withCredentials: true }).pipe(
@@ -85,12 +89,11 @@ export class AuthService {
                 return true;
             }),
             catchError((err) => {
+                this.notiSvc.emit({ text: 'Sesión expirada', type: 'error' });
                 return of(false);
-            })
-        )
+            }),
+        );
     }
-
-
 
     readToken(): Observable<AuthenticatedUser> {
         const encryptedUser = localStorage.getItem('user');
@@ -101,7 +104,6 @@ export class AuthService {
             this.user$.next(parsedUser);
         }
         return this.user$.asObservable();
-
     }
 
     saveToken(token: string): void {
@@ -126,7 +128,6 @@ export class AuthService {
     }
 
     setUserInState(state: AuthenticatedUser) {
-        this.user$.next(state)
+        this.user$.next(state);
     }
-
 }

@@ -1,0 +1,25 @@
+<div class="checkout-card bg-background-2 border-surface rounded-md p-2 relative" [@toastAnimation]="show ? 'closing' : 'open'">
+  <div class="checkout-card__image-container show-cars__card-image">
+    <img src="{{ request.car_id.image }}" class="card-img-top show-cars__card-image--photo" alt="..." />
+  </div>
+  <div class="checkout-card__info">
+    <p>{{ request.car_id.model }} {{ request.car_id.brand }}</p>
+    <p class="font-sm text-muted">Precio por unidad: {{ this.request.car_id.price }}</p>
+    <p>
+      Monto total:
+      <span class="text-accent">${{ request.amount }}</span>
+      en {{ days }} {{ days === 1 ? ' dia' : 'de días' }} .
+    </p>
+
+    <p>
+      Desde:
+      <span>{{ request.initialDate }}</span>
+      , Hasta:
+
+      <span>{{ request.finalDate }}</span>
+    </p>
+  </div>
+  <div class="checkout-card__btn">
+    <app-btn [variant]="'outline'" [color]="'accent'" [text]="'x'" (click)="removeRequest(request.id)"></app-btn>
+  </div>
+</div>

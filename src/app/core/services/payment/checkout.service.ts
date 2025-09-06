@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { NotificationService } from '../notifications/notification.service';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CheckoutService {
     private key = 'checkout-Request';
+
+    private request$ = new BehaviorSubject<string[]>(this.getRequest());
+    public _request$ = this.request$.asObservable();
 
     constructor(private notiSvc: NotificationService) {}
 
@@ -17,18 +20,30 @@ export class CheckoutService {
         arr.push(checkout);
 
         this.saveRequest(arr);
+        this.request$.next(arr);
         this.notiSvc.emit({ text: 'Agregado al carrito correctamente!', type: 'success' });
         return of(true);
     }
 
-    // Recupera el array de strings
     getRequest(): string[] {
         const data = localStorage.getItem(this.key);
         return data ? JSON.parse(data) : [];
     }
 
-    // Limpia los Request (ej: al finalizar compra)
-    removeRequest(): void {
-        localStorage.removeItem(this.key);
+    removeRequest(requestId: string): void {
+        console.log(requestId);
+        const requestFilter = this.filterRequestById(requestId);
+        if (this.getRequest() === requestFilter) {
+            this.notiSvc.emit({ text: 'Ocurrio un error!', type: 'error' });
+        }
+        localStorage.setItem(this.key, JSON.stringify(requestFilter));
+        this.request$.next(requestFilter);
+        this.notiSvc.emit({ text: 'La peticion fue quitada del carrito correctamente!', type: 'success' });
+    }
+
+    private filterRequestById(requestId: string): string[] {
+        const request: string[] = this.getRequest();
+
+        return request.filter((r) => r !== requestId);
     }
 }

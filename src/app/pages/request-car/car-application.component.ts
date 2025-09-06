@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'app-car-application',
     templateUrl: './car-application.component.html',
-    styleUrls: ['./car-application.component.css']
+    styleUrls: ['./car-application.component.scss'],
 })
-export class CarApplicationComponent { }
+export class CarApplicationComponent {}

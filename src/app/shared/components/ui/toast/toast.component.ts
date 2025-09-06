@@ -24,7 +24,6 @@ export class ToastComponent implements OnInit {
     }
 
     onAnimationDone(event: any): void {
-        console.log(event);
         if (event.toState === 'closing') {
             this.afterClosed.emit(this.toast?.id); // avisa al contenedor que ya puede hacer splice
         }

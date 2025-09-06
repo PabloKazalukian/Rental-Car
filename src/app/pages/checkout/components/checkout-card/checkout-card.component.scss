@@ -1,0 +1,19 @@
+.checkout-card {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas: 'img info';
+  gap: 1rem;
+
+  &__image-container {
+    grid-area: img;
+  }
+
+  &__info {
+    grid-area: info;
+  }
+  &__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
