@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RequestToPayment } from 'src/app/core/models/request.interface';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
 import { toastAnimation } from 'src/app/shared/animations/toast.animation';
 import { formatDateToLocale, getDays, getDaysDate } from 'src/app/shared/validators/date.validator';
@@ -12,10 +13,15 @@ import { formatDateToLocale, getDays, getDaysDate } from 'src/app/shared/validat
 })
 export class CheckoutCardComponent implements OnInit {
     @Input() request!: RequestToPayment;
+    user$ = this.authSvc._user$;
+
     show = false;
     days!: number;
 
-    constructor(private checkoutSvc: CheckoutService) {}
+    constructor(
+        private checkoutSvc: CheckoutService,
+        private authSvc: AuthService,
+    ) {}
 
     ngOnInit(): void {
         // console.log(this.request);
@@ -32,7 +38,14 @@ export class CheckoutCardComponent implements OnInit {
 
     removeRequest(requestId: string) {
         this.startClosing();
-        setTimeout(() => this.checkoutSvc.removeRequest(requestId), 1000);
+        this.authSvc._user$.subscribe({
+            next: (user) => {
+                setTimeout(() => this.checkoutSvc.removeOneRequestById(requestId, user.sub), 1000);
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
     }
 
     onAnimationDone(event: any): void {

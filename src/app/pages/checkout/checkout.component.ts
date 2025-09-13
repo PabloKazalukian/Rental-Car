@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { map, Subscription, switchMap, tap } from 'rxjs';
 import { RequestToPayment } from 'src/app/core/models/request.interface';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { StepWithDescription } from 'src/app/shared/components/ui/stepper/stepper.component';
@@ -12,6 +13,7 @@ import { StepWithDescription } from 'src/app/shared/components/ui/stepper/steppe
 })
 export class CheckoutComponent implements OnInit {
     private subscriptions: Subscription[] = [];
+    user$ = this.authSvc._user$;
 
     requestIds!: string[];
     request!: RequestToPayment[];
@@ -29,17 +31,29 @@ export class CheckoutComponent implements OnInit {
 
     constructor(
         private checkoutSvc: CheckoutService,
+        private authSvc: AuthService,
         private rentalSvc: RentalService,
     ) {}
 
     ngOnInit(): void {
+        // this.checkoutSvc.getCheckoutApi()
         this.subscriptions.push(
-            this.checkoutSvc._request$.subscribe((e) => {
-                this.requestIds = e;
-                this.request = this.request?.filter((request) => this.requestIds.includes(request.id));
-                this.updateTotals();
-            }),
+            this.user$
+                .pipe(
+                    map((user) => user.sub),
+                    switchMap((idUser: string) => this.checkoutSvc.getCheckout(idUser)),
+                )
+                .subscribe({
+                    next: (res: string[]) => {
+                        this.requestIds = res;
+                        console.log(this.requestIds);
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    },
+                }),
         );
+
         this.subscriptions.push(
             this.rentalSvc.getRequestsByIds(this.requestIds).subscribe({
                 next: (res: RequestToPayment[]) => {

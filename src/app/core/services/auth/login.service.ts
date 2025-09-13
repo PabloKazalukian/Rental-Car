@@ -1,8 +1,8 @@
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, of, tap, throwError } from 'rxjs';
-import { AuthenticatedUser, Login, LoginResponde } from '../../models/login.interface';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { Login, LoginResponde } from '../../models/login.interface';
 import { AuthService } from './auth.service';
 import { SocketService } from '../socket.service';
 import { NotificationService } from '../notifications/notification.service';
@@ -18,8 +18,6 @@ declare global {
 })
 export class LoginService {
     // private loggetIn = new BehaviorSubject<boolean>(false);
-    private user$ = new BehaviorSubject<AuthenticatedUser>({ username: '', sub: '', role: '' });
-    public _user$ = this.user$.asObservable();
 
     private readonly API = `${environment.api}/auth`;
     token?: string;

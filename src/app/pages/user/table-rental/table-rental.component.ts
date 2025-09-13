@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { delay, Observable, of, Subscription, switchMap } from 'rxjs';
+import { delay, forkJoin, Observable, of, Subscription, switchMap, tap } from 'rxjs';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { formatDateToLocale } from 'src/app/shared/validators/date.validator';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { RequestTableRow } from 'src/app/core/models/request.interface';
+import { RequestReceived, RequestTableRow } from 'src/app/core/models/request.interface';
 import { on } from '@ngrx/store';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
 
@@ -36,6 +36,7 @@ export class TableRentalComponent implements OnInit {
     ];
     pageSizeOptions: number[] = [5, 10, 15, 20];
     request$!: Observable<RequestTableRow[]>;
+    checkoutRequests: string[] = [];
 
     constructor(
         private requestSvc: RentalService,
@@ -58,25 +59,18 @@ export class TableRentalComponent implements OnInit {
             this.user$
                 .pipe(
                     delay(1000),
-                    switchMap((user) => (user.sub ? this.requestSvc.getRequestByUserId(user.sub) : of([]))),
+                    switchMap((user) => {
+                        const user_id = user.sub;
+                        return forkJoin({
+                            checkout: this.checkouSvc.getCheckout(user_id),
+                            request: this.requestSvc.getRequestByUserId(user_id),
+                        });
+                    }),
                 )
                 .subscribe({
-                    next: (res) => {
-                        const checkoutRequests = this.checkouSvc.getRequest();
-
-                        const requestTable: RequestTableRow[] = res.map((r): RequestTableRow => {
-                            if (checkoutRequests.includes(r.id)) r.state = 'add';
-
-                            return {
-                                id: r.id,
-                                initialDate: formatDateToLocale(r.initialDate),
-                                finalDate: formatDateToLocale(r.finalDate),
-                                brand: r.car_id.brand,
-                                model: r.car_id.model,
-                                amount: r.amount,
-                                state: r.state,
-                            };
-                        });
+                    next: ({ checkout, request }) => {
+                        this.checkoutRequests = checkout;
+                        const requestTable: RequestTableRow[] = this.formatData(request);
 
                         this.rawData = requestTable;
                         this.filteredData = [...this.rawData];
@@ -91,6 +85,23 @@ export class TableRentalComponent implements OnInit {
                     },
                 }),
         );
+    }
+
+    private formatData(requests: RequestReceived[]): RequestTableRow[] {
+        return requests.map((r): RequestTableRow => {
+            console.log('CHECKOUT REQUESTS', this.checkoutRequests);
+            if (this.checkoutRequests.length > 0 && this.checkoutRequests.includes(r.id)) r.state = 'add';
+
+            return {
+                id: r.id,
+                initialDate: formatDateToLocale(r.initialDate),
+                finalDate: formatDateToLocale(r.finalDate),
+                brand: r.car_id.brand,
+                model: r.car_id.model,
+                amount: r.amount,
+                state: r.state,
+            };
+        });
     }
 
     updatePagination(data: RequestTableRow[]) {

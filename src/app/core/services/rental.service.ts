@@ -1,11 +1,12 @@
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, throwError } from 'rxjs';
+import { Observable, map, of, throwError } from 'rxjs';
 import { Request, RequestReceived, RequestSend, RequestToPayment } from '../models/request.interface';
 import { catchError } from 'rxjs/operators';
 import { Response } from '../models/response.interface';
 import { CheckoutService } from './payment/checkout.service';
+import { AuthService } from './auth/auth.service';
 
 interface idRequest {
     idRequest: string;
@@ -19,6 +20,7 @@ export class RentalService {
     constructor(
         private readonly http: HttpClient,
         private checkoutSvc: CheckoutService,
+        private authSvc: AuthService,
     ) {}
 
     getRequestById(idCar: string): Observable<Request[]> {
@@ -66,7 +68,11 @@ export class RentalService {
     }
 
     addCheckoutRequest(requestId: string): Observable<boolean | void> {
-        return this.checkoutSvc.saveRental(requestId);
+        return this.authSvc._user$.pipe(
+            map((user) => {
+                return this.checkoutSvc.saveCheckout(requestId, user.sub);
+            }),
+        );
     }
 
     confirmRequestByIdRequest(requestId: string): Observable<boolean | void> {
