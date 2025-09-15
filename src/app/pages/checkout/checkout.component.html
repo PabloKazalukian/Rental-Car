@@ -9,10 +9,18 @@
         <p>Info de primer nivel</p>
       </div>
       <div class="checkout__form-content flex-center flex-col">
-        <div *ngIf="!request || request.length === 0">
-          <p>No se han agregado items al checkout!</p>
+        <div *ngIf="request && request.length > 0; else loading" class="checkout__form-content-header mb-4 flex-center flex-col">
+          <app-checkout-card *ngFor="let r of request" [request]="r"></app-checkout-card>
+          <app-btn [routerLink]="'/solicitar-auto'" [color]="'primary'" [variant]="'raised'" [text]="'Agregar nuevos Alquileres'"></app-btn>
         </div>
-        <app-checkout-card *ngFor="let r of request" [request]="r"></app-checkout-card>
+        <ng-template #loading>
+          <div class="checkout__loading mt-2">
+            <app-loading [color]="'accent'"></app-loading>
+          </div>
+          <div *ngIf="request.length === 0">
+            <p>No se han agregado items al checkout!</p>
+          </div>
+        </ng-template>
       </div>
     </div>
 

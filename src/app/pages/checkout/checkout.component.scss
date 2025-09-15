@@ -43,6 +43,11 @@
       flex-direction: column;
       gap: 2rem;
       flex-wrap: wrap;
+
+      &-header {
+        display: flex;
+        gap: 1rem;
+      }
     }
   }
 
@@ -83,5 +88,10 @@
         cursor: pointer;
       }
     }
+  }
+
+  &__loading {
+    width: 6rem;
+    height: 6rem;
   }
 }

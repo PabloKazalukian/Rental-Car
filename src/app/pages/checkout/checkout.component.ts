@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Subscription, switchMap, tap } from 'rxjs';
+import { delay, map, Subscription, switchMap, tap } from 'rxjs';
 import { RequestToPayment } from 'src/app/core/models/request.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
@@ -70,7 +70,7 @@ export class CheckoutComponent implements OnInit {
     updateTotals() {
         if (!this.request) return;
         this.subtotal = this.request.reduce((acc, r) => acc + r.amount, 0);
-        this.discount = 0; // en el futuro podés calcular dinámico
+        this.discount = 0;
         this.total = this.subtotal - this.discount;
     }
 
