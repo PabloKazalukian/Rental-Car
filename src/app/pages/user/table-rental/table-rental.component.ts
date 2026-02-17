@@ -6,11 +6,28 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RequestReceived, RequestTableRow } from 'src/app/core/models/request.interface';
 import { on } from '@ngrx/store';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
+import { RouterLink } from '@angular/router';
+import { BtnComponent } from '../../../shared/components/ui/btn/btn.component';
+import { TableComponent } from '../../../shared/components/ui/table/table.component';
+import { TablePaginationComponent } from '../../../shared/components/ui/table-pagination/table-pagination.component';
+import { RentalStatusFilterComponent } from '../rental-status-filter/rental-status-filter.component';
+import { TableFilterComponent } from '../../../shared/components/ui/table-filter/table-filter.component';
+import { LoadingComponent } from '../../../shared/components/ui/loading/loading.component';
 
 @Component({
     selector: 'app-table-rental',
     templateUrl: './table-rental.component.html',
     styleUrls: ['./table-rental.component.scss'],
+    standalone: true,
+    imports: [
+        LoadingComponent,
+        TableFilterComponent,
+        RentalStatusFilterComponent,
+        TablePaginationComponent,
+        TableComponent,
+        BtnComponent,
+        RouterLink,
+    ],
 })
 export class TableRentalComponent implements OnInit {
     private subscripcions: Subscription[] = [];

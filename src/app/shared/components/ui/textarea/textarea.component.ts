@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-textarea',
     templateUrl: './textarea.component.html',
-    styleUrls: ['./textarea.component.scss']
+    styleUrls: ['./textarea.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule]
 })
 export class TaxtareaComponent {
 

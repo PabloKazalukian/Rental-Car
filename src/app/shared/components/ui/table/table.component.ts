@@ -1,10 +1,16 @@
 import { Component, Input, Output, TemplateRef, EventEmitter } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TextLinkComponent } from '../text-link/text-link.component';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
+import { ScrollAnimateDirective } from '../../../directives/scroll-animate.directive';
 
 
 @Component({
     selector: 'app-table',
     templateUrl: './table.component.html',
-    styleUrls: ['./table.component.css']
+    styleUrls: ['./table.component.css'],
+    standalone: true,
+    imports: [ScrollAnimateDirective, NgClass, TextLinkComponent, RouterLink, NgTemplateOutlet]
 })
 
 

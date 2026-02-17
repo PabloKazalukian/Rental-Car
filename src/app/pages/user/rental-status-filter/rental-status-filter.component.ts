@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { SelectType } from 'src/app/shared/components/ui/select/select.component';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+import { SelectComponent } from '../../../shared/components/ui/select/select.component';
 
 
 interface FilterSearch { option: string };
@@ -10,7 +11,9 @@ type SelectFormType = FormControlsOf<FilterSearch>;
 @Component({
     selector: 'app-rental-status-filter',
     templateUrl: './rental-status-filter.component.html',
-    styleUrls: ['./rental-status-filter.component.scss']
+    styleUrls: ['./rental-status-filter.component.scss'],
+    standalone: true,
+    imports: [SelectComponent]
 })
 export class RentalStatusFilterComponent implements OnInit {
 

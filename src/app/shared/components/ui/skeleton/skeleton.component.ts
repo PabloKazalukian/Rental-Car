@@ -1,9 +1,12 @@
 import { Component, Input } from "@angular/core";
+import { NgClass, NgStyle } from "@angular/common";
 
 @Component({
     selector: 'app-skeleton',
     templateUrl: './skeleton.component.html',
-    styleUrls: ['./skeleton.component.scss']
+    styleUrls: ['./skeleton.component.scss'],
+    standalone: true,
+    imports: [NgClass, NgStyle]
 })
 export class SkeletonComponent {
     @Input() width: string = '100%';

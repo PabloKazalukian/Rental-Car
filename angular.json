@@ -12,7 +12,7 @@
         },
          "@schematics/angular:component": {
           "style": "scss",
-          "standalone": false
+          "standalone": true
         }
       },
       "root": "",

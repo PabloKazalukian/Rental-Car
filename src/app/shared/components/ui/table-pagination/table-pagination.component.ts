@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
-import { SelectType } from '../select/select.component';
+import { SelectType, SelectComponent } from '../select/select.component';
 
 interface FilterSearch { option: string };
 type selectFormType = FormControlsOf<FilterSearch>;
@@ -9,7 +9,9 @@ type selectFormType = FormControlsOf<FilterSearch>;
 @Component({
     selector: 'app-table-pagination',
     templateUrl: './table-pagination.component.html',
-    styleUrls: ['./table-pagination.component.scss']
+    styleUrls: ['./table-pagination.component.scss'],
+    standalone: true,
+    imports: [SelectComponent]
 })
 export class TablePaginationComponent implements OnChanges, OnInit {
     @Input() data: any[] = [];

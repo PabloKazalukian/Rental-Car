@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModifyPassComponent } from 'src/app/pages/user/modify-pass/modify-pass.component';
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 import { ModifyUserComponent } from 'src/app/pages/user/modify-user/modify-user.component';
-import { SharedModule } from '../../shared/shared.module';
+
 import { RentalStatusFilterComponent } from './rental-status-filter/rental-status-filter.component';
 import { authGuard } from 'src/app/core/guards/auth.guard';
 
@@ -34,15 +34,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [
-        UserComponent,
-        TableRentalComponent,
-        ModifyUserComponent,
-        ModifyPassComponent,
-        RentalStatusFilterComponent,
-        // ModifyPassComponent,
-    ],
-    imports: [RouterModule.forChild(routes), CommonModule, SharedModule, ReactiveFormsModule],
+    imports: [RouterModule.forChild(routes), CommonModule, ReactiveFormsModule, UserComponent,
+    TableRentalComponent,
+    ModifyUserComponent,
+    ModifyPassComponent,
+    RentalStatusFilterComponent],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,

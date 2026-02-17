@@ -7,6 +7,7 @@ declare var MercadoPago: any; // porque el SDK no tiene typings
     selector: 'app-payment',
     templateUrl: './mercadopago.component.html',
     styleUrl: './mercadopago.component.scss',
+    standalone: true,
 })
 export class MercadoPagoComponent implements AfterViewInit {
     ngAfterViewInit(): void {

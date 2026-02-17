@@ -7,12 +7,17 @@ import { LoginService } from 'src/app/core/services/auth/login.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { AuthenticatedUser } from 'src/app/core/models/login.interface';
 import { StepWithDescription } from 'src/app/shared/components/ui/stepper/stepper.component';
+import { CardCarComponent } from './components/card-car/card-car.component';
+import { FormCarComponent } from './components/form-car/form-car.component';
+import { StepperComponent } from '../../shared/components/ui/stepper/stepper.component';
 
 
 @Component({
     selector: 'app-rental',
     templateUrl: './rental.component.html',
-    styleUrls: ['./rental.component.scss']
+    styleUrls: ['./rental.component.scss'],
+    standalone: true,
+    imports: [StepperComponent, FormCarComponent, CardCarComponent]
 })
 export class RentalComponent implements OnInit, OnDestroy {
 

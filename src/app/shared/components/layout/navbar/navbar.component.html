@@ -25,7 +25,7 @@
         (click)="closeMenu()"
       ></app-btn>
 
-      @if (islogged) {
+      @if (islogged()) {
         <app-btn
           [routerLink]="'/usuario'"
           [text]="usuario.username"
@@ -34,7 +34,7 @@
           (click)="closeMenu()"
         ></app-btn>
       }
-      @if (islogged) {
+      @if (islogged()) {
         <app-btn
           [text]="'Cerrar sesión'"
           [color]="'confirm'"
@@ -43,7 +43,7 @@
         ></app-btn>
       }
 
-      @if (!islogged) {
+      @if (!islogged()) {
         <app-btn
           [routerLink]="'/auth/registro'"
           [text]="'Registrarse'"
@@ -52,7 +52,7 @@
           (click)="closeMenu()"
         ></app-btn>
       }
-      @if (!islogged) {
+      @if (!islogged()) {
         <app-btn
           [routerLink]="'/auth/login'"
           [text]="'Iniciar sesión'"

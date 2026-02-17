@@ -1,10 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { COLOR_VALUES } from 'src/app/shared/utils/color.type';
+import { CapitalizePipe } from '../../../pipes/capitalize.pipe';
+import { NgClass } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-btn',
     templateUrl: './btn.component.html',
     styleUrls: ['./btn.component.scss'],
+    standalone: true,
+    imports: [
+        RouterLink,
+        NgClass,
+        CapitalizePipe,
+    ],
 })
 export class BtnComponent {
     @Input() text: string = '';

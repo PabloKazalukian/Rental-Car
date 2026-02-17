@@ -1,11 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AbstractControl, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { catchError, map, of, Subscription } from 'rxjs';
 import { userRegister } from 'src/app/core/models/user.interface';
 import { RegisterService } from 'src/app/core/services/register.service';
 import { repeatPass } from 'src/app/shared/validators/repeatPass.validator';
 import { FormControlsOf } from '../../../shared/utils/form-types.util';
+import { SuccessComponent } from '../../../shared/components/ui/success/success.component';
+import { BtnComponent } from '../../../shared/components/ui/btn/btn.component';
+import { TextLinkComponent } from '../../../shared/components/ui/text-link/text-link.component';
+import { FormInputComponent } from '../../../shared/components/ui/input/input.component';
+import { AuthComponent } from '../../../shared/components/layout/auth/auth.component';
 
 
 type RegisterType = FormControlsOf<userRegister>;
@@ -13,7 +18,9 @@ type RegisterType = FormControlsOf<userRegister>;
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss']
+    styleUrls: ['./register.component.scss'],
+    standalone: true,
+    imports: [AuthComponent, ReactiveFormsModule, FormInputComponent, TextLinkComponent, RouterLink, BtnComponent, SuccessComponent]
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 

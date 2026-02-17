@@ -5,11 +5,16 @@ import { RequestReceived } from 'src/app/core/models/request.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { isDateHigher } from 'src/app/shared/validators/date.validator';
+import { TableRentalComponent } from './table-rental/table-rental.component';
+import { RouterLink } from '@angular/router';
+import { BtnComponent } from '../../shared/components/ui/btn/btn.component';
 
 @Component({
     selector: 'app-user',
     templateUrl: './user.component.html',
-    styleUrls: ['./user.component.scss']
+    styleUrls: ['./user.component.scss'],
+    standalone: true,
+    imports: [BtnComponent, RouterLink, TableRentalComponent]
 })
 
 export class UserComponent implements OnInit, OnDestroy {

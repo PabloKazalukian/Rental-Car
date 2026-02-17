@@ -1,16 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ContactMessage } from 'src/app/core/models/email.interface';
 import { EmailService } from 'src/app/core/services/email.service';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+import { MessageErrorComponent } from '../../../../shared/components/ui/message-error/message-error.component';
+import { SuccessComponent } from '../../../../shared/components/ui/success/success.component';
+import { BtnComponent } from '../../../../shared/components/ui/btn/btn.component';
+import { TaxtareaComponent } from '../../../../shared/components/ui/textarea/textarea.component';
+import { FormInputComponent } from '../../../../shared/components/ui/input/input.component';
 
 type ContactFormType = FormControlsOf<ContactMessage>;
 
 @Component({
     selector: 'app-form-contact',
     templateUrl: './form-contact.component.html',
-    styleUrls: ['./form-contact.component.scss']
+    styleUrls: ['./form-contact.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule, FormInputComponent, TaxtareaComponent, BtnComponent, SuccessComponent, MessageErrorComponent]
 })
 
 export class FormContactComponent implements OnInit, OnDestroy {

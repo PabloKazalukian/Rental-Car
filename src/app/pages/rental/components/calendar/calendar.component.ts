@@ -5,6 +5,7 @@ import { getDaysDate } from '../../../../shared/validators/date.validator';
 import { Subscription } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
 import { FormDatesGroup } from '../form-car/form-car.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 interface requsitio { initial_date: string, final_date: string }
@@ -13,6 +14,8 @@ interface requsitio { initial_date: string, final_date: string }
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
     styleUrls: ['./calendar.component.scss'],
+    standalone: true,
+    imports: [FlatpickrModule],
 })
 export class CalendarComponent implements OnInit, OnDestroy {
 

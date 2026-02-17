@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+import { FormInputComponent } from '../input/input.component';
 
 interface FilterSearch { search: string };
 type FilterRequestType = FormControlsOf<FilterSearch>;
@@ -10,6 +11,8 @@ type FilterRequestType = FormControlsOf<FilterSearch>;
 @Component({
     selector: 'app-table-filter',
     templateUrl: './table-filter.component.html',
+    standalone: true,
+    imports: [FormInputComponent],
 })
 export class TableFilterComponent implements OnInit {
 

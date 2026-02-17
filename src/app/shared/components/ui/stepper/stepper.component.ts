@@ -1,4 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { TextLinkComponent } from '../text-link/text-link.component';
+import { NgClass } from '@angular/common';
 
 export interface DescriptionOfStep {
     text: string,
@@ -12,7 +15,9 @@ export interface StepWithDescription {
 @Component({
     selector: 'app-stepper',
     templateUrl: './stepper.component.html',
-    styleUrls: ['./stepper.component.scss']
+    styleUrls: ['./stepper.component.scss'],
+    standalone: true,
+    imports: [NgClass, TextLinkComponent, RouterLink]
 })
 
 export class StepperComponent implements OnChanges {

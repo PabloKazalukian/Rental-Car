@@ -1,12 +1,20 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginWithCredentials } from 'src/app/core/models/login.interface';
 import { CredentialsService } from 'src/app/core/services/auth/credential.service';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
 import { environment } from 'src/environments/environment';
+import { MessageErrorComponent } from '../../../shared/components/ui/message-error/message-error.component';
+import { SuccessComponent } from '../../../shared/components/ui/success/success.component';
+import { LoadingComponent } from '../../../shared/components/ui/loading/loading.component';
+import { BtnComponent } from '../../../shared/components/ui/btn/btn.component';
+import { TextLinkComponent } from '../../../shared/components/ui/text-link/text-link.component';
+import { CheckboxComponent } from '../../../shared/components/ui/checkbox/checkbox.component';
+import { FormInputComponent } from '../../../shared/components/ui/input/input.component';
+import { AuthComponent } from '../../../shared/components/layout/auth/auth.component';
 
 
 type LoginFormType = FormControlsOf<LoginWithCredentials>;
@@ -16,6 +24,19 @@ type LoginFormType = FormControlsOf<LoginWithCredentials>;
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
+    standalone: true,
+    imports: [
+        AuthComponent,
+        ReactiveFormsModule,
+        FormInputComponent,
+        CheckboxComponent,
+        TextLinkComponent,
+        RouterLink,
+        BtnComponent,
+        LoadingComponent,
+        SuccessComponent,
+        MessageErrorComponent,
+    ],
 })
 
 export class LoginComponent implements OnInit, OnDestroy {

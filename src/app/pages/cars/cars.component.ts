@@ -6,6 +6,8 @@ import { searchCar, orderPriceCar, orderBrandCar, orderYearCar } from '../../sto
 import { CarService } from '../../core/services/car.service';
 import { ActivatedRoute } from '@angular/router';
 import { NotificationService } from 'src/app/core/services/notifications/notification.service';
+import { ShowCarComponent } from './components/show-car/show-car.component';
+import { FilterCarsComponent } from './components/car-filter/filter-cars.component';
 
 interface appState {
     loading: boolean;
@@ -22,6 +24,8 @@ interface text {
     selector: 'app-cars',
     templateUrl: './cars.component.html',
     styleUrls: ['./cars.component.scss'],
+    standalone: true,
+    imports: [FilterCarsComponent, ShowCarComponent],
 })
 export class CarsComponent implements OnInit, OnDestroy {
     private subscripcions: Subscription[] = [];

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, ValidationErrors, Validators, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, ValidationErrors, Validators, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription, catchError, delay, finalize, map, of, switchMap, tap } from 'rxjs';
 import { AuthenticatedUser } from 'src/app/core/models/login.interface';
@@ -9,6 +9,12 @@ import { RegisterService } from 'src/app/core/services/register.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
 import { mustBeDifferent } from 'src/app/shared/validators/equal.validator';
+import { MessageErrorComponent } from '../../../shared/components/ui/message-error/message-error.component';
+import { SuccessComponent } from '../../../shared/components/ui/success/success.component';
+import { BtnComponent } from '../../../shared/components/ui/btn/btn.component';
+import { FormInputComponent } from '../../../shared/components/ui/input/input.component';
+import { LoadingComponent } from '../../../shared/components/ui/loading/loading.component';
+import { AuthComponent } from '../../../shared/components/layout/auth/auth.component';
 
 
 type ModifyUserType = FormControlsOf<ModifyUser>;
@@ -17,6 +23,16 @@ type ModifyUserType = FormControlsOf<ModifyUser>;
     selector: 'app-modify-user',
     templateUrl: './modify-user.component.html',
     styleUrls: ['./modify-user.component.scss'],
+    standalone: true,
+    imports: [
+        AuthComponent,
+        LoadingComponent,
+        ReactiveFormsModule,
+        FormInputComponent,
+        BtnComponent,
+        SuccessComponent,
+        MessageErrorComponent,
+    ],
 })
 
 export class ModifyUserComponent implements OnInit, OnDestroy {

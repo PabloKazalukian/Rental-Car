@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostBinding, OnInit } from '@angular/core';
 
 @Directive({
-    selector: '[appScrollAnimate]'
+    selector: '[appScrollAnimate]',
+    standalone: true
 })
 export class ScrollAnimateDirective implements OnInit {
     @HostBinding('class.animate') isVisible = false;

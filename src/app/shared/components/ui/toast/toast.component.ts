@@ -2,12 +2,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastMessage } from 'src/app/core/models/notification.interface';
 import { toastAnimation } from 'src/app/shared/animations/toast.animation';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-toast',
     templateUrl: './toast.component.html',
     styleUrls: ['./toast.component.scss'],
-    animations: [toastAnimation], // se importará la animación reutilizable
+    animations: [toastAnimation],
+    standalone: true,
+    imports: [NgClass],
 })
 export class ToastComponent implements OnInit {
     @Input() toast!: ToastMessage;

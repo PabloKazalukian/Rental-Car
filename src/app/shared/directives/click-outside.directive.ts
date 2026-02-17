@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Directive({
-    selector: '[appClickOutside]'
+    selector: '[appClickOutside]',
+    standalone: true
 })
 export class ClickOutsideDirective {
     @Output() clickOutside = new EventEmitter<void>();

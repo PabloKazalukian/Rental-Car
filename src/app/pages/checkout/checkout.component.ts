@@ -7,6 +7,12 @@ import { CheckoutService } from 'src/app/core/services/payment/checkout.service'
 import { RentalService } from 'src/app/core/services/rental.service';
 import { StepWithDescription } from 'src/app/shared/components/ui/stepper/stepper.component';
 import { FormControlsOf } from 'src/app/shared/utils/form-types.util';
+import { SelectComponent } from '../../shared/components/ui/select/select.component';
+import { LoadingComponent } from '../../shared/components/ui/loading/loading.component';
+import { RouterLink } from '@angular/router';
+import { BtnComponent } from '../../shared/components/ui/btn/btn.component';
+import { CheckoutCardComponent } from './components/checkout-card/checkout-card.component';
+import { StepperComponent } from '../../shared/components/ui/stepper/stepper.component';
 
 interface Select {
     option: string;
@@ -17,6 +23,15 @@ type selectFormType = FormControlsOf<Select>;
     selector: 'app-checkout',
     templateUrl: './checkout.component.html',
     styleUrl: './checkout.component.scss',
+    standalone: true,
+    imports: [
+        StepperComponent,
+        CheckoutCardComponent,
+        BtnComponent,
+        RouterLink,
+        LoadingComponent,
+        SelectComponent,
+    ],
 })
 export class CheckoutComponent implements OnInit {
     private subscriptions: Subscription[] = [];

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { AuthenticatedUser, Login } from '../../models/login.interface';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +17,8 @@ export class AuthService {
 
     private loggetIn$ = new BehaviorSubject<boolean>(false);
     public _loggenIn$ = this.loggetIn$.asObservable();
+
+    public log = signal<boolean>(false);
 
     private user$ = new BehaviorSubject<AuthenticatedUser>({ username: '', sub: '', role: '' });
     public _user$ = this.user$.asObservable();

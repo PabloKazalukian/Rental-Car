@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { delay, Subscription, } from 'rxjs';
 import { Car } from 'src/app/core/models/car.interface';
 import { Request, RequestSend } from 'src/app/core/models/request.interface';
@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 import { OverlayService } from 'src/app/shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { dateRangeValidator } from 'src/app/shared/validators/range.validator';
+import { DatePipe } from '@angular/common';
+import { SuccessComponent } from '../../../../shared/components/ui/success/success.component';
+import { SkeletonComponent } from '../../../../shared/components/ui/skeleton/skeleton.component';
+import { BtnComponent } from '../../../../shared/components/ui/btn/btn.component';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { LoadingComponent } from '../../../../shared/components/ui/loading/loading.component';
 
 export type FormDatesGroup = FormGroup<{
     start: FormControl<Date | null>;
@@ -21,7 +27,9 @@ export type FormDatesGroup = FormGroup<{
 @Component({
     selector: 'app-form-car',
     templateUrl: './form-car.component.html',
-    styleUrls: ['./form-car.component.scss']
+    styleUrls: ['./form-car.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule, LoadingComponent, CalendarComponent, BtnComponent, SkeletonComponent, SuccessComponent, DatePipe]
 })
 
 export class FormCarComponent implements OnInit, OnDestroy {

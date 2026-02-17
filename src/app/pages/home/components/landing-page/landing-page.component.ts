@@ -1,12 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { RouterLink } from '@angular/router';
+import { BtnComponent } from '../../../../shared/components/ui/btn/btn.component';
+import { ScrollAnimateDirective } from '../../../../shared/directives/scroll-animate.directive';
 
 
 @Component({
     selector: 'app-landing-page',
     templateUrl: './landing-page.component.html',
-    styleUrls: ['./landing-page.component.scss']
+    styleUrls: ['./landing-page.component.scss'],
+    standalone: true,
+    imports: [ScrollAnimateDirective, BtnComponent, RouterLink]
 })
 export class LandingPageComponent implements OnInit, OnDestroy {
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 import { Error404Component } from './error404.component';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,13 +13,10 @@ const routes: Routes = [
 ]
 
 @NgModule({
-    declarations: [
-        Error404Component,
-    ],
     imports: [
-        CommonModule,
-        SharedModule,
-        RouterModule.forChild(routes)
-    ]
+    CommonModule,
+    RouterModule.forChild(routes),
+    Error404Component
+]
 })
 export class ErrorModule { }

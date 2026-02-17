@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScrollAnimateDirective } from '../../../../shared/directives/scroll-animate.directive';
 
 interface diccionary {
     tittle: string,
@@ -8,7 +9,9 @@ interface diccionary {
 @Component({
     selector: 'app-how-to-use',
     templateUrl: './how-to-use.component.html',
-    styleUrls: ['./how-to-use.component.scss']
+    styleUrls: ['./how-to-use.component.scss'],
+    standalone: true,
+    imports: [ScrollAnimateDirective]
 })
 export class HowToUseComponent implements OnInit {
     diccionary: diccionary[] = [

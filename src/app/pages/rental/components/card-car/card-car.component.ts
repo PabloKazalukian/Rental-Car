@@ -1,10 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Car } from 'src/app/core/models/car.interface';
+import { RouterLink } from '@angular/router';
+import { BtnComponent } from '../../../../shared/components/ui/btn/btn.component';
 
 @Component({
     selector: 'app-card-car',
     templateUrl: './card-car.component.html',
-    styleUrls: ['./card-car.component.scss']
+    styleUrls: ['./card-car.component.scss'],
+    standalone: true,
+    imports: [BtnComponent, RouterLink]
 })
 export class CardCarComponent implements OnInit {
 

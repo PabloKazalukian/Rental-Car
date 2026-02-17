@@ -5,12 +5,15 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
 import { toastAnimation } from 'src/app/shared/animations/toast.animation';
 import { formatDateToLocale, getDays, getDaysDate } from 'src/app/shared/validators/date.validator';
+import { BtnComponent } from '../../../../shared/components/ui/btn/btn.component';
 
 @Component({
     selector: 'app-checkout-card',
     templateUrl: './checkout-card.component.html',
     styleUrl: './checkout-card.component.scss',
     animations: [toastAnimation],
+    standalone: true,
+    imports: [BtnComponent],
 })
 export class CheckoutCardComponent implements OnInit {
     private subscriptions: Subscription[] = [];

@@ -1,4 +1,4 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Car } from 'src/app/core/models/car.interface';
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -8,6 +8,11 @@ import { OverlayService } from '../../../../shared/services/ui/overlay.service';
 import { DialogComponent } from 'src/app/shared/components/ui/dialog/dialog.component';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { ModalComponent } from 'src/app/shared/components/ui/modal/modal.component';
+import { TextLinkComponent } from '../../../../shared/components/ui/text-link/text-link.component';
+import { ModalCarComponent } from './modal-car/modal-car.component';
+import { BtnComponent } from '../../../../shared/components/ui/btn/btn.component';
+import { ScrollAnimateDirective } from '../../../../shared/directives/scroll-animate.directive';
+import { LoadingComponent } from '../../../../shared/components/ui/loading/loading.component';
 
 interface appState {
     loading: boolean;
@@ -19,6 +24,15 @@ interface appState {
     selector: 'app-show-car',
     templateUrl: './show-car.component.html',
     styleUrls: ['./show-car.component.scss'],
+    standalone: true,
+    imports: [
+        LoadingComponent,
+        ScrollAnimateDirective,
+        BtnComponent,
+        ModalCarComponent,
+        RouterLink,
+        TextLinkComponent,
+    ],
 })
 export class ShowCarComponent implements OnInit, OnDestroy {
     @ViewChild('btnDialog') btnDialog!: TemplateRef<any>;

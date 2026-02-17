@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 export interface SelectType {
     name: string,
@@ -9,7 +9,9 @@ export interface SelectType {
 @Component({
     selector: 'app-select',
     templateUrl: './select.component.html',
-    styleUrls: ['./select.component.scss']
+    styleUrls: ['./select.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule]
 })
 export class SelectComponent {
 

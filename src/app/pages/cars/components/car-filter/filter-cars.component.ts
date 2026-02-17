@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormControlsOf } from '../../../../shared/utils/form-types.util';
+import { BtnComponent } from '../../../../shared/components/ui/btn/btn.component';
+import { FormInputComponent } from '../../../../shared/components/ui/input/input.component';
 
 interface FilterSearch {
     model: string,
@@ -12,7 +14,9 @@ type FilterCarType = FormControlsOf<FilterSearch>;
 @Component({
     selector: 'app-filter-cars',
     templateUrl: './filter-cars.component.html',
-    styleUrls: ['./filter-cars.component.scss']
+    styleUrls: ['./filter-cars.component.scss'],
+    standalone: true,
+    imports: [FormInputComponent, BtnComponent]
 })
 
 export class FilterCarsComponent implements OnInit {

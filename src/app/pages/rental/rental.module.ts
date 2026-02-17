@@ -5,7 +5,7 @@ import { FormCarComponent } from 'src/app/pages/rental/components/form-car/form-
 import { CalendarComponent } from 'src/app/pages/rental/components/calendar/calendar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CardCarComponent } from './components/card-car/card-car.component';
 import { authGuard } from 'src/app/core/guards/auth.guard';
@@ -19,7 +19,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [RentalComponent, FormCarComponent, CalendarComponent, CardCarComponent],
-    imports: [RouterModule.forChild(routes), FlatpickrModule.forRoot(), CommonModule, SharedModule, ReactiveFormsModule],
+    imports: [RouterModule.forChild(routes), FlatpickrModule.forRoot(), CommonModule, ReactiveFormsModule, RentalComponent, FormCarComponent, CalendarComponent, CardCarComponent],
 })
 export class RentalModule {}

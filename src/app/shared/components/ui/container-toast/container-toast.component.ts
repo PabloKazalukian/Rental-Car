@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ToastMessage } from 'src/app/core/models/notification.interface';
 import { NotificationService } from 'src/app/core/services/notifications/notification.service';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
     selector: 'app-container-toast',
     templateUrl: './container-toast.component.html',
     styleUrl: './container-toast.component.scss',
+    standalone: true,
+    imports: [ToastComponent],
 })
 export class ContainerToastComponent implements OnInit {
     toasts: ToastMessage[] = [];

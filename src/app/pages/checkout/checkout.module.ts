@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CheckoutComponent } from './checkout.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 import { RouterModule, Routes } from '@angular/router';
 import { CheckoutCardComponent } from './components/checkout-card/checkout-card.component';
 import { authGuard } from 'src/app/core/guards/auth.guard';
@@ -15,7 +15,6 @@ const routes: Routes = [
     },
 ];
 @NgModule({
-    declarations: [CheckoutComponent, CheckoutCardComponent],
-    imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+    imports: [CommonModule, RouterModule.forChild(routes), CheckoutComponent, CheckoutCardComponent],
 })
 export class CheckoutModule {}

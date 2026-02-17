@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedModule } from 'src/app/shared/shared.module';
+
 import { LoginComponent } from './login/login.component';
 import { CallbackComponent } from './callback/callback.component';
 import { RegisterComponent } from './register/register.component';
@@ -15,7 +15,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [LoginComponent, RegisterComponent, CallbackComponent],
-    imports: [RouterModule.forChild(routes), CommonModule, SharedModule, FormsModule, ReactiveFormsModule],
+    imports: [RouterModule.forChild(routes), CommonModule, FormsModule, ReactiveFormsModule, LoginComponent, RegisterComponent, CallbackComponent],
 })
 export class AuthModule {}

@@ -1,31 +1,33 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, DestroyRef, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { LoginService } from 'src/app/core/services/auth/login.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { AuthenticatedUser } from 'src/app/core/models/login.interface';
+import { BtnComponent } from '../../ui/btn/btn.component';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
+    standalone: true,
+    imports: [RouterLink, BtnComponent],
 })
 export class NavBarComponent implements OnInit, OnDestroy {
     private subscriptions: Subscription[] = [];
 
-    islogged: boolean = true;
+    private destroyRef = inject(DestroyRef);
+
+    private loginSvc = inject(LoginService)
+    private authSvc = inject(AuthService)
+    private router = inject(Router)
+
+    islogged = signal<boolean>(false)
     token: AuthenticatedUser = { username: '', sub: '', role: '' };
     user$ = this.authSvc._user$;
     usuario!: AuthenticatedUser | { username: ''; sub: ''; role: '' };
     menuOpen: boolean = false;
 
-    constructor(
-        private loginSvc: LoginService,
-        private authSvc: AuthService,
-        private router: Router,
-    ) {
-        this.subscriptions.push(this.authSvc._loggenIn$.subscribe((res) => (this.islogged = res)));
-    }
 
     ngOnInit(): void {
         this.accesstoken();
@@ -40,6 +42,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
             this.user$.subscribe((res) => {
                 this.usuario = res;
             }),
+            this.authSvc._loggenIn$.subscribe((res) => this.islogged.set(res))
         );
     }
 
@@ -48,7 +51,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
         this.subscriptions.push(
             this.loginSvc.logout().subscribe({
                 next: (res: any) => {
-                    this.islogged = false;
+                    // this.islogged = false;
                     this.router.navigate(['/home']);
                 },
                 error: (res: any) => {

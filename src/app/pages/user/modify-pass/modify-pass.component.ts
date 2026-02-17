@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/core/services/auth/login.service';
@@ -9,13 +9,21 @@ import { PassDouble } from 'src/app/core/models/user.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { FormControlsOf } from '../../../shared/utils/form-types.util';
 import { AuthenticatedUser } from 'src/app/core/models/login.interface';
+import { MessageErrorComponent } from '../../../shared/components/ui/message-error/message-error.component';
+import { SuccessComponent } from '../../../shared/components/ui/success/success.component';
+import { BtnComponent } from '../../../shared/components/ui/btn/btn.component';
+import { FormInputComponent } from '../../../shared/components/ui/input/input.component';
+import { LoadingComponent } from '../../../shared/components/ui/loading/loading.component';
+import { AuthComponent } from '../../../shared/components/layout/auth/auth.component';
 
 type ModifyPassType = FormControlsOf<PassDouble>
 
 @Component({
     selector: 'app-modify-pass',
     templateUrl: './modify-pass.component.html',
-    styleUrls: ['./modify-pass.component.scss']
+    styleUrls: ['./modify-pass.component.scss'],
+    standalone: true,
+    imports: [AuthComponent, LoadingComponent, ReactiveFormsModule, FormInputComponent, BtnComponent, SuccessComponent, MessageErrorComponent]
 })
 
 export class ModifyPassComponent implements OnInit, OnDestroy {
