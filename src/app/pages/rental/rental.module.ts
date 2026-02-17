@@ -8,27 +8,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CardCarComponent } from './components/card-car/card-car.component';
-
+import { authGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
-        component: RentalComponent
-    }];
+        component: RentalComponent,
+        canActivate: [authGuard],
+    },
+];
 
 @NgModule({
-    declarations: [
-        RentalComponent,
-        FormCarComponent,
-        CalendarComponent,
-        CardCarComponent
-    ],
-    imports: [
-        RouterModule.forChild(routes),
-        FlatpickrModule.forRoot(),
-        CommonModule,
-        SharedModule,
-        ReactiveFormsModule,
-    ]
+    declarations: [RentalComponent, FormCarComponent, CalendarComponent, CardCarComponent],
+    imports: [RouterModule.forChild(routes), FlatpickrModule.forRoot(), CommonModule, SharedModule, ReactiveFormsModule],
 })
-export class RentalModule { }
+export class RentalModule {}

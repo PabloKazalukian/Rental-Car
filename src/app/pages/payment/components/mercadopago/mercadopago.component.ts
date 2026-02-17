@@ -83,4 +83,20 @@ export class MercadoPagoComponent implements AfterViewInit {
 
         bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', settings);
     }
+
+    copyToClipboard(text: string, event: Event) {
+        const button = event.currentTarget as HTMLElement;
+        navigator.clipboard.writeText(text).then(
+            () => {
+                console.log('Texto copiado al portapapeles');
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                }, 2000);
+            },
+            (err) => {
+                console.error('Error al copiar el texto: ', err);
+            },
+        );
+    }
 }

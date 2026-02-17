@@ -5,11 +5,13 @@ import { CheckoutComponent } from './checkout.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { CheckoutCardComponent } from './components/checkout-card/checkout-card.component';
+import { authGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
         component: CheckoutComponent,
+        canActivate: [authGuard],
     },
 ];
 @NgModule({

@@ -4,17 +4,17 @@
       <div class="checkout__form-stepper bg-background-2 pt-12 rounded-md">
         <app-stepper [steps]="stepsDescription" [currentStep]="step"></app-stepper>
       </div>
-      <div class="checkout__form-info p-2 bg-background-2 mt-2 rounded-md flex flex-center">
-        <span class="bg-surface font-sm flex-center rounded-100 pr-3 pl-3 pt-1 pb-1">i</span>
-        <p>Info de primer nivel</p>
-      </div>
+      <!-- <div class="checkout__form-info p-2 bg-background-2 mt-2 rounded-md flex flex-center"> -->
+      <!-- <span class="bg-surface font-sm flex-center rounded-100 pr-3 pl-3 pt-1 pb-1">i</span> -->
+      <!-- <p>Info de primer nivel</p> -->
+      <!-- </div> -->
       <div class="checkout__form-content flex-center flex-col">
-        <div *ngIf="request && request.length > 0; else loading" class="checkout__form-content-header mb-4 flex-center flex-col">
+        <div *ngIf="request && request.length > 0; else loading" class="checkout__form-content-header mb-4 flex-center flex-col mt-4">
           <app-checkout-card *ngFor="let r of request" [request]="r"></app-checkout-card>
           <app-btn [routerLink]="'/solicitar-auto'" [color]="'primary'" [variant]="'raised'" [text]="'Agregar nuevos Alquileres'"></app-btn>
         </div>
         <ng-template #loading>
-          <div class="checkout__loading mt-2">
+          <div *ngIf="request.length !== 0" class="checkout__loading mt-2">
             <app-loading [color]="'accent'"></app-loading>
           </div>
           <div *ngIf="request.length === 0">
@@ -54,7 +54,15 @@
       <div class="checkout__slide-footer">
         <p class="mb-2">Métodos de pago:</p>
         <div class="flex flex-col gap-2">
-          <button class="btn font-md font-bold rounded-md pt-3 pb-3" routerLink="/payment">Mercado Pago</button>
+          <app-select
+            [placeholder]="'metodos de pago'"
+            [text]="'Elige una opcion:'"
+            [options]="options"
+            [control]="selectControl"
+          ></app-select>
+          <div *ngIf="showSelected === 'Mercado Pago'" class="mt-6 mb-4">
+            <button class="btn font-md font-bold rounded-md pt-3 pb-3" routerLink="/payment">Mercado Pago</button>
+          </div>
         </div>
       </div>
     </div>

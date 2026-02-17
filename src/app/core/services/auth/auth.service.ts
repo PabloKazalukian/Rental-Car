@@ -64,11 +64,12 @@ export class AuthService {
     checkCookie(): Observable<boolean> {
         return this.http.get<string>(`${this.API}/me`, { withCredentials: true }).pipe(
             map((response) => {
-                console.log('Response from checkCookie:', response);
                 if (response && response) {
                     this.saveToken(response);
                     return true;
                 }
+                this.notiSvc.emit({ text: 'Sesión no iniciada', type: 'error' });
+                this.loggetIn$.next(false);
                 return false;
             }),
             catchError((error) => {
@@ -76,8 +77,8 @@ export class AuthService {
                 // this.logout();
                 this.notiSvc.emit({ text: 'Sesión expirada', type: 'error' });
                 this.loggetIn$.next(false);
-                return this._loggenIn$;
-                // return of(false);
+                // return this._loggenIn$;
+                return of(false);
             }),
         );
     }

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { delay, forkJoin, Observable, of, Subscription, switchMap, tap } from 'rxjs';
+import { combineLatest, delay, forkJoin, Observable, of, Subscription, switchMap, take, tap } from 'rxjs';
 import { RentalService } from 'src/app/core/services/rental.service';
 import { formatDateToLocale } from 'src/app/shared/validators/date.validator';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -56,14 +56,16 @@ export class TableRentalComponent implements OnInit {
     ngOnInit(): void {
         this.show = true;
         this.subscripcions.push(
-            this.user$
+            combineLatest([
+                this.checkouSvc._request$, // ya no depende del user_id
+                this.user$.pipe(delay(1000)), // sigue en el flujo para obtener el request por user_id
+            ])
                 .pipe(
-                    delay(1000),
-                    switchMap((user) => {
+                    switchMap(([checkout, user]) => {
                         const user_id = user.sub;
                         return forkJoin({
-                            checkout: this.checkouSvc.getCheckout(user_id),
                             request: this.requestSvc.getRequestByUserId(user_id),
+                            checkout: of(checkout), // ya lo tenés, lo pasás como observable
                         });
                     }),
                 )
@@ -85,11 +87,40 @@ export class TableRentalComponent implements OnInit {
                     },
                 }),
         );
+        // this.subscripcions.push(
+        //     this.user$
+        //         .pipe(
+        //             delay(1000),
+        //             switchMap((user) => {
+        //                 const user_id = user.sub;
+        //                 return forkJoin({
+        //                     checkout: this.checkouSvc.getCheckout(user_id),
+        //                     request: this.requestSvc.getRequestByUserId(user_id),
+        //                 });
+        //             }),
+        //         )
+        //         .subscribe({
+        //             next: ({ checkout, request }) => {
+        //                 this.checkoutRequests = checkout;
+        //                 const requestTable: RequestTableRow[] = this.formatData(request);
+
+        //                 this.rawData = requestTable;
+        //                 this.filteredData = [...this.rawData];
+        //                 this.updatePagination(this.filteredData);
+        //                 this.show = false;
+        //                 this.cdRef.detectChanges();
+        //             },
+        //             error: (err: any) => {
+        //                 console.error('yo me equivokque', err);
+        //                 this.show = false;
+        //                 this.isEmpty = true;
+        //             },
+        //         }),
+        // );
     }
 
     private formatData(requests: RequestReceived[]): RequestTableRow[] {
         return requests.map((r): RequestTableRow => {
-            console.log('CHECKOUT REQUESTS', this.checkoutRequests);
             if (this.checkoutRequests.length > 0 && this.checkoutRequests.includes(r.id)) r.state = 'add';
 
             return {

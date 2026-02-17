@@ -12,20 +12,10 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'callback', component: CallbackComponent },
     { path: 'registro', component: RegisterComponent },
-]
+];
 
 @NgModule({
-    declarations: [
-        LoginComponent,
-        RegisterComponent,
-        CallbackComponent,
-    ],
-    imports: [
-        RouterModule.forChild(routes),
-        CommonModule,
-        SharedModule,
-        FormsModule,
-        ReactiveFormsModule
-    ]
+    declarations: [LoginComponent, RegisterComponent, CallbackComponent],
+    imports: [RouterModule.forChild(routes), CommonModule, SharedModule, FormsModule, ReactiveFormsModule],
 })
-export class AuthModule { }
+export class AuthModule {}

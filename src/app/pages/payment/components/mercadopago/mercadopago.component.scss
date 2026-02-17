@@ -1,3 +1,16 @@
 .card {
   gap: 1.5rem;
 }
+
+.btn-icon {
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  padding: 2px;
+  margin-left: 4px;
+
+  &.copied {
+    background-color: var(--color-accent); // Bright green
+    color: #000;
+    transition: all 0.3s ease;
+  }
+}

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { delay, map, Subscription, switchMap } from 'rxjs';
 import { RequestToPayment } from 'src/app/core/models/request.interface';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CheckoutService } from 'src/app/core/services/payment/checkout.service';
@@ -12,6 +13,8 @@ import { formatDateToLocale, getDays, getDaysDate } from 'src/app/shared/validat
     animations: [toastAnimation],
 })
 export class CheckoutCardComponent implements OnInit {
+    private subscriptions: Subscription[] = [];
+
     @Input() request!: RequestToPayment;
     user$ = this.authSvc._user$;
 
@@ -38,17 +41,30 @@ export class CheckoutCardComponent implements OnInit {
 
     removeRequest(requestId: string) {
         this.startClosing();
-        this.authSvc._user$.subscribe({
-            next: (user) => {
-                setTimeout(() => this.checkoutSvc.removeOneRequestById(requestId, user.sub), 1000);
-            },
-            error: (err) => {
-                console.log(err);
-            },
-        });
+        this.subscriptions.push(
+            this.authSvc._user$
+                .pipe(
+                    map((user) => {
+                        return this.checkoutSvc.removeOneRequestById(requestId, user.sub);
+                    }),
+                    delay(1000), // tiempo de la animación
+                )
+                .subscribe({
+                    next: (check) => {
+                        console.log('check', check);
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    },
+                }),
+        );
     }
 
     onAnimationDone(event: any): void {
-        console.log(event);
+        // console.log(event);
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach((sub) => sub.unsubscribe());
     }
 }

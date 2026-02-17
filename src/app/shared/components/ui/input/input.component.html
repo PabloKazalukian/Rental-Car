@@ -10,21 +10,14 @@
       class="bg-surface-2 text-white border-surface rounded-md font-base pt-2 pb-2 pl-3 pr-3"
     />
 
-    <button
-      *ngIf="showTogglePassword"
-      type="button"
-      class="form-input__toggle"
-      (click)="togglePassword()"
-    >
+    <button *ngIf="showTogglePassword" type="button" class="form-input__toggle" (click)="togglePassword()">
       {{ hidePassword ? '🙈' : '🐵' }}
     </button>
   </div>
 
   <div *ngIf="showError; else blankError" class="form-input__error">
     <span *ngIf="control.errors?.['required']">Este campo es obligatorio</span>
-    <span *ngIf="control.errors?.['minlength']">
-      Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres.
-    </span>
+    <span *ngIf="control.errors?.['minlength']">Debe tener al menos {{ control.errors?.['minlength']?.requiredLength }} caracteres.</span>
     <span *ngIf="control.errors?.['email']">Formato de email inválido.</span>
     <span *ngIf="control.errors?.['usernameExist']">El usuario ya existe.</span>
     <span *ngIf="control.errors?.['emailExist']">El email es invalido.</span>
