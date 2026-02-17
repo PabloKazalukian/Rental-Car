@@ -1,45 +1,48 @@
 <div class="show-cars flex-center mb-14">
-  <div class="show-cars__spinner bg-surface rounded-100 p-4" *ngIf="this.loading === true; else viewNoFount">
-    <app-loading></app-loading>
-  </div>
-
-  <ng-template #viewNoFount>
-    <h2 *ngIf="cars.length < 1">No se han encontrado vehiculos</h2>
-  </ng-template>
-
-  <div *ngFor="let autos of cars" class="show-cars__card bg-surface-3 rounded-md" appScrollAnimate>
-    <div class="image-container show-cars__card-image">
-      <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." (click)="this.goWithCar(autos.id)" />
+  @if (this.loading === true) {
+    <div class="show-cars__spinner bg-surface rounded-100 p-4">
+      <app-loading></app-loading>
     </div>
+  } @else {
+    @if (cars.length < 1) {
+      <h2>No se han encontrado vehiculos</h2>
+    }
+  }
 
-    <div class="show-cars__card-body">
-      <div class="show-cars__card-fields pl-2 pr-2 pb-2">
-        <div class="show-cars__card-field text-accent mb-1 font-lg">
-          <h5 class="show-cars__card-text--title">{{ autos.brand.toUpperCase() }}</h5>
-          <p class="show-cars__card-text--price font-xl">{{ autos.price }} us$</p>
+
+  @for (autos of cars; track autos) {
+    <div class="show-cars__card bg-surface-3 rounded-md" appScrollAnimate>
+      <div class="image-container show-cars__card-image">
+        <img src="{{ autos.image }}" class="card-img-top show-cars__card-image--photo" alt="..." (click)="this.goWithCar(autos.id)" />
+      </div>
+      <div class="show-cars__card-body">
+        <div class="show-cars__card-fields pl-2 pr-2 pb-2">
+          <div class="show-cars__card-field text-accent mb-1 font-lg">
+            <h5 class="show-cars__card-text--title">{{ autos.brand.toUpperCase() }}</h5>
+            <p class="show-cars__card-text--price font-xl">{{ autos.price }} us$</p>
+          </div>
+          <p class="show-cars__card-text--model">{{ autos.model }}</p>
+          <p class="show-cars__card-text--year">{{ autos.year }}</p>
         </div>
-        <p class="show-cars__card-text--model">{{ autos.model }}</p>
-        <p class="show-cars__card-text--year">{{ autos.year }}</p>
+        <div class="show-cars__card-actions p-2">
+          <app-btn [text]="'Solicitar alquiler'" [color]="'primary'" [variant]="'raised'" (click)="this.goWithCar(autos.id)"></app-btn>
+          <app-btn
+            [text]="'Ver Más'"
+            [color]="'text'"
+            [variant]="'stroked'"
+            (click)="abrirModalCar(modalContent, contentActions, autos)"
+          ></app-btn>
+        </div>
       </div>
-      <div class="show-cars__card-actions p-2">
-        <app-btn [text]="'Solicitar alquiler'" [color]="'primary'" [variant]="'raised'" (click)="this.goWithCar(autos.id)"></app-btn>
-        <app-btn
-          [text]="'Ver Más'"
-          [color]="'text'"
-          [variant]="'stroked'"
-          (click)="abrirModalCar(modalContent, contentActions, autos)"
-        ></app-btn>
-      </div>
+      <!-- Scrollable modal -->
+      <ng-template #contentActions>
+        <app-btn [text]="'Solicitar Alquiler'" [color]="'primary'" [variant]="'raised'" (click)="this.goWithCar(autos.id)"></app-btn>
+      </ng-template>
+      <ng-template #modalContent>
+        <app-modal-car [car]="autos"></app-modal-car>
+      </ng-template>
     </div>
-
-    <!-- Scrollable modal -->
-    <ng-template #contentActions>
-      <app-btn [text]="'Solicitar Alquiler'" [color]="'primary'" [variant]="'raised'" (click)="this.goWithCar(autos.id)"></app-btn>
-    </ng-template>
-    <ng-template #modalContent>
-      <app-modal-car [car]="autos"></app-modal-car>
-    </ng-template>
-  </div>
+  }
 </div>
 
 <ng-template #btnDialog>

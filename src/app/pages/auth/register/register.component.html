@@ -1,66 +1,66 @@
 <div class="register">
   <app-auth [imageBackground]="'assets/images/superdeportivo_optimized.jpg'">
-    <form *ngIf="!this.error && !this.success" class="register-form form-layout" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
-      <div class="register-form__title text-center">
-        <h3 class="register-form__title-text mb-8">Crea una cuenta</h3>
+    @if (!this.error && !this.success) {
+      <form class="register-form form-layout" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+        <div class="register-form__title text-center">
+          <h3 class="register-form__title-text mb-8">Crea una cuenta</h3>
+        </div>
+        <div class="register-form__field mb-3">
+          <app-input
+            [label]="'Ingrese un usuario'"
+            [type]="'text'"
+            [placeholder]="'ingrese un nombre de usuario'"
+            [control]="usernameControl"
+          ></app-input>
+        </div>
+        <div class="register-form__field mb-3">
+          <app-input [label]="'Ingrese un email'" [type]="'email'" [placeholder]="'pat@example.com'" [control]="emailControl"></app-input>
+        </div>
+        <div class="register-form__field mb-3">
+          <app-input
+            [label]="'Ingrese una contraseña'"
+            [type]="'password'"
+            [placeholder]="'Ingrese su contraseña'"
+            [control]="passwordControl"
+          ></app-input>
+        </div>
+        <div class="register-form__field mb-3">
+          <app-input
+            [label]="'Repita la contraseña'"
+            [type]="'password'"
+            [placeholder]="'Ingrese nuevamente password'"
+            [control]="confirmPasswordControl"
+          ></app-input>
+        </div>
+        <p class="register-form__link mb-3">
+          Ya tenés una cuenta?
+          <app-text-link [text]="'Inicia sesión'" [routerLink]="'/auth/login'" [color]="'primary'"></app-text-link>
+        </p>
+        <div class="register-form__action">
+          <app-btn
+            [text]="'Enviar'"
+            [color]="'primary'"
+            [variant]="'raised'"
+            [buttonType]="'submit'"
+            [isDisabled]="registerForm.invalid || registerForm.pending"
+          ></app-btn>
+        </div>
+      </form>
+    }
+
+    @if (this.success) {
+      <div class="register-form__success mt-12">
+        <app-success [text]="'Sesión iniciada con éxito!'"></app-success>
       </div>
+    }
 
-      <div class="register-form__field mb-3">
-        <app-input
-          [label]="'Ingrese un usuario'"
-          [type]="'text'"
-          [placeholder]="'ingrese un nombre de usuario'"
-          [control]="usernameControl"
-        ></app-input>
+    @if (this.error) {
+      <div class="register-form__error mt-12">
+        <div class="register-form__error-content flex-col">
+          <h1>Ocurrió un error inesperado</h1>
+          <app-btn [text]="'Volver al inicio'" [color]="'error'" [variant]="'raised'" [routerLink]="'/'"></app-btn>
+        </div>
       </div>
-
-      <div class="register-form__field mb-3">
-        <app-input [label]="'Ingrese un email'" [type]="'email'" [placeholder]="'pat@example.com'" [control]="emailControl"></app-input>
-      </div>
-
-      <div class="register-form__field mb-3">
-        <app-input
-          [label]="'Ingrese una contraseña'"
-          [type]="'password'"
-          [placeholder]="'Ingrese su contraseña'"
-          [control]="passwordControl"
-        ></app-input>
-      </div>
-
-      <div class="register-form__field mb-3">
-        <app-input
-          [label]="'Repita la contraseña'"
-          [type]="'password'"
-          [placeholder]="'Ingrese nuevamente password'"
-          [control]="confirmPasswordControl"
-        ></app-input>
-      </div>
-
-      <p class="register-form__link mb-3">
-        Ya tenés una cuenta?
-        <app-text-link [text]="'Inicia sesión'" [routerLink]="'/auth/login'" [color]="'primary'"></app-text-link>
-      </p>
-
-      <div class="register-form__action">
-        <app-btn
-          [text]="'Enviar'"
-          [color]="'primary'"
-          [variant]="'raised'"
-          [buttonType]="'submit'"
-          [isDisabled]="registerForm.invalid || registerForm.pending"
-        ></app-btn>
-      </div>
-    </form>
-
-    <div *ngIf="this.success" class="register-form__success mt-12">
-      <app-success [text]="'Sesión iniciada con éxito!'"></app-success>
-    </div>
-
-    <div *ngIf="this.error" class="register-form__error mt-12">
-      <div class="register-form__error-content flex-col">
-        <h1>Ocurrió un error inesperado</h1>
-        <app-btn [text]="'Volver al inicio'" [color]="'error'" [variant]="'raised'" [routerLink]="'/'"></app-btn>
-      </div>
-    </div>
+    }
   </app-auth>
 </div>

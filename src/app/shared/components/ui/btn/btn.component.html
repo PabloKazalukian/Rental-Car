@@ -1,14 +1,14 @@
-<a
-  *ngIf="routerLink && !isDisabled; else btn"
-  [routerLink]="routerLink"
-  [ngClass]="classList"
-  class="pl-4 pr-4 pt-2 pb-2 rounded-md flex-center font-sm"
->
-  {{ text | capitalize }}
-</a>
-
-<ng-template #btn>
+@if (routerLink && !isDisabled) {
+  <a
+    [routerLink]="routerLink"
+    [ngClass]="classList"
+    class="pl-4 pr-4 pt-2 pb-2 rounded-md flex-center font-sm"
+    >
+    {{ text | capitalize }}
+  </a>
+} @else {
   <button [ngClass]="classList" [type]="buttonType" [disabled]="isDisabled" class="pl-4 pr-4 rounded-md flex-center font-sm">
     {{ text | capitalize }}
   </button>
-</ng-template>
+}
+

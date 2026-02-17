@@ -1,61 +1,65 @@
-<div *ngIf="cars; else loadingRentalForm" class="rental__form bg-background-2 rounded-md">
-  <div class="rental__form-title mb-4">
-    <h4>Alquile un vehiculo</h4>
-  </div>
-  <p class="font-lg rental__form-text text-muted">Por favor, ingrese las fechas de solicitud</p>
-  <p class="font-lg mb-2 text-muted">
-    Solicitud de {{ username }} por renta de:
-    <span class="rental__form-text--car text-accent">{{ cars.brand }} {{ cars.model }}</span>
-  </p>
-  <form (ngSubmit)="onSubmit()" [formGroup]="range" class="container_form text-muted">
-    <hr class="mt-4 mb-4 border-surface" />
-    <div class="rental__form-actions">
-      <div *ngIf="loading; else viewCalendar" class="spinner">
-        <app-loading color="confirm"></app-loading>
-      </div>
-      <ng-template #viewCalendar>
-        <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
-        <div class="rental__form-actions--confirmation">
-          <p *ngIf="range.errors?.['incompleteRange'] && range.touched" class="date_invalid">
-            Fecha inválida
-          </p>
-          <p
-            *ngIf="
+@if (cars) {
+  <div class="rental__form bg-background-2 rounded-md">
+    <div class="rental__form-title mb-4">
+      <h4>Alquile un vehiculo</h4>
+    </div>
+    <p class="font-lg rental__form-text text-muted">Por favor, ingrese las fechas de solicitud</p>
+    <p class="font-lg mb-2 text-muted">
+      Solicitud de {{ username }} por renta de:
+      <span class="rental__form-text--car text-accent">{{ cars.brand }} {{ cars.model }}</span>
+    </p>
+    <form (ngSubmit)="onSubmit()" [formGroup]="range" class="container_form text-muted">
+      <hr class="mt-4 mb-4 border-surface" />
+      <div class="rental__form-actions">
+        @if (loading) {
+          <div class="spinner">
+            <app-loading color="confirm"></app-loading>
+          </div>
+        } @else {
+          <app-calendar [range]="range" [idCar]="idCar" [cars]="cars"></app-calendar>
+          <div class="rental__form-actions--confirmation">
+            @if (range.errors?.['incompleteRange'] && range.touched) {
+              <p class="date_invalid">
+                Fecha inválida
+              </p>
+            }
+            @if (
               !range.invalid &&
               range.get('start')?.value !== null &&
               range.get('end')?.value !== null
-            "
-            class="rental__form-actions--date_correct border-success rounded text-success p-3 lg:font-lg md:font-md font-sm"
-          >
-            Fecha correcta!
-          </p>
-        </div>
-      </ng-template>
-    </div>
-    <hr class="mt-4 mb-4 border-surface" />
-    <p class="font-md rental__form-text">
-      Monto a Pagar por dia:
-      <span class="text-accent">{{ this.cars.price }}</span>
-    </p>
-    <p class="font-md rental__form-text">
-      Cantidad de días:
-      <span class="text-accent">{{ this.range.value.days }}</span>
-    </p>
-    <p class="font-md rental__form-text mb-4">
-      Monto total:
-      <span class="text-accent">{{ this.range.value.amount }} Usd</span>
-    </p>
-    <app-btn
-      [text]="'Enviar'"
-      [color]="'primary'"
-      [variant]="'raised'"
-      [buttonType]="'submit'"
-      [isDisabled]="range.invalid"
-    ></app-btn>
-  </form>
-</div>
-
-<ng-template #loadingRentalForm>
+              ) {
+              <p
+                class="rental__form-actions--date_correct border-success rounded text-success p-3 lg:font-lg md:font-md font-sm"
+                >
+                Fecha correcta!
+              </p>
+            }
+          </div>
+        }
+      </div>
+      <hr class="mt-4 mb-4 border-surface" />
+      <p class="font-md rental__form-text">
+        Monto a Pagar por dia:
+        <span class="text-accent">{{ this.cars.price }}</span>
+      </p>
+      <p class="font-md rental__form-text">
+        Cantidad de días:
+        <span class="text-accent">{{ this.range.value.days }}</span>
+      </p>
+      <p class="font-md rental__form-text mb-4">
+        Monto total:
+        <span class="text-accent">{{ this.range.value.amount }} Usd</span>
+      </p>
+      <app-btn
+        [text]="'Enviar'"
+        [color]="'primary'"
+        [variant]="'raised'"
+        [buttonType]="'submit'"
+        [isDisabled]="range.invalid"
+      ></app-btn>
+    </form>
+  </div>
+} @else {
   <div class="rental__form bg-background-2 rounded-md">
     <app-skeleton variant="text" width="50%" height="24px"></app-skeleton>
     <app-skeleton variant="text" width="80%" class="mb-2"></app-skeleton>
@@ -65,49 +69,60 @@
     <app-skeleton variant="text" width="30%"></app-skeleton>
     <app-skeleton variant="rectangular" height="48px" width="160px"></app-skeleton>
   </div>
-</ng-template>
+}
+
 
 <ng-template #contentDialog>
-  <div *ngIf="!successDialog && !loadingDialog">
-    <h5 class="mb-6">Confirmación de solicitud</h5>
-    <h6 class="font-md">
-      Usted a solicitado para las fechas: desde
-      <span class="text-accent">{{ this.data.initialDate | date: 'dd/MM/yyyy' }}</span>
-      hasta
-      <span class="text-accent">{{ this.data.finalDate | date: 'dd/MM/yyyy' }}</span>
-      <hr class="mt-2 mb-2 border-surface"  />
-      Por favor, indique si quiere solicitar o confirmar la solicitud, en caso de confirmar.
-      <p>
-        <strong class="text-error font-sm">No podra cancelar la solicitud</strong>
-      </p>
-    </h6>
-  </div>
-  <div *ngIf="loadingDialog && !successDialog">
-    <h2>Procesando solicitud...</h2>
-    <h5>Aguarde un instante.</h5>
-  </div>
-  <div *ngIf="!loadingDialog && successDialog">
-    <div class="form-car__dialog__success mt-8">
-      <app-success [text]="'Se a completado el pedido con exito!'"></app-success>
+  @if (!successDialog && !loadingDialog) {
+    <div>
+      <h5 class="mb-6">Confirmación de solicitud</h5>
+      <h6 class="font-md">
+        Usted a solicitado para las fechas: desde
+        <span class="text-accent">{{ this.data.initialDate | date: 'dd/MM/yyyy' }}</span>
+        hasta
+        <span class="text-accent">{{ this.data.finalDate | date: 'dd/MM/yyyy' }}</span>
+        <hr class="mt-2 mb-2 border-surface"  />
+        Por favor, indique si quiere solicitar o confirmar la solicitud, en caso de confirmar.
+        <p>
+          <strong class="text-error font-sm">No podra cancelar la solicitud</strong>
+        </p>
+      </h6>
     </div>
-  </div>
+  }
+  @if (loadingDialog && !successDialog) {
+    <div>
+      <h2>Procesando solicitud...</h2>
+      <h5>Aguarde un instante.</h5>
+    </div>
+  }
+  @if (!loadingDialog && successDialog) {
+    <div>
+      <div class="form-car__dialog__success mt-8">
+        <app-success [text]="'Se a completado el pedido con exito!'"></app-success>
+      </div>
+    </div>
+  }
 </ng-template>
 <ng-template #btnDialog>
-  <div *ngIf="loadingDialog && !successDialog" class="rental__form-bts--loading">
-    <app-loading></app-loading>
-  </div>
-  <div *ngIf="!loadingDialog && !successDialog" class="rental__form-btns">
-    <app-btn
-      [text]="'Solicitar'"
-      [color]="'primary'"
-      [variant]="'raised'"
-      (click)="confirmRequest('req')"
-    ></app-btn>
-    <app-btn
-      [text]="'Solicitar y confirmar'"
-      [color]="'confirm'"
-      [variant]="'raised'"
-      (click)="confirmRequest('con')"
-    ></app-btn>
-  </div>
+  @if (loadingDialog && !successDialog) {
+    <div class="rental__form-bts--loading">
+      <app-loading></app-loading>
+    </div>
+  }
+  @if (!loadingDialog && !successDialog) {
+    <div class="rental__form-btns">
+      <app-btn
+        [text]="'Solicitar'"
+        [color]="'primary'"
+        [variant]="'raised'"
+        (click)="confirmRequest('req')"
+      ></app-btn>
+      <app-btn
+        [text]="'Solicitar y confirmar'"
+        [color]="'confirm'"
+        [variant]="'raised'"
+        (click)="confirmRequest('con')"
+      ></app-btn>
+    </div>
+  }
 </ng-template>

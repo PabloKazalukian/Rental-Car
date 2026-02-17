@@ -1,20 +1,20 @@
-<a
-  class="textLink"
-  [ngClass]="'text-' + color"
-  *ngIf="isExternal; else internalLink"
-  [href]="routerLink"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  {{ text }}
-</a>
-
-<ng-template #internalLink>
+@if (isExternal) {
+  <a
+    class="textLink"
+    [ngClass]="'text-' + color"
+    [href]="routerLink"
+    target="_blank"
+    rel="noopener noreferrer"
+    >
+    {{ text }}
+  </a>
+} @else {
   <a
     class="textLink"
     [ngClass]="['text-' + color, 'hover:text-' + color + '-hover']"
     [routerLink]="routerLink"
-  >
+    >
     {{ text }}
   </a>
-</ng-template>
+}
+

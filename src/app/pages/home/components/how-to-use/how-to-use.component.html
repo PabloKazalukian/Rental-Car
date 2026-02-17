@@ -2,10 +2,12 @@
   <h2 class="how__title flex-center font-x4l mb-8">¿Cómo usar Rental-Car?</h2>
 
   <div class="how__cards text-black bg-surface pt-12 pb-12 mb-12">
-    <div *ngFor="let diccionary of diccionary" class="how__card bg-white p-4" appScrollAnimate>
-      <h3 class="how__card-title">{{ diccionary.tittle }}</h3>
-      <hr class="mt-6 mb-4" />
-      <div class="how__card-text" [innerHTML]="diccionary.text"></div>
-    </div>
+    @for (diccionary of diccionary; track diccionary) {
+      <div class="how__card bg-white p-4" appScrollAnimate>
+        <h3 class="how__card-title">{{ diccionary.tittle }}</h3>
+        <hr class="mt-6 mb-4" />
+        <div class="how__card-text" [innerHTML]="diccionary.text"></div>
+      </div>
+    }
   </div>
 </div>

@@ -4,14 +4,15 @@
     class="form__select btn pl-4 pr-4 rounded-md flex-center font-base pt-2 pb-2 pl-3 pr-3 text-white bg-background border-surface"
     [formControl]="control"
     [disabled]="isDisabled"
-  >
-    <option value="" disabled selected hidden class="form__select-option">{{ text }}</option>
-    <option
-      *ngFor="let opt of options"
-      [value]="opt.value"
-      class="form__select-option rounded-full"
     >
-      {{ opt.name }}
-    </option>
+    <option value="" disabled selected hidden class="form__select-option">{{ text }}</option>
+    @for (opt of options; track opt) {
+      <option
+        [value]="opt.value"
+        class="form__select-option rounded-full"
+        >
+        {{ opt.name }}
+      </option>
+    }
   </select>
 </div>

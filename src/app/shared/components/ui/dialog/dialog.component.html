@@ -8,13 +8,14 @@
       <div class="dialog__titles">
         <h2 class="dialog__title font-lg">{{ data.title }}</h2>
       </div>
-      <button
-        *ngIf="showClose"
-        class="dialog__close font-xl hover:text-error"
-        (click)="close('cancel')"
-      >
-        ✖
-      </button>
+      @if (showClose) {
+        <button
+          class="dialog__close font-xl hover:text-error"
+          (click)="close('cancel')"
+          >
+          ✖
+        </button>
+      }
     </div>
 
     <div class="dialog__divider mt-4 mb-4"></div>
@@ -34,9 +35,11 @@
           (click)="close('cancel')"
         ></app-btn>
       </div>
-      <div class="dialog__footer-right" *ngIf="data.actions">
-        <ng-container *ngTemplateOutlet="data.actions"></ng-container>
-      </div>
+      @if (data.actions) {
+        <div class="dialog__footer-right">
+          <ng-container *ngTemplateOutlet="data.actions"></ng-container>
+        </div>
+      }
     </div>
   </div>
 </div>

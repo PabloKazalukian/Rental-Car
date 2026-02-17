@@ -1,13 +1,14 @@
 <div class="pagination-container">
   <div class="pagination-buttons">
-    <button
-      *ngFor="let p of pages"
-      [class.active]="p === currentPage"
-      class="rounded-md text-white font-sm border-surface pt-2 pb-2 pl-3 pr-3 ml-2"
-      (click)="goToPage(p)"
-    >
-      {{ p + 1 }}
-    </button>
+    @for (p of pages; track p) {
+      <button
+        [class.active]="p === currentPage"
+        class="rounded-md text-white font-sm border-surface pt-2 pb-2 pl-3 pr-3 ml-2"
+        (click)="goToPage(p)"
+        >
+        {{ p + 1 }}
+      </button>
+    }
   </div>
   <app-select
     [label]="'paginación'"

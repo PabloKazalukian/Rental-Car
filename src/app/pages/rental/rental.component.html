@@ -5,8 +5,10 @@
     </div>
 
     <app-form-car (stepChanged)="step = $event" [idCar]="idCar" [cars]="cars" [user]="user"></app-form-car>
-    <div *ngIf="cars" class="rental__card flex-center flex-col">
-      <app-card-car [car]="cars"></app-card-car>
-    </div>
+    @if (cars) {
+      <div class="rental__card flex-center flex-col">
+        <app-card-car [car]="cars"></app-card-car>
+      </div>
+    }
   </div>
 </div>

@@ -1,17 +1,25 @@
 <div>
-    <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
-        <div class="auth-callback__center">
-            <div class="auth-calback__spinner" *ngIf="this.loading">
-                <app-loading color="primary"></app-loading>
-            </div>
+  <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
+    <div class="auth-callback__center">
+      @if (this.loading) {
+        <div class="auth-calback__spinner">
+          <app-loading color="primary"></app-loading>
         </div>
-        <div *ngIf="!this.loading" class="auth-callback__message">
-            <div *ngIf="this.success === true" class="auth-callback__message--success">
-                <app-success [text]="'Sesión iniciada con google exitosa!'"></app-success>
-            </div>
-            <div *ngIf="this.success === false" class="auth-callback__message--error">
-                <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
-            </div>
-        </div>
-    </app-auth>
+      }
+    </div>
+    @if (!this.loading) {
+      <div class="auth-callback__message">
+        @if (this.success === true) {
+          <div class="auth-callback__message--success">
+            <app-success [text]="'Sesión iniciada con google exitosa!'"></app-success>
+          </div>
+        }
+        @if (this.success === false) {
+          <div class="auth-callback__message--error">
+            <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
+          </div>
+        }
+      </div>
+    }
+  </app-auth>
 </div>

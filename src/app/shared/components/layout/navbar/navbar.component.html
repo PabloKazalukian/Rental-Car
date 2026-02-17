@@ -11,7 +11,7 @@
       class="nav-bar__toggle bg-background-3 font-x2l"
       (click)="toggleMenu()"
       aria-label="Abrir menú"
-    >
+      >
       ☰
     </button>
 
@@ -25,38 +25,42 @@
         (click)="closeMenu()"
       ></app-btn>
 
-      <app-btn
-        *ngIf="islogged"
-        [routerLink]="'/usuario'"
-        [text]="usuario.username"
-        [color]="'primary'"
-        [variant]="'stroked'"
-        (click)="closeMenu()"
-      ></app-btn>
-      <app-btn
-        *ngIf="islogged"
-        [text]="'Cerrar sesión'"
-        [color]="'confirm'"
-        [variant]="'stroked'"
-        (click)="logout()"
-      ></app-btn>
+      @if (islogged) {
+        <app-btn
+          [routerLink]="'/usuario'"
+          [text]="usuario.username"
+          [color]="'primary'"
+          [variant]="'stroked'"
+          (click)="closeMenu()"
+        ></app-btn>
+      }
+      @if (islogged) {
+        <app-btn
+          [text]="'Cerrar sesión'"
+          [color]="'confirm'"
+          [variant]="'stroked'"
+          (click)="logout()"
+        ></app-btn>
+      }
 
-      <app-btn
-        *ngIf="!islogged"
-        [routerLink]="'/auth/registro'"
-        [text]="'Registrarse'"
-        [color]="'text'"
-        [variant]="'basic'"
-        (click)="closeMenu()"
-      ></app-btn>
-      <app-btn
-        *ngIf="!islogged"
-        [routerLink]="'/auth/login'"
-        [text]="'Iniciar sesión'"
-        [color]="'text'"
-        [variant]="'basic'"
-        (click)="closeMenu()"
-      ></app-btn>
+      @if (!islogged) {
+        <app-btn
+          [routerLink]="'/auth/registro'"
+          [text]="'Registrarse'"
+          [color]="'text'"
+          [variant]="'basic'"
+          (click)="closeMenu()"
+        ></app-btn>
+      }
+      @if (!islogged) {
+        <app-btn
+          [routerLink]="'/auth/login'"
+          [text]="'Iniciar sesión'"
+          [color]="'text'"
+          [variant]="'basic'"
+          (click)="closeMenu()"
+        ></app-btn>
+      }
 
       <app-btn
         [routerLink]="'/'"

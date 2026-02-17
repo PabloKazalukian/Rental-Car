@@ -1,73 +1,79 @@
 <div class="container__login">
   <app-auth [imageBackground]="'assets/images/ferrari_optimized.jpg'">
-    <form *ngIf="this.login !== true" class="form-layout" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
-      <div class="text-center login-title">
-        <h3 class="mb-8">Inicie sesión</h3>
-      </div>
-      <div class="login-form__field mb-4">
-        <app-input
-          [label]="'Email o nombre de usuario'"
-          [type]="'text'"
-          [placeholder]="'pat@example.com'"
-          [control]="identifierControl"
-        ></app-input>
-      </div>
-      <div class="login-form__field mb-12">
-        <app-input
-          [label]="'Contraseña'"
-          [type]="'password'"
-          [placeholder]="'********'"
-          [control]="passwordControl"
-          [showTogglePassword]="true"
-        ></app-input>
-      </div>
-
-      <div *ngIf="!this.loading === true" class="login-form__actions">
-        <div class="login-form__credentials mb-3">
-          <div class="login-form__credentials-checkbox">
-            <app-checkbox [text]="'Recordarme'" [control]="rememberControl"></app-checkbox>
+    @if (this.login !== true) {
+      <form class="form-layout" (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+        <div class="text-center login-title">
+          <h3 class="mb-8">Inicie sesión</h3>
+        </div>
+        <div class="login-form__field mb-4">
+          <app-input
+            [label]="'Email o nombre de usuario'"
+            [type]="'text'"
+            [placeholder]="'pat@example.com'"
+            [control]="identifierControl"
+          ></app-input>
+        </div>
+        <div class="login-form__field mb-12">
+          <app-input
+            [label]="'Contraseña'"
+            [type]="'password'"
+            [placeholder]="'********'"
+            [control]="passwordControl"
+            [showTogglePassword]="true"
+          ></app-input>
+        </div>
+        @if (!this.loading === true) {
+          <div class="login-form__actions">
+            <div class="login-form__credentials mb-3">
+              <div class="login-form__credentials-checkbox">
+                <app-checkbox [text]="'Recordarme'" [control]="rememberControl"></app-checkbox>
+              </div>
+              <div class="login-form__credentials-link">
+                <app-text-link [text]="'Olvidé mi contraseña'" [routerLink]="''" [color]="'primary'"></app-text-link>
+              </div>
+            </div>
+            <div class="login-form__field--btn">
+              <app-btn
+                [text]="'Iniciar sesión'"
+                [color]="'primary'"
+                [variant]="'raised'"
+                [buttonType]="'submit'"
+                [isDisabled]="contactForm.invalid"
+                class="text-md text-error"
+              ></app-btn>
+            </div>
+            <div class="login-form__divider mt-5 mb-5">
+              <span class="login-form__divider-text">o continuar con</span>
+            </div>
+            <button
+              type="button"
+              (click)="loginWithGoogle()"
+              class="login-form__google-btn flex-center bg-white font-md text-surface rounded-md"
+              >
+              <img src="assets/images/Google__G__logo.svg" alt="Google logo" class="google-logo" />
+              Iniciar sesión con Google
+            </button>
           </div>
-          <div class="login-form__credentials-link">
-            <app-text-link [text]="'Olvidé mi contraseña'" [routerLink]="''" [color]="'primary'"></app-text-link>
+        }
+        @if (this.loading === true) {
+          <div class="flex-center">
+            <div class="login-form__actions-loading">
+              <app-loading></app-loading>
+            </div>
           </div>
-        </div>
+        }
+      </form>
+    }
 
-        <div class="login-form__field--btn">
-          <app-btn
-            [text]="'Iniciar sesión'"
-            [color]="'primary'"
-            [variant]="'raised'"
-            [buttonType]="'submit'"
-            [isDisabled]="contactForm.invalid"
-            class="text-md text-error"
-          ></app-btn>
-        </div>
-        <div class="login-form__divider mt-5 mb-5">
-          <span class="login-form__divider-text">o continuar con</span>
-        </div>
-
-        <button
-          type="button"
-          (click)="loginWithGoogle()"
-          class="login-form__google-btn flex-center bg-white font-md text-surface rounded-md"
-        >
-          <img src="assets/images/Google__G__logo.svg" alt="Google logo" class="google-logo" />
-          Iniciar sesión con Google
-        </button>
+    @if (this.login === true) {
+      <div class="login__success mt-12">
+        <app-success [text]="'Sesión iniciada con exito!'"></app-success>
       </div>
-
-      <div *ngIf="this.loading === true" class="flex-center">
-        <div class="login-form__actions-loading">
-          <app-loading></app-loading>
-        </div>
+    }
+    @if (this.login === false) {
+      <div class="login__success">
+        <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
       </div>
-    </form>
-
-    <div *ngIf="this.login === true" class="login__success mt-12">
-      <app-success [text]="'Sesión iniciada con exito!'"></app-success>
-    </div>
-    <div *ngIf="this.login === false" class="login__success">
-      <app-message-error [messageError]="'Hubo un problema con su inicio de sesión.'"></app-message-error>
-    </div>
+    }
   </app-auth>
 </div>

@@ -1,36 +1,38 @@
 <aside class="rental__card__content relative rounded-md bg-background-2 rounded-lg border-surface">
   <div class="rental__card-image__wrapper bg-background-2 pb-4">
-    <div *ngIf="!imageLoaded" class="skeleton-image"></div>
+    @if (!imageLoaded) {
+      <div class="skeleton-image"></div>
+    }
     <img
       [src]="car.image"
       alt="Car image"
       class="rental__card-image__car rounded-md"
       (load)="onImageLoad()"
       [class.hidden]="!imageLoaded"
-    />
-  </div>
-  <div class="rental__card-info__model bg-background">
-    <div class="rental__card-info__name flex-center flex-col pb-2 pt-2 border-surface">
-      <label>Modelo:</label>
-      <p class="text-primary">{{ car.brand }} {{ car.model }}</p>
+      />
     </div>
-    <div class="rental__card-info__price flex-center flex-col pb-2 pt-2 border-surface">
-      <label>Precio por día:</label>
-      <p class="text-primary">{{ car.price }}</p>
+    <div class="rental__card-info__model bg-background">
+      <div class="rental__card-info__name flex-center flex-col pb-2 pt-2 border-surface">
+        <label>Modelo:</label>
+        <p class="text-primary">{{ car.brand }} {{ car.model }}</p>
+      </div>
+      <div class="rental__card-info__price flex-center flex-col pb-2 pt-2 border-surface">
+        <label>Precio por día:</label>
+        <p class="text-primary">{{ car.price }}</p>
+      </div>
+      <div class="rental__card-info__year flex-center flex-col pb-2 pt-2 border-surface">
+        <label>año:</label>
+        <p class="text-primary">{{ car.year }}</p>
+      </div>
     </div>
-    <div class="rental__card-info__year flex-center flex-col pb-2 pt-2 border-surface">
-      <label>año:</label>
-      <p class="text-primary">{{ car.year }}</p>
+    <div class="rental__card-info__button relative p-3 bg-background-2">
+      <div class="rental__card-info__button-actions">
+        <app-btn
+          [text]="'Solicitar otro vehiculo'"
+          [color]="'primary'"
+          [variant]="'raised'"
+          [routerLink]="'/solicitar-auto'"
+        ></app-btn>
+      </div>
     </div>
-  </div>
-  <div class="rental__card-info__button relative p-3 bg-background-2">
-    <div class="rental__card-info__button-actions">
-      <app-btn
-        [text]="'Solicitar otro vehiculo'"
-        [color]="'primary'"
-        [variant]="'raised'"
-        [routerLink]="'/solicitar-auto'"
-      ></app-btn>
-    </div>
-  </div>
-</aside>
+  </aside>

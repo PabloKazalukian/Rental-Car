@@ -1,33 +1,39 @@
 <div class="modal">
-    <div class="modal__backdrop"></div>
+  <div class="modal__backdrop"></div>
 
-    <div class="modal__container">
-        <!-- Header -->
-        <div class="modal__header">
-            <span class="title">Rental-Car</span>
-            <div class="modal__titles">
-                <h2 class="modal__title">{{ data.title }}</h2>
-                <p class="modal__subtitle" *ngIf="subtitle">{{ data.subtitle }}</p>
-            </div>
-            <button *ngIf="showClose" class="modal__close" (click)="close()">✖</button>
-        </div>
-
-        <div class="modal__divider"></div>
-
-        <!-- Cuerpo dinámico -->
-        <div class="modal__body">
-            <ng-container *ngTemplateOutlet="data.content"></ng-container>
-        </div>
-
-        <!-- Footer -->
-        <div class="modal__footer">
-            <div class="modal__footer-left">
-                <!-- <app-btn  (click)="close()">Cerrar</app-btn> -->
-                <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'error'" (click)="close()"></app-btn>
-            </div>
-            <div class="modal__footer-right" *ngIf="data.actions">
-                <ng-container *ngTemplateOutlet="data.actions"></ng-container>
-            </div>
-        </div>
+  <div class="modal__container">
+    <!-- Header -->
+    <div class="modal__header">
+      <span class="title">Rental-Car</span>
+      <div class="modal__titles">
+        <h2 class="modal__title">{{ data.title }}</h2>
+        @if (subtitle) {
+          <p class="modal__subtitle">{{ data.subtitle }}</p>
+        }
+      </div>
+      @if (showClose) {
+        <button class="modal__close" (click)="close()">✖</button>
+      }
     </div>
+
+    <div class="modal__divider"></div>
+
+    <!-- Cuerpo dinámico -->
+    <div class="modal__body">
+      <ng-container *ngTemplateOutlet="data.content"></ng-container>
+    </div>
+
+    <!-- Footer -->
+    <div class="modal__footer">
+      <div class="modal__footer-left">
+        <!-- <app-btn  (click)="close()">Cerrar</app-btn> -->
+        <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'error'" (click)="close()"></app-btn>
+      </div>
+      @if (data.actions) {
+        <div class="modal__footer-right">
+          <ng-container *ngTemplateOutlet="data.actions"></ng-container>
+        </div>
+      }
+    </div>
+  </div>
 </div>

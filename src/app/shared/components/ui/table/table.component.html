@@ -1,68 +1,80 @@
 <div class="table-wrapper relative">
-  <table *ngIf="data !== null" class="styled-table border-surface" appScrollAnimate>
-    <thead *ngIf="data.length > 0" class="border-surface-3 bg-background-2 rounded-sm">
-      <tr class="font-bold">
-        <th *ngFor="let col of columns">
-          <button
-            (click)="orderBy(col.key)"
-            class="sort-button"
-            [ngClass]="{ 'active-sort': isColumnSorted(col.key) }"
-          >
-            <span class="label">{{ col.label }}</span>
-
-            <span class="arrow-group">
-              <svg
-                class="arrow-icon up"
-                viewBox="0 0 24 24"
+  @if (data !== null) {
+    <table class="styled-table border-surface" appScrollAnimate>
+      @if (data.length > 0) {
+        <thead class="border-surface-3 bg-background-2 rounded-sm">
+          <tr class="font-bold">
+            @for (col of columns; track col) {
+              <th>
+                <button
+                  (click)="orderBy(col.key)"
+                  class="sort-button"
+                  [ngClass]="{ 'active-sort': isColumnSorted(col.key) }"
+                  >
+                  <span class="label">{{ col.label }}</span>
+                  <span class="arrow-group">
+                    <svg
+                      class="arrow-icon up"
+                      viewBox="0 0 24 24"
                 [ngClass]="{
                   active: isColumnSorted(col.key) && isAscending,
                   inactive: !isColumnSorted(col.key) || !isAscending,
                 }"
-              >
-                <path d="M7 14l5-5 5 5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-
-              <svg
-                class="arrow-icon down"
-                viewBox="0 0 24 24"
+                      >
+                      <path d="M7 14l5-5 5 5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <svg
+                      class="arrow-icon down"
+                      viewBox="0 0 24 24"
                 [ngClass]="{
                   active: isColumnSorted(col.key) && isAscending === false,
                   inactive: !isColumnSorted(col.key) || isAscending === true,
                 }"
-              >
-                <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-          </button>
-        </th>
-        <th *ngIf="actionsTemplate">Acciones</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let row of data">
-        <td *ngFor="let col of columns">
-          <ng-container *ngIf="col.link; else plainText">
-            <app-text-link
-              [text]="row[col.key]"
-              [routerLink]="'/solicitar-auto'"
-              [color]="'primary'"
-              [queryParams]="getQueryParams(col, row)"
-            ></app-text-link>
-          </ng-container>
-          <ng-template #plainText>
-            {{ row[col.key] }}
-          </ng-template>
-        </td>
-        <td *ngIf="actionsTemplate">
-          <ng-container
-            *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"
-          ></ng-container>
-        </td>
-      </tr>
-      <tr *ngIf="data.length === 0">
-        <td [attr.colspan]="columns.length + (actionsTemplate ? 1 : 0)">No hay datos</td>
-      </tr>
-    </tbody>
-  </table>
+                      >
+                      <path d="M7 10l5 5 5-5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+              </th>
+            }
+            @if (actionsTemplate) {
+              <th>Acciones</th>
+            }
+          </tr>
+        </thead>
+      }
+      <tbody>
+        @for (row of data; track row) {
+          <tr>
+            @for (col of columns; track col) {
+              <td>
+                @if (col.link) {
+                  <app-text-link
+                    [text]="row[col.key]"
+                    [routerLink]="'/solicitar-auto'"
+                    [color]="'primary'"
+                    [queryParams]="getQueryParams(col, row)"
+                  ></app-text-link>
+                } @else {
+                  {{ row[col.key] }}
+                }
+              </td>
+            }
+            @if (actionsTemplate) {
+              <td>
+                <ng-container
+                  *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"
+                ></ng-container>
+              </td>
+            }
+          </tr>
+        }
+        @if (data.length === 0) {
+          <tr>
+            <td [attr.colspan]="columns.length + (actionsTemplate ? 1 : 0)">No hay datos</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
 </div>
