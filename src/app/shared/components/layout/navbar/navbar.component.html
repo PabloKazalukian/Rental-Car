@@ -7,23 +7,11 @@
     <span class="spacer"></span>
 
     <!-- Botón hamburguesa solo visible en mobile -->
-    <button
-      class="nav-bar__toggle bg-background-3 font-x2l"
-      (click)="toggleMenu()"
-      aria-label="Abrir menú"
-      >
-      ☰
-    </button>
+    <button class="nav-bar__toggle bg-background-3 font-x2l" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
 
     <!-- Menú -->
     <div class="nav-bar__links bg-none" [class.is-open]="menuOpen">
-      <app-btn
-        [routerLink]="'/contacto'"
-        [text]="'Contáctanos'"
-        [color]="'text'"
-        [variant]="'basic'"
-        (click)="closeMenu()"
-      ></app-btn>
+      <app-btn [routerLink]="'/contacto'" [text]="'Contáctanos'" [color]="'text'" [variant]="'basic'" (click)="closeMenu()"></app-btn>
 
       @if (islogged()) {
         <app-btn
@@ -35,12 +23,7 @@
         ></app-btn>
       }
       @if (islogged()) {
-        <app-btn
-          [text]="'Cerrar sesión'"
-          [color]="'confirm'"
-          [variant]="'stroked'"
-          (click)="logout()"
-        ></app-btn>
+        <app-btn [text]="'Cerrar sesión'" [color]="'confirm'" [variant]="'stroked'" (click)="logout()"></app-btn>
       }
 
       @if (!islogged()) {
@@ -62,13 +45,11 @@
         ></app-btn>
       }
 
-      <app-btn
-        [routerLink]="'/'"
-        [text]="'Inicio'"
-        [color]="'text'"
-        [variant]="'basic'"
-        (click)="closeMenu()"
-      ></app-btn>
+      <app-btn [routerLink]="'/'" [text]="'Inicio'" [color]="'text'" [variant]="'basic'" (click)="closeMenu()"></app-btn>
+
+      <a [routerLink]="'/checkout'" class="nav-bar__cart">
+        <app-cart-icon></app-cart-icon>
+      </a>
     </div>
   </div>
 </nav>

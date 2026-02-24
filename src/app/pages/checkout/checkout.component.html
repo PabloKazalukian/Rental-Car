@@ -7,87 +7,119 @@
       <!-- <div class="checkout__form-info p-2 bg-background-2 mt-2 rounded-md flex flex-center"> -->
       <!-- <span class="bg-surface font-sm flex-center rounded-100 pr-3 pl-3 pt-1 pb-1">i</span> -->
       <!-- <p>Info de primer nivel</p> -->
-    <!-- </div> -->
-    <div class="checkout__form-content flex-center flex-col">
-      @if (request && request.length > 0) {
-        <div class="checkout__form-content-header mb-4 flex-center flex-col mt-4">
-          @for (r of request; track r) {
-            <app-checkout-card [request]="r"></app-checkout-card>
-          }
-          <app-btn [routerLink]="'/solicitar-auto'" [color]="'primary'" [variant]="'raised'" [text]="'Agregar nuevos Alquileres'"></app-btn>
+      <!-- </div> -->
+      @if (loadingRequest() === true) {
+        <div class="checkout__loading">
+          <div class="checkout__loading-spinner">
+            <app-loading></app-loading>
+          </div>
         </div>
       } @else {
-        @if (request.length !== 0) {
-          <div class="checkout__loading mt-2">
-            <app-loading [color]="'accent'"></app-loading>
-          </div>
-        }
-        @if (request.length === 0) {
-          <div>
-            <p>No se han agregado items al checkout!</p>
-          </div>
-        }
+        <div class="checkout__form-content flex-center flex-col">
+          @if (request() && request().length > 0) {
+            <div class="checkout__form-content-header mb-4 flex-center flex-col mt-4">
+              @for (r of request(); track r) {
+                <app-checkout-card [request]="r"></app-checkout-card>
+              }
+              <app-btn
+                [routerLink]="'/solicitar-auto'"
+                [color]="'primary'"
+                [variant]="'raised'"
+                [text]="'Agregar nuevos Alquileres'"
+              ></app-btn>
+            </div>
+          } @else {
+            @if (request().length !== 0) {
+              <div class="checkout__loading mt-2">
+                <app-loading [color]="'accent'"></app-loading>
+              </div>
+            }
+            @if (request().length === 0) {
+              <div>
+                <p>No se han agregado items al checkout!</p>
+              </div>
+            }
+          }
+          <ng-template #loading>
+            @if (request().length !== 0) {
+              <div class="checkout__loading mt-2">
+                <app-loading [color]="'accent'"></app-loading>
+              </div>
+            }
+            @if (request().length === 0) {
+              <div>
+                <p>No se han agregado items al checkout!</p>
+              </div>
+            }
+          </ng-template>
+        </div>
       }
-      <ng-template #loading>
-        @if (request.length !== 0) {
-          <div class="checkout__loading mt-2">
-            <app-loading [color]="'accent'"></app-loading>
-          </div>
-        }
-        @if (request.length === 0) {
-          <div>
-            <p>No se han agregado items al checkout!</p>
-          </div>
-        }
-      </ng-template>
     </div>
-  </div>
 
-  <!-- ✅ Resumen fijo -->
-  <div class="checkout__slide bg-background-2 border-surface rounded-md p-4">
-    <div class="checkout__slide-header mb-4 flex-col">
-      <p class="font-bold">Items: {{ request ? request.length : 0 }}:</p>
-      <div class="checkout__slide-header__contain ml-2 flex-col">
-        @for (r of request; track r) {
-          <div class="flex-center">
-            <span class="info-circle bg-surface font-sm flex-center rounded-100">i</span>
-            <p class="font-xs text-muted">{{ r.car_id.brand }}</p>
-          </div>
-        }
+    <!-- ✅ Resumen fijo -->
+
+    @if (loadingRequest() === true) {
+      <div class="checkout__slide bg-background-2 border-surface rounded-md p-4">
+        <app-skeleton variant="text" width="80%" class="mb-2"></app-skeleton>
+        <app-skeleton variant="text" width="60%" class="mb-2"></app-skeleton>
+
+        <app-skeleton variant="text" width="40%" class="mb-2"></app-skeleton>
+        <app-skeleton variant="text" width="40%" class="mb-2"></app-skeleton>
+        <div class="checkout__slide-body mb-6"></div>
+
+        <app-skeleton variant="text" width="80%" class="mb-2"></app-skeleton>
+        <app-skeleton variant="text" width="80%" class="mb-2"></app-skeleton>
       </div>
-    </div>
+    } @else {
+      <div class="checkout__slide bg-background-2 border-surface rounded-md p-4">
+        <div class="checkout__slide-header mb-4 flex-col">
+          <p class="font-bold">Items: {{ request() ? request().length : 0 }}:</p>
+          <div class="checkout__slide-header__contain ml-2 flex-col">
+            @for (r of request(); track r) {
+              <div class="flex-center">
+                <span class="info-circle bg-surface font-sm flex-center rounded-100">i</span>
+                <p class="font-xs text-muted">
+                  {{ r.car_id.brand }}
 
-    <div class="checkout__slide-body mb-6">
-      <p>
-        Subtotal:
-        <span class="font-bold">${{ subtotal }}</span>
-      </p>
-      <p>
-        Descuento:
-        <span class="font-bold text-accent">-${{ discount }}</span>
-      </p>
-      <p>
-        Total:
-        <span class="font-bold text-lg">${{ total }}</span>
-      </p>
-    </div>
-
-    <div class="checkout__slide-footer">
-      <p class="mb-2">Métodos de pago:</p>
-      <div class="flex flex-col gap-2">
-        <app-select
-          [placeholder]="'metodos de pago'"
-          [text]="'Elige una opcion:'"
-          [options]="options"
-          [control]="selectControl"
-        ></app-select>
-        @if (showSelected === 'Mercado Pago') {
-          <div class="mt-6 mb-4">
-            <button class="btn font-md font-bold rounded-md pt-3 pb-3" routerLink="/payment">Mercado Pago</button>
+                  <span class="font-xs text-primary">{{ r.car_id.model }}</span>
+                </p>
+              </div>
+            }
           </div>
-        }
+        </div>
+
+        <div class="checkout__slide-body mb-6">
+          <p>
+            Subtotal:
+            <span class="font-bold">${{ subtotal }}</span>
+          </p>
+          <p>
+            Descuento:
+            <span class="font-bold text-accent">-${{ discount }}</span>
+          </p>
+          <p>
+            Total:
+            <span class="font-bold text-lg">${{ total }}</span>
+          </p>
+        </div>
+
+        <div class="checkout__slide-footer">
+          <p class="mb-2">Métodos de pago:</p>
+          <div class="flex flex-col gap-2">
+            <app-select
+              [placeholder]="'metodos de pago'"
+              [text]="'Elige una opcion:'"
+              [options]="options"
+              [control]="selectControl"
+            ></app-select>
+            @if (showSelected === 'Mercado Pago') {
+              <div class="mt-6 mb-4">
+                <button class="btn font-md font-bold rounded-md pt-3 pb-3" routerLink="/payment">Mercado Pago</button>
+              </div>
+            }
+          </div>
+        </div>
       </div>
-    </div>
+    }
   </div>
-</div>
 </div>

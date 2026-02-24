@@ -6,15 +6,10 @@
     <div class="dialog__header relative">
       <span class="title">Rental-Car</span>
       <div class="dialog__titles">
-        <h2 class="dialog__title font-lg">{{ data.title }}</h2>
+        <h2 class="dialog__title font-sm md:font-lg">{{ data.title }}</h2>
       </div>
       @if (showClose) {
-        <button
-          class="dialog__close font-xl hover:text-error"
-          (click)="close('cancel')"
-          >
-          ✖
-        </button>
+        <button class="dialog__close font-xl hover:text-error" (click)="close('cancel')">✖</button>
       }
     </div>
 
@@ -28,12 +23,7 @@
     <!-- Footer -->
     <div class="dialog__footer mt-4">
       <div class="dialog__footer-left">
-        <app-btn
-          [text]="'Cerrar'"
-          [variant]="'raised'"
-          [color]="'error'"
-          (click)="close('cancel')"
-        ></app-btn>
+        <app-btn [text]="'Cerrar'" [variant]="'raised'" [color]="'error'" (click)="close('cancel')"></app-btn>
       </div>
       @if (data.actions) {
         <div class="dialog__footer-right">

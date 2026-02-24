@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { delay, map, Subscription, switchMap, tap } from 'rxjs';
 import { RequestToPayment } from 'src/app/core/models/request.interface';
@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 import { BtnComponent } from '../../shared/components/ui/btn/btn.component';
 import { CheckoutCardComponent } from './components/checkout-card/checkout-card.component';
 import { StepperComponent } from '../../shared/components/ui/stepper/stepper.component';
+import { SkeletonComponent } from 'src/app/shared/components/ui/skeleton/skeleton.component';
 
 interface Select {
     option: string;
@@ -24,14 +25,7 @@ type selectFormType = FormControlsOf<Select>;
     templateUrl: './checkout.component.html',
     styleUrl: './checkout.component.scss',
     standalone: true,
-    imports: [
-        StepperComponent,
-        CheckoutCardComponent,
-        BtnComponent,
-        RouterLink,
-        LoadingComponent,
-        SelectComponent,
-    ],
+    imports: [StepperComponent, CheckoutCardComponent, BtnComponent, RouterLink, LoadingComponent, SelectComponent, SkeletonComponent],
 })
 export class CheckoutComponent implements OnInit {
     private subscriptions: Subscription[] = [];
@@ -39,9 +33,10 @@ export class CheckoutComponent implements OnInit {
 
     selectForm!: FormGroup<selectFormType>;
 
-    requestIds!: string[];
-    request: RequestToPayment[] = [];
+    requestIds = signal<string[]>([]);
+    request = signal<RequestToPayment[]>([]);
 
+    loadingRequest = signal<boolean>(true);
     step = 1;
     stepsDescription: StepWithDescription[] = [
         { step: 'Agregado al carrito', description: { routerLink: '/usuario', text: 'Volver a tus alquileres' } },
@@ -81,35 +76,22 @@ export class CheckoutComponent implements OnInit {
             }),
         );
 
-        // this.subscriptions.push(
-        //     this.user$
-        //         .pipe(
-        //             map((user) => user.sub),
-        //             switchMap((idUser: string) => this.checkoutSvc.getCheckout(idUser)),
-        //         )
-        //         .subscribe({
-        //             next: (res: string[]) => {
-        //                 // this.requestIds = res;
-        //             },
-        //             error: (err) => {
-        //                 console.log(err);
-        //             },
-        //         }),
-        // );
-
         this.subscriptions.push(
             this.checkoutSvc._request$
                 .pipe(
-                    tap((res: string[]) => (this.requestIds = res)),
+                    tap((res: string[]) => this.requestIds.set(res)),
                     switchMap((res: string[]) => this.rentalSvc.getRequestsByIds(res)),
+                    delay(2000),
                 )
                 .subscribe({
                     next: (res: RequestToPayment[]) => {
-                        this.request = res;
+                        this.request.set(res);
                         this.updateTotals();
+                        this.loadingRequest.set(false);
                     },
                     error: (err) => {
                         console.log(err);
+                        this.loadingRequest.set(false);
                     },
                 }),
         );
@@ -123,7 +105,7 @@ export class CheckoutComponent implements OnInit {
 
     updateTotals() {
         if (!this.request) return;
-        this.subtotal = this.request.reduce((acc, r) => acc + r.amount, 0);
+        this.subtotal = this.request().reduce((acc, r) => acc + r.amount, 0);
         this.discount = 0;
         this.total = this.subtotal - this.discount;
     }
@@ -133,18 +115,6 @@ export class CheckoutComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-        // console.log('destruyendo checkout');
-        // const userId = this.authSvc._user$
-        //     .pipe(
-        //         map((user) => user.sub),
-        //         switchMap((userId) => this.checkoutSvc.syncApiCheckout(userId)),
-        //     )
-        //     .subscribe({
-        //         next: () => console.log('Carrito sincronizado al salir'),
-        //         error: (err) => console.error('Error al sincronizar', err),
-        //     });
-
-        // userId.unsubscribe();
         this.subscriptions.forEach((sub) => sub.unsubscribe());
     }
 }
